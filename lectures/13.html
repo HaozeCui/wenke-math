@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1.3 导数与微分 · 文科高等数学</title>
+  <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
+  <link rel="stylesheet" href="../css/deck.css" />
+</head>
+<body class="play">
+  <div class="app cover-mode">
+    <div class="spine" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="home" href="../index.html">目录</a>
+      <span class="mark">NKU</span>
+      <h1>文科高等数学　·　1.3 导数与微分</h1>
+      <span class="sec" id="sec-label"></span>
+    </header>
+    <main class="stage">
+<section class="slide cover" data-title="封面" data-notes="先几何，再公式。">
+<div class="kicker">1.3　建议 6 学时</div>
+        <h2>割线躺平，<br />就是切线</h2>
+        <p>导数是差商的极限：瞬时变化率。本讲看 h 变小，割线贴住抛物线；再看 |x| 的尖点——连续也可以没有切线。</p>
+        <div class="meta">割线 · 尖点 · 基本公式</div>
+</section>
+<section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能用差商解释导数，并认出切线斜率。</p></div><div class="card"><span class="idx">02</span><p>能说明连续不必可导：尖点左右差商可以打架。</p></div><div class="card"><span class="idx">03</span><p>能使用基本求导公式与一次链式法则做课堂级计算。</p></div></div>
+</section>
+<section class="slide" data-title="本讲路线">
+<h2 class="slide-title">本讲路线</h2><div class="card"><ul><li>平均变化率 → 瞬时变化率</li><li>实验：割线随 h 变成切线</li><li>定义与可导、连续的关系</li><li>尖点：|x| 在 0</li><li>公式表与四则、链式</li><li>微分：增量的线性近似</li><li>分段点的左右导数</li></ul></div>
+</section>
+<section class="slide" data-title="导数">
+<div class="num">定义</div><h2 class="slide-title">导数</h2><div class="card"><p>$$f'(x_0)=\lim_{h\to 0}\frac{f(x_0+h)-f(x_0)}{h}$$</p><p>几何：切线斜率。运动：瞬时速度。经济：边际。</p></div><p class="lead" style="margin-top:12px">差商是割线；极限存在才有切线。</p>
+</section>
+<section class="slide" data-title="把 h 拉小，割线贴住切线" data-notes="x=1，f=x²，真导数 2。先大 h 问斜率几，再拉小。" data-hook="secant">
+<div class="num">实验 1</div><h2 class="slide-title">把 h 拉小，割线贴住切线</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="secant-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>步长 h</span><span class="ctrl-val" id="secant-h-val">0.80</span></label>
+              <input id="secant-h" type="range" min="0.05" max="1.2" step="0.01" value="0.8" />
+            </div>
+            <div class="readout" id="secant-read"></div>
+            <div class="verdict">金色是割线，虚线是切线。h 变小，两条线贴在一起。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="课堂练 1">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">用定义求 $f(x)=x^2$ 在 $x=1$ 的导数；再判断 $g(x)=|x|$ 在 0 是否可导。</div><p class="wait">约 4 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>差商 $((1+h)^2-1)/h=2+h\to 2$。所以 $f'(1)=2$。</li><li>$|x|$：左差商恒为 −1，右差商恒为 +1，极限不存在。</li><li>连续（折线连着）但不可导（没有唯一切线）。</li></ol><div class="comment">定义会算一个多项式就够；尖点必须会判。</div>
+</section>
+<section class="slide" data-title="尖点：左右差商不是同一个数" data-notes="从左侧拖到 0 再拖到右侧。强调连续与可导不是一回事。" data-hook="corner">
+<div class="num">实验 2</div><h2 class="slide-title">尖点：左右差商不是同一个数</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="corner-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>位置 x</span><span class="ctrl-val" id="corner-x-val">-0.80</span></label>
+              <input id="corner-x" type="range" min="-1.8" max="1.8" step="0.02" value="-0.8" />
+            </div>
+            <div class="verdict" id="corner-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="可导与连续">
+<h2 class="slide-title">可导与连续</h2><div class="grid-2"><div class="card"><h3>可导 ⇒ 连续</h3><div class="gold-rule"></div><ul><li>有切线的点，图像不能断开。</li><li>这是单向箭头。</li></ul></div><div class="card"><h3>连续 ⇏ 可导</h3><div class="gold-rule"></div><ul><li>|x| 在 0：连着，但尖。</li><li>分段的折点都要单独检查。</li></ul></div></div>
+</section>
+<section class="slide" data-title="基本公式" data-notes="投影上读表，不要把公式做成滑条。">
+<h2 class="slide-title">基本公式</h2><table class="sheet"><thead><tr><th>函数</th><th>导数</th><th>提醒</th></tr></thead><tbody><tr><td>$c$，$x^n$</td><td>$0$，$n x^{n-1}$</td><td>n 可以是分数</td></tr><tr><td>$\sin x$，$\cos x$</td><td>$\cos x$，$-\sin x$</td><td>弧度</td></tr><tr><td>$e^x$，$\ln x$</td><td>$e^x$，$1/x$</td><td>对数真数大于 0</td></tr><tr><td>$a^x$</td><td>$a^x\ln a$</td><td>不要写成 $x a^{x-1}$</td></tr></tbody></table>
+</section>
+<section class="slide" data-title="运算法则">
+<h2 class="slide-title">运算法则</h2><div class="grid-3"><div class="card"><h3>四则</h3><div class="gold-rule"></div><p>(uv)'=u'v+uv'。商：分子分母交叉减，再除分母平方。</p></div><div class="card"><h3>链式</h3><div class="gold-rule"></div><p>外层导数 × 里层导数。一次复合就够。</p></div><div class="card"><h3>反函数</h3><div class="gold-rule"></div><p>选讲：$y' = 1/x'$（在对应点）。</p></div></div>
+</section>
+<section class="slide" data-title="课堂练 2">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">求导数：
+(1) $y=(3x^2+1)^5$
+(2) $y=e^{\sin x}$
+只要求链式一次。</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>(1) $5(3x^2+1)^4\cdot 6x=30x(3x^2+1)^4$。</li><li>(2) $e^{\sin x}\cdot\cos x$。</li><li>先认外层，再乘里层。不要先把括号展开。</li></ol>
+</section>
+<section class="slide" data-title="高阶导数（记号即可）">
+<h2 class="slide-title">高阶导数（记号即可）</h2><div class="card"><ul><li>$f''=(f')'$。加速度是速度的导数，也是位移的二阶导数。</li><li>后面极值判别会用二阶：f''>0 谷，f''<0 峰。</li><li>不必练繁琐的高阶计算。</li></ul></div>
+</section>
+<section class="slide" data-title="课堂练 3　口误">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3　口误</h2><div class="prompt-box">判断正误：
+(1) 函数在一点连续，则在该点可导。
+(2) 导数就是「把 n 降一次」。</div><p class="wait">约 1 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>(1) 错。反例 |x| 在 0。</li><li>(2) 错。那只是幂函数。指数、正弦都不降次。</li></ol>
+</section>
+<section class="slide" data-title="导数的三张面孔">
+<h2 class="slide-title">导数的三张面孔</h2><div class="grid-2"><div class="card"><h3>几何 / 运动</h3><div class="gold-rule"></div><ul><li>切线斜率。</li><li>位移的瞬时速度。</li><li>速度的瞬时加速度。</li></ul></div><div class="card"><h3>变化率</h3><div class="gold-rule"></div><ul><li>边际成本、边际产量。</li><li>人口密度沿公路的变化。</li><li>词频随时间的瞬时变化（示意）。</li></ul></div></div>
+</section>
+<section class="slide" data-title="课堂练 4">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 4</h2><div class="prompt-box">已知 $s(t)=t^2$（米，秒）。求 t=3 时的瞬时速度，并说明它与 2 到 3 秒平均速度的差别。</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 4" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>$s'=2t$，t=3 时速度 6 米/秒。</li><li>2 到 3 秒平均速度 $(9-4)/1=5$ 米/秒。</li><li>平均是割线，瞬时是切线。h=1 时差商是 5，h→0 才到 6。对照实验 1。</li></ol>
+</section>
+<section class="slide" data-title="链式法则再看一眼">
+<h2 class="slide-title">链式法则再看一眼</h2><div class="card"><ul><li>$y=\sin(x^2)$：外层 cos，里层 2x，所以 $y'=2x\cos(x^2)$。</li><li>复合几层就乘几次。本讲要求一次，两次作为选做。</li><li>对数、指数外层时，先写外层导数再乘里层。</li></ul></div>
+</section>
+<section class="slide" data-title="课堂练 5">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 5</h2><div class="prompt-box">求 $y=\ln(3x+1)$ 的导数（x>−1/3）。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 5" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 5</h2><ol class="answer-list"><li>外层 $1/u$，里层 3，故 $y'=3/(3x+1)$。</li><li>验算量纲：真数无量纲，导数应是 1/x 的量级。</li></ol>
+</section>
+<section class="slide" data-title="不可导的常见样子">
+<h2 class="slide-title">不可导的常见样子</h2><div class="grid-3"><div class="card"><h3>尖点</h3><div class="gold-rule"></div><p>|x|、折线电价在分界点。</p></div><div class="card"><h3>铅垂切线</h3><div class="gold-rule"></div><p>$x^{1/3}$ 在 0：切线竖直，差商炸掉。</p></div><div class="card"><h3>断开</h3><div class="gold-rule"></div><p>不连续 ⇒ 不可导。先查连续。</p></div></div>
+</section>
+<section class="slide" data-title="差商的分子分母">
+<h2 class="slide-title">差商的分子分母</h2><div class="card"><ul><li>分子：函数值的改变量。分母：自变量的改变量。</li><li>h 可以是负的：从右边来或从左边来，必须给出同一个数。</li><li>h=0 使分母为 0，所以定义里永远是极限，不是代入。</li></ul></div>
+</section>
+<section class="slide" data-title="可导的充分条件（课堂够用）">
+<div class="num">定义</div><h2 class="slide-title">可导的充分条件（课堂够用）</h2><div class="card"><p>若 $f'$ 在 $x_0$ 附近连续，则 $f$ 在 $x_0$ 可导。本讲更常用反面：左右差商不同 ⇒ 不可导。</p></div>
+</section>
+<section class="slide" data-title="切线是割线的极限位置">
+<div class="num">公式</div><h2 class="slide-title">切线是割线的极限位置</h2><div class="card">$$y-f(x_0)=f'(x_0)\,(x-x_0)$$</div><p class="lead">「与曲线只交一次」只适合圆。一般曲线的切线还可能在别处再交一次。例：$y=x^3$ 在 $(2,8)$，$y'=3x^2=12$，切线 $y-8=12(x-2)$。</p>
+</section>
+<section class="slide" data-title="微分">
+<div class="num">定义</div><h2 class="slide-title">微分</h2><div class="card"><p>增量 $\Delta y=f(x_0+\Delta x)-f(x_0)$。微分是它的线性主部：</p><p>$$dy=f'(x_0)\,dx$$</p><p>$\Delta x$ 很小时 $\Delta y\approx dy$。会求导就会写微分，只是多乘一个 $dx$。</p></div><p class="lead" style="margin-top:12px">四则：$d(u\pm v)=du\pm dv$，$d(uv)=v\,du+u\,dv$。</p>
+</section>
+<section class="slide" data-title="商与链式再算三题" data-hook="quotchain">
+<h2 class="slide-title">商与链式再算三题</h2>
+<div class="grid-3" style="flex:1;min-height:0">
+  <div class="card" style="display:flex;flex-direction:column;min-height:0">
+    <h3>$(\tan x)'=\sec^2 x$</h3>
+    <div class="plot-wrap" style="min-height:0;flex:1"><canvas id="qc-tan"></canvas></div>
+    <p>斜率恒为正，靠近渐近线更陡。</p>
+  </div>
+  <div class="card" style="display:flex;flex-direction:column;min-height:0">
+    <h3>$(\ln\cos x)'=-\tan x$</h3>
+    <div class="plot-wrap" style="min-height:0;flex:1"><canvas id="qc-ln"></canvas></div>
+    <p>外层 ln，里层 cos，右侧斜率为负。</p>
+  </div>
+  <div class="card" style="display:flex;flex-direction:column;min-height:0">
+    <h3>$(\sin 5x)'=5\cos 5x$</h3>
+    <div class="plot-wrap" style="min-height:0;flex:1"><canvas id="qc-sin"></canvas></div>
+    <p>虚线斜率 1，金色切线斜率 5。</p>
+  </div>
+</div>
+</section>
+<section class="slide" data-title="分段点：左右导数">
+<div class="num">定义</div><h2 class="slide-title">分段点：左右导数</h2><div class="card"><p>$f(x)=x+1$（$x<0$），$f(x)=1$（$x\ge 0$）。$f(0)=1$，图像连着。</p><p>左导数为 $1$，右导数为 $0$。点 $(0,1)$ 有两条半切线，不可导。</p></div><p class="lead" style="margin-top:12px">可导要求左右导数存在并且相等。连续只说明函数值接上了。</p>
+</section>
+<section class="slide" data-title="文化卡片 · 第二次数学危机" data-notes="控制在两三分钟。">
+<div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 第二次数学危机</span><blockquote>无穷小既不是 0 又可以丢掉——贝克莱的质问逼出了严谨的极限语言。</blockquote><p>本讲用极限定义导数，正是对那次危机的回答。先把割线变成切线看清楚，比争论谁先发明微积分更要紧。</p></div>
+</section>
+<section class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>导数是差商的极限：切线斜率。</li><li>连续不必可导。</li><li>链式：外层乘里层。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把不可导说成不连续。</li><li>只会背公式、说不出差商图像。</li><li>h=0 直接代入差商。</li></ul></div></div>
+</section>
+<section class="slide" data-title="作业" data-notes="当堂布置。">
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>用定义求 $f(x)=3x+1$ 在任意点的导数（应得到常数 3）。</li><li>对 $y=\sin(2x)$ 用链式求导。</li><li>自画一个尖点，标明左右斜率。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 说明为何差分软件里「很小的 h」不能真的取 0。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.4：升降、极值、圆桶最省料、洛必达先看型。</p></div></div>
+</section>
+    </main>
+    <div class="notes" id="notes"></div>
+    <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
+    <div class="help" id="help">
+      <h3>快捷键</h3>
+      <p>→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
+      <p>解答页默认跳过；按 A 后进入线性顺序。滑条上请先点空白再按方向键。</p>
+    </div>
+    <footer class="botbar">
+      <span>南开大学数学科学学院</span>
+      <span id="page">1 / 1</span>
+      <span class="keys">
+        <button type="button" class="btn ghost" id="btn-prev">上一页</button>
+        <button type="button" class="btn ghost" id="btn-next">下一页</button>
+        <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
+        <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
+        <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
+        <button type="button" class="btn ghost" id="btn-help">?</button>
+      </span>
+    </footer>
+  </div>
+  <script src="../vendor/katex/katex.min.js"></script>
+  <script src="../vendor/katex/contrib/auto-render.min.js"></script>
+  <script src="../js/deck.js"></script>
+  <script src="../js/plot.js"></script>
+  <script src="../js/labs/13-deriv.js"></script>
+</body>
+</html>

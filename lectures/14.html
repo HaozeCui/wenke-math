@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1.4 导数的应用 · 文科高等数学</title>
+  <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
+  <link rel="stylesheet" href="../css/deck.css" />
+</head>
+<body class="play">
+  <div class="app cover-mode">
+    <div class="spine" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="home" href="../index.html">目录</a>
+      <span class="mark">NKU</span>
+      <h1>文科高等数学　·　1.4 导数的应用</h1>
+      <span class="sec" id="sec-label"></span>
+    </header>
+    <main class="stage">
+<section class="slide cover" data-title="封面" data-notes="先单调，再最值，最后洛必达。">
+<div class="kicker">1.4　建议 6 学时</div>
+        <h2>切线向上，<br />函数在爬</h2>
+        <p>f' 的正负决定升降；驻点可能是峰、谷或平台。圆桶最省料是约束极值的最小例子。洛必达先问「是不是未定式」。</p>
+        <div class="meta">升降 · 圆桶最省料 · 洛必达先判型</div>
+</section>
+<section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能根据 f' 的正负判断函数在区间上的升降，并找出峰谷。</p></div><div class="card"><span class="idx">02</span><p>能把「体积固定、表面积最小」写成函数 S(r) 并认出驻点。</p></div><div class="card"><span class="idx">03</span><p>能判断一个极限是不是 0/0 或 ∞/∞ 型，从而决定能否用洛必达。</p></div></div>
+</section>
+<section class="slide" data-title="本讲路线">
+<h2 class="slide-title">本讲路线</h2><div class="card"><ul><li>单调性：f'>0 升，f'<0 降</li><li>驻点、极值、二阶判别（口诀）</li><li>实验：切线方向与升降</li><li>圆桶最省料：约束写成一个变量</li><li>洛必达：先判型，再动手</li><li>曲线凹凸只留一句话</li></ul></div>
+</section>
+<section class="slide" data-title="单调与驻点">
+<div class="num">定义</div><h2 class="slide-title">单调与驻点</h2><div class="card"><p>在区间上 $f'>0$ 则严格增，$f'<0$ 则严格减。</p><p>驻点：$f'(x_0)=0$。可能是峰、谷，也可能只是平台（如 $x^3$ 在 0）。</p><p>还要查不可导点（尖点）与端点。</p></div><p class="lead" style="margin-top:12px">本讲例 f(x)=x³/3 − x，f'=x²−1，驻点 ±1。</p>
+</section>
+<section class="slide" data-title="切线向上则升，向下则降" data-notes="从左往右拖，经过 −1 与 +1。问：切线水平时函数在做什么。" data-hook="mono">
+<div class="num">实验 1</div><h2 class="slide-title">切线向上则升，向下则降</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="mono-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>位置 x</span><span class="ctrl-val" id="mono-x-val">-1.40</span></label>
+              <input id="mono-x" type="range" min="-2" max="2" step="0.02" value="-1.4" />
+            </div>
+            <div class="readout" id="mono-read"></div>
+            <div class="verdict">切线向上则升，切线向下则降。驻点在 ±1。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="极值怎么判">
+<h2 class="slide-title">极值怎么判</h2><div class="grid-2"><div class="card"><h3>一阶</h3><div class="gold-rule"></div><ul><li>左侧 f'>0、右侧 f'<0：峰。</li><li>左负右正：谷。</li><li>不变号：不是极值。</li></ul></div><div class="card"><h3>二阶（口诀）</h3><div class="gold-rule"></div><ul><li>$f''(x_0)>0$：谷（凸）。</li><li>$f''(x_0)<0$：峰（凹）。</li><li>$f''=0$：再用一阶，或另议。</li></ul></div></div>
+</section>
+<section class="slide" data-title="课堂练 1">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">对 $f(x)=x^3/3-x$，求驻点，判断峰谷，并指出在 $(-\infty,-1)$、$(-1,1)$、$(1,+\infty)$ 上的升降。</div><p class="wait">约 4 分钟。可对照实验。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>$f'=x^2-1=(x-1)(x+1)$。驻点 $x=\pm 1$。</li><li>$f''=2x$。$f''(-1)=-2<0$ 为峰；$f''(1)=2>0$ 为谷。</li><li>在 (−∞,−1) 增，(−1,1) 减，(1,+∞) 增。</li></ol><div class="comment">先因式分解 f'，再列表或看图。</div>
+</section>
+<section class="slide" data-title="圆桶：体积固定，表面积最小">
+<div class="num">定义</div><h2 class="slide-title">圆桶：体积固定，表面积最小</h2><div class="card"><p>圆柱体积 $V=\pi r^2 h$ 固定，表面积 $S=2\pi r h+2\pi r^2$。</p><p>用 $h=V/(\pi r^2)$ 消掉 $h$，得到一元函数 $S(r)$。驻点满足 $S'(r)=0$。</p></div><p class="lead" style="margin-top:12px">本讲取 V=16π，便于口算。太瘦或太扁都费料。</p>
+</section>
+<section class="slide" data-title="半径太大或太小，表面积都上去" data-notes="虚线是驻点。先问学生「最省料应该瘦高还是矮胖」，再拖。" data-hook="barrel">
+<div class="num">实验 2</div><h2 class="slide-title">半径太大或太小，表面积都上去</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="barrel-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>半径 r</span><span class="ctrl-val" id="barrel-r-val">1.20</span></label>
+              <input id="barrel-r" type="range" min="0.8" max="3" step="0.02" value="1.2" />
+            </div>
+            <div class="readout" id="barrel-read"></div>
+            <div class="verdict">虚线是驻点。太瘦或太扁，表面积都变大。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="课堂练 2">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">不要求算完导数：说明为什么不能把半径取成 0，也不能把半径取得任意大。S(r) 在两端怎样？</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>r→0：要保持体积，高度必须无穷大，侧面积爆炸。</li><li>r→∞：底面积 2πr² 爆炸。</li><li>两端 S→∞，中间必有最低点——驻点就是最省料的半径。</li></ol><div class="comment">约束极值的文科要点：先消元变成一条曲线，再找最低点。</div>
+</section>
+<section class="slide" data-title="洛必达：先判型">
+<div class="num">定义</div><h2 class="slide-title">洛必达：先判型</h2><div class="card"><p>若极限是 $\dfrac{0}{0}$ 或 $\dfrac{\infty}{\infty}$ 型，且 $f'/g'$ 的极限存在，则</p><p>$$\lim\frac{f}{g}=\lim\frac{f'}{g'}$$</p><p>不是未定式，禁止使用。步骤口诀：看型 → 求导 → 再看还能否代入。</p></div><p class="lead" style="margin-top:12px">本讲用图意：分子分母一起进 0 时，比的是它们的切线斜率。</p>
+</section>
+<section class="slide" data-title="课堂练 3　先判型">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3　先判型</h2><div class="prompt-box">下列哪一个能直接用洛必达？
+(1) $x\to 0$ 时 $\sin x/x$
+(2) $x\to\infty$ 时 $x\sin x$
+(3) $x\to 0$ 时 $(1-\cos x)/x^2$</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>(1) 0/0，能用。结果 1（也可当重要极限）。</li><li>(2) 不是分式未定式：x 发散，sin x 振荡。不能用洛必达。极限不存在。</li><li>(3) 0/0，能用。一次后仍是 0/0，再导一次得 1/2。</li></ol><div class="comment">先问型，再动手。振荡乘发散不是未定式。</div>
+</section>
+<section class="slide" data-title="步骤口诀" data-notes="不要把口诀做成实验室。">
+<h2 class="slide-title">步骤口诀</h2><div class="card"><ul><li>1. 代入：能算出数就停。</li><li>2. 认出 0/0 或 ∞/∞。其他型先变形。</li><li>3. 对分子分母分别求导（不是求商的导数）。</li><li>4. 再代入；仍未定式可再用，或改夹逼、等价无穷小。</li><li>5. 用完核对：数量级像不像。</li></ul></div>
+</section>
+<section class="slide" data-title="凹凸一句话">
+<h2 class="slide-title">凹凸一句话</h2><div class="grid-3"><div class="card"><h3>f''>0</h3><div class="gold-rule"></div><p>切线在曲线下方，碗口朝上。</p></div><div class="card"><h3>f''<0</h3><div class="gold-rule"></div><p>切线在曲线上方。</p></div><div class="card"><h3>拐点</h3><div class="gold-rule"></div><p>凹凸切换处。本讲不练繁琐计算。</p></div></div>
+</section>
+<section class="slide" data-title="最值：还要看端点">
+<h2 class="slide-title">最值：还要看端点</h2><div class="grid-2"><div class="card"><h3>开区间</h3><div class="gold-rule"></div><ul><li>可能没有最值。</li><li>$1/x$ 在 $(0,1)$ 无最大值。</li></ul></div><div class="card"><h3>闭区间连续</h3><div class="gold-rule"></div><ul><li>必有最大最小值。</li><li>候选人：驻点、不可导点、端点。</li><li>逐个比函数值。</li></ul></div></div>
+</section>
+<section class="slide" data-title="课堂练 4">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 4</h2><div class="prompt-box">求 $f(x)=x^3-3x$ 在 $[-2,2]$ 上的最大最小值。</div><p class="wait">约 4 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 4" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>$f'=3x^2-3=3(x-1)(x+1)$，驻点 ±1。</li><li>再加端点 ±2。</li><li>f(−2)=−2，f(−1)=2，f(1)=−2，f(2)=2。</li><li>最大 2，最小 −2。峰谷不一定是闭区间上的最值——还要跟端点比。</li></ol>
+</section>
+<section class="slide" data-title="洛必达不能用的时候">
+<h2 class="slide-title">洛必达不能用的时候</h2><div class="card"><ul><li>$x\sin x$（x→∞）不是 ∞/∞。</li><li>分子进 0、分母进 2：直接得 0，不要求导。</li><li>求导后极限仍振荡：洛必达帮不上，换夹逼或说明不存在。</li></ul></div>
+</section>
+<section class="slide" data-title="课堂练 5">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 5</h2><div class="prompt-box">$\lim_{x\to 0}\dfrac{e^x-1}{x}$ 是什么型？用洛必达求值。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 5" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 5</h2><ol class="answer-list"><li>0/0。</li><li>分子导数 $e^x$，分母导数 1，极限 $e^0=1$。</li><li>这也是「$e^x$ 在 0 的切线斜率是 1」。</li></ol>
+</section>
+<section class="slide" data-title="边际：文科接口">
+<h2 class="slide-title">边际：文科接口</h2><div class="grid-3"><div class="card"><h3>成本</h3><div class="gold-rule"></div><p>C'(q) 再多生产一件的成本。</p></div><div class="card"><h3>效用</h3><div class="gold-rule"></div><p>示意：再多消费一单位的满足感。</p></div><div class="card"><h3>提醒</h3><div class="gold-rule"></div><p>边际是导数，平均是差商。二者不必相等。</p></div></div>
+</section>
+<section class="slide" data-title="闭区间最值检查单">
+<h2 class="slide-title">闭区间最值检查单</h2><div class="card"><ul><li>求 f'，找驻点。</li><li>列入不可导点。</li><li>列入端点。</li><li>比函数值，不要只看二阶符号。</li></ul></div>
+</section>
+<section class="slide" data-title="单调区间（因式分解）">
+<div class="num">公式</div><h2 class="slide-title">单调区间（因式分解）</h2><div class="card">$$y=x^3-3x^2-9x+14,\quad y'=3(x+1)(x-3)$$</div><p class="lead">在 $(-\infty,-1]$ 与 $[3,+\infty)$ 上 $y'>0$，递增；在 $[-1,3]$ 上递减。驻点 $-1$、$3$ 还要拿去判极值，不能只报单调。</p>
+</section>
+<section class="slide" data-title="洛必达：∞/∞ 与 0·∞">
+<div class="num">公式</div><h2 class="slide-title">洛必达：∞/∞ 与 0·∞</h2><div class="card">$$\lim_{x\to+\infty}\frac{\ln x}{x}=0,\qquad \lim_{x\to 0^+}x\ln x=0$$</div><p class="lead">第一题是 $\infty/\infty$，分子导数 $1/x$、分母导数 $1$，得到 $1/x\to 0$。第二题是 $0\cdot\infty$，先写成 $\ln x/(1/x)$ 再使用洛必达。</p>
+</section>
+<section class="slide" data-title="导数之比的极限不存在时">
+<div class="num">公式</div><h2 class="slide-title">导数之比的极限不存在时</h2><div class="card">$$\lim_{x\to\infty}\frac{x+\sin x}{x}=1$$</div><p class="lead">原式 $=1+\sin x/x\to 1$。若对分子分母求导，得到 $1+\cos x$，极限不存在。这时不能反过来说原极限不存在：洛必达要求 $f'/g'$ 的极限存在。</p>
+</section>
+<section class="slide" data-title="圆桶的第二种造价">
+<div class="num">定义</div><h2 class="slide-title">圆桶的第二种造价</h2><div class="card"><p>侧面单价为 $a$，上下底单价为 $2a$，体积仍固定。</p><p>成本对半径只有一个驻点，此时高是半径的 $4$ 倍。</p></div><p class="lead" style="margin-top:12px">同一种消元：用体积把高写成半径的函数，再令导数为零。单价变了，最省的比例就变了。</p>
+</section>
+<section class="slide" data-title="文化卡片 · 把「最」写成函数" data-notes="控制在两三分钟。">
+<div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 把「最」写成函数</span><blockquote>最值问题把「省料」「最快」「最省钱」写成函数，再问导数为零的点。</blockquote><p>对文科学生，难处往往不在求导，而在把文字约束变成一个变量。圆桶是最小样板：体积是约束，表面积是目标。后面经济里的边际，不过是同一个 f'。</p></div>
+</section>
+<section class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>f' 正负 = 升降；驻点再判别峰谷。</li><li>约束极值：先消元。</li><li>洛必达先判型。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>看见 f'=0 就说是最大值。</li><li>对不是未定式的商用洛必达。</li><li>忘记查端点与不可导点。</li></ul></div></div>
+</section>
+<section class="slide" data-title="作业" data-notes="当堂布置。">
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>对 $f(x)=x^3-3x$ 列表说明升降与极值。</li><li>用自己的话写清圆桶为什么两端表面积无穷大。</li><li>判断 $\lim_{x\to 0}x/\sin x$ 能否用洛必达并求值。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 把「围栏靠墙围矩形菜地」写成单变量函数，不必算完。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.5：不定积分，+C 族与换元操练。</p></div></div>
+</section>
+    </main>
+    <div class="notes" id="notes"></div>
+    <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
+    <div class="help" id="help">
+      <h3>快捷键</h3>
+      <p>→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
+      <p>解答页默认跳过；按 A 后进入线性顺序。滑条上请先点空白再按方向键。</p>
+    </div>
+    <footer class="botbar">
+      <span>南开大学数学科学学院</span>
+      <span id="page">1 / 1</span>
+      <span class="keys">
+        <button type="button" class="btn ghost" id="btn-prev">上一页</button>
+        <button type="button" class="btn ghost" id="btn-next">下一页</button>
+        <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
+        <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
+        <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
+        <button type="button" class="btn ghost" id="btn-help">?</button>
+      </span>
+    </footer>
+  </div>
+  <script src="../vendor/katex/katex.min.js"></script>
+  <script src="../vendor/katex/contrib/auto-render.min.js"></script>
+  <script src="../js/deck.js"></script>
+  <script src="../js/plot.js"></script>
+  <script src="../js/labs/14-app.js"></script>
+</body>
+</html>

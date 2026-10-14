@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2.4 数据科学 · 文科高等数学</title>
+  <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
+  <link rel="stylesheet" href="../css/deck.css" />
+</head>
+<body class="play">
+  <div class="app cover-mode">
+    <div class="spine" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="home" href="../index.html">目录</a>
+      <span class="mark">NKU</span>
+      <h1>文科高等数学　·　2.4 数据科学</h1>
+      <span class="sec" id="sec-label"></span>
+    </header>
+    <main class="stage">
+<section class="slide cover" data-title="封面" data-notes="强调：评价与排序往往是在比方向。">
+<div class="kicker">2.4　新教材新增</div>
+        <h2>先变成向量，<br />再比较方向</h2>
+        <p>文本、图像、网页对计算机都必须先变成数。本讲三件事：词袋、余弦、PageRank。不解特征多项式。</p>
+        <div class="meta">会写向量　·　会算相似度　·　能解释重要性怎样流动</div>
+</section>
+<section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能把短文本写成词袋向量，并读懂文档–词矩阵。</p></div><div class="card"><span class="idx">02</span><p>能计算二维或三维向量的欧氏距离与余弦相似度。</p></div><div class="card"><span class="idx">03</span><p>能说明 PageRank 把链接写成矩阵后，重要性满足 Px=x 这类方向不变的问题。</p></div></div>
+</section>
+<section class="slide" data-title="数据科学为什么需要线性代数">
+<h2 class="slide-title">数据科学为什么需要线性代数</h2><div class="card"><ul><li>文本、图像、网页，对计算机都必须先变成数。</li><li>向量与矩阵是存放这些数、并对它们做变换的标准语言。</li><li>本讲三件事：向量化、距离/相似度、PageRank（特征值的直观）。</li><li>不讲特征多项式的繁琐计算。</li></ul></div>
+</section>
+<section class="slide" data-title="向量化与词袋">
+<div class="num">定义</div><h2 class="slide-title">向量化与词袋</h2><div class="card"><p>把对象变成向量：文本变成词频，图像变成像素灰度，表格变成一行一行的特征。</p><p>词袋模型：忽略词序，只计每个词出现几次。向量有多长，取决于词表有多大。</p></div><p class="lead" style="margin-top:12px">中文最简单的做法：以字为「词」。真实系统还要分词、去停用词。</p>
+</section>
+<section class="slide" data-title="点选一句，看它变成的向量" data-notes="点四行之一。大多数格子是 0，真实数据又大又稀疏。" data-hook="bow">
+<div class="num">实验 1</div><h2 class="slide-title">点选一句，看它变成的向量</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="bow-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="readout" id="bow-read"></div>
+            <div class="verdict">点选一行，看这一句变成的向量。多数格子是 0。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="课堂练 1">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">词表（按列）：知 之 为 不 温 故 而 新 学 时 习。
+已给「知之为知之」=(2,2,1,0,…,0)。
+请写出「学而时习之」的词向量，并凭观察判断它与「温故而知新」谁更像「知之为知之」。</div><p class="wait">约 4 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>「学而时习之」：(0,1,0,0,0,0,1,0,1,1,1)。</li><li>「温故而知新」在「知」上有 1，与第一句共享「知」；第四句与第一句几乎不共享实词。</li><li>只看共享词还不够，下一页用余弦把「像不像」变成数。</li></ol><div class="comment">向量化之后，文学句子才能被拿来算距离。</div>
+</section>
+<section class="slide" data-title="三种远近">
+<h2 class="slide-title">三种远近</h2><div class="grid-2"><div class="card"><h3>距离</h3><div class="gold-rule"></div><ul><li>欧氏：直线距离。维数很高时大家彼此差不多（维数灾难）。</li><li>曼哈顿：沿网格走的路程，适合稀疏词频。</li></ul></div><div class="card"><h3>相似度</h3><div class="gold-rule"></div><ul><li>余弦：只看方向，不太在乎文章长短。</li><li>取值 [−1,1]，文本里常看 0 到 1。</li><li>余弦距离 = 1 − 余弦相似度。</li></ul></div></div>
+</section>
+<section class="slide" data-title="课堂用到的公式（二维、三维）">
+<div class="num">定义</div><h2 class="slide-title">课堂用到的公式（二维、三维）</h2><div class="card"><p>欧氏：$\sqrt{(x_1-y_1)^2+(x_2-y_2)^2}$</p><p>曼哈顿：$|x_1-y_1|+|x_2-y_2|$</p><p>余弦：$(u\cdot v)/(|u||v|)$，其中 $u\cdot v=u_1v_1+u_2v_2$。</p></div><p class="lead" style="margin-top:12px">词袋向量很长，但大多数分量是 0，手算时只看共同出现的字。</p>
+</section>
+<section class="slide" data-title="夹角变小，余弦变大" data-notes="固定 u=(2,1)，转动 v。强调长短不同也可以像。" data-hook="cosine">
+<div class="num">实验 2</div><h2 class="slide-title">夹角变小，余弦变大</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="cosine-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>向量 v 的方向</span><span class="ctrl-val" id="cos-a-val">20°</span></label>
+              <input id="cos-a" type="range" min="0" max="90" value="20" />
+            </div>
+            <div class="readout" id="cos-read"></div>
+            <div class="verdict" id="cos-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="课堂练 2">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">取二维示意：$u=(2,1)$，$v=(1,0)$，$w=(0,2)$。计算 $\cos(u,v)$ 与 $\cos(u,w)$，并说明哪一个与 $u$ 更相似。</div><p class="wait">约 4 分钟。公式：cos = u·v / (|u||v|)。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>$|u|=\sqrt{5}$，$|v|=1$，$|w|=2$。</li><li>$u\cdot v=2$，$\cos(u,v)=2/\sqrt{5}\approx 0.89$。</li><li>$u\cdot w=2$，$\cos(u,w)=2/(\sqrt{5}\cdot 2)\approx 0.45$。</li><li>v 与 u 更相似：更靠同一方向。</li></ol><div class="comment">点积大还不够，要除掉长度。长文章不会仅仅因为字多就被判得更像。</div>
+</section>
+<section class="slide" data-title="PageRank：链接就是有向图" data-notes="先画四页的箭，再提随机冲浪。">
+<h2 class="slide-title">PageRank：链接就是有向图</h2><div class="card"><ul><li>网页是点，超链接是箭。</li><li>教材四页：A→B，B→C，C→A 且 C→D，D 无出链。</li><li>邻接矩阵：列表示「从谁出发」。</li><li>没有出链的列改成均匀随机跳转。</li></ul></div>
+</section>
+<section class="slide" data-title="邻接矩阵（课堂四页）">
+<div class="num">定义</div><h2 class="slide-title">邻接矩阵（课堂四页）</h2><div class="card"><p>列顺序 A,B,C,D：</p><p>A 列 $(0,1,0,0)^{\mathrm T}$ —— A 指向 B</p><p>B 列 $(0,0,1,0)^{\mathrm T}$ —— B 指向 C</p><p>C 列 $(1,0,0,1)^{\mathrm T}$ —— C 指向 A 与 D</p><p>D 列 $(0,0,0,0)^{\mathrm T}$ —— 没有出链</p></div><p class="lead" style="margin-top:12px">下一页课堂练：把各列改成跳转概率（列和为 1）。</p>
+</section>
+<section class="slide" data-title="课堂练 3">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3</h2><div class="prompt-box">邻接矩阵（列=出发页 A,B,C,D）：
+A 列 (0,1,0,0)ᵀ，B 列 (0,0,1,0)ᵀ，C 列 (1,0,0,1)ᵀ，D 列全 0。
+请把每一列变成「跳转概率」（列和为 1）。全 0 的那一列如何处理？</div><p class="wait">约 4 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>A 列已是一个 1：保持 $(0,1,0,0)^{\mathrm T}$。</li><li>B 列保持 $(0,0,1,0)^{\mathrm T}$。</li><li>C 列有两个 1，各除以 2：$(1/2,0,0,1/2)^{\mathrm T}$。</li><li>D 无出链：四个分量都填 1/4。这就是「随便打开一页」。</li></ol><div class="comment">得到的矩阵叫转移矩阵。反复跳转后常去的页，重要性更高。</div>
+</section>
+<section class="slide" data-title="转移矩阵 P（列 = 出发）" data-notes="不必展开矩阵乘法的一般理论，用四维列向量口算一步即可。">
+<div class="num">公式</div><h2 class="slide-title">转移矩阵 P（列 = 出发）</h2><div class="card">$$P=\begin{pmatrix}0&0&1/2&1/4\\1&0&0&1/4\\0&1&0&1/4\\0&0&1/2&1/4\end{pmatrix}$$</div><p class="lead">下一步权重 x ↦ Px。被指得多的页会渐渐变大。</p>
+</section>
+<section class="slide" data-title="让权重顺着超链接走几步" data-notes="点 4–6 次迭代即可。连续播放必须能停。稳定后问：哪一页最重要，为什么。" data-hook="pagerank">
+<div class="num">实验 3</div><h2 class="slide-title">让权重顺着超链接走几步</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="pr-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>已迭代步数</span><span class="ctrl-val" id="pr-iter">0</span></label>
+              <div class="seg">
+                <button type="button" class="btn primary" id="pr-step">迭代一次</button>
+                <button type="button" class="btn" id="pr-play">连续播放</button>
+                <button type="button" class="btn ghost" id="pr-reset">重置</button>
+              </div>
+            </div>
+            <div id="pr-bars"></div>
+            <div class="verdict" id="pr-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="特征值：一句话就够">
+<div class="num">定义</div><h2 class="slide-title">特征值：一句话就够</h2><div class="card"><p>若 $Ax=\lambda x$ 且 $x\neq 0$，称 $\lambda$ 为特征值，$x$ 为特征向量。</p><p>PageRank 要找的，正是转移矩阵满足 $Px=x$ 的方向（$\lambda=1$），$x$ 的分量就是各页权重。</p></div><p class="lead" style="margin-top:12px">课上不解特征多项式。只要能读：矩阵作用在 x 上，方向不变，只可能伸缩。</p>
+</section>
+<section class="slide" data-title="词袋的诚实边界">
+<h2 class="slide-title">词袋的诚实边界</h2><div class="grid-2"><div class="card"><h3>能做</h3><div class="gold-rule"></div><ul><li>比共享了哪些字。</li><li>做最粗的检索、查重示意。</li></ul></div><div class="card"><h3>不能做</h3><div class="gold-rule"></div><ul><li>不懂词序：「知之为知之」与乱序同向量。</li><li>不懂否定：「不」只是一维计数。</li><li>这就是为什么后面要更精细的向量。</li></ul></div></div>
+</section>
+<section class="slide" data-title="课堂练 4">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 4</h2><div class="prompt-box">u=(1,0)，v=(2,0)，w=(0,1)。不计算也要能说：谁与 u 余弦最大？谁欧氏距离更远？</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 4" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>$u=(1,0)$，$v=(2,0)$ 同方向，$\cos=1$，最像。</li><li>$|u-v|=1$，$|u-w|=\sqrt{2}$，所以欧氏距离上 $w$ 更远。</li><li>文本里更常看余弦：长短不同的同题作文，不应只因字数被判远。</li></ol>
+</section>
+<section class="slide" data-title="PageRank 迭代在做什么">
+<h2 class="slide-title">PageRank 迭代在做什么</h2><div class="card"><ul><li>每一步：把当前重要性按出链分给别人。</li><li>无出链：均匀分给所有人（防掉进黑洞）。</li><li>反复做，向量渐渐不再动——方向被矩阵固定。</li><li>不必解 det(P−I)=0。实验里走几步即可看见。</li></ul></div>
+</section>
+<section class="slide" data-title="课堂练 5">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 5</h2><div class="prompt-box">若所有人只链向 A，直觉上稳定后谁最大？若无出链时改为「停在 D」，讨论会怎样？</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 5" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 5</h2><ol class="answer-list"><li>只链向 A，则 A 会吸走几乎全部权重。</li><li>若掉进 D 就停着，D 会变成黑洞，排名被一个无出链页绑架。</li><li>均匀乱跳正是为了避免这种绑架。</li></ol>
+</section>
+<section class="slide" data-title="和前三讲的关系">
+<h2 class="slide-title">和前三讲的关系</h2><div class="grid-3"><div class="card"><h3>向量</h3><div class="gold-rule"></div><p>词袋是向量；重要性也是向量。</p></div><div class="card"><h3>矩阵乘法</h3><div class="gold-rule"></div><p>Px 就是「按链接走一步」。</p></div><div class="card"><h3>特征值</h3><div class="gold-rule"></div><p>稳定时 Px=x，λ=1。只读这句话。</p></div></div>
+</section>
+<section class="slide" data-title="两句文言，余弦可以一样">
+<div class="num">公式</div><h2 class="slide-title">两句文言，余弦可以一样</h2><div class="card">$$\cos=\frac{2}{3\sqrt{5}}\approx 0.30$$</div><p class="lead">「知之为知之」$=(2,2,1,0,\ldots)$，长度 $3$。它与「学而时习之」只在「之」上相乘，点积为 $2$；与「温故而知新」只在「知」上相乘，点积也是 $2$。两句长度都是 $\sqrt{5}$，余弦相同，共享的却不是同一个字。</p>
+</section>
+<section class="slide" data-title="图像也是向量">
+<h2 class="slide-title">图像也是向量</h2><div class="grid-3"><div class="card"><h3>像素</h3><div class="gold-rule"></div><p>一张 $2\times 2$ 的灰度图，按行拉直就是四维向量。</p></div><div class="card"><h3>和词袋同一句话</h3><div class="gold-rule"></div><p>对象先变成一列数，后面的距离、矩阵乘法才有地方落。</p></div><div class="card"><h3>仍然很粗</h3><div class="gold-rule"></div><p>只记灰度、不记「这是一张脸」。词袋不记词序，是同一类简化。</p></div></div>
+</section>
+<section class="slide" data-title="欧氏距离会被长度带走">
+<div class="num">公式</div><h2 class="slide-title">欧氏距离会被长度带走</h2><div class="card">$$u=(1,1),\ 3u=(3,3),\ \cos(u,3u)=1,\ |u-3u|=2\sqrt{2}$$</div><p class="lead">同方向的加长版，余弦仍是 $1$。另取 $v=(1,-1)$，与 $u$ 等长但夹角是直角，$\cos=0$，欧氏距离只有 $2$，反而比 $2\sqrt{2}$ 更近。长短差很多时，直线距离会把「同一方向」判成更远。</p>
+</section>
+<section class="slide" data-title="PageRank 走一步">
+<div class="num">公式</div><h2 class="slide-title">PageRank 走一步</h2><div class="card">$$P\begin{pmatrix}1/4\\1/4\\1/4\\1/4\end{pmatrix}=\begin{pmatrix}3/16\\5/16\\5/16\\3/16\end{pmatrix}$$</div><p class="lead">四页一开始一样重要。乘一次转移矩阵后，B、C 升到 $5/16$，A、D 降到 $3/16$。B 收到 A 的全部，C 收到 B 的全部，所以先变大。稳定时才是 $Px=x$，课上不必解出那个向量。</p>
+</section>
+<section class="slide" data-title="列和为 1 在保证什么">
+<h2 class="slide-title">列和为 1 在保证什么</h2><div class="card"><ul><li>每一列是「从这一页出发」的概率，所以列和为 $1$。</li><li>重要性向量的分量加起来始终是 $1$：分掉的权重没有凭空增加。</li><li>D 列若保持全 $0$，乘出来的向量和会小于 $1$，权重漏掉。所以无出链要改成四个 $1/4$。</li><li>实验里多走几步，是在重复这件事，直到各页比例几乎不再变。</li></ul></div>
+</section>
+<section class="slide" data-title="文化卡片 · 搜索里的线性代数" data-notes="控制在两三分钟。">
+<div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 搜索里的线性代数</span><blockquote>把「谁指向谁」写成矩阵，再问矩阵最稳定的方向——搜索引擎的数学核心，并不神秘。</blockquote><p>对文科学生，重点不是算出 λ，而是看见：评价、排序、推荐，往往是在高维向量空间里比较方向。词袋是最粗的语言向量，后面的深度学习只是把「怎么变成向量」变得更精细。</p></div>
+</section>
+<section class="slide" data-title="带走三句">
+<h2 class="slide-title">带走三句</h2><div class="grid-3"><div class="card"><h3>先向量化，才能计算</h3><div class="gold-rule"></div><p>句子变成词频，网页变成链接列。</p></div><div class="card"><h3>余弦看方向</h3><div class="gold-rule"></div><p>适合文本；欧氏距离会被文章长短带走。</p></div><div class="card"><h3>PageRank</h3><div class="gold-rule"></div><p>图 → 矩阵 → 方向不变的向量。</p></div></div>
+</section>
+<section class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>先向量化，才能计算。</li><li>余弦看方向，适合文本。</li><li>PageRank：图 → 矩阵 → 主特征向量。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把词袋当成理解了语义（它忽略词序）。</li><li>用欧氏距离比较长短悬殊的文档。</li><li>以为必须手算特征多项式才能理解排序。</li></ul></div></div>
+</section>
+<section class="slide" data-title="作业" data-notes="当堂布置。">
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>把另外两句文言写成词向量，并计算其中一对的余弦（可只取非零维）。</li><li>画出课堂四网页的有向图，默写邻接矩阵。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 说明为什么去停用词（「的」「了」）会改变词袋向量。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>本讲收束线性代数。复习 2.1–2.4 后可进入概率统计（另案预告）。</p></div></div>
+</section>
+    </main>
+    <div class="notes" id="notes"></div>
+    <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
+    <div class="help" id="help">
+      <h3>快捷键</h3>
+      <p>→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
+      <p>解答页默认跳过；按 A 后进入线性顺序。滑条上请先点空白再按方向键。</p>
+    </div>
+    <footer class="botbar">
+      <span>南开大学数学科学学院</span>
+      <span id="page">1 / 1</span>
+      <span class="keys">
+        <button type="button" class="btn ghost" id="btn-prev">上一页</button>
+        <button type="button" class="btn ghost" id="btn-next">下一页</button>
+        <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
+        <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
+        <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
+        <button type="button" class="btn ghost" id="btn-help">?</button>
+      </span>
+    </footer>
+  </div>
+  <script src="../vendor/katex/katex.min.js"></script>
+  <script src="../vendor/katex/contrib/auto-render.min.js"></script>
+  <script src="../js/deck.js"></script>
+  <script src="../js/plot.js"></script>
+  <script src="../js/labs/24-data.js"></script>
+</body>
+</html>

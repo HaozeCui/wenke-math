@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1.8 二元函数 · 文科高等数学</title>
+  <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
+  <link rel="stylesheet" href="../css/deck.css" />
+</head>
+<body class="play">
+  <div class="app cover-mode">
+    <div class="spine" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="home" href="../index.html">目录</a>
+      <span class="mark">NKU</span>
+      <h1>文科高等数学　·　1.8 二元函数</h1>
+      <span class="sec" id="sec-label"></span>
+    </header>
+    <main class="stage">
+<section class="slide cover" data-title="封面" data-notes="用生活例子开场，再写符号。">
+<div class="kicker">1.8　新教材新增</div>
+        <h2>两个旋钮<br />必须同时在场</h2>
+        <p>只看烤制时间，舒芙蕾有时生、有时焦——还缺烤箱温度。二元函数把一对自变量变成一个数；极限要对所有路径说同一句话。</p>
+        <div class="meta">路径极限 · 偏导截线 · 二重积分</div>
+</section>
+<section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能求简单二元函数的自然定义域，并在平面上描述它的形状。</p></div><div class="card"><span class="idx">02</span><p>能用两条不同路径说明二重极限可以不存在。</p></div><div class="card"><span class="idx">03</span><p>能解释偏导是「固定一轴的截线斜率」，并会算矩形上的简单二重积分。</p></div></div>
+</section>
+<section class="slide" data-title="本讲路线">
+<h2 class="slide-title">本讲路线</h2><div class="card"><ul><li>为什么需要两个自变量：舒芙蕾</li><li>定义域画在平面上</li><li>路径极限：无数条路，两个数就不存在</li><li>偏导：一次只拧一个旋钮</li><li>驻点与黑塞：口算一题；乘数法本学期不要求</li><li>二重积分：D 型 / X 型切条</li></ul></div>
+</section>
+<section class="slide" data-title="舒芙蕾实验表" data-notes="强调：一元曲线变成二元曲面。">
+<h2 class="slide-title">舒芙蕾实验表</h2><div class="grid-2"><div class="card"><h3>记录</h3><div class="gold-rule"></div><ul><li>190℃，15 min → 30 分（焦外生内）</li><li>160℃，15 min → 88 分（蓬松）</li><li>160℃，20 min → 60 分（塌）</li><li>140℃，25 min → 50 分（干）</li></ul></div><div class="card"><h3>读出什么</h3><div class="gold-rule"></div><ul><li>同一个时间，温度不同，结果不同。</li><li>必须用一对自变量 (温度, 时间)。</li><li>实际定义域还可以截成烤箱能调的矩形。</li></ul></div></div>
+</section>
+<section class="slide" data-title="二元函数">
+<div class="num">定义</div><h2 class="slide-title">二元函数</h2><div class="card"><p>设 $D$ 是平面上非空点集。若对每一点 $(x,y)\in D$ 都有唯一实数 $z$ 与之对应，称 $z=f(x,y)$ 是 $D$ 上的二元函数。</p><p>$D$ 为定义域，对应的 $z$ 值全体为值域。</p></div><p class="lead" style="margin-top:12px">自然定义域：让表达式有意义的最大平面点集。分母不为零、根号内非负，都会在平面上变成挖洞或象限。</p>
+</section>
+<section class="slide" data-title="课堂练 1">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">求自然定义域，并用一句话描述形状：
+(1) $f(x,y)=(x^2-y^2)/(x^2+y^2)$
+(2) $f(x,y)=\sqrt{xy}$</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>(1) 分母 $x^2+y^2\neq 0$，即挖去原点。</li><li>(2) $xy\ge 0$：第一、三象限（含坐标轴）。</li><li>舒芙蕾的实际定义域还可以再限制成温度、时间的矩形。</li></ol><div class="comment">二元问题的第一件事永远是：点在平面上哪里。</div>
+</section>
+<section class="slide" data-title="二重极限">
+<div class="num">定义</div><h2 class="slide-title">二重极限</h2><div class="card"><p>若点 $(x,y)$ 以任意路径接近 $(x_0,y_0)$ 时，$f(x,y)$ 都接近同一个数 $A$，则称二重极限为 $A$。</p><p>与一元不同：接近的方式有无数种。两条路径得到两个数，极限就不存在。</p></div><p class="lead" style="margin-top:12px">本讲例题 $f=(x^2-y^2)/(x^2+y^2)$ 在极坐标下等于 $\cos 2\theta$，与半径无关、只与方向有关。</p>
+</section>
+<section class="slide" data-title="判定「不存在」的常用手法">
+<h2 class="slide-title">判定「不存在」的常用手法</h2><div class="card"><ul><li>沿 y=x、y=0、x=0 各算一次。</li><li>若两次结果不同，立即下结论：极限不存在。</li><li>若几次都相同，仍不能证明存在——只是还没找到反例。</li><li>存在性往往要用夹逼或连续性；本讲以会判不存在为主。</li></ul></div>
+</section>
+<section class="slide" data-title="换方向，而不是换远近" data-notes="先保持默认角，问靠近原点后两个数会不会变成一样。再把乙拖到 45°。" data-hook="paths">
+<div class="num">实验 1</div><h2 class="slide-title">换方向，而不是换远近</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="paths-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>路径甲的方向 θ₁</span><span class="ctrl-val" id="th1-val">0°</span></label>
+              <input id="th1" type="range" min="0" max="180" value="0" />
+              <label style="margin-top:10px"><span>路径乙的方向 θ₂</span><span class="ctrl-val" id="th2-val">45°</span></label>
+              <input id="th2" type="range" min="0" max="180" value="45" />
+              <label style="margin-top:10px"><span>离原点的距离 r</span><span class="ctrl-val" id="rad-val">0.80</span></label>
+              <input id="rad" type="range" min="0.08" max="1.2" step="0.02" value="0.8" />
+            </div>
+            <div class="readout">甲　f = <span id="f1">1.000</span><small>乙　f = <span id="f2">0.000</span>　·　f = cos 2θ</small></div>
+            <div class="verdict bad" id="paths-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="课堂练 2">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">令 $f(x,y)=(x^2-y^2)/(x^2+y^2)$。分别沿路径 $y=x$ 与 $y=0$ 求 $(x,y)\to(0,0)$ 的极限，并下结论。</div><p class="wait">约 4 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>沿 $y=x$：分子 $0$，极限为 $0$。</li><li>沿 $y=0$：$f(x,0)=x^2/x^2=1$，极限为 $1$。</li><li>两条路径结果不同 ⇒ 二重极限不存在。</li><li>不能因为沿某一条路有极限，就说极限存在。</li></ol><div class="comment">判定不存在往往比证明存在更容易。</div>
+</section>
+<section class="slide" data-title="连续性仍是三件事">
+<h2 class="slide-title">连续性仍是三件事</h2><p class="lead">闭区域上连续函数必有最大最小值；有约束时还要看边界。</p><div class="grid-3"><div class="card"><h3>有定义</h3><div class="gold-rule"></div><p>点必须在定义域里。原点对本讲的分式没有定义。</p></div><div class="card"><h3>有极限</h3><div class="gold-rule"></div><p>所有路径同一个数。本讲例题在原点失败。</p></div><div class="card"><h3>极限 = 函数值</h3><div class="gold-rule"></div><p>代入求极限，本质上是在用连续性。</p></div></div>
+</section>
+<section class="slide" data-title="偏导数：一次只拧一个旋钮">
+<div class="num">定义</div><h2 class="slide-title">偏导数：一次只拧一个旋钮</h2><div class="card"><p>$\partial f/\partial x$：把 $y$ 看作常数，对 $x$ 求导。</p><p>$\partial f/\partial y$：把 $x$ 看作常数，对 $y$ 求导。</p><p>几何上：曲面沿坐标方向的切线斜率。</p></div><p class="lead" style="margin-top:12px">想改进舒芙蕾：先固定温度改时间，或先固定时间改温度。</p>
+</section>
+<section class="slide" data-title="固定 y，看截线怎样抬升" data-notes="抛物面 z=x²+y²。y 固定后是开口向上的抛物线。" data-hook="slice">
+<div class="num">实验 2</div><h2 class="slide-title">固定 y，看截线怎样抬升</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="slice-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>固定的 y</span><span class="ctrl-val" id="slice-y-val">0.80</span></label>
+              <input id="slice-y" type="range" min="-2" max="2" step="0.02" value="0.8" />
+            </div>
+            <div class="readout" id="slice-read"></div>
+            <div class="verdict">偏导就是这条截线在 x 方向的斜率。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="课堂练 3　驻点（口算）">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3　驻点（口算）</h2><div class="prompt-box">利润（万元）$L(x,y)=25x+20y-x^2-y^2-xy$，$x$ 广告、$y$ 研发。求驻点，并用黑塞判断是否极大。判别：$L_{xx}L_{yy}-(L_{xy})^2>0$ 且 $L_{xx}<0$ 为极大。</div><p class="wait">约 5 分钟。全域最值还要看定义域边界。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>$L_x=25-2x-y=0$，$L_y=20-2y-x=0$。</li><li>解得 x=10，y=5。</li><li>$L_{xx}=-2$，$L_{yy}=-2$，$L_{xy}=-1$。判别式 $4-1=3>0$，$L_{xx}<0$ ⇒ 极大。$L(10,5)=175$。</li><li>这是局部最好；全域还要看定义域边界。有约束时的乘数法本学期不要求。</li></ol><div class="comment">偏导给出往哪边微调；黑塞告诉你这是峰还是谷。</div>
+</section>
+<section class="slide" data-title="二重积分：密度变成总量">
+<h2 class="slide-title">二重积分：密度变成总量</h2><div class="card"><ul><li>农田各点产量密度不同：分割小矩形 → 密度×面积 → 求和 → 加密。</li><li>D 型：竖条，先对 y 再对 x。</li><li>X 型：横条，先对 x 再对 y。</li><li>先画区域，再选比较省事的次序。矩形上两种次序一样。</li></ul></div>
+</section>
+<section class="slide" data-title="同一正方形，两种切条" data-notes="矩形上两种次序等价。曲边区域要先画图。" data-hook="strips">
+<div class="num">实验 3</div><h2 class="slide-title">同一正方形，两种切条</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="strips-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <div class="seg">
+                <button type="button" data-strip="d" class="on">D 型竖条</button>
+                <button type="button" data-strip="x">X 型横条</button>
+              </div>
+            </div>
+            <div class="verdict" id="strips-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="课堂练 4">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 4</h2><div class="prompt-box">计算 $\iint_D (x+y)\,dA$，其中 $D$ 是 $0\le x\le 1$，$0\le y\le 1$ 的正方形。</div><p class="wait">约 4 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 4" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>$\int_0^1\int_0^1 (x+y)\,dy\,dx=\int_0^1\bigl[xy+y^2/2\bigr]_0^1 dx=\int_0^1(x+1/2)\,dx=1$。</li><li>先 x 后 y 结果相同，这是矩形上的好运。</li><li>曲边区域就要像 1.7 那样先决定切条方向。</li></ol><div class="comment">二重积分把密度积累成总量，思想与定积分一致，只是底换成了面积。</div>
+</section>
+<section class="slide" data-title="路径再练一条">
+<h2 class="slide-title">路径再练一条</h2><div class="grid-2"><div class="card"><h3>沿 y=x²</h3><div class="gold-rule"></div><ul><li>$f(x,x^2)=(x^2-x^4)/(x^2+x^4)=(1-x^2)/(1+x^2)\to 1$。</li><li>又得到 1，与沿 x 轴相同。</li></ul></div><div class="card"><h3>仍不存在</h3><div class="gold-rule"></div><ul><li>沿 y=x 得到 0，已经够了。</li><li>再多一条相同路径，不能推翻「已有两条不同」。</li></ul></div></div>
+</section>
+<section class="slide" data-title="课堂练 5　偏导计算">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 5　偏导计算</h2><div class="prompt-box">$f(x,y)=x^2 y+e^{xy}$。求 $f_x$、$f_y$。</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 5" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 5</h2><ol class="answer-list"><li>$f_x=2xy+y e^{xy}$（y 当常数）。</li><li>$f_y=x^2+x e^{xy}$。</li><li>复合：$e^{xy}$ 对 x 要乘 y，对 y 要乘 x。</li></ol>
+</section>
+<section class="slide" data-title="黑塞口诀（只用于多项式驻点）">
+<h2 class="slide-title">黑塞口诀（只用于多项式驻点）</h2><div class="card"><ul><li>$\Delta = f_{xx}f_{yy}-(f_{xy})^2$。</li><li>$\Delta>0$ 且 $f_{xx}<0$：局部极大；$\Delta>0$ 且 $f_{xx}>0$：局部极小。</li><li>$\Delta<0$：鞍点。$\Delta=0$：本讲不判定。</li><li>有约束时还要看边界。乘数法本学期不要求。</li></ul></div>
+</section>
+<section class="slide" data-title="二重积分上下限">
+<h2 class="slide-title">二重积分上下限</h2><div class="grid-2"><div class="card"><h3>D 型竖条</h3><div class="gold-rule"></div><ul><li>$a\le x\le b$，$y$ 从下曲线到上曲线。</li><li>先对 y。</li></ul></div><div class="card"><h3>X 型横条</h3><div class="gold-rule"></div><ul><li>$c\le y\le d$，$x$ 从左到右。</li><li>先对 x。</li><li>曲边必须先画。</li></ul></div></div>
+</section>
+<section class="slide" data-title="从一元到二元的三句">
+<h2 class="slide-title">从一元到二元的三句</h2><div class="grid-3"><div class="card"><h3>定义域</h3><div class="gold-rule"></div><p>从区间变成平面区域。</p></div><div class="card"><h3>极限</h3><div class="gold-rule"></div><p>从左右变成无数路径。</p></div><div class="card"><h3>积分</h3><div class="gold-rule"></div><p>从线段上的积累变成面积上的积累。</p></div></div>
+</section>
+<section class="slide" data-title="定义域再看两张">
+<div class="num">公式</div><h2 class="slide-title">定义域再看两张</h2><div class="card">$$\ln(x+y),\qquad \frac{1}{\sqrt{1-x^2-y^2}}$$</div><p class="lead">$\ln(x+y)$ 要 $x+y>0$：半平面，不含直线 $x+y=0$。第二式要 $x^2+y^2<1$：单位圆内部，圆周上根号为零，不能取。先写不等式，再在平面上说形状。</p>
+</section>
+<section class="slide" data-title="沿不同斜率，极限可以随路而变">
+<div class="num">公式</div><h2 class="slide-title">沿不同斜率，极限可以随路而变</h2><div class="card">$$f(x,y)=\frac{xy}{x^2+y^2},\qquad \lim_{x\to 0}f(x,mx)=\frac{m}{1+m^2}$$</div><p class="lead">沿 $y=mx$ 得到的数随 $m$ 变：$m=0$ 时是 $0$，$m=1$ 时是 $1/2$。所以 $(x,y)\to(0,0)$ 时极限不存在。这和课堂练的分式是同一类：方向一换，答案就换。</p>
+</section>
+<section class="slide" data-title="夹逼可以证明「存在」">
+<div class="num">公式</div><h2 class="slide-title">夹逼可以证明「存在」</h2><div class="card">$$\left|\frac{x^2 y}{x^2+y^2}\right|\le \frac{|x|}{2}\to 0$$</div><p class="lead">用 $x^2+y^2\ge 2|x||y|$。沿每条路都得到 $0$ 还不够；被一个趋向 $0$ 的量夹住，才说明二重极限是 $0$。几次路径相同，只是还没找到反例。</p>
+</section>
+<section class="slide" data-title="偏导也有四则和链式">
+<h2 class="slide-title">偏导也有四则和链式</h2><div class="card"><ul><li>$(fg)_x=f_x g+f g_x$，另一个变量先当作常数。</li><li>商同样：分子是「上导下减下导上」，分母是下的平方。</li><li>外层只含一个中间变量 $u=g(x,y)$ 时，$\partial z/\partial x=z'(u)\,u_x$。</li><li>多项式、指数、正弦在整个平面上连续，代入即可求极限。课堂练里的分式在原点没有定义，不能靠代入。</li></ul></div>
+</section>
+<section class="slide" data-title="混合偏导：先 x 后 y，与先 y 后 x">
+<div class="num">公式</div><h2 class="slide-title">混合偏导：先 x 后 y，与先 y 后 x</h2><div class="card">$$f=x^2 y+e^{xy},\qquad f_{xy}=f_{yx}=2x+e^{xy}+xy e^{xy}$$</div><p class="lead">本讲的多项式与指数都满足 $f_{xy}=f_{yx}$。黑塞判别式里的 $f_{xy}$ 因此不用担心求导次序。</p>
+</section>
+<section class="slide" data-title="三角形上的二重积分">
+<div class="num">公式</div><h2 class="slide-title">三角形上的二重积分</h2><div class="card">$$\int_0^1\int_0^x (x+y)\,dy\,dx=\int_0^1\frac{3}{2}x^2\,dx=\frac12$$</div><p class="lead">区域是 $0\le x\le 1$、$0\le y\le x$：对每个 $x$，竖条从 $0$ 到直线 $y=x$。内层 $\bigl[xy+y^2/2\bigr]_0^x=3x^2/2$。正方形上两种次序一样；这种斜边区域必须先画再写上限。</p>
+</section>
+<section class="slide" data-title="文化卡片 · 从一维到二维" data-notes="控制在两三分钟。">
+<div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 从一维到二维</span><blockquote>多元微积分的第一步，不是新公式，而是新的几何：点变成了平面上的点，曲线变成了曲面。</blockquote><p>舒芙蕾要同时看温度和时间：两个自变量必须同时在场。后面的数据科学、图像处理，都是更高维的同一句话。</p></div>
+</section>
+<section class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>二元函数活在平面区域上。</li><li>极限必须对任意路径；两条路径不同则不存在。</li><li>偏导是截线斜率；二重积分是密度的面积积累。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>只沿一条路径就算极限存在。</li><li>求偏导时另一个变量没有真正当作常数。</li><li>二重积分不画区域就写上下限。</li></ul></div></div>
+</section>
+<section class="slide" data-title="作业" data-notes="当堂布置。">
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>求两个简单二元函数的定义域并绘图。</li><li>用两条路径说明一个极限不存在。</li><li>计算一个矩形上的二重积分。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 把利润函数的定义域改成 $x\ge 0,y\ge 0,x+y\le 40$，说明为什么边界也要查。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一章线性代数：从行列式开始，把数表变成可运算的对象。</p></div></div>
+</section>
+    </main>
+    <div class="notes" id="notes"></div>
+    <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
+    <div class="help" id="help">
+      <h3>快捷键</h3>
+      <p>→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
+      <p>解答页默认跳过；按 A 后进入线性顺序。滑条上请先点空白再按方向键。</p>
+    </div>
+    <footer class="botbar">
+      <span>南开大学数学科学学院</span>
+      <span id="page">1 / 1</span>
+      <span class="keys">
+        <button type="button" class="btn ghost" id="btn-prev">上一页</button>
+        <button type="button" class="btn ghost" id="btn-next">下一页</button>
+        <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
+        <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
+        <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
+        <button type="button" class="btn ghost" id="btn-help">?</button>
+      </span>
+    </footer>
+  </div>
+  <script src="../vendor/katex/katex.min.js"></script>
+  <script src="../vendor/katex/contrib/auto-render.min.js"></script>
+  <script src="../js/deck.js"></script>
+  <script src="../js/plot.js"></script>
+  <script src="../js/labs/18-multi.js"></script>
+</body>
+</html>

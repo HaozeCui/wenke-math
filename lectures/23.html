@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2.3 一般线性方程组的求解 · 文科高等数学</title>
+  <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
+  <link rel="stylesheet" href="../css/deck.css" />
+</head>
+<body class="play">
+  <div class="app cover-mode">
+    <div class="spine" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="home" href="../index.html">目录</a>
+      <span class="mark">NKU</span>
+      <h1>文科高等数学　·　2.3 一般线性方程组</h1>
+      <span class="sec" id="sec-label"></span>
+    </header>
+    <main class="stage">
+<section class="slide cover" data-title="封面" data-notes="先几何，再阶梯形，再投入产出。">
+<div class="kicker">2.3　建议 2 学时</div>
+        <h2>三张平面，<br />三种命运</h2>
+        <p>线性方程组的解：唯一、没有、无穷多。几何上是平面怎么相交；代数上是增广矩阵出现 0=1 还是 0=0。投入产出把部门往来写成 (I−A)x=d。</p>
+        <div class="meta">三平面位置　·　通解含参　·　投入产出</div>
+</section>
+<section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能从「三平面」或阶梯形判断唯一解、无解、无穷解。</p></div><div class="card"><span class="idx">02</span><p>能写出含自由未知量的通解（参数写法）。</p></div><div class="card"><span class="idx">03</span><p>能说明投入产出模型把消耗写成矩阵后，要解 (I−A)x=d。</p></div></div>
+</section>
+<section class="slide" data-title="本讲路线">
+<h2 class="slide-title">本讲路线</h2><div class="card"><ul><li>Ax=b 与增广矩阵</li><li>高斯消元到阶梯形</li><li>实验：三平面三种位置</li><li>通解：自由未知量写成参数</li><li>投入产出箭头</li><li>齐次方程：永远至少有零解</li></ul></div>
+</section>
+<section class="slide" data-title="线性方程组">
+<div class="num">定义</div><h2 class="slide-title">线性方程组</h2><div class="card"><p>$n$ 个未知数、$m$ 个方程，写成 $A\mathbf x=\mathbf b$。增广矩阵 $[A|b]$ 把系数与常数放在一张表里。</p><p>行变换（换行、倍乘、倍加）不改变解集，目标是阶梯形。</p></div>
+</section>
+<section class="slide" data-title="三条线的三种命运（平面的示意）" data-notes="二维示意三平面。切换唯一 / 无解 / 无穷。" data-hook="planes">
+<div class="num">实验 1</div><h2 class="slide-title">三条线的三种命运（平面的示意）</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="planes-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <div class="seg">
+                <button type="button" data-plane="one" class="on">唯一解</button>
+                <button type="button" data-plane="none">无解</button>
+                <button type="button" data-plane="inf">无穷解</button>
+              </div>
+            </div>
+            <div class="verdict" id="planes-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="阶梯形上读结论">
+<h2 class="slide-title">阶梯形上读结论</h2><div class="grid-2"><div class="card"><h3>无解</h3><div class="gold-rule"></div><ul><li>出现 $0=1$。</li><li>几何：平行或三平面围成三角柱。</li></ul></div><div class="card"><h3>有解</h3><div class="gold-rule"></div><ul><li>没有 $0=1$。</li><li>主元个数 = 未知数个数：唯一。</li><li>主元更少：无穷，多出来的未知数当参数。</li></ul></div></div>
+</section>
+<section class="slide" data-title="课堂练 1">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">增广矩阵化成阶梯形后出现一行 [0 0 0 | 1]。方程组有解吗？
+若最后一行是 [0 0 0 | 0]，而秩小于未知数个数呢？</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>[0 0 0 | 1] 就是 0=1，无解。</li><li>[0 0 0 | 0] 是 0=0，不增加约束。</li><li>若有效方程个数（秩）小于未知数个数，则有自由未知量，无穷多解。</li></ol><div class="comment">先扫最右边那一列是否出现「左边全 0、右边非 0」。</div>
+</section>
+<section class="slide" data-title="通解含参">
+<div class="num">定义</div><h2 class="slide-title">通解含参</h2><div class="card"><p>把主元未知数用自由未知数表示。自由未知数改叫参数 $t,s,\ldots$。</p><p>例如 $x=1-t$，$y=2+2t$，$z=t$，即</p><p>$$\mathbf x=(1,2,0)+t(-1,2,1)$$</p><p>这是一条直线：特解 + 齐次通解。</p></div><p class="lead" style="margin-top:12px">特解给出一个点，参数扫出整条直线。</p>
+</section>
+<section class="slide" data-title="课堂练 2">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">已知 $x+y+z=2$，$y-z=1$，z 自由。令 $z=t$，写出 x、y 与向量形式。</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>y=1+t（因为 y−z=1）。</li><li>x+ (1+t) + t=2 ⇒ x=1−2t。</li><li>$\mathbf x=(1,1,0)+t(-2,1,1)$。</li></ol><div class="comment">每个自由未知量贡献一个方向向量。</div>
+</section>
+<section class="slide" data-title="齐次 Ax=0">
+<h2 class="slide-title">齐次 Ax=0</h2><div class="card"><ul><li>永远有零解。</li><li>若只有零解：列向量线性无关（方阵则 det≠0）。</li><li>若有非零解：通解是若干方向的线性组合。</li><li>非齐次的无穷解 = 一个特解 + 齐次通解。</li></ul></div>
+</section>
+<section class="slide" data-title="投入产出">
+<div class="num">定义</div><h2 class="slide-title">投入产出</h2><div class="card"><p>部门之间互相消耗。直接消耗矩阵 $A$ 的元素 $a_{ij}$ 表示：生产一单位 $j$ 要消耗多少 $i$。</p><p>总产出 $x$，最终需求 $d$，满足</p><p>$$x=Ax+d\quad\Rightarrow\quad (I-A)x=d$$</p></div><p class="lead" style="margin-top:12px">能解这个方程组，才能问「最终多要一件衣服，农业要多产多少」。</p>
+</section>
+<section class="slide" data-title="部门往来是一张有向图" data-notes="农、工、服务互有箭头。不必给具体数字。" data-hook="io">
+<div class="num">实验 2</div><h2 class="slide-title">部门往来是一张有向图</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="io-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="verdict">箭 = 消耗。写成 (I−A)x = d 之后，才能问「最终需求对应多少总产出」。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="课堂练 3　读模型">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3　读模型</h2><div class="prompt-box">若某经济只有两个部门，$A=\begin{pmatrix}0.2&0.4\\0.3&0.1\end{pmatrix}$，$d=(1,1)^{\mathrm T}$。写出 $(I-A)x=d$ 的系数矩阵（不必解完）。</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>$I-A=\begin{pmatrix}0.8&-0.4\\ -0.3&0.9\end{pmatrix}$。</li><li>方程组 $0.8x_1-0.4x_2=1$，$-0.3x_1+0.9x_2=1$。</li><li>这是普通的二元线性方程组，可用克拉默或消元。</li></ol><div class="comment">投入产出的新意在建模，不在新的消元法。</div>
+</section>
+<section class="slide" data-title="三种命运对照">
+<h2 class="slide-title">三种命运对照</h2><div class="grid-3"><div class="card"><h3>唯一</h3><div class="gold-rule"></div><p>三平面交于一点。主元满。</p></div><div class="card"><h3>无解</h3><div class="gold-rule"></div><p>0=1。平行或互相错开。</p></div><div class="card"><h3>无穷</h3><div class="gold-rule"></div><p>0=0 且未知数更多。交于一线或一平面。</p></div></div>
+</section>
+<section class="slide" data-title="秩：一句话">
+<h2 class="slide-title">秩：一句话</h2><div class="grid-2"><div class="card"><h3>系数矩阵 A 的秩</h3><div class="gold-rule"></div><ul><li>非零行个数，或主元个数。</li><li>列向量里有多少个「独立方向」。</li></ul></div><div class="card"><h3>增广 [A|b] 的秩</h3><div class="gold-rule"></div><ul><li>若比 A 的秩大：无解（多出 0=1）。</li><li>若相等：有解。再与未知数个数比，决定唯一还是无穷。</li></ul></div></div>
+</section>
+<section class="slide" data-title="课堂练 4">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 4</h2><div class="prompt-box">三个未知数，阶梯形有两行非零，且没有 0=1。解的几何图像是什么？要几个参数？</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 4" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>秩 2 < 3，一个自由未知量，一个参数。</li><li>解集是直线（三维空间里一条线）。</li><li>三平面交于一条公共直线。</li></ol>
+</section>
+<section class="slide" data-title="参数写法检查单">
+<h2 class="slide-title">参数写法检查单</h2><div class="card"><ul><li>自由未知量有几个，就写几个参数。</li><li>主元未知数全部用参数表示，不要漏。</li><li>写成「常向量 + 参数×方向」。</li><li>代回原方程核对一组 t=0 与一组 t=1。</li></ul></div>
+</section>
+<section class="slide" data-title="投入产出读题">
+<h2 class="slide-title">投入产出读题</h2><div class="grid-2"><div class="card"><h3>x 是什么</h3><div class="gold-rule"></div><ul><li>各部门总产出。</li><li>既要满足最终需求，也要满足中间消耗。</li></ul></div><div class="card"><h3>d 是什么</h3><div class="gold-rule"></div><ul><li>最终需求：被消费、出口的部分。</li><li>不是总产出。</li><li>给定 d，解 x。</li></ul></div></div>
+</section>
+<section class="slide" data-title="课堂练 5">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 5</h2><div class="prompt-box">若 I−A 不可逆，投入产出模型在数学上意味着什么？（不必联系具体产业。）</div><p class="wait">约 1 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 5" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 5</h2><ol class="answer-list"><li>对某些需求 d，可能无解或解不唯一。</li><li>通常表示消耗结构「太强」，系统不能稳定地对应到唯一总产出。</li><li>能连到 $\det(I-A)=0$ 即可。</li></ol>
+</section>
+<section class="slide" data-title="解完以后做什么">
+<h2 class="slide-title">解完以后做什么</h2><div class="card"><ul><li>唯一解：代回原方程核对。</li><li>无穷解：写出参数，抽两组数代回。</li><li>无解：指出哪一行是 0=1，不要硬解。</li></ul></div>
+</section>
+<section class="slide" data-title="三种方程组，各写一个最小例子">
+<div class="num">公式</div><h2 class="slide-title">三种方程组，各写一个最小例子</h2><div class="card">$$\begin{cases}x+y=3\\ x-y=1\end{cases}\quad\begin{cases}x+y=1\\ x+y=2\end{cases}\quad\begin{cases}x+y=1\\ 2x+2y=2\end{cases}$$</div><p class="lead">第一组唯一解 $(2,1)$。第二组出现 $0=1$，无解。第三组两行是同一件事，$y$ 自由，$x=1-y$，无穷多解。未知数个数减秩，就是自由变量的个数。</p>
+</section>
+<section class="slide" data-title="三个平面">
+<h2 class="slide-title">三个平面</h2><div class="card"><ul><li>一个三元一次方程是一张平面。</li><li>唯一解：三张平面交于一点。</li><li>无穷多解：交成一条直线，或三张重合；自由变量是 $1$ 个还是 $2$ 个，看秩。</li><li>无解：没有公共点。先看增广矩阵里有没有 $0=1$，再谈几何。</li></ul></div>
+</section>
+<section class="slide" data-title="文化卡片 · 列昂惕夫" data-notes="控制在两三分钟。">
+<div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 列昂惕夫</span><blockquote>投入产出把「谁消耗谁」写成矩阵，是经济学里最直接的线性代数。</blockquote><p>列昂惕夫因此获诺贝尔经济学奖。往来是箭，箭是矩阵，最终需求是解方程组——系数不必估得很细。</p></div>
+</section>
+<section class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>先看 0=1 还是 0=0，再数自由未知量。</li><li>通解 = 特解 + 参数×方向。</li><li>投入产出：(I−A)x=d。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把 det=0 一律说成无解。</li><li>通解不写参数，只列一个特解。</li><li>以为必须估全行业数据才能写模型。</li></ul></div></div>
+</section>
+<section class="slide" data-title="作业" data-notes="当堂布置。">
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>自编一个 0=1 的增广矩阵，再自编一个含参通解。</li><li>默写 (I−A)x=d 的含义。</li><li>用消元解一道三元（唯一解）。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 说明齐次方程为什么至少有零解。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 2.4：词袋、余弦、PageRank。不解特征多项式。</p></div></div>
+</section>
+    </main>
+    <div class="notes" id="notes"></div>
+    <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
+    <div class="help" id="help">
+      <h3>快捷键</h3>
+      <p>→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
+      <p>解答页默认跳过；按 A 后进入线性顺序。滑条上请先点空白再按方向键。</p>
+    </div>
+    <footer class="botbar">
+      <span>南开大学数学科学学院</span>
+      <span id="page">1 / 1</span>
+      <span class="keys">
+        <button type="button" class="btn ghost" id="btn-prev">上一页</button>
+        <button type="button" class="btn ghost" id="btn-next">下一页</button>
+        <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
+        <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
+        <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
+        <button type="button" class="btn ghost" id="btn-help">?</button>
+      </span>
+    </footer>
+  </div>
+  <script src="../vendor/katex/katex.min.js"></script>
+  <script src="../vendor/katex/contrib/auto-render.min.js"></script>
+  <script src="../js/deck.js"></script>
+  <script src="../js/plot.js"></script>
+  <script src="../js/labs/23-sys.js"></script>
+</body>
+</html>

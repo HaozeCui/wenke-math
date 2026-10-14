@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1.7 积分应用 · 文科高等数学</title>
+  <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
+  <link rel="stylesheet" href="../css/deck.css" />
+</head>
+<body class="play">
+  <div class="app cover-mode">
+    <div class="spine" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="home" href="../index.html">目录</a>
+      <span class="mark">NKU</span>
+      <h1>文科高等数学　·　1.7 积分应用</h1>
+      <span class="sec" id="sec-label"></span>
+    </header>
+    <main class="stage">
+<section class="slide cover" data-title="封面" data-notes="强调：先画图，再选变量。">
+<div class="kicker">1.7　建议 2 学时</div>
+        <h2>先画区域，<br />再决定切哪边</h2>
+        <p>面积、微分方程里的增长与衰减，都是定积分的应用。同一块区域，对 y 切可能一个积分，对 x 切可能两个。阻滞曲线随参数变 S 形。碳-14 只算一题。</p>
+        <div class="meta">面积切条 · 阻滞增长 · 碳-14 一题</div>
+</section>
+<section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能根据草图选择对 x 还是对 y 积分，并说明为何一种更省事。</p></div><div class="card"><span class="idx">02</span><p>能认出阻滞增长的 S 形：有天花板，增长率只改陡度。</p></div><div class="card"><span class="idx">03</span><p>能用一次指数衰减计算碳-14 年代（只此一题）。</p></div></div>
+</section>
+<section class="slide" data-title="本讲路线">
+<h2 class="slide-title">本讲路线</h2><div class="card"><ul><li>平面图形面积：交点、切条</li><li>实验：同一区域两种切法</li><li>旋转体、平均值口诀</li><li>微分方程：可分离变量</li><li>阻滞增长实验</li><li>碳-14 只算一题</li></ul></div>
+</section>
+<section class="slide" data-title="面积 = 定积分">
+<div class="num">定义</div><h2 class="slide-title">面积 = 定积分</h2><div class="card"><p>上曲线减下曲线，或右曲线减左曲线：</p><p>$$A=\int_a^b\bigl[f_{\text{上}}(x)-f_{\text{下}}(x)\bigr]dx=\int_c^d\bigl[x_{\text{右}}(y)-x_{\text{左}}(y)\bigr]dy$$</p><p>先求交点，再看切一条条带是否被同一对曲线夹住。</p></div>
+</section>
+<section class="slide" data-title="同一区域：对 y 一条，对 x 两条" data-notes="抛物线 x=y² 与直线 x=y+2。先对 y，再切到对 x。" data-hook="region">
+<div class="num">实验 1</div><h2 class="slide-title">同一区域：对 y 一条，对 x 两条</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="region-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <div class="seg">
+                <button type="button" data-cut="y" class="on">对 y 切</button>
+                <button type="button" data-cut="x">对 x 切</button>
+              </div>
+            </div>
+            <div class="verdict" id="region-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="课堂练 1">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">曲线 $x=y^2$ 与直线 $x=y+2$ 围成的面积，说明为何选 y 作积分变量更省事。不必算完。</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>交点：y²=y+2 ⇒ y²−y−2=0 ⇒ (y−2)(y+1)=0，y=−1 或 2。</li><li>对 y：左 x=y² 到右 x=y+2，一个积分。</li><li>对 x：在 x=1（抛物线顶点右侧与直线的分界）要切开，两个积分。</li><li>所以选 y。先画图，再选变量。</li></ol>
+</section>
+<section class="slide" data-title="把面积算完">
+<div class="num">公式</div><h2 class="slide-title">把面积算完</h2><div class="card">$$A=\int_{-1}^{2}\bigl[(y+2)-y^2\bigr]dy=\Bigl[y^2/2+2y-y^3/3\Bigr]_{-1}^{2}=9/2$$</div><p class="lead">对 x 切会得到同样的 9/2，只是更烦。</p>
+</section>
+<section class="slide" data-title="旋转体与平均值（口诀）">
+<h2 class="slide-title">旋转体与平均值（口诀）</h2><div class="card"><ul><li>绕 x 轴：$\pi\int [f(x)]^2 dx$。圆片面积 πy² 再累加。</li><li>区间上平均值：$\dfrac{1}{b-a}\int_a^b f(x)\,dx$。</li></ul></div>
+</section>
+<section class="slide" data-title="可分离变量">
+<div class="num">定义</div><h2 class="slide-title">可分离变量</h2><div class="card"><p>$$\frac{dy}{dx}=g(x)h(y)\quad\Rightarrow\quad\int\frac{1}{h(y)}\,dy=\int g(x)\,dx$$</p><p>增长 $y'=ky$ 给出指数；$y'=ky(1-y/K)$ 给出阻滞（Logistic）。</p></div>
+</section>
+<section class="slide" data-title="增长率只改陡度，不改天花板" data-notes="金色虚线是 K=1。拉 r，S 形变陡，上限不动。" data-hook="logistic">
+<div class="num">实验 2</div><h2 class="slide-title">增长率只改陡度，不改天花板</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="log-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>增长率 r</span><span class="ctrl-val" id="log-r-val">0.60</span></label>
+              <input id="log-r" type="range" min="0.2" max="1.4" step="0.02" value="0.6" />
+            </div>
+            <div class="readout" id="log-read"></div>
+            <div class="verdict">天花板是环境容量。r 只改陡度，不改上限。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="增长与衰减是同一个方程" data-notes="差一个符号。">
+<h2 class="slide-title">增长与衰减是同一个方程</h2><div class="grid-2"><div class="card"><h3>增长</h3><div class="gold-rule"></div><ul><li>$y'=ky$，$k>0$</li><li>人口、复利的连续版。</li><li>解：$y=y_0 e^{kt}$。</li></ul></div><div class="card"><h3>衰减</h3><div class="gold-rule"></div><ul><li>$y'=-ky$，$k>0$</li><li>碳-14、药物浓度。</li><li>解：$y=y_0 e^{-kt}$。</li></ul></div></div>
+</section>
+<section class="slide" data-title="碳-14（只算一题）">
+<div class="num">定义</div><h2 class="slide-title">碳-14（只算一题）</h2><div class="card"><p>半衰期 $T_{1/2}\approx 5730$ 年：$y(T_{1/2})=y_0/2$，故 $k=\ln 2 / T_{1/2}$。</p><p>若测得剩余比例 $y/y_0=r$，则</p><p>$$t=\frac{\ln(1/r)}{k}=\frac{T_{1/2}}{\ln 2}\ln\frac{1}{r}$$</p></div><p class="lead" style="margin-top:12px">考古年代是一个数，代入公式算一次即可。</p>
+</section>
+<section class="slide" data-title="课堂练 2　碳-14">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2　碳-14</h2><div class="prompt-box">某样品碳-14 剩余为原来的 $1/4$。取半衰期 5730 年，估计距今多少年？（提示：$1/4=(1/2)^2$，大约两个半衰期。）</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>$r=1/4=2^{-2}$，正好两个半衰期。</li><li>t≈2×5730=11460 年。</li><li>公式验算：$t=(5730/\ln 2)\ln 4=(5730/\ln 2)\cdot 2\ln 2=11460$。</li></ol><div class="comment">先用「几个半衰期」心算，再用公式核对。</div>
+</section>
+<section class="slide" data-title="课堂练 3">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3</h2><div class="prompt-box">阻滞方程里，若把 r 加倍、K 不变，长期来看人口会不会翻倍？对照实验回答。</div><p class="wait">约 1 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>不会。长期被环境容量 K 挡住。</li><li>r 加倍只让曲线更早接近 K。</li><li>这是「有天花板的增长」与指数爆炸的差别。</li></ol>
+</section>
+<section class="slide" data-title="切条前的检查单">
+<h2 class="slide-title">切条前的检查单</h2><div class="grid-2"><div class="card"><h3>必须</h3><div class="gold-rule"></div><ul><li>交点算对。</li><li>上减下 / 右减左，不要减反。</li><li>被积函数在区间上哪边是「上」。</li></ul></div><div class="card"><h3>可选</h3><div class="gold-rule"></div><ul><li>对称则减半。</li><li>对 y 还是对 x，看谁少切开。</li><li>旋转体先问绕哪一根轴。</li></ul></div></div>
+</section>
+<section class="slide" data-title="课堂练 4">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 4</h2><div class="prompt-box">直线 y=x 与抛物线 y=x² 在 [0,1] 围成的面积，对 x 积分怎么写？不必算完。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 4" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>交点 (0,0) 与 (1,1)。</li><li>上：y=x；下：y=x²。</li><li>$A=\int_0^1(x-x^2)\,dx$。</li><li>对 y 也行，但要写成 x=√y 与 x=y，更烦。</li></ol>
+</section>
+<section class="slide" data-title="可分离变量的最小例子">
+<div class="num">公式</div><h2 class="slide-title">可分离变量的最小例子</h2><div class="card">$$\frac{dy}{dx}=ky \;\Rightarrow\; \ln|y|=kt+C \;\Rightarrow\; y=y_0 e^{kt}$$</div><p class="lead">分离、两边积分、用初值定 C。阻滞方程同法，只是右边多了 (1−y/K)。</p>
+</section>
+<section class="slide" data-title="环境容量 K 在人文里的意思">
+<h2 class="slide-title">环境容量 K 在人文里的意思</h2><div class="card"><ul><li>教室座位数、生态承载力、注意力上限，都可以是 K 的隐喻。</li><li>早期像指数，靠近 K 时增长变慢。</li><li>r 是「有多着急」，K 是「天花板在哪」。二者不要混。</li></ul></div>
+</section>
+<section class="slide" data-title="碳-14 使用边界">
+<h2 class="slide-title">碳-14 使用边界</h2><div class="grid-3"><div class="card"><h3>适用</h3><div class="gold-rule"></div><p>有机材料、几千到几万年。</p></div><div class="card"><h3>不适用</h3><div class="gold-rule"></div><p>岩石年龄（那是别的同位素）。</p></div><div class="card"><h3>本讲</h3><div class="gold-rule"></div><p>只练半衰期个数与公式，不讨论测量误差。</p></div></div>
+</section>
+<section class="slide" data-title="平均值">
+<div class="num">公式</div><h2 class="slide-title">平均值</h2><div class="card">$$\frac{1}{b-a}\int_a^b f(x)\,dx$$</div><p class="lead">把总量摊回单位长度。成绩平均、流量平均，结构相同。</p>
+</section>
+<section class="slide" data-title="先画后算的两分钟口诀">
+<h2 class="slide-title">先画后算的两分钟口诀</h2><div class="card"><ul><li>描交点。</li><li>标出哪段是上/下或左/右。</li><li>问：一条条带会不会中途换边？会，就切开。</li><li>写出积分，再算。</li></ul></div>
+</section>
+<section class="slide" data-title="椭圆面积">
+<div class="num">公式</div><h2 class="slide-title">椭圆面积</h2><div class="card">$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad S=4\int_0^{a}b\sqrt{1-\frac{x^2}{a^2}}\,dx=\pi ab$$</div><p class="lead">由对称性只算第一象限再乘 $4$。$a=b$ 时回到圆面积 $\pi a^2$。</p>
+</section>
+<section class="slide" data-title="可分离变量的一道初值">
+<div class="num">公式</div><h2 class="slide-title">可分离变量的一道初值</h2><div class="card">$$y\,dy=x\,dx,\quad y(0)=1\ \Rightarrow\ y^2-x^2=1$$</div><p class="lead">含 $y$ 的移到左边，含 $x$ 的移到右边，两边积分，再用初值定常数。$y'=x+y$ 不能这样拆。</p>
+</section>
+<section class="slide" data-title="指数增长：一个能算完的人口">
+<div class="num">定义</div><h2 class="slide-title">指数增长：一个能算完的人口</h2><div class="card"><p>人口变化率与当时人口成正比：$y'=ky$，$y(0)=5$（万）。</p><p>$30$ 年后为 $7.5$ 万，则 $y=5\,e^{kt}$，且 $e^{30k}=1.5$。</p><p>再过 $30$ 年：$y(60)=5\times 1.5^2=11.25$（万）。</p></div><p class="lead" style="margin-top:12px">这是没有天花板的模型。人口变多以后要改成阻滞，增长率随人数下降。</p>
+</section>
+<section class="slide" data-title="碳-14 的另一组数">
+<div class="num">公式</div><h2 class="slide-title">碳-14 的另一组数</h2><div class="card">$$t=\frac{5600}{\ln 2}\ln\frac{1}{0.15}\approx 15327$$</div><p class="lead">剩余为活树的 $15\%$，半衰期取 $5600$ 年。和课堂练里「正好两个半衰期」是同一公式，只是剩余比例不再是 $2$ 的整数次幂。</p>
+</section>
+<section class="slide" data-title="文化卡片 · 碳-14" data-notes="控制在两三分钟。">
+<div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 碳-14</span><blockquote>半衰期把「还剩多少」写成指数衰减，考古年代于是可计算。</blockquote><p>衰减与增长是同一个微分方程，差一个符号。考古年代代入公式算一次即可：先数几个半衰期，再用公式核对。</p></div>
+</section>
+<section class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>面积：先画图，再选切条方向。</li><li>阻滞：S 形，有天花板。</li><li>碳-14：指数衰减，算一题即可。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>不画图就写两个积分。</li><li>把 r 当成新的容量。</li><li>以为方程必须上机仿真才能懂。</li></ul></div></div>
+</section>
+<section class="slide" data-title="作业" data-notes="当堂布置。">
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>把课堂抛物线与直线的面积自己积分一遍。</li><li>默写 y'=ky 与 y'=-ky 的解。</li><li>碳-14 剩余 1/8 时，是几个半衰期？</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 说明平均值公式为什么是「积分除以长度」。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.8：两个自变量、路径极限、偏导截线。</p></div></div>
+</section>
+    </main>
+    <div class="notes" id="notes"></div>
+    <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
+    <div class="help" id="help">
+      <h3>快捷键</h3>
+      <p>→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
+      <p>解答页默认跳过；按 A 后进入线性顺序。滑条上请先点空白再按方向键。</p>
+    </div>
+    <footer class="botbar">
+      <span>南开大学数学科学学院</span>
+      <span id="page">1 / 1</span>
+      <span class="keys">
+        <button type="button" class="btn ghost" id="btn-prev">上一页</button>
+        <button type="button" class="btn ghost" id="btn-next">下一页</button>
+        <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
+        <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
+        <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
+        <button type="button" class="btn ghost" id="btn-help">?</button>
+      </span>
+    </footer>
+  </div>
+  <script src="../vendor/katex/katex.min.js"></script>
+  <script src="../vendor/katex/contrib/auto-render.min.js"></script>
+  <script src="../js/deck.js"></script>
+  <script src="../js/plot.js"></script>
+  <script src="../js/labs/17-app.js"></script>
+</body>
+</html>

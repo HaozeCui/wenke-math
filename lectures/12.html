@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1.2 极限 · 文科高等数学</title>
+  <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
+  <link rel="stylesheet" href="../css/deck.css" />
+</head>
+<body class="play">
+  <div class="app cover-mode">
+    <div class="spine" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="home" href="../index.html">目录</a>
+      <span class="mark">NKU</span>
+      <h1>文科高等数学　·　1.2 极限</h1>
+      <span class="sec" id="sec-label"></span>
+    </header>
+    <main class="stage">
+<section class="slide cover" data-title="封面" data-notes="开场：无限接近不是某一项等于极限。">
+<div class="kicker">1.2　建议 8 学时</div>
+        <h2>看趋势，<br />不看某一项等于谁</h2>
+        <p>数列与函数的极限、四则运算、连续性、两个重要极限、无穷小与等价替换。不写 ε 语言。</p>
+        <div class="meta">等比 · 左右极限 · 重要极限 · 等价无穷小</div>
+</section>
+<section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能判断等比数列、等比级数何时收敛，并在 $|q|<1$ 时写出和。</p></div><div class="card"><span class="idx">02</span><p>能按 $x\to a$、$x\to a^\pm$、$x\to\pm\infty$ 读函数极限，并判断左右是否一致、一点是否连续。</p></div><div class="card"><span class="idx">03</span><p>能用四则、约分、有理化、两个重要极限和等价无穷小计算简单极限。</p></div></div>
+</section>
+<section class="slide" data-title="本讲路线">
+<h2 class="slide-title">本讲路线</h2><div class="card"><ul><li>数列极限：日取其半、等比数列与等比级数</li><li>函数极限的六种趋势，以及左右必须一致</li><li>极限的性质：代入、约分、$\infty-\infty$、有理化</li><li>连续：有定义、有极限、二者相等</li><li>两个重要极限，以及指数不能先取极限</li><li>无穷小、无穷大，与等价替换</li></ul></div>
+</section>
+<section class="slide" data-title="例 1　一尺之捶，日取其半">
+<div class="num">定义</div><h2 class="slide-title">例 1　一尺之捶，日取其半</h2><div class="card"><p>每天截下剩余的一半：第 $n$ 天截下 $1/2^n$。</p><p>$$\frac12,\ \frac14,\ \frac18,\ \frac1{16},\ \ldots,\ \frac1{2^n},\ \ldots$$</p><p>通项无限靠近 $0$，但永远不等于 $0$。这就是「万世不竭」。</p></div><p class="lead" style="margin-top:12px">有限的截取过程，趋势可以是一个确定的数。后面把每天截下的量加起来，总和恰好是 1 尺。</p>
+</section>
+<section class="slide" data-title="例 2　割圆">
+<h2 class="slide-title">例 2　割圆</h2><div class="grid-3"><div class="card"><h3>刘徽</h3><div class="gold-rule"></div><p>圆内接正 $n$ 边形。$n$ 无限增大时，周长无限靠近圆周 $\pi d$。</p></div><div class="card"><h3>算出来的数</h3><div class="gold-rule"></div><p>刘徽得到 $\pi=3.1416$。祖冲之用同一方法算到 $3.1415929$。</p></div><div class="card"><h3>和例 1 是同一件事</h3><div class="gold-rule"></div><p>边数永远有限，趋势可以写成圆周。极限是「无限过程的确定趋势」。</p></div></div>
+</section>
+<section class="slide" data-title="数列极限（直观）">
+<div class="num">定义</div><h2 class="slide-title">数列极限（直观）</h2><div class="card"><p>数列是按次序排好的一列数，定义域是全体正整数。</p><p>若 $n$ 充分大时，$x_n$ 可以任意靠近常数 $A$，就说数列收敛：</p><p>$$\lim_{n\to\infty}x_n=A$$</p><p>否则称发散。没有任何一项必须等于 $A$。</p></div><p class="lead" style="margin-top:12px">本讲不写 ε–N。先看趋势。</p>
+</section>
+<section class="slide" data-title="项数变多，点贴住 0" data-notes="先停在 n=12，问会不会有某项等于 0。再拉大。" data-hook="sequence">
+<div class="num">实验 1</div><h2 class="slide-title">项数变多，点贴住 0</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="seq-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>项数 n</span><span class="ctrl-val" id="seq-n-val">12</span></label>
+              <input id="seq-n" type="range" min="2" max="40" value="12" />
+            </div>
+            <div class="readout" id="seq-read"></div>
+            <div class="verdict">点贴近水平线，但没有任何一项必须等于 0。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="例 3　振荡着靠近">
+<div class="num">公式</div><h2 class="slide-title">例 3　振荡着靠近</h2><div class="card">$$\lim_{n\to\infty}\frac{n+(-1)^n}{n}=1$$</div><p class="lead">因为 $\dfrac{n+(-1)^n}{n}=1+\dfrac{(-1)^n}{n}$。$(-1)^n/n$ 在正负之间摆，但被 $1/n$ 压向 $0$，所以整体靠近 $1$。</p>
+</section>
+<section class="slide" data-title="例 4　等比数列">
+<div class="num">公式</div><h2 class="slide-title">例 4　等比数列</h2><div class="card">$$\lim_{n\to\infty}a_0 q^n=\begin{cases}0,&|q|<1\\ a_0,&q=1\\ \text{不存在},&|q|>1\end{cases}\quad(a_0\neq 0)$$</div><p class="lead">例 1 是 $a_0=1/2$、$q=1/2$，通项趋向 $0$。$q=1$ 时每项都是 $a_0$。$|q|>1$ 时绝对值越来越大。另外：$q=-1$ 时在 $a_0$ 与 $-a_0$ 之间摆动，极限也不存在。</p>
+</section>
+<section class="slide" data-title="例 5　等比级数">
+<div class="num">定义</div><h2 class="slide-title">例 5　等比级数</h2><div class="card"><p>把等比数列逐项加起来。部分和</p><p>$$s_n=a_0+a_0 q+\cdots+a_0 q^{n-1}=\frac{a_0(1-q^n)}{1-q}\quad(q\neq 1)$$</p><p>$|q|<1$ 时 $q^n\to 0$，故</p><p>$$\sum_{n=0}^{\infty}a_0 q^n=\frac{a_0}{1-q}$$</p><p>$|q|\ge 1$ 时级数发散。例 1：$\sum_{n=1}^{\infty}1/2^n=1$，每天截下的量加起来正好是整根 1 尺。</p></div>
+</section>
+<section class="slide" data-title="课堂练 1">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">$(1)$ $q=1/3$、$a_0=1$ 时，通项 $q^n$ 的极限是多少？级数 $\sum_{n=0}^{\infty}(1/3)^n$ 的和是多少？
+$(2)$ $1,-1,1,-1,\ldots$ 的极限是否存在？</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>$|q|=1/3<1$，通项趋向 $0$。和为 $1/(1-1/3)=3/2$。</li><li>这是 $q=-1$。在 $1$ 与 $-1$ 之间摆动，极限不存在，级数也发散。</li></ol><div class="comment">先看 $|q|$ 与 $1$ 的大小，再决定是趋向 $0$、等于常数，还是发散。</div>
+</section>
+<section class="slide" data-title="函数极限（直观）">
+<div class="num">定义</div><h2 class="slide-title">函数极限（直观）</h2><div class="card"><p>自变量在定义域里按某种趋势 $x\to\square$ 变化时，若 $f(x)$ 无限靠近常数 $A$，就写</p><p>$$\lim_{x\to\square}f(x)=A$$</p><p>$x$ 能不能等于那个点，不必计较。这是描述性定义，不是 $\varepsilon$–$\delta$。</p></div><p class="lead" style="margin-top:12px">求极限不能只看函数式，还要看 $x$ 按哪一种趋势走。</p>
+</section>
+<section class="slide" data-title="六种趋势">
+<h2 class="slide-title">六种趋势</h2><div class="card"><ul><li>$x\to a$：从左右两侧同时靠近 $a$。例 6 是 $x\to 0$。</li><li>$x\to a^+$：从大于 $a$ 的一侧靠近，称为右极限。</li><li>$x\to a^-$：从小于 $a$ 的一侧靠近，称为左极限。</li><li>$x\to+\infty$：$x$ 无限增大。</li><li>$x\to-\infty$：$x$ 无限减小。例 8 是 $x\to-\infty$。</li><li>$x\to\infty$：$|x|$ 无限增大，左右两侧都要看。</li></ul></div>
+</section>
+<section class="slide" data-title="例 6–例 9　先看趋势">
+<h2 class="slide-title">例 6–例 9　先看趋势</h2><p class="lead">同一个 $1/x$：走向无穷时趋向 $0$，走向 $0$ 时却会炸掉。必须连同 $x\to\square$ 一起看。</p><table class="sheet"><thead><tr><th>例</th><th>趋势</th><th>结论</th></tr></thead><tbody><tr><td>例 6　$x\sin x$</td><td>$x\to 0$</td><td>趋向 $0$</td></tr><tr><td>例 7　$\sin x/x$</td><td>$x\to+\infty$</td><td>趋向 $0$（振荡被 $1/x$ 压住）</td></tr><tr><td>例 8　$2^x$</td><td>$x\to-\infty$</td><td>趋向 $0$</td></tr><tr><td>例 9　$1/x$</td><td>$x\to\infty$</td><td>两侧都趋向 $0$</td></tr></tbody></table>
+</section>
+<section class="slide" data-title="例 10　取整的左右不一样">
+<div class="num">公式</div><h2 class="slide-title">例 10　取整的左右不一样</h2><div class="card">$$\lim_{x\to 3^+}[x]=3,\qquad \lim_{x\to 3^-}[x]=2$$</div><p class="lead">所以 $\lim_{x\to 3}[x]$ 不存在。左闭右开的台阶，在整数点左右高度差 $1$。</p>
+</section>
+<section class="slide" data-title="从左边来，从右边来" data-notes="先停在左边，再拖过 0。问：函数值跳了没有？极限存在吗？" data-hook="leftright">
+<div class="num">实验 2</div><h2 class="slide-title">从左边来，从右边来</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="lr-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>靠近 0 的 x</span><span class="ctrl-val" id="lr-x-val">-0.80</span></label>
+              <input id="lr-x" type="range" min="-1.8" max="1.8" step="0.02" value="-0.8" />
+            </div>
+            <div class="verdict" id="lr-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="课堂练 2">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">设 $f(x)=\begin{cases}x+1,&x<0\\ x-1,&x\ge 0\end{cases}$。求 $x\to 0$ 的左右极限。极限存在吗？$f(0)$ 等于多少？</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>左极限：$x+1\to 1$。右极限：$x-1\to -1$。</li><li>左右不同，极限不存在。</li><li>$f(0)=-1$。有定义改变不了左右打架。</li></ol>
+</section>
+<section class="slide" data-title="例 11–例 13　极限不看那一点">
+<div class="num">定义</div><h2 class="slide-title">例 11–例 13　极限不看那一点</h2><div class="card"><p>例 11：$f(x)=2x$，$x\in(0,2)$，则 $\lim_{x\to 1}f(x)=2$。</p><p>例 12：把 $x=1$ 从定义域挖掉，极限仍是 $2$。</p><p>例 13：规定 $h(1)=1$，其余仍是 $2x$，极限仍是 $2$。</p></div><p class="lead" style="margin-top:12px">三个函数不一样，极限一样。$x\to a$ 时极限是否存在、等于多少，与 $x=a$ 处有没有定义、函数值是多少无关。</p>
+</section>
+<section class="slide" data-title="课堂练 3">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3</h2><div class="prompt-box">求 $\lim_{x\to 1}(x^2-1)/(x-1)$ 时约去 $(x-1)$。这改变了 $x=1$ 处的定义，为什么仍可求极限？</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>极限只关心 $x$ 靠近 $1$、但不等于 $1$ 时的趋势。</li><li>约去后得到 $x+1$，在 $x\neq 1$ 处与原式相同，所以极限是 $2$。</li><li>恒等变形可以改变定义域，不改变极限。连续才进一步要求这一点有定义，且函数值等于极限。</li></ol>
+</section>
+<section class="slide" data-title="夹逼">
+<div class="num">定义</div><h2 class="slide-title">夹逼</h2><div class="card"><p>若在 $a$ 附近有 $g(x)\le f(x)\le h(x)$，且 $g$ 与 $h$ 都以 $A$ 为极限，则 $f$ 也以 $A$ 为极限。</p><p>$|x\sin(1/x)|\le |x|$。两边进 $0$，中间振荡再凶也只能进 $0$。</p></div><p class="lead" style="margin-top:12px">例 7 的 $\sin x/x$（$x\to+\infty$）是同一句话：$\sin x$ 有界，$1/x$ 是无穷小。</p>
+</section>
+<section class="slide" data-title="缩放窗口，看振荡被夹住" data-notes="先宽窗口看抖，再拉近。金色是 ±x。" data-hook="squeeze">
+<div class="num">实验 3</div><h2 class="slide-title">缩放窗口，看振荡被夹住</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="sq-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>窗口半宽</span><span class="ctrl-val" id="sq-z-val">1.00</span></label>
+              <input id="sq-z" type="range" min="0.12" max="1.6" step="0.02" value="1" />
+            </div>
+            <div class="verdict" id="sq-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="极限的性质">
+<h2 class="slide-title">极限的性质</h2><div class="card"><ul><li>设同一趋势下 $\lim f$、$\lim g$ 都存在，$c$ 为常数。</li><li>性质 1–2：$\lim c=c$，$\lim_{x\to a}x=a$。</li><li>性质 3–5：常数可提出；和差、乘积可拆开。</li><li>性质 6：商可拆开，但分母的极限不得为 $0$。</li><li>性质 7：$\lim_{x\to a}f(x)=A$ 当且仅当左右极限都存在且都等于 $A$。</li></ul></div>
+</section>
+<section class="slide" data-title="由性质直接得到">
+<h2 class="slide-title">由性质直接得到</h2><div class="card"><ul><li>$\lim_{x\to a}x^n=a^n$，多项式可逐项代入：$\lim_{x\to a}(c_n x^n+\cdots+c_0)=c_n a^n+\cdots+c_0$。</li><li>$\lim_{x\to\infty}1/x^n=0$。</li><li>同次多项式相除，$x\to\infty$ 时极限是最高次系数之比 $a_n/b_n$。次数不同的情形见例 37。</li><li>分母极限不为 $0$ 时，往往直接把 $x=a$ 代进去。分母极限为 $0$ 时，先化成 $0/0$ 再约。</li></ul></div>
+</section>
+<section class="slide" data-title="例 14、例 15　直接代入">
+<div class="num">公式</div><h2 class="slide-title">例 14、例 15　直接代入</h2><div class="card">$$\lim_{x\to 1}(x^2+2x-3)=0,\qquad \lim_{x\to 1}\frac{x+2}{x-3}=-\frac32$$</div><p class="lead">例 14 拆成 $x^2$、$2x$、$3$ 再代入。例 15 分母极限是 $-2\neq 0$，分子分母分别代入。</p>
+</section>
+<section class="slide" data-title="例 17　0/0，先约公因子">
+<div class="num">公式</div><h2 class="slide-title">例 17　0/0，先约公因子</h2><div class="card">$$\lim_{x\to 1}\frac{x^2+2x-3}{x^2+x-2}=\lim_{x\to 1}\frac{x+3}{x+2}=\frac43$$</div><p class="lead">分子分母在 $x=1$ 都是 $0$。分解得 $(x-1)(x+3)/((x-1)(x+2))$，约去 $x-1$ 后再代入。</p>
+</section>
+<section class="slide" data-title="例 18　∞−∞，先通分">
+<div class="num">公式</div><h2 class="slide-title">例 18　∞−∞，先通分</h2><div class="card">$$\lim_{x\to 1}\left(\frac{1}{1-x}-\frac{3}{1-x^3}\right)=-1$$</div><p class="lead">用 $1-x^3=(1-x)(1+x+x^2)$ 通分，约去 $1-x$，剩下 $-(x+2)/(1+x+x^2)$，再代入。</p>
+</section>
+<section class="slide" data-title="例 19　0/0，有理化">
+<div class="num">公式</div><h2 class="slide-title">例 19　0/0，有理化</h2><div class="card">$$\lim_{x\to 4}\frac{\sqrt{x}-2}{x^2-5x+4}=\frac{1}{12}$$</div><p class="lead">分子乘 $\sqrt{x}+2$，出现 $x-4$。分母是 $(x-4)(x-1)$。约去后再代入 $x=4$。</p>
+</section>
+<section class="slide" data-title="连续">
+<div class="num">定义</div><h2 class="slide-title">连续</h2><div class="card"><p>在定义域内的点 $a$：</p><p>$(1)$ $\lim_{x\to a}f(x)=f(a)$：在 $a$ 连续。</p><p>$(2)$ 右极限等于 $f(a)$：右连续。$(3)$ 左极限等于 $f(a)$：左连续。</p><p>开区间内每一点都连续，就是该开区间上的连续函数。闭区间还要求左端点右连续、右端点左连续。</p></div><p class="lead" style="margin-top:12px">三件事：有定义、极限存在、极限等于函数值。缺一件就是间断。</p>
+</section>
+<section class="slide" data-title="例 16　初等函数可直接代入">
+<div class="num">公式</div><h2 class="slide-title">例 16　初等函数可直接代入</h2><div class="card">$$\lim_{x\to 2}\log_{10}\sin\frac{\pi}{x}=\log_{10}\sin\frac{\pi}{2}=\log_{10}1=0$$</div><p class="lead">初等函数在其定义域内连续。$x=2$ 在定义域内，所以 $\lim f(x)=f(\lim x)=f(2)$。</p>
+</section>
+<section class="slide" data-title="三种间断" data-hook="gaps">
+<h2 class="slide-title">三种间断</h2>
+<div class="grid-3" style="flex:1;min-height:0">
+  <div class="card" style="display:flex;flex-direction:column;min-height:0">
+    <h3>可去</h3>
+    <div class="plot-wrap" style="min-height:0;flex:1"><canvas id="gap-rem"></canvas></div>
+    <p>左右极限相同。空心是极限，实心是函数值。</p>
+  </div>
+  <div class="card" style="display:flex;flex-direction:column;min-height:0">
+    <h3>跳跃</h3>
+    <div class="plot-wrap" style="min-height:0;flex:1"><canvas id="gap-jump"></canvas></div>
+    <p>左极限 −1，右极限 1。补一点也接不上。</p>
+  </div>
+  <div class="card" style="display:flex;flex-direction:column;min-height:0">
+    <h3>无穷</h3>
+    <div class="plot-wrap" style="min-height:0;flex:1"><canvas id="gap-inf"></canvas></div>
+    <p>靠近 0 时，1/x 无限变大。</p>
+  </div>
+</div>
+</section>
+<section class="slide" data-title="课堂练 4">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 4</h2><div class="prompt-box">判断 $f(x)=|x|/x$（$x\neq 0$），$f(0)=0$ 在 $0$ 是否连续。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 4" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>$x>0$ 时 $f=1$，$x<0$ 时 $f=-1$。左右极限分别为 $1$ 与 $-1$。</li><li>极限不存在，所以不连续。把 $f(0)$ 规定成 $0$ 也补不上跳跃。</li></ol>
+</section>
+<section class="slide" data-title="两个重要极限" data-hook="limits2">
+<h2 class="slide-title">两个重要极限</h2>
+<div class="grid-2" style="flex:1;min-height:0">
+  <div class="card" style="display:flex;flex-direction:column;min-height:0">
+    <h3>$\lim_{x\to 0}\dfrac{\sin x}{x}=1$</h3>
+    <div class="plot-wrap" style="min-height:0;flex:1"><canvas id="lim-sinc"></canvas></div>
+    <p>在 0 没有定义，曲线仍贴住 1。用弧度。</p>
+  </div>
+  <div class="card" style="display:flex;flex-direction:column;min-height:0">
+    <h3>$\lim_{t\to\infty}\left(1+\dfrac{1}{t}\right)^t=e$</h3>
+    <div class="plot-wrap" style="min-height:0;flex:1"><canvas id="lim-exp"></canvas></div>
+    <p>底靠近 1、指数走向无穷，贴住的是 e，不是 1。</p>
+  </div>
+</div>
+</section>
+<section class="slide" data-title="例 20">
+<div class="num">公式</div><h2 class="slide-title">例 20</h2><div class="card">$$\lim_{x\to 0}\frac{\tan x}{x}=\lim_{x\to 0}\frac{\sin x}{x}\cdot\frac{1}{\cos x}=1$$</div><p class="lead">$\tan x=\sin x/\cos x$，第二项代入 $\cos 0=1$。</p>
+</section>
+<section class="slide" data-title="课堂练 5">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 5</h2><div class="prompt-box">求下列极限：
+$(1)\ \lim_{x\to 0}\sin x/(2x)$
+$(2)\ \lim_{x\to 0}\sin 2x/x$
+$(3)\ \lim_{x\to 0}\sin(ax)/\sin(bx)$（$b\neq 0$）</div><p class="wait">约 4 分钟。把方块凑进分母。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 5" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 5</h2><ol class="answer-list"><li>$(1)$ $\dfrac{\sin x}{x}\cdot\dfrac12\to\dfrac12$。</li><li>$(2)$ $\dfrac{\sin 2x}{2x}\cdot 2\to 2$。</li><li>$(3)$ $\dfrac{\sin(ax)}{ax}\cdot\dfrac{bx}{\sin(bx)}\cdot\dfrac{a}{b}\to\dfrac{a}{b}$。</li></ol><div class="comment">缺的常数要自己补。方块必须和正弦里面的式子一致。</div>
+</section>
+<section class="slide" data-title="例 21　变量代换">
+<div class="num">公式</div><h2 class="slide-title">例 21　变量代换</h2><div class="card">$$\lim_{x\to 0}\frac{\arcsin x}{x}=1,\qquad \lim_{x\to 0}\frac{\arctan x}{x}=1,\qquad \lim_{x\to 0}\frac{1-\cos x}{x^2}=\frac12$$</div><p class="lead">令 $t=\arcsin x$，则 $x=\sin t$，原式变成 $t/\sin t$。$1-\cos x=2\sin^2(x/2)$，再套重要极限 1。</p>
+</section>
+<section class="slide" data-title="例 23　指数是变量，不能先收进底">
+<div class="num">公式</div><h2 class="slide-title">例 23　指数是变量，不能先收进底</h2><div class="card">$$\lim_{n\to\infty}\left(1-\frac{3}{n}\right)^{n+5}=e^{-3}$$</div><p class="lead">拆成 $\left(1-\dfrac{3}{n}\right)^n\cdot\left(1-\dfrac{3}{n}\right)^5\to e^{-3}\cdot 1$。错误算法是先把底取成 $1$，再算 $1^{n+5}=1$。指数 $n+5$ 随 $n$ 变，不是常数。</p>
+</section>
+<section class="slide" data-title="例 26">
+<div class="num">公式</div><h2 class="slide-title">例 26</h2><div class="card">$$\lim_{x\to\infty}\left(\frac{x+2}{x-3}\right)^x=e^5$$</div><p class="lead">先写成 $\left(1+\dfrac{5}{x-3}\right)^x$。令 $u=(x-3)/5$，指数 $x=5u+3$，得到 $\left(1+\dfrac1u\right)^{5u+3}\to e^5$。</p>
+</section>
+<section class="slide" data-title="例 22、例 39　人口与连续复利">
+<div class="num">定义</div><h2 class="slide-title">例 22、例 39　人口与连续复利</h2><div class="card"><p>年增长率（或年利率）为 $r$，一年分成 $n$ 期，每期增长率 $r/n$。一年后：</p><p>$$A_0\left(1+\frac{r}{n}\right)^n\to A_0 e^{r}$$</p><p>$k$ 年后是 $A_0 e^{kr}$。人口按月计、存款按期计息，加密之后都落到同一个 $e$。</p></div><p class="lead" style="margin-top:12px">令 $x=r/n$，就回到重要极限 2。</p>
+</section>
+<section class="slide" data-title="例 24、例 25">
+<div class="num">公式</div><h2 class="slide-title">例 24、例 25</h2><div class="card">$$\lim_{x\to 0}\frac{\ln(1+x)}{x}=1,\qquad \lim_{x\to 0}\frac{e^x-1}{x}=1$$</div><p class="lead">例 24：$\dfrac1x\ln(1+x)=\ln(1+x)^{1/x}\to\ln e=1$。例 25：令 $t=e^x-1$，则 $x=\ln(1+t)$，化成 $t/\ln(1+t)$。</p>
+</section>
+<section class="slide" data-title="无穷小与无穷大">
+<h2 class="slide-title">无穷小与无穷大</h2><div class="grid-2"><div class="card"><h3>无穷小</h3><div class="gold-rule"></div><ul><li>某个过程中极限是 $0$。</li><li>两个条件：极限存在，而且是 $0$。</li><li>$x\to\infty$ 时 $1/x$ 是无穷小，$x$ 是无穷大。</li></ul></div><div class="card"><h3>无穷大</h3><div class="gold-rule"></div><ul><li>非零无穷小的倒数。</li><li>$a>1$ 时，$a^x$ 在 $x\to+\infty$ 是正无穷大，在 $x\to-\infty$ 是无穷小。</li><li>$0\lt a\lt 1$ 时正好相反。</li></ul></div></div>
+</section>
+<section class="slide" data-title="有界变量">
+<h2 class="slide-title">有界变量</h2><div class="card"><ul><li>若某个时刻之后恒有 $|u|\le M$，称 $u$ 有界。</li><li>无穷小与有界量的乘积仍是无穷小。</li><li>因此 $x\to 0$ 时 $x\sin(1/x)\to 0$；$x\to\infty$ 时 $\sin x/x\to 0$。</li><li>$\sin x$、$\cos x$ 在 $x\to 0$ 时有界，但不是无穷小。</li><li>多项式是不是无穷大或无穷小，要看 $x$ 的趋势，不能脱离过程下判断。</li></ul></div>
+</section>
+<section class="slide" data-title="等价无穷小（$x\to 0$ 时可当结论用）">
+<h2 class="slide-title">等价无穷小（$x\to 0$ 时可当结论用）</h2><p class="lead">若 $f,g\to 0$ 且 $f/g\to 1$，称 $f\sim g$。$x\to 0$ 时，没有常数项的多项式等价于次数最低的那一项。</p><table class="sheet"><thead><tr><th>替换</th><th>替换</th></tr></thead><tbody><tr><td>$\sin x\sim x$</td><td>$\tan x\sim x$</td></tr><tr><td>$\arcsin x\sim x$</td><td>$\arctan x\sim x$</td></tr><tr><td>$\ln(1+x)\sim x$</td><td>$e^x-1\sim x$</td></tr><tr><td>$1-\cos x\sim x^2/2$</td><td>只用于 $0/0$</td></tr></tbody></table>
+</section>
+<section class="slide" data-title="例 34、例 35　用最低次，或直接替换">
+<div class="num">公式</div><h2 class="slide-title">例 34、例 35　用最低次，或直接替换</h2><div class="card">$$\lim_{x\to 0}\frac{2x^2+3x^4-5x^7}{2x^2-3x^3+8x^5}=1,\qquad \lim_{x\to 0}\frac{\sin 3x}{\arctan 2x}=\frac32$$</div><p class="lead">例 34：分子分母都等价于 $2x^2$。例 35：$\sin 3x\sim 3x$，$\arctan 2x\sim 2x$。</p>
+</section>
+<section class="slide" data-title="例 37、例 38　$x\to\infty$ 时看最高次">
+<div class="num">公式</div><h2 class="slide-title">例 37、例 38　$x\to\infty$ 时看最高次</h2><div class="card">$$\lim_{x\to\infty}\frac{3x^3-4x^2+2}{7x^3-5x^2+3x}=\frac37$$</div><p class="lead">分子次数低于分母，极限为 $0$；高于分母，极限为无穷大；次数相同，等于最高次系数之比。例 38：$\lim_{n\to\infty}(3\sqrt[3]{n}-9n^2)/(3n-\sqrt[4]{81n^8}+1)=(-9n^2)/(-3n^2)=3$。</p>
+</section>
+<section class="slide" data-title="课堂练 6">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 6</h2><div class="prompt-box">求 $\lim_{x\to 0}(1+2x)^{1/x}$，并说明为什么不能先把底收成 $1$。</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 6" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 6</h2><ol class="answer-list"><li>写成 $\left[(1+2x)^{1/(2x)}\right]^2\to e^2$。</li><li>若先让底变成 $1$，会得到 $1^{1/x}=1$，把指数里的变化丢掉了。</li></ol>
+</section>
+<section class="slide" data-title="文化卡片 · 庄子与刘徽" data-notes="控制在两三分钟。">
+<div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 庄子与刘徽</span><blockquote>一尺之捶，日取其半，万世不竭。割之弥细，所失弥少。</blockquote><p>极限把「取半不竭」和「割圆」写成同一件事：无限过程可以有确定的趋势。本讲不要求写 ε–δ。</p></div>
+</section>
+<section class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>极限看趋势：等比先看 $|q|$，函数极限要连同 $x\to\square$ 一起看。</li><li>左右一致才有极限；连续还要函数值等于这个极限。</li><li>计算：能代入就代入；$0/0$ 约分或有理化；重要极限与等价替换只用于相应的型。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把 $q=-1$ 当成收敛。</li><li>指数是变量，却先对底取极限。</li><li>约分改变了定义，就以为不能求极限。</li><li>有定义就说连续。</li></ul></div></div>
+</section>
+<section class="slide" data-title="作业" data-notes="当堂布置。">
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>求 $\sum_{n=0}^{\infty}(1/4)^n$，并说明 $q=-1$ 的级数为什么发散。</li><li>求 $\lim_{x\to 2}(x^2-4)/(x-2)$，以及 $\lim_{x\to 0}\sin 5x/x$。</li><li>求 $\lim_{n\to\infty}(1+1/n)^{2n}$，并写出连续复利一年后的本利和。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 用等价无穷小求 $\lim_{x\to 0}(\tan x-\sin x)/x^3$。提示：先通分，再用 $1-\cos x\sim x^2/2$。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.3 导数与微分：割线变成切线；$|x|$ 在 $0$ 不可导。</p></div></div>
+</section>
+    </main>
+    <div class="notes" id="notes"></div>
+    <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
+    <div class="help" id="help">
+      <h3>快捷键</h3>
+      <p>→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
+      <p>解答页默认跳过；按 A 后进入线性顺序。滑条上请先点空白再按方向键。</p>
+    </div>
+    <footer class="botbar">
+      <span>南开大学数学科学学院</span>
+      <span id="page">1 / 1</span>
+      <span class="keys">
+        <button type="button" class="btn ghost" id="btn-prev">上一页</button>
+        <button type="button" class="btn ghost" id="btn-next">下一页</button>
+        <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
+        <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
+        <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
+        <button type="button" class="btn ghost" id="btn-help">?</button>
+      </span>
+    </footer>
+  </div>
+  <script src="../vendor/katex/katex.min.js"></script>
+  <script src="../vendor/katex/contrib/auto-render.min.js"></script>
+  <script src="../js/deck.js"></script>
+  <script src="../js/plot.js"></script>
+  <script src="../js/labs/12-limit.js"></script>
+</body>
+</html>

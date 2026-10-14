@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>0 数学与人文 · 文科高等数学</title>
+  <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
+  <link rel="stylesheet" href="../css/deck.css" />
+</head>
+<body class="play">
+  <div class="app cover-mode">
+    <div class="spine" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="home" href="../index.html">目录</a>
+      <span class="mark">NKU</span>
+      <h1>文科高等数学　·　0 数学与人文</h1>
+      <span class="sec" id="sec-label"></span>
+    </header>
+    <main class="stage">
+<section class="slide cover" data-title="封面" data-notes="开场 3 分钟：说明课程方位。">
+<div class="kicker">1.1 序言　与函数合计 4 学时</div>
+        <h2>先问问题怎么提，<br />再看数据怎么说</h2>
+        <p>用录取率看清「分组与汇总可以相反」，并立住后面每讲都要问的三件事。</p>
+        <div class="meta">工具 · 文化 · 理性思维 · 审美</div>
+</section>
+<section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能说出本课程四项目标：工具、文化、理性思维、审美。</p></div><div class="card"><span class="idx">02</span><p>能用录取率例子说明：分组结论与汇总结论可以相反。</p></div><div class="card"><span class="idx">03</span><p>能指出一个与自己专业相关的「可被数量化」的问题。</p></div></div>
+</section>
+<section class="slide" data-title="本学期地图（微积分 + 线性代数）" data-notes="停留 1 分钟，让学生看到学期结构。">
+<h2 class="slide-title">本学期地图（微积分 + 线性代数）</h2><div class="card"><ul><li>连续：函数 → 极限 → 导数 → 积分 → 二元初步。</li><li>离散：行列式 → 矩阵 → 方程组 → 数据科学应用。</li><li>概率统计、逻辑、数学软件本学期另作安排。</li><li>每讲三条目标，用来检查自己学会了没有。</li></ul></div>
+</section>
+<section class="slide" data-title="四项目标" data-notes="明确边界，降低焦虑。">
+<h2 class="slide-title">四项目标</h2><div class="grid-2"><div class="card"><h3>课内要带走的</h3><div class="gold-rule"></div><ul><li>处理人文学科中的数量与逻辑问题。</li><li>了解数学文化，提高数学素质。</li><li>养成抽象、冷静、可检验的思维方式。</li></ul></div><div class="card"><h3>课内不要期待的</h3><div class="gold-rule"></div><ul><li>不追求工科高数的题量与技巧密度。</li><li>不把证明写到分析学的精细程度。</li><li>不把软件语法当成主线。</li></ul></div></div>
+</section>
+<section class="slide" data-title="为什么文科要学数学">
+<h2 class="slide-title">为什么文科要学数学</h2><div class="card"><ul><li>大数据与人工智能把「数量化」推进到语言、历史、社会与艺术。</li><li>文科研究同样需要：看清结构、比较数据、避免被平均数误导。</li><li>本课程提供两类语言：连续（微积分）、离散（线性代数）。随机是后半学期预告。</li><li>目标不是堆计算量，而是能用数学方式想问题。</li></ul></div>
+</section>
+<section class="slide" data-title="一个贯穿学期的问题">
+<div class="num">定义</div><h2 class="slide-title">一个贯穿学期的问题</h2><div class="card"><p>以后每遇到一个新概念，先问三件事：</p><ol class='answer-list'><li>它在描述哪一种「依赖」或「结构」？</li><li>图像或数表长什么样？</li><li>在语言、社会、经济里有没有一个最小例子？</li></ol></div><p class="lead" style="margin-top:12px">这三问贯穿后面的极限、矩阵与数据科学。</p>
+</section>
+<section class="slide" data-title="三个接口" data-notes="不另开数学史课，不讲 Arrow 定理。">
+<h2 class="slide-title">三个接口</h2><div class="grid-3"><div class="card"><h3>语言学</h3><div class="gold-rule"></div><p>阿达马：语言学是数学与人文科学之间的桥梁。词频可以用来讨论《红楼梦》后四十回；机器翻译是数学、语言学与计算的汇合。</p></div><div class="card"><h3>计量史学</h3><div class="gold-rule"></div><p>引入计量是为了让定性判断可被核对，而不是用数字取消叙事。</p></div><div class="card"><h3>投票</h3><div class="gold-rule"></div><p>规则不同，胜者可以不同。「公正」要先写成可比较的规则。</p></div></div>
+</section>
+<section class="slide" data-title="课堂练 1" data-notes="巡视：不会算百分数的同学，先写成分数再化成百分数。">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">某校两学院录取数据：
+甲：女 50/150，男 190/380
+乙：女 200/250，男 36/40
+
+请分别计算甲、乙及汇总后的男女录取率。能否根据「汇总女生更高」断言录取更偏向女生？</div><p class="wait">先算，约 3 分钟。可两人核对。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>甲：女 50/150≈33.3%，男 190/380=50%。甲院男生更高。</li><li>乙：女 200/250=80%，男 36/40=90%。乙院仍是男生更高。</li><li>汇总：女 250/400=62.5%，男 226/420≈53.8%。汇总却是女生更高。</li><li>原因：女生更多集中在录取率本就很高的乙院。隐变量是「学院」。</li></ol><div class="comment">这叫辛普森悖论：分组趋势与合并趋势可以相反。公平比较必须在同类组别中进行。</div>
+</section>
+<section class="slide" data-title="改人数，看分组与汇总是否翻转" data-notes="默认就是教材数据。把甲女生录取人数拉低，翻转会保持；把结构改匀，翻转会消失。" data-hook="simpson">
+<div class="num">实验</div><h2 class="slide-title">改人数，看分组与汇总是否翻转</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="simpson-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>甲院女生录取人数 / 150</span><span class="ctrl-val" id="aw-val">50</span></label>
+              <input id="aw" type="range" min="0" max="150" value="50" />
+              <label style="margin-top:8px"><span>甲院男生录取人数 / 380</span><span class="ctrl-val" id="am-val">190</span></label>
+              <input id="am" type="range" min="0" max="380" value="190" />
+              <label style="margin-top:8px"><span>乙院女生录取人数 / 250</span><span class="ctrl-val" id="bw-val">200</span></label>
+              <input id="bw" type="range" min="0" max="250" value="200" />
+              <label style="margin-top:8px"><span>乙院男生录取人数 / 40</span><span class="ctrl-val" id="bm-val">36</span></label>
+              <input id="bm" type="range" min="0" max="40" value="36" />
+            </div>
+            <div class="readout" id="simpson-read"></div>
+            <div class="verdict" id="simpson-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="课堂练 2（思考）" data-notes="点到为止，不要讲 Arrow 定理。">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2（思考）</h2><div class="prompt-box">三人竞选，规则可以是「得票最多者胜」，也可以是「两两 PK 再计分」。
+不需要定理名字。请只回答：有没有可能，换一种看似都公平的计票规则，胜者就换了？
+举一个你知道的班级选举或选秀投票即可。</div><p class="wait">讨论 2 分钟，不要求形式化。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 2 点评" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2 点评</h2><ol class="answer-list"><li>可能。规则先于结果：先规定如何加总偏好，再谈谁获胜。</li><li>数学在这里的作用，不是宣布「唯一公正」，而是把规则写清楚、可比较。</li><li>这与辛普森悖论同一思想：先问问题怎么提，再看数据怎么说。</li></ol><div class="comment">开篇要留下的态度：数量很有用，但数量不会自动等于结论。</div>
+</section>
+<section class="slide" data-title="连续、离散、随机：三种语言">
+<h2 class="slide-title">连续、离散、随机：三种语言</h2><div class="card"><ul><li>连续：变化率与积累——后面的导数、积分。</li><li>离散：表格与结构——后面的矩阵、方程组。</li><li>随机：不确定中的规律——本学期另作安排。</li><li>同一人文问题，有时要用两种语言：词频是离散，语感随时间的变化可以是连续。</li></ul></div>
+</section>
+<section class="slide" data-title="开篇要立住的态度">
+<h2 class="slide-title">开篇要立住的态度</h2><div class="grid-2"><div class="card"><h3>数量有用</h3><div class="gold-rule"></div><ul><li>百分比能比较。</li><li>规则写清楚才能检验。</li><li>图像比口号更难含糊。</li></ul></div><div class="card"><h3>数量不是结论</h3><div class="gold-rule"></div><ul><li>先问怎么分组。</li><li>先问规则是什么。</li><li>先问缺了哪个隐变量。</li></ul></div></div>
+</section>
+<section class="slide" data-title="学期里会反复出现的三问">
+<h2 class="slide-title">学期里会反复出现的三问</h2><div class="grid-3"><div class="card"><h3>依赖 / 结构</h3><div class="gold-rule"></div><p>谁随谁变？谁指向谁？</p></div><div class="card"><h3>图像 / 数表</h3><div class="gold-rule"></div><p>曲线、曲面、矩阵，先看见再命名。</p></div><div class="card"><h3>最小例子</h3><div class="gold-rule"></div><p>语言、社会、经济里能否缩成一道课堂练。</p></div></div>
+</section>
+<section class="slide" data-title="文化卡片 · 阿达马" data-notes="控制在两三分钟。">
+<div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 阿达马</span><blockquote>「语言学是数学和人文科学之间的桥梁。」——阿达马</blockquote><p>阿达马以解析学与素数定理闻名，却把语言学看作通往人文的桥。本课程后面的极限、矩阵，都可以回到这句话：先把对象写成符号，再问符号服从什么规则。</p></div>
+</section>
+<section class="slide" data-title="后面的课怎么上" data-kind="meta">
+<h2 class="slide-title">后面的课怎么上</h2><div class="card"><ul><li>每一讲三条可检测目标，下课回扣。</li><li>概念尽量配图：函数看图像，积分看面积，矩阵看数表。</li><li>例题分页：先做，再看思路，再看演算。按 A 才揭晓解答。</li><li>每讲一张文化卡片，控制在两三分钟。</li><li>软件只作看图工具，不考语法；本学期不设软件专讲。</li></ul></div>
+</section>
+<section class="slide" data-title="本学期另外安排">
+<h2 class="slide-title">本学期另外安排</h2><div class="grid-3"><div class="card"><h3>概率统计</h3><div class="gold-rule"></div><p>抽样、估计、检验安排在后半学期。开篇只预告「随机」这第三种语言。</p></div><div class="card"><h3>逻辑</h3><div class="gold-rule"></div><p>不单开命题演算。推理与反例贯穿各讲。</p></div><div class="card"><h3>数学软件</h3><div class="gold-rule"></div><p>本课程用本网页看图，不另设软件课。</p></div></div>
+</section>
+<section class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>数学为文科提供结构、比较与检验的语言。</li><li>辛普森悖论提醒：合并数据前先问分组。</li><li>本学期主线：微积分（连续）与线性代数（离散）。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把「女生汇总录取率更高」直接说成「更公平」。</li><li>只听文化故事，忽略辛普森悖论本身。</li></ul></div></div>
+</section>
+<section class="slide" data-title="作业" data-notes="下节课抽 2 位同学各说一个专业里的数量问题。">
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>阅读教材第 1 章，划出一处与自己专业有关的应用。</li><li>把课堂录取率三张表自己重算一遍，写到笔记本。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>找一条新闻里的百分比，问：它有没有可能是「汇总后的假象」？</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.1 函数：从对应关系开始，分段函数是重点。</p></div></div>
+</section>
+    </main>
+    <div class="notes" id="notes"></div>
+    <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
+    <div class="help" id="help">
+      <h3>快捷键</h3>
+      <p>→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
+      <p>解答页默认跳过；按 A 后进入线性顺序。滑条上请先点空白再按方向键。</p>
+    </div>
+    <footer class="botbar">
+      <span>南开大学数学科学学院</span>
+      <span id="page">1 / 1</span>
+      <span class="keys">
+        <button type="button" class="btn ghost" id="btn-prev">上一页</button>
+        <button type="button" class="btn ghost" id="btn-next">下一页</button>
+        <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
+        <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
+        <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
+        <button type="button" class="btn ghost" id="btn-help">?</button>
+      </span>
+    </footer>
+  </div>
+  <script src="../vendor/katex/katex.min.js"></script>
+  <script src="../vendor/katex/contrib/auto-render.min.js"></script>
+  <script src="../js/deck.js"></script>
+  <script src="../js/plot.js"></script>
+  <script src="../js/labs/00-simpson.js"></script>
+</body>
+</html>

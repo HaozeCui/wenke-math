@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1.5 不定积分 · 文科高等数学</title>
+  <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
+  <link rel="stylesheet" href="../css/deck.css" />
+</head>
+<body class="play">
+  <div class="app cover-mode">
+    <div class="spine" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="home" href="../index.html">目录</a>
+      <span class="mark">NKU</span>
+      <h1>文科高等数学　·　1.5 不定积分</h1>
+      <span class="sec" id="sec-label"></span>
+    </header>
+    <main class="stage">
+<section class="slide cover" data-title="封面" data-notes="不要把整堂课上成积分表竞赛。">
+<div class="kicker">1.5　建议 6 学时</div>
+        <h2>原函数是一族，<br />差一个常数</h2>
+        <p>原函数不是一条曲线，而是上下平移的一族。本讲看 +C 怎样平移，再练换元与分部。</p>
+        <div class="meta">实验：+C 族　·　换元与分部</div>
+</section>
+<section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能说明不定积分是原函数族，差一个任意常数 C。</p></div><div class="card"><span class="idx">02</span><p>能用第一换元处理「复合的里层刚好差一个常数因子」。</p></div><div class="card"><span class="idx">03</span><p>能对简单乘积选用分部积分，并指出谁应为 u。</p></div></div>
+</section>
+<section class="slide" data-title="本讲怎么压缩" data-kind="meta">
+<h2 class="slide-title">本讲怎么压缩</h2><div class="card"><ul><li>一张实验：x²+C 上下平移，求导后都回到 2x。</li><li>基本公式表静态。</li><li>第一换元 4 例，分页静态。</li><li>分部 2 例，分页静态。</li><li>其余操练标「备用、可跳」。</li><li>不要把 1.6 的定积分黎曼和提前到这里。</li></ul></div>
+</section>
+<section class="slide" data-title="原函数与不定积分">
+<div class="num">定义</div><h2 class="slide-title">原函数与不定积分</h2><div class="card"><p>若 $F'=f$，称 $F$ 是 $f$ 的一个原函数。全体原函数写作</p><p>$$\int f(x)\,dx=F(x)+C$$</p><p>$C$ 是任意常数。求导是「验算」：$(F+C)'=f$。</p></div><p class="lead" style="margin-top:12px">定积分是一个数；不定积分是一族函数。不要把 +C 带到 1.6 的上下限计算里。</p>
+</section>
+<section class="slide" data-title="平移整族曲线，导数仍是 2x" data-notes="浅色是其他 C。拖滑条只改当前这条。问：切线斜率变了没有？" data-hook="family">
+<div class="num">实验</div><h2 class="slide-title">平移整族曲线，导数仍是 2x</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="family-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>常数 C</span><span class="ctrl-val" id="family-c-val">1.0</span></label>
+              <input id="family-c" type="range" min="-2" max="3" step="0.1" value="1" />
+            </div>
+            <div class="readout" id="family-read"></div>
+            <div class="verdict">整族曲线上下平移。求导后 C 消失。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="基本公式">
+<h2 class="slide-title">基本公式</h2><p class="lead">先猜后验：对了再写 +C。</p><table class="sheet"><thead><tr><th>被积函数</th><th>不定积分</th><th>验算</th></tr></thead><tbody><tr><td>$x^n\ (n\neq-1)$</td><td>$x^{n+1}/(n+1)+C$</td><td>降次回去</td></tr><tr><td>$1/x$</td><td>$\ln|x|+C$</td><td>绝对值</td></tr><tr><td>$e^x$，$\sin x$，$\cos x$</td><td>$e^x$，$-\cos x$，$\sin x$</td><td>常用</td></tr><tr><td>$1/(1+x^2)$</td><td>$\arctan x+C$</td><td>反三角只留这一个</td></tr></tbody></table>
+</section>
+<section class="slide" data-title="第一换元：想什么" data-notes="口诀：认复合，凑微分。">
+<h2 class="slide-title">第一换元：想什么</h2><div class="grid-2"><div class="card"><h3>看到</h3><div class="gold-rule"></div><ul><li>复合函数 × 里层导数（差个常数也行）。</li><li>$\sin x\cos x$，$\quad 2x e^{x^2}$。</li></ul></div><div class="card"><h3>做法</h3><div class="gold-rule"></div><ul><li>令 $u$ 为里层。</li><li>$du=u'\,dx$，凑系数。</li><li>换成 $u$ 的基本积分，再代回。</li></ul></div></div>
+</section>
+<section class="slide" data-title="第一换元 例 1">
+<div class="num">例</div><h2 class="slide-title">第一换元 例 1</h2><div class="card"><p>$$\int \sin x\cos x\,dx$$</p><p>令 $u=\sin x$，则 $du=\cos x\,dx$。</p><p>$$\int u\,du=u^2/2+C=\sin^2 x/2+C$$</p><p>也可以令 $u=\cos x$，差一个符号，+C 把两族并成同一族。</p></div>
+</section>
+<section class="slide" data-title="第一换元 例 2">
+<div class="num">例</div><h2 class="slide-title">第一换元 例 2</h2><div class="card"><p>$$\int 2x e^{x^2}\,dx$$</p><p>令 $u=x^2$，$du=2x\,dx$。</p><p>$$\int e^u\,du=e^u+C=e^{x^2}+C$$</p></div>
+</section>
+<section class="slide" data-title="第一换元 例 3">
+<div class="num">例</div><h2 class="slide-title">第一换元 例 3</h2><div class="card"><p>$$\int \frac{2x+1}{x^2+x}\,dx$$</p><p>分子刚好是分母的导数。令 $u=x^2+x$。</p><p>$$\int \frac{1}{u}\,du=\ln|u|+C=\ln|x^2+x|+C$$</p></div>
+</section>
+<section class="slide" data-title="第一换元 例 4">
+<div class="num">例</div><h2 class="slide-title">第一换元 例 4</h2><div class="card"><p>$$\int \tan x\,dx=\int\frac{\sin x}{\cos x}\,dx$$</p><p>令 $u=\cos x$，$du=-\sin x\,dx$。</p><p>$$-\int\frac{1}{u}\,du=-\ln|\cos x|+C=\ln|\sec x|+C$$</p></div>
+</section>
+<section class="slide" data-title="课堂练 1">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">先猜后验：$\int 2x\,dx$；再做第一换元 $\int \sin x\cos x\,dx$；再指出 $\int x e^x\,dx$ 谁应为 u。</div><p class="wait">约 4 分钟。第三问指出谁为 $u$ 即可。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>$\int 2x\,dx=x^2+C$。验算：导数 2x。</li><li>换元见例 1：$\sin^2 x/2+C$。</li><li>分部：多项式乘指数，令 $u=x$，$dv=e^x dx$（多项式降次）。</li></ol><div class="comment">猜—验—换元—分部，这是本讲全部手法。</div>
+</section>
+<section class="slide" data-title="分部积分">
+<div class="num">定义</div><h2 class="slide-title">分部积分</h2><div class="card"><p>$$\int u\,dv=uv-\int v\,du$$</p><p>口诀：对 u 求导要变简单，对 v 积分要会做。</p><p>优先让多项式当 u（降次）；对数、反三角更当 u（求导变代数）。</p></div>
+</section>
+<section class="slide" data-title="分部 例 1">
+<div class="num">例</div><h2 class="slide-title">分部 例 1</h2><div class="card"><p>$$\int x e^x\,dx$$</p><p>$u=x$，$dv=e^x dx$ ⇒ $du=dx$，$v=e^x$。</p><p>$$x e^x-\int e^x\,dx=x e^x-e^x+C$$</p></div>
+</section>
+<section class="slide" data-title="分部 例 2">
+<div class="num">例</div><h2 class="slide-title">分部 例 2</h2><div class="card"><p>$$\int x\ln x\,dx$$</p><p>$u=\ln x$，$dv=x\,dx$ ⇒ $du=dx/x$，$v=x^2/2$。</p><p>$$\frac{x^2}{2}\ln x-\int\frac{x}{2}\,dx=\frac{x^2}{2}\ln x-\frac{x^2}{4}+C$$</p></div>
+</section>
+<section class="slide" data-title="例　∫ ln x dx">
+<div class="num">例</div><h2 class="slide-title">例　∫ ln x dx</h2><div class="card"><p>令 $u=\ln x$，$dv=dx$。得 $x\ln x-\int x\cdot(1/x)\,dx=x\ln x-x+C$。</p><p>验算：乘积导数回到 $\ln x$。</p></div>
+</section>
+<section class="slide" data-title="例　∫ arctan x dx">
+<div class="num">例</div><h2 class="slide-title">例　∫ arctan x dx</h2><div class="card"><p>分部：$u=\arctan x$，$dv=dx$。后面出现 $\int x/(1+x^2)\,dx$，再用换元。</p><p>结果 $x\arctan x-\frac12\ln(1+x^2)+C$。</p></div>
+</section>
+<section class="slide" data-title="易错三句">
+<h2 class="slide-title">易错三句</h2><div class="grid-3"><div class="card"><h3>忘掉 +C</h3><div class="gold-rule"></div><p>原函数是族。定积分才是数。</p></div><div class="card"><h3>换元不换 dx</h3><div class="gold-rule"></div><p>必须写出 du。</p></div><div class="card"><h3>分部选反了 u</h3><div class="gold-rule"></div><p>指数当 u 会升次，越积越繁。</p></div></div>
+</section>
+<section class="slide" data-title="换元失败通常因为">
+<h2 class="slide-title">换元失败通常因为</h2><div class="grid-2"><div class="card"><h3>没认出里层</h3><div class="gold-rule"></div><ul><li>$\int e^{x^2} dx$ 不是 $2x e^{x^2}$ 那种。</li><li>缺了里层导数，第一换元走不通。</li><li>（高斯积分，本课不要求。）</li></ul></div><div class="card"><h3>系数没凑</h3><div class="gold-rule"></div><ul><li>$\int e^{2x}dx$ 应除以 2。</li><li>$\frac12 e^{2x}+C$。</li><li>验算：导数带回 2 再消掉。</li></ul></div></div>
+</section>
+<section class="slide" data-title="课堂练 2">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">计算 $\int e^{2x}\,dx$ 与 $\int\dfrac{1}{2x+3}\,dx$。</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>$\int e^{2x}dx=\frac12 e^{2x}+C$。</li><li>令 u=2x+3，$\int du/(2u)=\frac12\ln|2x+3|+C$。</li><li>两题都是「差一个常数因子」。</li></ol>
+</section>
+<section class="slide" data-title="分部口诀「反、对、幂、指、三」仅作参考">
+<h2 class="slide-title">分部口诀「反、对、幂、指、三」仅作参考</h2><div class="card"><ul><li>越靠前越适合当 u：反三角、对数、幂、指数、三角。</li><li>本讲只要记住：多项式对指数，多项式当 u；对数当 u。</li><li>选反了就停，换过来再写一遍，比硬算更省时间。</li></ul></div>
+</section>
+<section class="slide" data-title="课堂练 3　选 u">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3　选 u</h2><div class="prompt-box">指出谁应为 u（不必算完）：
+(1) $\int x\sin x\,dx$
+(2) $\int\ln x\,dx$
+(3) $\int x^2 e^x\,dx$</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>(1) u=x（多项式降次），dv=sin x dx。</li><li>(2) u=ln x，dv=dx。</li><li>(3) $u=x^2$，要分部两次。</li></ol>
+</section>
+<section class="slide" data-title="与 1.6 的分界">
+<h2 class="slide-title">与 1.6 的分界</h2><div class="grid-3"><div class="card"><h3>本讲</h3><div class="gold-rule"></div><p>找原函数族，结果带 +C。</p></div><div class="card"><h3>下讲</h3><div class="gold-rule"></div><p>黎曼和是一个数。</p></div><div class="card"><h3>桥梁</h3><div class="gold-rule"></div><p>N-L：用原函数之差计算那个数。</p></div></div>
+</section>
+<section class="slide" data-title="几何：一族平行切线">
+<div class="num">定义</div><h2 class="slide-title">几何：一族平行切线</h2><div class="card"><p>一个原函数是一条积分曲线。不定积分是上下平移的一整族。</p><p>被积函数是切线斜率：同一横坐标处，族中每条曲线的切线互相平行。</p></div><p class="lead" style="margin-top:12px">检验永远是求导。答案形式可以不同，两个原函数只差一个常数。例如 $\arcsin x+\arccos x=\pi/2$。</p>
+</section>
+<section class="slide" data-title="线性：常数提出，和拆开">
+<div class="num">公式</div><h2 class="slide-title">线性：常数提出，和拆开</h2><div class="card">$$\int(3x^2+\frac{2}{x})\,dx=x^3+2\ln|x|+C$$</div><p class="lead">拆成几个积分时，每个都可以带常数，最后合并成一个 $C$。$\int dx$ 就是 $\int 1\,dx$。</p>
+</section>
+<section class="slide" data-title="凑微分得到的常用公式">
+<div class="num">公式</div><h2 class="slide-title">凑微分得到的常用公式</h2><div class="card">$$\int\frac{dx}{a^2+x^2}=\frac1a\arctan\frac{x}{a}+C,\qquad \int\frac{dx}{\sqrt{a^2-x^2}}=\arcsin\frac{x}{a}+C$$</div><p class="lead">$a>0$。第一式令 $u=x/a$ 回到 $\int du/(1+u^2)$。第二式令 $x=a\sin t$。</p>
+</section>
+<section class="slide" data-title="选学：第二换元">
+<div class="num">定义</div><h2 class="slide-title">选学：第二换元</h2><div class="card"><p>第一换元是把复合看成 $u$。第二换元是主动令 $x=\varphi(t)$，用来去掉根号。</p><p>$\sqrt{a^2-x^2}$ 令 $x=a\sin t$；$\sqrt{a^2+x^2}$ 令 $x=a\tan t$；$\sqrt{x^2-a^2}$ 令 $x=a\sec t$。</p></div><p class="lead" style="margin-top:12px">课上认得出该用哪一种即可。算出的 $t$ 要用直角三角形代回 $x$。</p>
+</section>
+<section class="slide" data-title="文化卡片 · 逆运算" data-notes="控制在两三分钟。">
+<div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 逆运算</span><blockquote>积分是求导的逆运算。莱布尼茨的拉长 S，首先仍是「求和」；到了不定积分，它变成「找谁的导数是它」。</blockquote><p>不定积分先是「找谁的导数是它」。会换元、会分部，就已经够用；其余放到作业里慢慢练。</p></div>
+</section>
+<section class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>不定积分 = 原函数 +C。</li><li>换元：认复合、凑微分。</li><li>分部：让求导变简单的当 u。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把 +C 带进定积分的最终数字。</li><li>换元时只换 $u$、忘了换 $dx$。</li></ul></div></div>
+</section>
+<section class="slide" data-title="作业" data-notes="当堂布置。">
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>$\int(3x^2-1)\,dx$，$\int e^{2x}\,dx$（换元），$\int x\cos x\,dx$（分部）。</li><li>每题求导验算。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* $\int\ln x\,dx$ 或 $\int\arctan x\,dx$ 选一，分部后求导验算。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.6：定积分是加密求和，N-L 是计算装置。</p></div></div>
+</section>
+    </main>
+    <div class="notes" id="notes"></div>
+    <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
+    <div class="help" id="help">
+      <h3>快捷键</h3>
+      <p>→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
+      <p>解答页默认跳过；按 A 后进入线性顺序。滑条上请先点空白再按方向键。</p>
+    </div>
+    <footer class="botbar">
+      <span>南开大学数学科学学院</span>
+      <span id="page">1 / 1</span>
+      <span class="keys">
+        <button type="button" class="btn ghost" id="btn-prev">上一页</button>
+        <button type="button" class="btn ghost" id="btn-next">下一页</button>
+        <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
+        <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
+        <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
+        <button type="button" class="btn ghost" id="btn-help">?</button>
+      </span>
+    </footer>
+  </div>
+  <script src="../vendor/katex/katex.min.js"></script>
+  <script src="../vendor/katex/contrib/auto-render.min.js"></script>
+  <script src="../js/deck.js"></script>
+  <script src="../js/plot.js"></script>
+  <script src="../js/labs/15-family.js"></script>
+</body>
+</html>
