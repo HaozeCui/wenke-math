@@ -224,5 +224,62 @@
       if (isAnswer(state.slides[n - 1])) state.reveal = true;
       show(n - 1, { hash: false });
     });
+
+    const stage = document.querySelector(".stage");
+    if (stage) bindSwipe(stage);
   });
+
+  function bindSwipe(stage) {
+    let x0 = 0;
+    let y0 = 0;
+    let mode = "";
+    const block = "input, textarea, select, button, a, .seg, .ctrl";
+
+    stage.addEventListener("touchstart", (e) => {
+      if (e.touches.length !== 1) {
+        mode = "ignore";
+        return;
+      }
+      const t = e.target;
+      if (t.closest(block)) {
+        mode = "ignore";
+        return;
+      }
+      const wide = t.closest(".katex-display, .sheet, table");
+      if (wide && wide.scrollWidth > wide.clientWidth + 12) {
+        mode = "ignore";
+        return;
+      }
+      x0 = e.touches[0].clientX;
+      y0 = e.touches[0].clientY;
+      mode = "";
+    }, { passive: true });
+
+    stage.addEventListener("touchmove", (e) => {
+      if (mode === "ignore" || e.touches.length !== 1) return;
+      const dx = e.touches[0].clientX - x0;
+      const dy = e.touches[0].clientY - y0;
+      if (!mode) {
+        if (Math.abs(dx) < 12 && Math.abs(dy) < 12) return;
+        mode = Math.abs(dx) > Math.abs(dy) * 1.2 ? "x" : "y";
+      }
+      if (mode === "x") e.preventDefault();
+    }, { passive: false });
+
+    stage.addEventListener("touchend", (e) => {
+      if (mode !== "x") {
+        mode = "";
+        return;
+      }
+      const dx = e.changedTouches[0].clientX - x0;
+      const help = $("#help");
+      const outline = $("#outline");
+      const overlay = help?.classList.contains("open") || outline?.classList.contains("open");
+      if (!overlay && dx <= -56) next();
+      else if (!overlay && dx >= 56) prev();
+      mode = "";
+    }, { passive: true });
+
+    stage.addEventListener("touchcancel", () => { mode = ""; });
+  }
 })();

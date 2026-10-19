@@ -31,7 +31,7 @@ HUB = r"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>文科高等数学 · 课程目录</title>
   <link rel="stylesheet" href="css/deck.css" />
 </head>
@@ -47,7 +47,7 @@ HUB = r"""<!DOCTYPE html>
       <div class="hub-hero">
         <div class="kicker">南开大学数学科学学院　·　网页讲义</div>
         <h2>先看见过程，再写下符号</h2>
-        <p>建议学时：微积分 38（1.1 含序言）、线性代数 12。1.8、2.4 为新教材新增，不计入上表。方向键翻页；只有过程随参数变化的页才带滑条。公式由本地绘制，教室电脑可双击打开，无需联网。</p>
+        <p>建议学时：微积分 38（1.1 含序言）、线性代数 12。1.8、2.4 为新教材新增，不计入上表。电脑用方向键翻页，手机左右滑动或点底部按钮。只有过程随参数变化的页才带滑条。公式由本地绘制，教室电脑可双击打开，无需联网。</p>
       </div>
       <p class="hub-kicker">检索</p>
       <input class="hub-search" id="hub-q" type="search" placeholder="搜讲名或关键词，例如：黎曼、辛普森、PageRank、换元" autocomplete="off" />
@@ -142,7 +142,7 @@ HUB = r"""<!DOCTYPE html>
         <div class="card">
           <h3>翻页</h3>
           <div class="gold-rule"></div>
-          <p>→ / 空格 下一页<br />← 上一页<br />Home / End 首尾　F 全屏</p>
+          <p>→ / 空格 下一页<br />← 上一页<br />手机：左右滑动，或点底部按钮</p>
         </div>
         <div class="card">
           <h3>课堂</h3>
@@ -152,7 +152,7 @@ HUB = r"""<!DOCTYPE html>
         <div class="card">
           <h3>实验</h3>
           <div class="gold-rule"></div>
-          <p>滑条改参数，图立刻变。不拉时图仍可读。</p>
+          <p>滑条用手指或鼠标拖，图立刻变。不拉时图仍可读。</p>
         </div>
       </div>
     </main>
