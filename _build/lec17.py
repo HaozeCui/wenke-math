@@ -6,7 +6,7 @@ from chrome import (
 from panels import P
 
 FILENAME, TITLE, H1 = "17.html", "1.7 积分应用 · 文科高等数学", "1.7 积分应用"
-LABS = ["17-app.js"]
+LABS = ["17-app.js", "extra.js"]
 
 
 def slides():
@@ -46,7 +46,13 @@ def slides():
         ]),
         formula_page("把面积算完",
                      r"A=\int_{-1}^{2}\bigl[(y+2)-y^2\bigr]dy=\Bigl[y^2/2+2y-y^3/3\Bigr]_{-1}^{2}=9/2",
-                     extra="对 x 切会得到同样的 9/2，只是更烦。"),
+                     extra="对 x 切会得到同样的 9/2，只是更烦。曲线 $x=y^2$ 与直线 $x=y+2$ 交于 $y=-1$ 和 $y=2$。"),
+        formula_page("椭圆面积",
+                     r"\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad S=4\int_0^{a}b\sqrt{1-\frac{x^2}{a^2}}\,dx=\pi ab",
+                     extra=r"由对称性只算第一象限再乘 $4$。$a=b$ 时回到圆面积 $\pi a^2$。"),
+        formula_page("一根曲边，一条正弦",
+                     r"\int_0^{\pi}\bigl(\sqrt{x}-(-\sin x)\bigr)\,dx=\frac{2}{3}\pi\sqrt{\pi}+2",
+                     extra=r"上边是 $\sqrt{x}$，下边是 $-\sin x$，右壁在 $x=\pi$。拆成 $\int_0^{\pi}\sqrt{x}\,dx+\int_0^{\pi}\sin x\,dx$。先画谁在上，再写被积函数。"),
         bullets("旋转体与平均值（口诀）", [
             r"绕 x 轴：$\pi\int [f(x)]^2 dx$。圆片面积 πy² 再累加。",
             r"区间上平均值：$\dfrac{1}{b-a}\int_a^b f(x)\,dx$。",
@@ -102,6 +108,12 @@ def slides():
             "早期像指数，靠近 K 时增长变慢。",
             "r 是「有多着急」，K 是「天花板在哪」。二者不要混。",
         ]),
+        formula_page("教材：世界人口自己把增长率降下来",
+                     r"y_{m}\approx 82.3,\qquad y(80)\approx 70.15",
+                     extra=r"1960 年 $y_{0}=29.8$ 亿，固有增长率 $r_{0}=0.029$，当时实际增长率 $0.0185$。容量 $y_{m}=r_{0}y_{0}/(r_{0}-0.0185)\approx 82.3$ 亿。$t=80$ 是 2040 年，约 $70.15$ 亿。公式是 $y_{m}$ 除以 $1+(y_{m}/y_{0}-1)e^{-r_{0}t}$。参数若估偏了，预测要改。"),
+        lab("没有天花板的那条会冲出去", "wpop", "pop-canvas", P["wpop"],
+            notes="实线是阻滞，虚线是按 1960 年的实际增长率一直涨。拖到 80 年。",
+            code="实验"),
         cards3("碳-14 使用边界", [
             ("适用", "有机材料、几千到几万年。"),
             ("不适用", "岩石年龄（那是别的同位素）。"),
@@ -116,9 +128,6 @@ def slides():
             "问：一条条带会不会中途换边？会，就切开。",
             "写出积分，再算。",
         ]),
-        formula_page("椭圆面积",
-                     r"\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad S=4\int_0^{a}b\sqrt{1-\frac{x^2}{a^2}}\,dx=\pi ab",
-                     extra=r"由对称性只算第一象限再乘 $4$。$a=b$ 时回到圆面积 $\pi a^2$。"),
         formula_page("可分离变量的一道初值",
                      r"y\,dy=x\,dx,\quad y(0)=1\ \Rightarrow\ y^2-x^2=1",
                      extra="含 $y$ 的移到左边，含 $x$ 的移到右边，两边积分，再用初值定常数。$y'=x+y$ 不能这样拆。"),
@@ -127,6 +136,12 @@ def slides():
                    r"<p>$30$ 年后为 $7.5$ 万，则 $y=5\,e^{kt}$，且 $e^{30k}=1.5$。</p>"
                    r"<p>再过 $30$ 年：$y(60)=5\times 1.5^2=11.25$（万）。</p>",
                    extra="这是没有天花板的模型。人口变多以后要改成阻滞，增长率随人数下降。"),
+        formula_page("教材：记得越少，记得越快",
+                     r"\frac{dy}{dt}=k(60-y),\quad y=60\Bigl(1-\Bigl(\frac{3}{4}\Bigr)^{t/20}\Bigr)",
+                     extra=r"共 $60$ 件，$y(0)=0$，前 $20$ 分钟记住 $15$ 件，故 $k=\frac1{20}\ln\frac43$。一小时约 $34.7$ 件，三小时约 $55.5$ 件。天花板是 $60$，有限时间内记不完。"),
+        lab("时间拉长，也记不完 60 件", "learn", "learn-canvas", P["learn"],
+            notes="先停在 20 分钟。再拉到 180，问为什么还差一点。",
+            code="实验"),
         formula_page("碳-14 的另一组数",
                      r"t=\frac{5600}{\ln 2}\ln\frac{1}{0.15}\approx 15327",
                      extra="剩余为活树的 $15\\%$，半衰期取 $5600$ 年。和课堂练里「正好两个半衰期」是同一公式，只是剩余比例不再是 $2$ 的整数次幂。"),

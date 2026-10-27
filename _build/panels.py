@@ -238,4 +238,137 @@ P = {
             <div id="pr-bars"></div>
             <div class="verdict" id="pr-verdict"></div>
     """,
+    "fee": """
+            <div class="ctrl">
+              <label><span>交易额 x</span><span class="ctrl-val" id="fee-x-val">1.20</span></label>
+              <input id="fee-x" type="range" min="0" max="6" step="0.05" value="1.2" />
+            </div>
+            <div class="readout" id="fee-read"></div>
+            <div class="verdict">示意 p=0.8，q=2。x=0 的函数值是 0，右边一离开 0 就到 pq。</div>
+    """,
+    "elem": """
+            <div class="ctrl">
+              <div class="seg">
+                <button type="button" data-elem="0" class="on">x²</button>
+                <button type="button" data-elem="1">2ˣ</button>
+                <button type="button" data-elem="2">ln</button>
+                <button type="button" data-elem="3">sin</button>
+                <button type="button" data-elem="4">tan</button>
+              </div>
+            </div>
+            <div class="verdict" id="elem-verdict"></div>
+    """,
+    "oddpt": """
+            <div class="ctrl">
+              <label><span>点的横坐标 x</span><span class="ctrl-val" id="odd-x-val">1.40</span></label>
+              <input id="odd-x" type="range" min="-3" max="3" step="0.05" value="1.4" />
+            </div>
+            <div class="readout" id="odd-read"></div>
+            <div class="verdict">奇函数：点 (x, y) 与 (−x, −y) 同时在曲线上。</div>
+    """,
+    "phi": """
+            <div class="ctrl">
+              <label><span>看到第 n 项</span><span class="ctrl-val" id="phi-n-val">6</span></label>
+              <input id="phi-n" type="range" min="2" max="14" value="6" />
+            </div>
+            <div class="readout" id="phi-read"></div>
+            <div class="verdict">金色横线是 (1+√5)/2。项数一多，相邻比就贴住它。</div>
+    """,
+    "approx": """
+            <div class="ctrl">
+              <label><span>增量 dx</span><span class="ctrl-val" id="ap-dx-val">0.40</span></label>
+              <input id="ap-dx" type="range" min="0.02" max="1.4" step="0.02" value="0.4" />
+            </div>
+            <div class="readout" id="ap-read"></div>
+            <div class="verdict">虚线是切线。dx 越小，切线代替曲线的误差越小。</div>
+    """,
+    "vert": """
+            <div class="ctrl">
+              <label><span>位置 x</span><span class="ctrl-val" id="vert-x-val">0.55</span></label>
+              <input id="vert-x" type="range" min="-0.8" max="4" step="0.02" value="0.55" />
+            </div>
+            <div class="readout" id="vert-read"></div>
+            <div class="verdict">x=0 切线竖直。x=3 切线水平，但左右都在下降。</div>
+    """,
+    "mono14": """
+            <div class="ctrl">
+              <label><span>位置 x</span><span class="ctrl-val" id="m14-x-val">-2.00</span></label>
+              <input id="m14-x" type="range" min="-2.6" max="4.6" step="0.02" value="-2" />
+            </div>
+            <div class="readout" id="m14-read"></div>
+            <div class="verdict">左段与右段上升，中间下降。−1 是峰，3 是谷。</div>
+    """,
+    "concav": """
+            <div class="ctrl">
+              <label><span>位置 x</span><span class="ctrl-val" id="cv-x-val">-0.80</span></label>
+              <input id="cv-x" type="range" min="-1.5" max="1.5" step="0.02" value="-0.8" />
+            </div>
+            <div class="readout" id="cv-read"></div>
+            <div class="verdict">左半轴凹，切线在上方。右半轴凸，切线在下方。0 是拐点。</div>
+    """,
+    "holext": """
+            <div class="ctrl">
+              <label><span>位置 x</span><span class="ctrl-val" id="hole-x-val">-1.00</span></label>
+              <input id="hole-x" type="range" min="-3.2" max="4.2" step="0.02" value="-1" />
+            </div>
+            <div class="readout" id="hole-read"></div>
+            <div class="verdict">x=−1 是驻点，但左右都在上升。真正的极小在 x=2。0 处曲线断开。</div>
+    """,
+    "cusps": """
+            <div class="ctrl">
+              <label><span>位置 x</span><span class="ctrl-val" id="cusp-x-val">1.00</span></label>
+              <input id="cusp-x" type="range" min="-1" max="4" step="0.02" value="1" />
+            </div>
+            <div class="readout" id="cusp-read"></div>
+            <div class="verdict">候选人：端点 −1 与 4，尖点 0 与 2，驻点 1。最大在 1，最小在 4。</div>
+    """,
+    "boxvol": """
+            <div class="ctrl">
+              <label><span>切去的边长 x</span><span class="ctrl-val" id="box-x-val">2.0</span></label>
+              <input id="box-x" type="range" min="0.2" max="5.6" step="0.05" value="2" />
+            </div>
+            <div class="readout" id="box-read"></div>
+            <div class="verdict">正方形边长取 12。体积最高在 x=2，也就是边长的 1/6。</div>
+    """,
+    "twins": """
+            <div class="ctrl">
+              <label><span>横坐标 x</span><span class="ctrl-val" id="twin-x-val">0.40</span></label>
+              <input id="twin-x" type="range" min="-0.95" max="0.95" step="0.01" value="0.4" />
+            </div>
+            <div class="readout" id="twin-read"></div>
+            <div class="verdict">两条曲线上下差 π/2，所以导数相同，是同一族原函数。</div>
+    """,
+    "learn": """
+            <div class="ctrl">
+              <label><span>分钟 t</span><span class="ctrl-val" id="learn-t-val">20</span></label>
+              <input id="learn-t" type="range" min="0" max="180" step="1" value="20" />
+            </div>
+            <div class="readout" id="learn-read"></div>
+            <div class="verdict">虚线是 60 件。曲线靠近它，但到不了。</div>
+    """,
+    "wpop": """
+            <div class="ctrl">
+              <label><span>1960 年后的年数</span><span class="ctrl-val" id="pop-t-val">40</span></label>
+              <input id="pop-t" type="range" min="0" max="100" step="1" value="40" />
+            </div>
+            <div class="readout" id="pop-read"></div>
+            <div class="verdict">实线有容量。虚线按当时增长率一直指数涨，会冲出去。</div>
+    """,
+    "dom2": """
+            <div class="ctrl">
+              <div class="seg">
+                <button type="button" data-dom="hole" class="on">挖去原点</button>
+                <button type="button" data-dom="quad">第一象限</button>
+              </div>
+            </div>
+            <div class="verdict" id="dom2-verdict"></div>
+    """,
+    "trix": """
+            <div class="ctrl">
+              <label><span>竖条的位置 x</span><span class="ctrl-val" id="trix-x-val">0.35</span></label>
+              <input id="trix-x" type="range" min="0.05" max="0.92" step="0.01" value="0.35" />
+            </div>
+            <div class="readout" id="trix-read"></div>
+            <div class="verdict">先对 y：这条竖条从 0 积到 1−x。</div>
+    """,
 }

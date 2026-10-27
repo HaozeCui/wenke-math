@@ -43,6 +43,24 @@
 <section class="slide" data-title="课堂练 1" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>(1) 分母 $x^2+y^2\neq 0$，即挖去原点。</li><li>(2) $xy\ge 0$：第一、三象限（含坐标轴）。</li><li>舒芙蕾的实际定义域还可以再限制成温度、时间的矩形。</li></ol><div class="comment">二元问题的第一件事永远是：点在平面上哪里。</div>
 </section>
+<section class="slide" data-title="自然定义域：先写不等式">
+<div class="num">公式</div><h2 class="slide-title">自然定义域：先写不等式</h2><div class="card">$$\frac{1}{x^2+y^2},\qquad \sqrt{x}+\sqrt{y}$$</div><p class="lead">第一式去掉原点：分母 $x^2+y^2=0$ 只有 $(0,0)$。第二式要 $x\ge 0$ 且 $y\ge 0$，是第一象限连边界。舒芙蕾还可以再限制成温度、时间都说得通的矩形，那是实际定义域，比自然定义域更小。</p>
+</section>
+<section class="slide" data-title="挖一个洞，或只留一个象限" data-notes="先看挖去原点。再切到第一象限，问边界算不算。" data-hook="dom2">
+<div class="num">实验</div><h2 class="slide-title">挖一个洞，或只留一个象限</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="dom2-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <div class="seg">
+                <button type="button" data-dom="hole" class="on">挖去原点</button>
+                <button type="button" data-dom="quad">第一象限</button>
+              </div>
+            </div>
+            <div class="verdict" id="dom2-verdict"></div>
+    </aside>
+        </div>
+</section>
 <section class="slide" data-title="二重极限">
 <div class="num">定义</div><h2 class="slide-title">二重极限</h2><div class="card"><p>若点 $(x,y)$ 以任意路径接近 $(x_0,y_0)$ 时，$f(x,y)$ 都接近同一个数 $A$，则称二重极限为 $A$。</p><p>与一元不同：接近的方式有无数种。两条路径得到两个数，极限就不存在。</p></div><p class="lead" style="margin-top:12px">本讲例题 $f=(x^2-y^2)/(x^2+y^2)$ 在极坐标下等于 $\cos 2\theta$，与半径无关、只与方向有关。</p>
 </section>
@@ -99,6 +117,9 @@
 <section class="slide" data-title="课堂练 3" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>$L_x=25-2x-y=0$，$L_y=20-2y-x=0$。</li><li>解得 x=10，y=5。</li><li>$L_{xx}=-2$，$L_{yy}=-2$，$L_{xy}=-1$。判别式 $4-1=3>0$，$L_{xx}<0$ ⇒ 极大。$L(10,5)=175$。</li><li>这是局部最好；全域还要看定义域边界。有约束时的乘数法本学期不要求。</li></ol><div class="comment">偏导给出往哪边微调；黑塞告诉你这是峰还是谷。</div>
 </section>
+<section class="slide" data-title="教材的利润：系数一换，驻点就不是整数" data-notes="教材印作 x=10、y=5、P=275。50−20−5=25，不满足 P_x=0。讲义按偏导方程解。">
+<div class="num">公式</div><h2 class="slide-title">教材的利润：系数一换，驻点就不是整数</h2><div class="card">$$P=50x+30y-x^{2}-y^{2}-xy,\quad \Bigl(\frac{70}{3},\frac{10}{3}\Bigr),\quad P=\frac{1900}{3}$$</div><p class="lead">$P_{x}=50-2x-y$，$P_{y}=30-x-2y$。解得 $x=70/3$，$y=10/3$。黑塞矩阵仍是课堂练那一个，判别式 $3\gt 0$ 且 $P_{xx}\lt 0$，所以是极大。代入可以核对两个偏导都是 $0$。课堂练把 $50$、$30$ 换成 $25$、$20$，才得到 $(10,5)$。</p>
+</section>
 <section class="slide" data-title="二重积分：密度变成总量">
 <h2 class="slide-title">二重积分：密度变成总量</h2><div class="card"><ul><li>农田各点产量密度不同：分割小矩形 → 密度×面积 → 求和 → 加密。</li><li>D 型：竖条，先对 y 再对 x。</li><li>X 型：横条，先对 x 再对 y。</li><li>先画区域，再选比较省事的次序。矩形上两种次序一样。</li></ul></div>
 </section>
@@ -132,14 +153,14 @@
 <section class="slide" data-title="课堂练 5" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 5</h2><ol class="answer-list"><li>$f_x=2xy+y e^{xy}$（y 当常数）。</li><li>$f_y=x^2+x e^{xy}$。</li><li>复合：$e^{xy}$ 对 x 要乘 y，对 y 要乘 x。</li></ol>
 </section>
+<section class="slide" data-title="偏导代进一个点">
+<div class="num">公式</div><h2 class="slide-title">偏导代进一个点</h2><div class="card">$$f=x^2+3xy+\sin y,\quad f_x(1,1)=5,\quad f_y(1,1)=3+\cos 1$$</div><p class="lead">对 $x$ 时把 $y$ 当常数：$f_x=2x+3y$。对 $y$ 时把 $x$ 当常数：$f_y=3x+\cos y$。再代入 $(1,1)$。$e^{xy}$ 同样：$f_x=ye^{xy}$，$f_y=xe^{xy}$。</p>
+</section>
 <section class="slide" data-title="黑塞口诀（只用于多项式驻点）">
 <h2 class="slide-title">黑塞口诀（只用于多项式驻点）</h2><div class="card"><ul><li>$\Delta = f_{xx}f_{yy}-(f_{xy})^2$。</li><li>$\Delta>0$ 且 $f_{xx}<0$：局部极大；$\Delta>0$ 且 $f_{xx}>0$：局部极小。</li><li>$\Delta<0$：鞍点。$\Delta=0$：本讲不判定。</li><li>有约束时还要看边界。乘数法本学期不要求。</li></ul></div>
 </section>
 <section class="slide" data-title="二重积分上下限">
 <h2 class="slide-title">二重积分上下限</h2><div class="grid-2"><div class="card"><h3>D 型竖条</h3><div class="gold-rule"></div><ul><li>$a\le x\le b$，$y$ 从下曲线到上曲线。</li><li>先对 y。</li></ul></div><div class="card"><h3>X 型横条</h3><div class="gold-rule"></div><ul><li>$c\le y\le d$，$x$ 从左到右。</li><li>先对 x。</li><li>曲边必须先画。</li></ul></div></div>
-</section>
-<section class="slide" data-title="从一元到二元的三句">
-<h2 class="slide-title">从一元到二元的三句</h2><div class="grid-3"><div class="card"><h3>定义域</h3><div class="gold-rule"></div><p>从区间变成平面区域。</p></div><div class="card"><h3>极限</h3><div class="gold-rule"></div><p>从左右变成无数路径。</p></div><div class="card"><h3>积分</h3><div class="gold-rule"></div><p>从线段上的积累变成面积上的积累。</p></div></div>
 </section>
 <section class="slide" data-title="定义域再看两张">
 <div class="num">公式</div><h2 class="slide-title">定义域再看两张</h2><div class="card">$$\ln(x+y),\qquad \frac{1}{\sqrt{1-x^2-y^2}}$$</div><p class="lead">$\ln(x+y)$ 要 $x+y>0$：半平面，不含直线 $x+y=0$。第二式要 $x^2+y^2<1$：单位圆内部，圆周上根号为零，不能取。先写不等式，再在平面上说形状。</p>
@@ -158,6 +179,29 @@
 </section>
 <section class="slide" data-title="三角形上的二重积分">
 <div class="num">公式</div><h2 class="slide-title">三角形上的二重积分</h2><div class="card">$$\int_0^1\int_0^x (x+y)\,dy\,dx=\int_0^1\frac{3}{2}x^2\,dx=\frac12$$</div><p class="lead">区域是 $0\le x\le 1$、$0\le y\le x$：对每个 $x$，竖条从 $0$ 到直线 $y=x$。内层 $\bigl[xy+y^2/2\bigr]_0^x=3x^2/2$。正方形上两种次序一样；这种斜边区域必须先画再写上限。</p>
+</section>
+<section class="slide" data-title="教材上的那块三角形">
+<div class="num">公式</div><h2 class="slide-title">教材上的那块三角形</h2><div class="card">$$\iint_D(x+y)\,dx\,dy=\frac13$$</div><p class="lead">$D$ 由 $x=0$、$y=0$、$x+y=1$ 围成。先对 $y$：从 $0$ 到 $1-x$，内层得到 $\tfrac12-\tfrac12 x^2$，再对 $x$ 从 $0$ 到 $1$。这和前面「$y$ 从 $0$ 到 $x$」不是同一块区域，上限不能照抄。</p>
+</section>
+<section class="slide" data-title="竖条从底边积到斜边" data-notes="拖 x，看竖条变短。问上限为什么是 1−x。" data-hook="trix">
+<div class="num">实验</div><h2 class="slide-title">竖条从底边积到斜边</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="trix-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>竖条的位置 x</span><span class="ctrl-val" id="trix-x-val">0.35</span></label>
+              <input id="trix-x" type="range" min="0.05" max="0.92" step="0.01" value="0.35" />
+            </div>
+            <div class="readout" id="trix-read"></div>
+            <div class="verdict">先对 y：这条竖条从 0 积到 1−x。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="夹在抛物线和直线之间">
+<div class="num">公式</div><h2 class="slide-title">夹在抛物线和直线之间</h2><div class="card">$$\int_0^1\int_{x^2}^{x} xy\,dy\,dx=\frac{1}{24}$$</div><p class="lead">上边 $y=x$，下边 $y=x^2$，交于 $(0,0)$ 与 $(1,1)$。内层 $\frac{x}{2}(x^2-x^4)$，再积分得 $1/24$。先描交点，再决定谁是上限。</p>
+</section>
+<section class="slide" data-title="从一元到二元的三句">
+<h2 class="slide-title">从一元到二元的三句</h2><div class="grid-3"><div class="card"><h3>定义域</h3><div class="gold-rule"></div><p>从区间变成平面区域。</p></div><div class="card"><h3>极限</h3><div class="gold-rule"></div><p>从左右变成无数路径。</p></div><div class="card"><h3>积分</h3><div class="gold-rule"></div><p>从线段上的积累变成面积上的积累。</p></div></div>
 </section>
 <section class="slide" data-title="文化卡片 · 从一维到二维" data-notes="控制在两三分钟。">
 <div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 从一维到二维</span><blockquote>多元微积分的第一步，不是新公式，而是新的几何：点变成了平面上的点，曲线变成了曲面。</blockquote><p>舒芙蕾要同时看温度和时间：两个自变量必须同时在场。后面的数据科学、图像处理，都是更高维的同一句话。</p></div>
@@ -198,5 +242,6 @@
   <script src="../js/deck.js"></script>
   <script src="../js/plot.js"></script>
   <script src="../js/labs/18-multi.js"></script>
+  <script src="../js/labs/extra.js"></script>
 </body>
 </html>

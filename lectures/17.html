@@ -54,7 +54,13 @@
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>交点：y²=y+2 ⇒ y²−y−2=0 ⇒ (y−2)(y+1)=0，y=−1 或 2。</li><li>对 y：左 x=y² 到右 x=y+2，一个积分。</li><li>对 x：在 x=1（抛物线顶点右侧与直线的分界）要切开，两个积分。</li><li>所以选 y。先画图，再选变量。</li></ol>
 </section>
 <section class="slide" data-title="把面积算完">
-<div class="num">公式</div><h2 class="slide-title">把面积算完</h2><div class="card">$$A=\int_{-1}^{2}\bigl[(y+2)-y^2\bigr]dy=\Bigl[y^2/2+2y-y^3/3\Bigr]_{-1}^{2}=9/2$$</div><p class="lead">对 x 切会得到同样的 9/2，只是更烦。</p>
+<div class="num">公式</div><h2 class="slide-title">把面积算完</h2><div class="card">$$A=\int_{-1}^{2}\bigl[(y+2)-y^2\bigr]dy=\Bigl[y^2/2+2y-y^3/3\Bigr]_{-1}^{2}=9/2$$</div><p class="lead">对 x 切会得到同样的 9/2，只是更烦。曲线 $x=y^2$ 与直线 $x=y+2$ 交于 $y=-1$ 和 $y=2$。</p>
+</section>
+<section class="slide" data-title="椭圆面积">
+<div class="num">公式</div><h2 class="slide-title">椭圆面积</h2><div class="card">$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad S=4\int_0^{a}b\sqrt{1-\frac{x^2}{a^2}}\,dx=\pi ab$$</div><p class="lead">由对称性只算第一象限再乘 $4$。$a=b$ 时回到圆面积 $\pi a^2$。</p>
+</section>
+<section class="slide" data-title="一根曲边，一条正弦">
+<div class="num">公式</div><h2 class="slide-title">一根曲边，一条正弦</h2><div class="card">$$\int_0^{\pi}\bigl(\sqrt{x}-(-\sin x)\bigr)\,dx=\frac{2}{3}\pi\sqrt{\pi}+2$$</div><p class="lead">上边是 $\sqrt{x}$，下边是 $-\sin x$，右壁在 $x=\pi$。拆成 $\int_0^{\pi}\sqrt{x}\,dx+\int_0^{\pi}\sin x\,dx$。先画谁在上，再写被积函数。</p>
 </section>
 <section class="slide" data-title="旋转体与平均值（口诀）">
 <h2 class="slide-title">旋转体与平均值（口诀）</h2><div class="card"><ul><li>绕 x 轴：$\pi\int [f(x)]^2 dx$。圆片面积 πy² 再累加。</li><li>区间上平均值：$\dfrac{1}{b-a}\int_a^b f(x)\,dx$。</li></ul></div>
@@ -109,6 +115,23 @@
 <section class="slide" data-title="环境容量 K 在人文里的意思">
 <h2 class="slide-title">环境容量 K 在人文里的意思</h2><div class="card"><ul><li>教室座位数、生态承载力、注意力上限，都可以是 K 的隐喻。</li><li>早期像指数，靠近 K 时增长变慢。</li><li>r 是「有多着急」，K 是「天花板在哪」。二者不要混。</li></ul></div>
 </section>
+<section class="slide" data-title="教材：世界人口自己把增长率降下来">
+<div class="num">公式</div><h2 class="slide-title">教材：世界人口自己把增长率降下来</h2><div class="card">$$y_{m}\approx 82.3,\qquad y(80)\approx 70.15$$</div><p class="lead">1960 年 $y_{0}=29.8$ 亿，固有增长率 $r_{0}=0.029$，当时实际增长率 $0.0185$。容量 $y_{m}=r_{0}y_{0}/(r_{0}-0.0185)\approx 82.3$ 亿。$t=80$ 是 2040 年，约 $70.15$ 亿。公式是 $y_{m}$ 除以 $1+(y_{m}/y_{0}-1)e^{-r_{0}t}$。参数若估偏了，预测要改。</p>
+</section>
+<section class="slide" data-title="没有天花板的那条会冲出去" data-notes="实线是阻滞，虚线是按 1960 年的实际增长率一直涨。拖到 80 年。" data-hook="wpop">
+<div class="num">实验</div><h2 class="slide-title">没有天花板的那条会冲出去</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="pop-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>1960 年后的年数</span><span class="ctrl-val" id="pop-t-val">40</span></label>
+              <input id="pop-t" type="range" min="0" max="100" step="1" value="40" />
+            </div>
+            <div class="readout" id="pop-read"></div>
+            <div class="verdict">实线有容量。虚线按当时增长率一直指数涨，会冲出去。</div>
+    </aside>
+        </div>
+</section>
 <section class="slide" data-title="碳-14 使用边界">
 <h2 class="slide-title">碳-14 使用边界</h2><div class="grid-3"><div class="card"><h3>适用</h3><div class="gold-rule"></div><p>有机材料、几千到几万年。</p></div><div class="card"><h3>不适用</h3><div class="gold-rule"></div><p>岩石年龄（那是别的同位素）。</p></div><div class="card"><h3>本讲</h3><div class="gold-rule"></div><p>只练半衰期个数与公式，不讨论测量误差。</p></div></div>
 </section>
@@ -118,14 +141,28 @@
 <section class="slide" data-title="先画后算的两分钟口诀">
 <h2 class="slide-title">先画后算的两分钟口诀</h2><div class="card"><ul><li>描交点。</li><li>标出哪段是上/下或左/右。</li><li>问：一条条带会不会中途换边？会，就切开。</li><li>写出积分，再算。</li></ul></div>
 </section>
-<section class="slide" data-title="椭圆面积">
-<div class="num">公式</div><h2 class="slide-title">椭圆面积</h2><div class="card">$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad S=4\int_0^{a}b\sqrt{1-\frac{x^2}{a^2}}\,dx=\pi ab$$</div><p class="lead">由对称性只算第一象限再乘 $4$。$a=b$ 时回到圆面积 $\pi a^2$。</p>
-</section>
 <section class="slide" data-title="可分离变量的一道初值">
 <div class="num">公式</div><h2 class="slide-title">可分离变量的一道初值</h2><div class="card">$$y\,dy=x\,dx,\quad y(0)=1\ \Rightarrow\ y^2-x^2=1$$</div><p class="lead">含 $y$ 的移到左边，含 $x$ 的移到右边，两边积分，再用初值定常数。$y'=x+y$ 不能这样拆。</p>
 </section>
 <section class="slide" data-title="指数增长：一个能算完的人口">
 <div class="num">定义</div><h2 class="slide-title">指数增长：一个能算完的人口</h2><div class="card"><p>人口变化率与当时人口成正比：$y'=ky$，$y(0)=5$（万）。</p><p>$30$ 年后为 $7.5$ 万，则 $y=5\,e^{kt}$，且 $e^{30k}=1.5$。</p><p>再过 $30$ 年：$y(60)=5\times 1.5^2=11.25$（万）。</p></div><p class="lead" style="margin-top:12px">这是没有天花板的模型。人口变多以后要改成阻滞，增长率随人数下降。</p>
+</section>
+<section class="slide" data-title="教材：记得越少，记得越快">
+<div class="num">公式</div><h2 class="slide-title">教材：记得越少，记得越快</h2><div class="card">$$\frac{dy}{dt}=k(60-y),\quad y=60\Bigl(1-\Bigl(\frac{3}{4}\Bigr)^{t/20}\Bigr)$$</div><p class="lead">共 $60$ 件，$y(0)=0$，前 $20$ 分钟记住 $15$ 件，故 $k=\frac1{20}\ln\frac43$。一小时约 $34.7$ 件，三小时约 $55.5$ 件。天花板是 $60$，有限时间内记不完。</p>
+</section>
+<section class="slide" data-title="时间拉长，也记不完 60 件" data-notes="先停在 20 分钟。再拉到 180，问为什么还差一点。" data-hook="learn">
+<div class="num">实验</div><h2 class="slide-title">时间拉长，也记不完 60 件</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="learn-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>分钟 t</span><span class="ctrl-val" id="learn-t-val">20</span></label>
+              <input id="learn-t" type="range" min="0" max="180" step="1" value="20" />
+            </div>
+            <div class="readout" id="learn-read"></div>
+            <div class="verdict">虚线是 60 件。曲线靠近它，但到不了。</div>
+    </aside>
+        </div>
 </section>
 <section class="slide" data-title="碳-14 的另一组数">
 <div class="num">公式</div><h2 class="slide-title">碳-14 的另一组数</h2><div class="card">$$t=\frac{5600}{\ln 2}\ln\frac{1}{0.15}\approx 15327$$</div><p class="lead">剩余为活树的 $15\%$，半衰期取 $5600$ 年。和课堂练里「正好两个半衰期」是同一公式，只是剩余比例不再是 $2$ 的整数次幂。</p>
@@ -169,5 +206,6 @@
   <script src="../js/deck.js"></script>
   <script src="../js/plot.js"></script>
   <script src="../js/labs/17-app.js"></script>
+  <script src="../js/labs/extra.js"></script>
 </body>
 </html>

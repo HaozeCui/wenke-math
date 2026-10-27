@@ -6,7 +6,7 @@ from chrome import (
 from panels import P
 
 FILENAME, TITLE, H1 = "15.html", "1.5 不定积分 · 文科高等数学", "1.5 不定积分"
-LABS = ["15-family.js"]
+LABS = ["15-family.js", "extra.js"]
 
 
 def ex(title, body, notes="", spare=False):
@@ -100,6 +100,9 @@ def slides():
            r"<p>分部：$u=\arctan x$，$dv=dx$。后面出现 $\int x/(1+x^2)\,dx$，再用换元。</p>"
            r"<p>结果 $x\arctan x-\frac12\ln(1+x^2)+C$。</p>",
            spare=False),
+        formula_page("教材：e^x sin x 会转回来",
+                     r"\int e^{x}\sin x\,dx=\frac{e^{x}}{2}(\sin x-\cos x)+C",
+                     extra=r"分部两次后，右边又出现 $\int e^{x}\sin x\,dx$，移项再除以 $2$。第二次必须仍对 $e^{x}$ 积分、对三角函数求导。若第二次改把 $e^{x}$ 当成要求导的那个，式子会绕回原题，算不完。"),
         cards3("易错三句", [
             ("忘掉 +C", "原函数是族。定积分才是数。"),
             ("换元不换 dx", "必须写出 du。"),
@@ -141,6 +144,12 @@ def slides():
                    r"<p>一个原函数是一条积分曲线。不定积分是上下平移的一整族。</p>"
                    r"<p>被积函数是切线斜率：同一横坐标处，族中每条曲线的切线互相平行。</p>",
                    extra=r"检验永远是求导。答案形式可以不同，两个原函数只差一个常数。例如 $\arcsin x+\arccos x=\pi/2$。"),
+        formula_page("教材：两个答案只差一个常数",
+                     r"\int\frac{dx}{\sqrt{1-x^{2}}}=\arcsin x+C=-\arccos x+C_{1}",
+                     extra=r"两边都能求导回到被积函数。$\arcsin x+\arccos x=\pi/2$，所以 $C_{1}=C+\pi/2$。形式不同，先求导；若只差常数，就是同一族。"),
+        lab("两条曲线，上下差 π/2", "twins", "twin-canvas", P["twins"],
+            notes="拖 x，看竖线段的长度变不变。",
+            code="实验"),
         formula_page("线性：常数提出，和拆开",
                      r"\int(3x^2+\frac{2}{x})\,dx=x^3+2\ln|x|+C",
                      extra=r"拆成几个积分时，每个都可以带常数，最后合并成一个 $C$。$\int dx$ 就是 $\int 1\,dx$。"),

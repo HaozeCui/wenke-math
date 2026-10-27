@@ -133,6 +133,17 @@ def slides():
             "不要跳过尺寸检查。",
             "不要把求逆步骤做成逐步动画实验室。",
         ], kind="meta"),
+        formula_page("同一对矩阵，两种次序",
+                     r"A=\begin{pmatrix}1&1\\0&1\end{pmatrix},\; B=\begin{pmatrix}1&0\\1&1\end{pmatrix}",
+                     extra=r"$AB=\begin{pmatrix}2&1\\1&1\end{pmatrix}$，$BA=\begin{pmatrix}1&1\\1&2\end{pmatrix}$。四个数都算得出来，而且 $AB\neq BA$。加法与次序无关。"),
+        formula_page("二阶求逆：一行公式",
+                     r"\begin{pmatrix}a&b\\ c&d\end{pmatrix}^{-1}=\frac{1}{ad-bc}\begin{pmatrix}d&-b\\ -c&a\end{pmatrix}",
+                     extra=r"例如 $a,b,c,d=1,2,3,4$，行列式 $1\cdot 4-2\cdot 3=-2$。逆矩阵是 $-\frac12\begin{pmatrix}4&-2\\ -3&1\end{pmatrix}=\begin{pmatrix}-2&1\\ 3/2&-1/2\end{pmatrix}$。行列式为 0 时这条公式不能用。"),
+        definition("秩：阶梯形里还剩几行",
+                   r"<p>$\begin{pmatrix}1&2&3\\ 2&4&6\\ 1&1&1\end{pmatrix}$ 第二行是第一行的 2 倍，消掉后变 0。</p>"
+                   r"<p>第三行减去第一行，得到 $(0,-1,-2)$，消不掉。</p>"
+                   r"<p>非零行剩 2 行，秩是 2。不满阶，所以不可逆。</p>",
+                   extra="换一种消法，非零行的个数不变。秩不是「非零元素的个数」。"),
         culture("矩阵把「一张表」变成可以复合的操作。十九世纪它为解方程组服务，二十世纪它为数据、图像与网络服务。",
                 "最硬的一句话仍是：乘法有次序。下一讲方程组、再下一讲 PageRank，都在用这张表去「作用」到向量上。",
                 title="文化卡片 · 表与变换"),

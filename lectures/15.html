@@ -85,6 +85,9 @@
 <section class="slide" data-title="例　∫ arctan x dx">
 <div class="num">例</div><h2 class="slide-title">例　∫ arctan x dx</h2><div class="card"><p>分部：$u=\arctan x$，$dv=dx$。后面出现 $\int x/(1+x^2)\,dx$，再用换元。</p><p>结果 $x\arctan x-\frac12\ln(1+x^2)+C$。</p></div>
 </section>
+<section class="slide" data-title="教材：e^x sin x 会转回来">
+<div class="num">公式</div><h2 class="slide-title">教材：e^x sin x 会转回来</h2><div class="card">$$\int e^{x}\sin x\,dx=\frac{e^{x}}{2}(\sin x-\cos x)+C$$</div><p class="lead">分部两次后，右边又出现 $\int e^{x}\sin x\,dx$，移项再除以 $2$。第二次必须仍对 $e^{x}$ 积分、对三角函数求导。若第二次改把 $e^{x}$ 当成要求导的那个，式子会绕回原题，算不完。</p>
+</section>
 <section class="slide" data-title="易错三句">
 <h2 class="slide-title">易错三句</h2><div class="grid-3"><div class="card"><h3>忘掉 +C</h3><div class="gold-rule"></div><p>原函数是族。定积分才是数。</p></div><div class="card"><h3>换元不换 dx</h3><div class="gold-rule"></div><p>必须写出 du。</p></div><div class="card"><h3>分部选反了 u</h3><div class="gold-rule"></div><p>指数当 u 会升次，越积越繁。</p></div></div>
 </section>
@@ -114,6 +117,23 @@
 </section>
 <section class="slide" data-title="几何：一族平行切线">
 <div class="num">定义</div><h2 class="slide-title">几何：一族平行切线</h2><div class="card"><p>一个原函数是一条积分曲线。不定积分是上下平移的一整族。</p><p>被积函数是切线斜率：同一横坐标处，族中每条曲线的切线互相平行。</p></div><p class="lead" style="margin-top:12px">检验永远是求导。答案形式可以不同，两个原函数只差一个常数。例如 $\arcsin x+\arccos x=\pi/2$。</p>
+</section>
+<section class="slide" data-title="教材：两个答案只差一个常数">
+<div class="num">公式</div><h2 class="slide-title">教材：两个答案只差一个常数</h2><div class="card">$$\int\frac{dx}{\sqrt{1-x^{2}}}=\arcsin x+C=-\arccos x+C_{1}$$</div><p class="lead">两边都能求导回到被积函数。$\arcsin x+\arccos x=\pi/2$，所以 $C_{1}=C+\pi/2$。形式不同，先求导；若只差常数，就是同一族。</p>
+</section>
+<section class="slide" data-title="两条曲线，上下差 π/2" data-notes="拖 x，看竖线段的长度变不变。" data-hook="twins">
+<div class="num">实验</div><h2 class="slide-title">两条曲线，上下差 π/2</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="twin-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>横坐标 x</span><span class="ctrl-val" id="twin-x-val">0.40</span></label>
+              <input id="twin-x" type="range" min="-0.95" max="0.95" step="0.01" value="0.4" />
+            </div>
+            <div class="readout" id="twin-read"></div>
+            <div class="verdict">两条曲线上下差 π/2，所以导数相同，是同一族原函数。</div>
+    </aside>
+        </div>
 </section>
 <section class="slide" data-title="线性：常数提出，和拆开">
 <div class="num">公式</div><h2 class="slide-title">线性：常数提出，和拆开</h2><div class="card">$$\int(3x^2+\frac{2}{x})\,dx=x^3+2\ln|x|+C$$</div><p class="lead">拆成几个积分时，每个都可以带常数，最后合并成一个 $C$。$\int dx$ 就是 $\int 1\,dx$。</p>
@@ -163,5 +183,6 @@
   <script src="../js/deck.js"></script>
   <script src="../js/plot.js"></script>
   <script src="../js/labs/15-family.js"></script>
+  <script src="../js/labs/extra.js"></script>
 </body>
 </html>

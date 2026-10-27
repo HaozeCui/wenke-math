@@ -88,8 +88,38 @@
 <section class="slide" data-title="学期里会反复出现的三问">
 <h2 class="slide-title">学期里会反复出现的三问</h2><div class="grid-3"><div class="card"><h3>依赖 / 结构</h3><div class="gold-rule"></div><p>谁随谁变？谁指向谁？</p></div><div class="card"><h3>图像 / 数表</h3><div class="gold-rule"></div><p>曲线、曲面、矩阵，先看见再命名。</p></div><div class="card"><h3>最小例子</h3><div class="gold-rule"></div><p>语言、社会、经济里能否缩成一道课堂练。</p></div></div>
 </section>
+<section class="slide" data-title="语言学里，数学先做的是计数">
+<h2 class="slide-title">语言学里，数学先做的是计数</h2><div class="card"><ul><li>字频、词频用来比较方言和写作风格，也可以核对前后是否像同一作者。</li><li>《红楼梦》后四十回、莎士比亚新诗的真伪，都曾交给统计，而不是只靠印象。</li><li>《现代汉语常用字表》来自抽样、统计和检验，不是凭语感圈出来的。</li><li>机器翻译要等语言学、数学和计算合在一起，才做得起来。</li></ul></div>
+</section>
+<section class="slide" data-title="二十三个问题里，先听懂三句">
+<h2 class="slide-title">二十三个问题里，先听懂三句</h2><p class="lead">1900 年希尔伯特在巴黎提出 23 个问题。文科课不解题，只记住：好问题比零散技巧更能推动一门学科。</p><div class="grid-3"><div class="card"><h3>连续统</h3><div class="gold-rule"></div><p>整数那么多，和实数那么多，中间还有没有另一种「多少」？</p></div><div class="card"><h3>丢番图</h3><div class="gold-rule"></div><p>整系数方程有没有整数解，能不能用有限步骤判定？</p></div><div class="card"><h3>素数</h3><div class="gold-rule"></div><p>素数怎么分布。能推进其中一个，就被看成一流工作。</p></div></div>
+</section>
 <section class="slide" data-title="文化卡片 · 阿达马" data-notes="控制在两三分钟。">
 <div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 阿达马</span><blockquote>「语言学是数学和人文科学之间的桥梁。」——阿达马</blockquote><p>阿达马以解析学与素数定理闻名，却把语言学看作通往人文的桥。本课程后面的极限、矩阵，都可以回到这句话：先把对象写成符号，再问符号服从什么规则。</p></div>
+</section>
+<section class="slide" data-title="第 0 章留下的衔接">
+<h2 class="slide-title">第 0 章留下的衔接</h2><div class="card"><ul><li>进微积分之前，教材用几页把计数说清楚：加法、乘法、排列、组合、二项式。</li><li>后面的概率要反复用到组合数。这里只算小数字，不背大阶乘。</li><li>先问一件事是「或」还是「并且」，再决定加还是乘。</li></ul></div>
+</section>
+<section class="slide" data-title="加法原理与乘法原理">
+<div class="num">定义</div><h2 class="slide-title">加法原理与乘法原理</h2><div class="card"><p>几种办法彼此独立，做成一种就算完成：方法数相加。</p><p>必须按顺序把每一步都做完：方法数相乘。</p><p>火车 3 班或飞机 2 班，共 5 种走法。先在 3 班火车里选，再在 4 条地铁里选，共 12 种。</p></div><p class="lead" style="margin-top:12px">「或」用加法，「并且、按顺序」用乘法。两句话经常套在同一道题里。</p>
+</section>
+<section class="slide" data-title="排列：顺序不同，算不同">
+<div class="num">公式</div><h2 class="slide-title">排列：顺序不同，算不同</h2><div class="card">$$P_n^k=n(n-1)\cdots(n-k+1)=\frac{n!}{(n-k)!}$$</div><p class="lead">从 7 个不同元素里取 2 个排成一列：$P_7^2=7\times 6=42$。取满 $n$ 个就是全排列 $n!$。</p>
+</section>
+<section class="slide" data-title="组合：只问有哪些，不问先后">
+<div class="num">公式</div><h2 class="slide-title">组合：只问有哪些，不问先后</h2><div class="card">$$C_n^k=\frac{P_n^k}{k!}=\frac{n!}{k!(n-k)!}$$</div><p class="lead">$C_7^2=42/2=21$。同一对元素，排列算两次，组合只算一次。</p>
+</section>
+<section class="slide" data-title="课堂练 3　选人">
+<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3　选人</h2><div class="prompt-box">5 名同学。
+(1) 选班长和副班长（职务不同）。
+(2) 选 2 人去开会（不分职务）。
+各有多少种？</div><p class="wait">约 2 分钟。先判断要不要顺序。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>(1) 排列 $P_5^2=5\times 4=20$。</li><li>(2) 组合 $C_5^2=10$。</li><li>差在顺序。公式本身不长，用错原理才会差一倍。</li></ol><div class="comment">班长、副班长对调是两种排法；两名代表对调仍是同一组。</div>
+</section>
+<section class="slide" data-title="二项式定理">
+<div class="num">公式</div><h2 class="slide-title">二项式定理</h2><div class="card">$$(a+b)^n=\sum_{k=0}^{n}C_n^k a^{n-k}b^k$$</div><p class="lead">令 $a=b=1$，各项系数加起来是 $2^n$。$(a+b)^3=a^3+3a^2b+3ab^2+b^3$，系数正是 $C_3^0$ 到 $C_3^3$。这些系数后面在二项分布里还会见到。</p>
 </section>
 <section class="slide" data-title="后面的课怎么上" data-kind="meta">
 <h2 class="slide-title">后面的课怎么上</h2><div class="card"><ul><li>每一讲三条可检测目标，下课回扣。</li><li>概念尽量配图：函数看图像，积分看面积，矩阵看数表。</li><li>例题分页：先做，再看思路，再看演算。按 A 才揭晓解答。</li><li>每讲一张文化卡片，控制在两三分钟。</li><li>软件只作看图工具，不考语法；本学期不设软件专讲。</li></ul></div>
@@ -98,10 +128,10 @@
 <h2 class="slide-title">本学期另外安排</h2><div class="grid-3"><div class="card"><h3>概率统计</h3><div class="gold-rule"></div><p>抽样、估计、检验安排在后半学期。开篇只预告「随机」这第三种语言。</p></div><div class="card"><h3>逻辑</h3><div class="gold-rule"></div><p>不单开命题演算。推理与反例贯穿各讲。</p></div><div class="card"><h3>数学软件</h3><div class="gold-rule"></div><p>本课程用本网页看图，不另设软件课。</p></div></div>
 </section>
 <section class="slide" data-title="小结" data-notes="下课回扣目标。">
-<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>数学为文科提供结构、比较与检验的语言。</li><li>辛普森悖论提醒：合并数据前先问分组。</li><li>本学期主线：微积分（连续）与线性代数（离散）。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把「女生汇总录取率更高」直接说成「更公平」。</li><li>只听文化故事，忽略辛普森悖论本身。</li></ul></div></div>
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>数学为文科提供结构、比较与检验的语言。</li><li>辛普森悖论提醒：合并数据前先问分组。</li><li>排列计顺序，组合不计；二项式系数之和是 $2^n$。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把「女生汇总录取率更高」直接说成「更公平」。</li><li>选代表时用了排列，人数立刻多算一倍。</li></ul></div></div>
 </section>
 <section class="slide" data-title="作业" data-notes="下节课抽 2 位同学各说一个专业里的数量问题。">
-<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>阅读教材第 1 章，划出一处与自己专业有关的应用。</li><li>把课堂录取率三张表自己重算一遍，写到笔记本。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>找一条新闻里的百分比，问：它有没有可能是「汇总后的假象」？</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.1 函数：从对应关系开始，分段函数是重点。</p></div></div>
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>阅读教材第 0 章，划出一处与自己专业有关的应用。</li><li>把课堂录取率三张表自己重算一遍。</li><li>计算 $P_6^2$ 与 $C_6^2$，并各写一句人话说明差别。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>找一条新闻里的百分比，问：它有没有可能是「汇总后的假象」？</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.1 函数：从对应关系开始，分段函数是重点。</p></div></div>
 </section>
     </main>
     <div class="notes" id="notes"></div>

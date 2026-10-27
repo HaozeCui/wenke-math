@@ -68,6 +68,23 @@ $(2)$ $1,-1,1,-1,\ldots$ 的极限是否存在？</div><p class="wait">约 3 分
 <section class="slide" data-title="课堂练 1" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>$|q|=1/3<1$，通项趋向 $0$。和为 $1/(1-1/3)=3/2$。</li><li>这是 $q=-1$。在 $1$ 与 $-1$ 之间摆动，极限不存在，级数也发散。</li></ol><div class="comment">先看 $|q|$ 与 $1$ 的大小，再决定是趋向 $0$、等于常数，还是发散。</div>
 </section>
+<section class="slide" data-title="黄金分割：斐波那契比的极限">
+<div class="num">公式</div><h2 class="slide-title">黄金分割：斐波那契比的极限</h2><div class="card">$$\lim_{n\to\infty}\frac{F_{n+1}}{F_n}=\frac{1+\sqrt{5}}{2}\approx 1.618$$</div><p class="lead">相邻两项之比贴住这个数。它也是 $x^2-x-1=0$ 的正根。国旗的矩形就按这个长宽比来理解：短边是 1 时，长边是这个极限。</p>
+</section>
+<section class="slide" data-title="项数变多，比贴住黄金分割" data-notes="先停在 n=3，比值还在跳。再拉到 10 以上。" data-hook="phi">
+<div class="num">实验</div><h2 class="slide-title">项数变多，比贴住黄金分割</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="phi-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>看到第 n 项</span><span class="ctrl-val" id="phi-n-val">6</span></label>
+              <input id="phi-n" type="range" min="2" max="14" value="6" />
+            </div>
+            <div class="readout" id="phi-read"></div>
+            <div class="verdict">金色横线是 (1+√5)/2。项数一多，相邻比就贴住它。</div>
+    </aside>
+        </div>
+</section>
 <section class="slide" data-title="函数极限（直观）">
 <div class="num">定义</div><h2 class="slide-title">函数极限（直观）</h2><div class="card"><p>自变量在定义域里按某种趋势 $x\to\square$ 变化时，若 $f(x)$ 无限靠近常数 $A$，就写</p><p>$$\lim_{x\to\square}f(x)=A$$</p><p>$x$ 能不能等于那个点，不必计较。这是描述性定义，不是 $\varepsilon$–$\delta$。</p></div><p class="lead" style="margin-top:12px">求极限不能只看函数式，还要看 $x$ 按哪一种趋势走。</p>
 </section>
@@ -213,6 +230,9 @@ $(3)\ \lim_{x\to 0}\sin(ax)/\sin(bx)$（$b\neq 0$）</div><p class="wait">约 4 
 <section class="slide" data-title="例 22、例 39　人口与连续复利">
 <div class="num">定义</div><h2 class="slide-title">例 22、例 39　人口与连续复利</h2><div class="card"><p>年增长率（或年利率）为 $r$，一年分成 $n$ 期，每期增长率 $r/n$。一年后：</p><p>$$A_0\left(1+\frac{r}{n}\right)^n\to A_0 e^{r}$$</p><p>$k$ 年后是 $A_0 e^{kr}$。人口按月计、存款按期计息，加密之后都落到同一个 $e$。</p></div><p class="lead" style="margin-top:12px">令 $x=r/n$，就回到重要极限 2。</p>
 </section>
+<section class="slide" data-title="贴现：把将来的钱折回现在">
+<div class="num">定义</div><h2 class="slide-title">贴现：把将来的钱折回现在</h2><div class="card"><p>年利率 $r$，$n$ 年后的金额 $A$，现在只相当于</p><p>$$A/(1+r)^n$$</p><p>若按连续复利折现，则是 $A e^{-rn}$。指数上的负号表示「往回算」。</p></div><p class="lead" style="margin-top:12px">和人口、连续复利是同一个重要极限，只是时间方向相反。</p>
+</section>
 <section class="slide" data-title="例 24、例 25">
 <div class="num">公式</div><h2 class="slide-title">例 24、例 25</h2><div class="card">$$\lim_{x\to 0}\frac{\ln(1+x)}{x}=1,\qquad \lim_{x\to 0}\frac{e^x-1}{x}=1$$</div><p class="lead">例 24：$\dfrac1x\ln(1+x)=\ln(1+x)^{1/x}\to\ln e=1$。例 25：令 $t=e^x-1$，则 $x=\ln(1+t)$，化成 $t/\ln(1+t)$。</p>
 </section>
@@ -222,14 +242,14 @@ $(3)\ \lim_{x\to 0}\sin(ax)/\sin(bx)$（$b\neq 0$）</div><p class="wait">约 4 
 <section class="slide" data-title="有界变量">
 <h2 class="slide-title">有界变量</h2><div class="card"><ul><li>若某个时刻之后恒有 $|u|\le M$，称 $u$ 有界。</li><li>无穷小与有界量的乘积仍是无穷小。</li><li>因此 $x\to 0$ 时 $x\sin(1/x)\to 0$；$x\to\infty$ 时 $\sin x/x\to 0$。</li><li>$x\to 0$ 时 $\sin x\to 0$，是无穷小；$\cos x$ 有界，极限是 $1$，不是无穷小。</li><li>多项式是不是无穷大或无穷小，要看 $x$ 的趋势，不能脱离过程下判断。</li></ul></div>
 </section>
-<section class="slide" data-title="等价无穷小（$x\to 0$ 时可当结论用）">
-<h2 class="slide-title">等价无穷小（$x\to 0$ 时可当结论用）</h2><p class="lead">若 $f,g\to 0$ 且 $f/g\to 1$，称 $f\sim g$。$x\to 0$ 时，没有常数项的多项式等价于次数最低的那一项。</p><table class="sheet"><thead><tr><th>替换</th><th>替换</th></tr></thead><tbody><tr><td>$\sin x\sim x$</td><td>$\tan x\sim x$</td></tr><tr><td>$\arcsin x\sim x$</td><td>$\arctan x\sim x$</td></tr><tr><td>$\ln(1+x)\sim x$</td><td>$e^x-1\sim x$</td></tr><tr><td>$1-\cos x\sim x^2/2$</td><td>只用于 $0/0$</td></tr></tbody></table>
+<section class="slide" data-title="等价无穷小（x 趋向 0 时可当结论用）">
+<h2 class="slide-title">等价无穷小（x 趋向 0 时可当结论用）</h2><p class="lead">若 $f,g\to 0$ 且 $f/g\to 1$，称 $f\sim g$。$x\to 0$ 时，没有常数项的多项式等价于次数最低的那一项。</p><table class="sheet"><thead><tr><th>替换</th><th>替换</th></tr></thead><tbody><tr><td>$\sin x\sim x$</td><td>$\tan x\sim x$</td></tr><tr><td>$\arcsin x\sim x$</td><td>$\arctan x\sim x$</td></tr><tr><td>$\ln(1+x)\sim x$</td><td>$e^x-1\sim x$</td></tr><tr><td>$1-\cos x\sim x^2/2$</td><td>只用于 $0/0$</td></tr></tbody></table>
 </section>
 <section class="slide" data-title="例 34、例 35　用最低次，或直接替换">
 <div class="num">公式</div><h2 class="slide-title">例 34、例 35　用最低次，或直接替换</h2><div class="card">$$\lim_{x\to 0}\frac{2x^2+3x^4-5x^7}{2x^2-3x^3+8x^5}=1,\qquad \lim_{x\to 0}\frac{\sin 3x}{\arctan 2x}=\frac32$$</div><p class="lead">例 34：分子分母都等价于 $2x^2$。例 35：$\sin 3x\sim 3x$，$\arctan 2x\sim 2x$。</p>
 </section>
-<section class="slide" data-title="例 37、例 38　$x\to\infty$ 时看最高次">
-<div class="num">公式</div><h2 class="slide-title">例 37、例 38　$x\to\infty$ 时看最高次</h2><div class="card">$$\lim_{x\to\infty}\frac{3x^3-4x^2+2}{7x^3-5x^2+3x}=\frac37$$</div><p class="lead">分子次数低于分母，极限为 $0$；高于分母，极限为无穷大；次数相同，等于最高次系数之比。例 38：$\lim_{n\to\infty}(3\sqrt[3]{n}-9n^2)/(3n-\sqrt[4]{81n^8}+1)=(-9n^2)/(-3n^2)=3$。</p>
+<section class="slide" data-title="例 37、例 38　x 趋向无穷时看最高次">
+<div class="num">公式</div><h2 class="slide-title">例 37、例 38　x 趋向无穷时看最高次</h2><div class="card">$$\lim_{x\to\infty}\frac{3x^3-4x^2+2}{7x^3-5x^2+3x}=\frac37$$</div><p class="lead">分子次数低于分母，极限为 $0$；高于分母，极限为无穷大；次数相同，等于最高次系数之比。例 38：$\lim_{n\to\infty}(3\sqrt[3]{n}-9n^2)/(3n-\sqrt[4]{81n^8}+1)=(-9n^2)/(-3n^2)=3$。</p>
 </section>
 <section class="slide" data-title="课堂练 6">
 <div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 6</h2><div class="prompt-box">求 $\lim_{x\to 0}(1+2x)^{1/x}$，并说明为什么不能先把底收成 $1$。</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
@@ -237,11 +257,14 @@ $(3)\ \lim_{x\to 0}\sin(ax)/\sin(bx)$（$b\neq 0$）</div><p class="wait">约 4 
 <section class="slide" data-title="课堂练 6" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 6</h2><ol class="answer-list"><li>写成 $\left[(1+2x)^{1/(2x)}\right]^2\to e^2$。</li><li>若先让底变成 $1$，会得到 $1^{1/x}=1$，把指数里的变化丢掉了。</li></ol>
 </section>
+<section class="slide" data-title="教材里的 ε 定义，课上不默写">
+<div class="num">定义</div><h2 class="slide-title">教材里的 ε 定义，课上不默写</h2><div class="card"><p>$\lim_{x\to a}f(x)=L$ 的严格说法是：对任意 $\varepsilon>0$，存在 $\delta>0$，使 $0\lt|x-a|\lt\delta$ 时 $|f(x)-L|\lt\varepsilon$。</p><p>$\varepsilon$ 是允许的误差，$\delta$ 是自变量必须靠多近。先画水平条带，再找竖直窗口。</p></div><p class="lead" style="margin-top:12px">本课用图像和计算判断极限。知道这句话在教材里，不必写成证明。</p>
+</section>
 <section class="slide" data-title="文化卡片 · 庄子与刘徽" data-notes="控制在两三分钟。">
 <div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 庄子与刘徽</span><blockquote>一尺之捶，日取其半，万世不竭。割之弥细，所失弥少。</blockquote><p>极限把「取半不竭」和「割圆」写成同一件事：无限过程可以有确定的趋势。本讲不要求写 ε–δ。</p></div>
 </section>
 <section class="slide" data-title="小结" data-notes="下课回扣目标。">
-<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>极限看趋势：等比先看 $|q|$，函数极限要连同 $x\to\square$ 一起看。</li><li>左右一致才有极限；连续还要函数值等于这个极限。</li><li>计算：能代入就代入；$0/0$ 约分或有理化；重要极限与等价替换只用于相应的型。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把 $q=-1$ 当成收敛。</li><li>指数是变量，却先对底取极限。</li><li>约分改变了定义，就以为不能求极限。</li><li>有定义就说连续。</li></ul></div></div>
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>极限看趋势：等比先看 $|q|$，函数极限要连同 $x\to\square$ 一起看。</li><li>左右一致才有极限；连续还要函数值等于这个极限。</li><li>斐波那契之比贴住黄金分割；贴现是连续复利的时间反向。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把 $q=-1$ 当成收敛。</li><li>指数是变量，却先对底取极限。</li><li>约分改变了定义，就以为不能求极限。</li><li>有定义就说连续。</li></ul></div></div>
 </section>
 <section class="slide" data-title="作业" data-notes="当堂布置。">
 <h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>求 $\sum_{n=0}^{\infty}(1/4)^n$，并说明 $q=-1$ 的级数为什么发散。</li><li>求 $\lim_{x\to 2}(x^2-4)/(x-2)$，以及 $\lim_{x\to 0}\sin 5x/x$。</li><li>求 $\lim_{n\to\infty}(1+1/n)^{2n}$，并写出连续复利一年后的本利和。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 用等价无穷小求 $\lim_{x\to 0}(\tan x-\sin x)/x^3$。提示：先通分，再用 $1-\cos x\sim x^2/2$。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.3 导数与微分：割线变成切线；$|x|$ 在 $0$ 不可导。</p></div></div>
@@ -276,5 +299,6 @@ $(3)\ \lim_{x\to 0}\sin(ax)/\sin(bx)$（$b\neq 0$）</div><p class="wait">约 4 
   <script src="../js/deck.js"></script>
   <script src="../js/plot.js"></script>
   <script src="../js/labs/12-limit.js"></script>
+  <script src="../js/labs/extra.js"></script>
 </body>
 </html>

@@ -53,25 +53,25 @@ HUB = r"""<!DOCTYPE html>
       <input class="hub-search" id="hub-q" type="search" placeholder="搜讲名或关键词，例如：黎曼、辛普森、PageRank、换元" autocomplete="off" />
       <p class="hub-kicker">十三讲</p>
       <div class="hub-grid" id="hub-grid">
-        <a href="lectures/00.html" data-q="0 开篇 数学与人文 辛普森 录取 悖论 阿达马 投票 地图">
+        <a href="lectures/00.html" data-q="0 开篇 数学与人文 辛普森 录取 悖论 阿达马 投票 排列 组合 二项式">
           <div class="code">0　计入 1.1</div>
           <h3>数学与人文</h3>
-          <p>四项目标与学期地图。改录取人数，看分组与汇总是否翻转。</p>
+          <p>录取率可以翻转。衔接：排列、组合与二项式。</p>
         </a>
-        <a href="lectures/11.html" data-q="1.1 函数 分段 取整 复合 电价 区间 定义域">
+        <a href="lectures/11.html" data-q="1.1 函数 分段 取整 复合 电价 区间 定义域 反函数 奇偶 有界">
           <div class="code">1.1　4 学时（含序言）</div>
           <h3>函数</h3>
-          <p>分段与取整；一次复合的管道。区间记法。</p>
+          <p>分段、取整、复合、反函数；奇偶、单调与有界。</p>
         </a>
-        <a href="lectures/12.html" data-q="1.2 极限 数列 左右 夹逼 连续 振荡">
+        <a href="lectures/12.html" data-q="1.2 极限 数列 左右 夹逼 连续 振荡 黄金分割 贴现">
           <div class="code">1.2　8 学时</div>
           <h3>极限</h3>
-          <p>等比数列与级数；左右极限；两个重要极限；等价无穷小。不写 ε 语言。</p>
+          <p>左右极限、重要极限、等价无穷小；黄金分割与贴现。ε 定义只认一句。</p>
         </a>
         <a href="lectures/13.html" data-q="1.3 导数 割线 切线 尖点 链式 差商">
           <div class="code">1.3　6 学时</div>
           <h3>导数与微分</h3>
-          <p>割线随 h 变成切线；|x| 尖点左右差商。</p>
+          <p>割线变成切线；微分做近似；|x| 尖点左右差商。</p>
         </a>
         <a href="lectures/14.html" data-q="1.4 导数应用 单调 极值 圆桶 洛必达 最值">
           <div class="code">1.4　6 学时</div>
@@ -86,37 +86,37 @@ HUB = r"""<!DOCTYPE html>
         <a href="lectures/16.html" data-q="1.6 定积分 黎曼 面积 牛顿 莱布尼茨 有号">
           <div class="code">1.6　6 学时</div>
           <h3>定积分</h3>
-          <p>黎曼和加密；轴上轴下有号面积。N-L 是计算装置。</p>
+          <p>黎曼和、牛顿–莱布尼茨、换元改限；|x| 切开，反常积分先取极限。</p>
         </a>
         <a href="lectures/17.html" data-q="1.7 积分应用 面积 切条 阻滞 碳14 微分方程">
           <div class="code">1.7　2 学时</div>
           <h3>积分应用</h3>
-          <p>同一区域选 x / y 切条；阻滞 S 形。碳-14 只算一题。</p>
+          <p>椭圆与曲边面积；人口指数模型；阻滞与碳-14。</p>
         </a>
         <a href="lectures/18.html" data-q="1.8 二元 路径 偏导 二重积分 舒芙蕾 黑塞">
           <div class="code">1.8　新教材新增</div>
           <h3>二元函数</h3>
-          <p>路径极限；偏导截线；D/X 切条。黑塞只口算驻点。</p>
+          <p>定义域、路径极限、偏导数值、三角形上的二重积分。</p>
         </a>
         <a href="lectures/21.html" data-q="2.1 行列式 沙流 萨吕斯 克拉默 上三角">
           <div class="code">2.1　3 学时</div>
           <h3>行列式</h3>
-          <p>三阶沙流着色；高阶按行展开。</p>
+          <p>沙流、性质、按列展开；教材四阶算到 −270。</p>
         </a>
         <a href="lectures/22.html" data-q="2.2 矩阵 乘法 不可交换 逆 行乘列">
           <div class="code">2.2　7 学时</div>
           <h3>矩阵及其运算</h3>
-          <p>行×列对位高亮；AB≠BA；2×2 求逆。</p>
+          <p>行×列；AB≠BA 的具体矩阵；二阶求逆与秩。</p>
         </a>
         <a href="lectures/23.html" data-q="2.3 方程组 三平面 通解 投入产出 列昂惕夫">
           <div class="code">2.3　2 学时</div>
           <h3>一般线性方程组</h3>
           <p>三平面位置；通解含参；投入产出。</p>
         </a>
-        <a href="lectures/24.html" data-q="2.4 数据科学 词袋 余弦 PageRank 向量 相似度">
+        <a href="lectures/24.html" data-q="2.4 数据科学 词袋 余弦 PageRank 向量 相似度 阻尼">
           <div class="code">2.4　新教材新增</div>
           <h3>数据科学</h3>
-          <p>词袋热图点选；二维余弦；PageRank 迭代。不解特征多项式。</p>
+          <p>词袋与余弦；四页稳定权重；阻尼因子。不解特征多项式。</p>
         </a>
       </div>
       <p class="hub-kicker">本学期另外安排</p>

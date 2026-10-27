@@ -27,13 +27,16 @@
 <div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能说出函数的两个基本要素，并判断一个对应是不是函数。</p></div><div class="card"><span class="idx">02</span><p>能写出分段函数与取整函数在指定点的值，并识读实心/空心。</p></div><div class="card"><span class="idx">03</span><p>能把一次复合（如货币—黄金—货币）写成 $y=f(g(x))$。</p></div></div>
 </section>
 <section class="slide" data-title="本讲路线" data-notes="反函数若时间不够，留作选讲。">
-<h2 class="slide-title">本讲路线</h2><div class="card"><ul><li>映射与单值对应</li><li>函数定义、定义域与值域</li><li>分段函数（重点）与取整函数</li><li>四则运算与一次复合</li><li>反函数（选讲）</li><li>性态：奇偶、周期、单调——只留口诀</li></ul></div>
+<h2 class="slide-title">本讲路线</h2><div class="card"><ul><li>映射与单值对应</li><li>函数定义、定义域与值域</li><li>分段函数（重点）与取整函数</li><li>四则运算与一次复合</li><li>反函数（选讲）</li><li>性态：奇偶、单调、有界，各留一个算完的例子</li></ul></div>
 </section>
 <section class="slide" data-title="从映射说起">
 <div class="num">定义</div><h2 class="slide-title">从映射说起</h2><div class="card"><p>映射是集合之间的对应。若 $X$ 中每一个元素都对应 $Y$ 中唯一的元素，就称为单值对应。</p><p>函数是实数集的子集之间的单值对应。</p></div><p class="lead" style="margin-top:12px">例如：每位学生对应一位班主任，所以「学生→班主任」是函数；一位班主任对应多名学生，所以「班主任→学生」不是函数。学号→学生通常是函数。</p>
 </section>
 <section class="slide" data-title="函数的定义">
 <div class="num">定义</div><h2 class="slide-title">函数的定义</h2><div class="card"><p>设 $X,Y\subset\mathbb{R}$。若对每个 $x\in X$，按规则 $f$ 都有唯一的 $y\in Y$ 与之对应，记 $y=f(x)$。</p><p>$X$ 叫定义域，$\{f(x):x\in X\}$ 叫值域。</p></div><p class="lead" style="margin-top:12px">两要素：定义域、对应规则。字母 $x$、$y$、$f$ 可以改，不改变函数。</p>
+</section>
+<section class="slide" data-title="一次函数：先乘再加">
+<div class="num">公式</div><h2 class="slide-title">一次函数：先乘再加</h2><div class="card">$$f(x)=3x+2,\quad f(4)=14,\quad D_f=R_f=\mathbb{R}$$</div><p class="lead">定义域允许一切实数。图像是直线。字母可以改，规则是：输入乘 3 再加 2。</p>
 </section>
 <section class="slide" data-title="区间怎么写" data-notes="不要把记法表做成实验。">
 <h2 class="slide-title">区间怎么写</h2><p class="lead">后面谈连续、可导，都在区间上说话。</p><table class="sheet"><thead><tr><th>写法</th><th>含端点</th><th>课堂提醒</th></tr></thead><tbody><tr><td>$(a,b)$ 开区间</td><td>都不含</td><td>极限常用</td></tr><tr><td>$[a,b]$ 闭区间</td><td>都含</td><td>连续、最值常用</td></tr><tr><td>$[a,b)$，$(a,b]$</td><td>只含一端</td><td>分段的分界点必须写清</td></tr><tr><td>$(-\infty,b]$，$[a,+\infty)$</td><td>无穷端不含</td><td>单点没有单调性</td></tr></tbody></table>
@@ -65,8 +68,28 @@ $x>100$ 时，应付 $50+0.8(x-100)$ 元。
 <section class="slide" data-title="课堂练 1" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>$y=0.5x$（$0\le x\le 100$）；$y=50+0.8(x-100)$（$x>100$）。</li><li>$x=80$：落在第一段，$y=40$。</li><li>$x=150$：落在第二段，$y=50+0.8\times 50=90$。</li><li>也可以验算：100 度先付 50 元，再超出 50 度。</li></ol><div class="comment">分段函数的核心能力：定位区间。后续课程的临界点都从这里来。</div>
 </section>
-<section class="slide" data-title="取整函数 $[x]$">
-<div class="num">定义</div><h2 class="slide-title">取整函数 $[x]$</h2><div class="card"><p>$[x]$ 表示不超过 $x$ 的最大整数。</p><p>$[3.14]=3$，$[-3.14]=-4$。</p><p>图像是一排单位长水平线段：左闭右开。实心点在图像上，空心点不在。</p></div><p class="lead" style="margin-top:12px">先猜 $[-1.2]$，再对照定义。</p>
+<section class="slide" data-title="交易费：三段，分界要单独算">
+<div class="num">公式</div><h2 class="slide-title">交易费：三段，分界要单独算</h2><div class="card">$$y=\begin{cases}0,& x=0\\ pq,& 0\lt x\le q\\ px,& x\gt q\end{cases}$$</div><p class="lead">$p,q>0$。交易额刚超过 0，费用就跳到 $pq$；超过 $q$ 之后按费率 $p$ 计。$x=q$ 时两式都是 $pq$，射线接得上。$x=0$ 的函数值是 0，右边却不是，所以 0 是间断点。</p>
+</section>
+<section class="slide" data-title="拖过 0，费用会跳" data-notes="停在 0 问函数值。再向右拖一点点。" data-hook="fee">
+<div class="num">实验</div><h2 class="slide-title">拖过 0，费用会跳</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="fee-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>交易额 x</span><span class="ctrl-val" id="fee-x-val">1.20</span></label>
+              <input id="fee-x" type="range" min="0" max="6" step="0.05" value="1.2" />
+            </div>
+            <div class="readout" id="fee-read"></div>
+            <div class="verdict">示意 p=0.8，q=2。x=0 的函数值是 0，右边一离开 0 就到 pq。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="建一个分段函数的五步">
+<h2 class="slide-title">建一个分段函数的五步</h2><p class="lead">教材把这叫数学模型方法。电价、交易费、邮资都是同一条路：先分段，再写规则。</p><div class="card"><ul><li>弄清要研究的问题和已有的数据。</li><li>写出简化假设：哪些量留下，哪些先忽略。</li><li>把主要量之间的关系写成式子、方程或表。</li><li>求解：运算、画图或证明。</li><li>拿回现实里核对；对不上就改假设，再来一遍。</li></ul></div>
+</section>
+<section class="slide" data-title="取整函数 [x]">
+<div class="num">定义</div><h2 class="slide-title">取整函数 [x]</h2><div class="card"><p>$[x]$ 表示不超过 $x$ 的最大整数。</p><p>$[3.14]=3$，$[-3.14]=-4$。</p><p>图像是一排单位长水平线段：左闭右开。实心点在图像上，空心点不在。</p></div><p class="lead" style="margin-top:12px">先猜 $[-1.2]$，再对照定义。</p>
 </section>
 <section class="slide" data-title="实心在左，空心在右" data-notes="拖到整数点，问：函数值取几？图像上该点是实心还是空心？" data-hook="floorfn">
 <div class="num">实验 2</div><h2 class="slide-title">实心在左，空心在右</h2>
@@ -88,11 +111,14 @@ $x>100$ 时，应付 $50+0.8(x-100)$ 元。
 <section class="slide" data-title="课堂练 2" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>$[1.01]=1$，$[1]=1$。</li><li>$[-0.2]=-1$（不超过 $-0.2$ 的最大整数是 $-1$，不是 $0$）。</li><li>$[-2]=-2$。</li><li>负数取整最容易写成「丢掉小数部分」。</li></ol><div class="comment">取整是向 $-\infty$ 取，不是向 $0$ 取。</div>
 </section>
+<section class="slide" data-title="取整：向左取到整数">
+<h2 class="slide-title">取整：向左取到整数</h2><p class="lead">$[\sqrt{2}]=1$，因为 $1\lt\sqrt{2}\lt 2$。负数不要先丢掉小数再决定符号。</p><table class="sheet"><thead><tr><th>x</th><th>−1.352</th><th>−1</th><th>0</th><th>0.314</th><th>$\sqrt{2}$</th></tr></thead><tbody><tr><td>[x]</td><td>−2</td><td>−1</td><td>0</td><td>0</td><td>1</td></tr></tbody></table>
+</section>
 <section class="slide" data-title="复合：先里层，后外层">
 <div class="num">定义</div><h2 class="slide-title">复合：先里层，后外层</h2><div class="card"><p>若 $u=g(x)$ 的值落在 $f$ 的定义域里，则 $y=f(g(x))$ 称为复合函数。</p><p>一次复合够用：货币 → 黄金 → 货币，不能写反。</p></div><p class="lead" style="margin-top:12px">四则运算：定义域取交集，分母 $\neq 0$。</p>
 </section>
-<section class="slide" data-title="一条管道：$x\to g\to f\circ g$" data-notes="g(x)=x/2+1，f(u)=u²。问：先平方再减半，和先减半再平方，一样吗？" data-hook="compose">
-<div class="num">实验 3</div><h2 class="slide-title">一条管道：$x\to g\to f\circ g$</h2>
+<section class="slide" data-title="一条管道：先里层，后外层" data-notes="g(x)=x/2+1，f(u)=u²。问：先平方再减半，和先减半再平方，一样吗？" data-hook="compose">
+<div class="num">实验 3</div><h2 class="slide-title">一条管道：先里层，后外层</h2>
         <div class="grid-2" style="flex:1">
           <div class="plot-wrap"><canvas id="compose-canvas"></canvas></div>
           <aside class="panel">
@@ -111,8 +137,35 @@ $x>100$ 时，应付 $50+0.8(x-100)$ 元。
 <section class="slide" data-title="课堂练 3" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>$f(g(x))=(2x+1)^2$，$x=1$ 时为 $9$。</li><li>$g(f(x))=2x^2+1$，$x=1$ 时为 $3$。</li><li>不相同。复合一般不可交换。</li></ol><div class="comment">和矩阵乘法一样：次序就是规则的一部分。</div>
 </section>
+<section class="slide" data-title="复合：值域必须落进外层">
+<h2 class="slide-title">复合：值域必须落进外层</h2><div class="grid-2"><div class="card"><h3>可以接</h3><div class="gold-rule"></div><ul><li>$y=\sqrt{2x+2}$：先算 $2x+2\ge 0$，得 $x\ge -1$。</li><li>$\ln(x^2+1)$：里层永远 $\ge 1$，对数吃得下。</li></ul></div><div class="card"><h3>不能硬接</h3><div class="gold-rule"></div><ul><li>$\ln(-x^2)$：里层 $\le 0$，没有一个 $x$ 能送进对数。</li><li>这时不是「定义域变小」，而是整个复合不存在。</li></ul></div></div>
+</section>
 <section class="slide" data-title="基本初等函数">
 <h2 class="slide-title">基本初等函数</h2><div class="card"><ul><li>幂函数、指数函数、对数函数、三角函数、反三角函数。</li><li>后面求导、积分都要回到这些图像：$y=x^2$ 开口向上，$y=\ln x$ 只在 $x>0$ 有定义。</li><li>先混个脸熟：会画大致形状，比背一张表更有用。</li></ul></div>
+</section>
+<section class="slide" data-title="基本初等函数：先记定义域">
+<h2 class="slide-title">基本初等函数：先记定义域</h2><p class="lead">有限个基本初等函数，经过有限次四则或复合，得到初等函数。分段函数一般不是初等函数。</p><table class="sheet"><thead><tr><th>类型</th><th>代表</th><th>在哪里有定义</th></tr></thead><tbody><tr><td>幂 / 指数</td><td>$x^\mu$，$a^x\ (a>0,a\neq 1)$</td><td>幂看指数；指数在全体实数</td></tr><tr><td>对数</td><td>$\log_a x$</td><td>只在 $(0,+\infty)$</td></tr><tr><td>三角</td><td>$\sin x$，$\tan x$</td><td>正弦全体实数，周期 $2\pi$；正切去掉 $\pi/2+k\pi$</td></tr><tr><td>反三角</td><td>$\arcsin x$，$\arctan x$</td><td>反正弦只吃 $[-1,1]$；反正切吃全体实数</td></tr></tbody></table>
+</section>
+<section class="slide" data-title="换一种，看定义域和形状" data-notes="先看 ln 和 tan 在哪里断开。" data-hook="elem">
+<div class="num">实验</div><h2 class="slide-title">换一种，看定义域和形状</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="elem-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <div class="seg">
+                <button type="button" data-elem="0" class="on">x²</button>
+                <button type="button" data-elem="1">2ˣ</button>
+                <button type="button" data-elem="2">ln</button>
+                <button type="button" data-elem="3">sin</button>
+                <button type="button" data-elem="4">tan</button>
+              </div>
+            </div>
+            <div class="verdict" id="elem-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="初等函数的定义域：取交集">
+<div class="num">公式</div><h2 class="slide-title">初等函数的定义域：取交集</h2><div class="card">$$y=\lg\sin x+\frac{\arccos x}{\sqrt{x^2+4}}$$</div><p class="lead">$\arccos x$ 要 $x\in[-1,1]$；根号里的 $x^2+4$ 恒正；$\lg\sin x$ 还要 $\sin x>0$。三者相交只剩下 $(0,1]$。$x=0$ 时正弦为 0，对数没有意义。</p>
 </section>
 <section class="slide" data-title="数列是特殊的函数">
 <h2 class="slide-title">数列是特殊的函数</h2><div class="card"><ul><li>定义域是正整数时，函数就成了数列。</li><li>斐波那契：$F_1=F_2=1$，$F_n=F_{n-1}+F_{n-2}$。</li><li>它可以讲兔子，也可以讲音节的节奏。下一讲的极限，先从数列讲起。</li></ul></div>
@@ -122,6 +175,9 @@ $x>100$ 时，应付 $50+0.8(x-100)$ 元。
 </section>
 <section class="slide" data-title="反函数（选讲）" data-notes="标为可跳，不做成实验。">
 <h2 class="slide-title">反函数（选讲）</h2><div class="card"><ul><li>一一对应才能谈反函数：每个 $y$ 只来自一个 $x$。</li><li>$y=x^3$ 在全体实数上有反函数；$y=x^2$ 要先限制到 $[0,+\infty)$。</li><li>图像关于 $y=x$ 对称。</li><li>后面求导时会再用到反函数。</li></ul></div>
+</section>
+<section class="slide" data-title="反函数：解出 x，再交换字母">
+<div class="num">公式</div><h2 class="slide-title">反函数：解出 x，再交换字母</h2><div class="card">$$y=\frac{x+2}{x-2}\ (x\neq 2),\qquad x=\frac{2(y+1)}{y-1}$$</div><p class="lead">原函数值域是除 $1$ 以外的实数，所以反函数 $y=\dfrac{2(x+1)}{x-1}$ 的定义域是 $(-\infty,1)\cup(1,+\infty)$。不是每个式子都有反函数：$y=x^2$ 要先限制到 $[0,+\infty)$。</p>
 </section>
 <section class="slide" data-title="性态口诀">
 <h2 class="slide-title">性态口诀</h2><div class="grid-3"><div class="card"><h3>奇偶</h3><div class="gold-rule"></div><p>$f(-x)=f(x)$ 偶，关于 $y$ 轴；$f(-x)=-f(x)$ 奇，关于原点。</p></div><div class="card"><h3>周期</h3><div class="gold-rule"></div><p>$f(x+T)=f(x)$。正弦以 $2\pi$ 为周期。</p></div><div class="card"><h3>单调 / 有界</h3><div class="gold-rule"></div><p>增：自变量变大函数值不减。有界：图像夹在两条水平线之间。</p></div></div>
@@ -136,6 +192,9 @@ $x>100$ 时，应付 $50+0.8(x-100)$ 元。
 <section class="slide" data-title="课堂练 4" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>(1) 是：每个学号唯一对应一人。</li><li>(2) 不是：一对多。</li><li>(3) 是：单值。</li><li>(4) 不是：一个正数对应两个值。若只取算术平方根，才是函数。</li></ol>
 </section>
+<section class="slide" data-title="四则运算：定义域取交集">
+<div class="num">定义</div><h2 class="slide-title">四则运算：定义域取交集</h2><div class="card"><p>$(f\pm g)(x)=f(x)\pm g(x)$，$(fg)(x)=f(x)g(x)$，定义域是两边定义域的交集。</p><p>商还要去掉分母为 0 的点。</p><p>$\ln x$ 在 $(0,+\infty)$，$\sqrt{x}$ 在 $[0,+\infty)$，它们的和只在 $(0,+\infty)$。</p></div><p class="lead" style="margin-top:12px">先分别写出两边在哪里有意义，再取公共部分。</p>
+</section>
 <section class="slide" data-title="定义域怎么求">
 <h2 class="slide-title">定义域怎么求</h2><div class="grid-2"><div class="card"><h3>多项式、根式</h3><div class="gold-rule"></div><ul><li>多项式：全体实数。</li><li>偶次根：根号内 $\ge 0$。</li></ul></div><div class="card"><h3>分式、对数</h3><div class="gold-rule"></div><ul><li>分母 $\neq 0$。</li><li>对数：真数 $>0$。</li><li>复合：由里到外取交集。</li></ul></div></div>
 </section>
@@ -148,14 +207,34 @@ $x>100$ 时，应付 $50+0.8(x-100)$ 元。
 <section class="slide" data-title="奇偶怎么查">
 <h2 class="slide-title">奇偶怎么查</h2><div class="card"><ul><li>先看定义域是否关于 $0$ 对称，不对称则既非奇也非偶。</li><li>再算 $f(-x)$，与 $f(x)$、$-f(x)$ 比较。</li><li>$|x|$ 是偶函数；奇函数过原点（若在 $0$ 有定义）。</li></ul></div>
 </section>
+<section class="slide" data-title="奇函数：代进 −x，应整体变号">
+<div class="num">公式</div><h2 class="slide-title">奇函数：代进 −x，应整体变号</h2><div class="card">$$y=\ln\bigl(\sqrt{x^2+1}-x\bigr)$$</div><p class="lead">先有理化：$\sqrt{x^2+1}-x=1/(\sqrt{x^2+1}+x)$。于是 $y=-\ln(\sqrt{x^2+1}+x)$。再算 $y(-x)$，得到 $-y(x)$。定义域是全体实数，关于原点对称，所以这是奇函数。</p>
+</section>
+<section class="slide" data-title="点与它的对面同时在曲线上" data-notes="把点拖过原点，问对面那个点是否还在曲线上。" data-hook="oddpt">
+<div class="num">实验</div><h2 class="slide-title">点与它的对面同时在曲线上</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="odd-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>点的横坐标 x</span><span class="ctrl-val" id="odd-x-val">1.40</span></label>
+              <input id="odd-x" type="range" min="-3" max="3" step="0.05" value="1.4" />
+            </div>
+            <div class="readout" id="odd-read"></div>
+            <div class="verdict">奇函数：点 (x, y) 与 (−x, −y) 同时在曲线上。</div>
+    </aside>
+        </div>
+</section>
+<section class="slide" data-title="单调与有界">
+<h2 class="slide-title">单调与有界</h2><div class="grid-2"><div class="card"><h3>单调</h3><div class="gold-rule"></div><ul><li>$y=x^2$ 在 $(-\infty,0]$ 递减，在 $[0,+\infty)$ 递增。</li><li>单调说的是一段区间，不是孤立的点。</li><li>后面用 $f'$ 的符号来判，这里先认图像。</li></ul></div><div class="card"><h3>有界</h3><div class="gold-rule"></div><ul><li>存在 $M>0$ 使 $|f(x)|\le M$，才叫在这个集合上有界。</li><li>$\sin x$ 在全体实数上有界。</li><li>$x^2$ 在 $\mathbb{R}$ 上无界，在 $[0,1]$ 上有界。有上界还不等于有界。</li></ul></div></div>
+</section>
 <section class="slide" data-title="文化卡片 · 函数一词" data-notes="控制在两三分钟。">
 <div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 函数一词</span><blockquote>函数这个词，来自「依赖」。莱布尼茨用它称呼随曲线而变的量。</blockquote><p>不必背诵定义的每一个字，先抓住两要素：在哪些 $x$ 上说话，以及怎么把 $x$ 变成 $y$。分段与取整练的是「先定位」，复合练的是「先里层」。</p></div>
 </section>
 <section class="slide" data-title="小结" data-notes="下课回扣目标。">
-<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>两要素：定义域与对应规则。</li><li>分段先定位；取整看实心空心。</li><li>一次复合不可随便换序。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把一对多的对应叫函数。</li><li>负数取整丢掉小数。</li><li>把区间记法当成软件语法来背。</li></ul></div></div>
+<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>两要素：定义域与对应规则。</li><li>分段先定位；取整向左取到整数。</li><li>复合先看值域落不落进外层；反函数要交换字母并改定义域。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把一对多的对应叫函数。</li><li>负数取整丢掉小数。</li><li>里层永远送不进外层，还硬写复合。</li></ul></div></div>
 </section>
 <section class="slide" data-title="作业" data-notes="当堂布置。">
-<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>把电价分段写进笔记本，再自编一档稿费分段。</li><li>求三个取整值，其中至少含一个负数。</li><li>写一个自己专业里的 $y=f(x)$ 最小例子。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 说明为何 $y=x^2$ 要限制定义域才有反函数。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.2 极限：数列贴水平线、左右极限、夹逼。</p></div></div>
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>把电价分段写进笔记本，再自编一档稿费分段。</li><li>求 $[-1.7]$、$[0]$、$[\sqrt{2}]$。</li><li>求 $y=(x+1)/(x-1)$ 的反函数，并写出它的定义域。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 说明为何 $y=x^2$ 要限制定义域才有反函数。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.2 极限：数列贴水平线、左右极限、夹逼。</p></div></div>
 </section>
     </main>
     <div class="notes" id="notes"></div>
@@ -187,5 +266,6 @@ $x>100$ 时，应付 $50+0.8(x-100)$ 元。
   <script src="../js/deck.js"></script>
   <script src="../js/plot.js"></script>
   <script src="../js/labs/11-fn.js"></script>
+  <script src="../js/labs/extra.js"></script>
 </body>
 </html>

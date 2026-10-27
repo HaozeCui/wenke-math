@@ -150,6 +150,12 @@ A 列 (0,1,0,0)ᵀ，B 列 (0,0,1,0)ᵀ，C 列 (1,0,0,1)ᵀ，D 列全 0。
 <section class="slide" data-title="列和为 1 在保证什么">
 <h2 class="slide-title">列和为 1 在保证什么</h2><div class="card"><ul><li>每一列是「从这一页出发」的概率，所以列和为 $1$。</li><li>重要性向量的分量加起来始终是 $1$：分掉的权重没有凭空增加。</li><li>D 列若保持全 $0$，乘出来的向量和会小于 $1$，权重漏掉。所以无出链要改成四个 $1/4$。</li><li>实验里多走几步，是在重复这件事，直到各页比例几乎不再变。</li></ul></div>
 </section>
+<section class="slide" data-title="四页走稳之后">
+<div class="num">公式</div><h2 class="slide-title">四页走稳之后</h2><div class="card">$$x=\begin{pmatrix}4/19\\ 5/19\\ 6/19\\ 4/19\end{pmatrix}\approx\begin{pmatrix}0.211\\ 0.263\\ 0.316\\ 0.211\end{pmatrix}$$</div><p class="lead">这就是课堂转移矩阵满足 $Px=x$ 的那个权重，四个分量加起来是 1。C 最大，因为它同时收到 B 的全部和 D 的一份。实验里多走几步，是在靠近这四个分数，不必解特征多项式。</p>
+</section>
+<section class="slide" data-title="阻尼：别让人永远只点链接">
+<div class="num">公式</div><h2 class="slide-title">阻尼：别让人永远只点链接</h2><div class="card">$$G=dM+\frac{1-d}{N}E,\qquad d=0.85,\ N=4$$</div><p class="lead">$d$ 是继续沿着链接走的概率，$1-d$ 是随机打开任意一页的概率。$E$ 是全 1 矩阵，$N$ 是页数。加上这一项之后，即使出现互相兜圈子的小集团，权重也不会全部掉进去。教材用 $0.85$ 作为示意。</p>
+</section>
 <section class="slide" data-title="文化卡片 · 搜索里的线性代数" data-notes="控制在两三分钟。">
 <div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 搜索里的线性代数</span><blockquote>把「谁指向谁」写成矩阵，再问矩阵最稳定的方向——搜索引擎的数学核心，并不神秘。</blockquote><p>对文科学生，重点不是算出 λ，而是看见：评价、排序、推荐，往往是在高维向量空间里比较方向。词袋是最粗的语言向量，后面的深度学习只是把「怎么变成向量」变得更精细。</p></div>
 </section>

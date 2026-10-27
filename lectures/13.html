@@ -94,6 +94,9 @@
 <section class="slide" data-title="课堂练 3" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>(1) 错。反例 |x| 在 0。</li><li>(2) 错。那只是幂函数。指数、正弦都不降次。</li></ol>
 </section>
+<section class="slide" data-title="二阶：再导一次">
+<div class="num">公式</div><h2 class="slide-title">二阶：再导一次</h2><div class="card">$$(\sin x)'=\cos x,\qquad (\sin x)''=-\sin x$$</div><p class="lead">路程的一阶导数是速度，二阶是加速度。正弦再导两次回到自己的相反数，所以它适合描写来回振动。多项式每导一次，次数降 1。</p>
+</section>
 <section class="slide" data-title="导数的三张面孔">
 <h2 class="slide-title">导数的三张面孔</h2><div class="grid-2"><div class="card"><h3>几何 / 运动</h3><div class="gold-rule"></div><ul><li>切线斜率。</li><li>位移的瞬时速度。</li><li>速度的瞬时加速度。</li></ul></div><div class="card"><h3>变化率</h3><div class="gold-rule"></div><ul><li>边际成本、边际产量。</li><li>人口密度沿公路的变化。</li><li>词频随时间的瞬时变化（示意）。</li></ul></div></div>
 </section>
@@ -127,6 +130,23 @@
 <section class="slide" data-title="微分">
 <div class="num">定义</div><h2 class="slide-title">微分</h2><div class="card"><p>增量 $\Delta y=f(x_0+\Delta x)-f(x_0)$。微分是它的线性主部：</p><p>$$dy=f'(x_0)\,dx$$</p><p>$\Delta x$ 很小时 $\Delta y\approx dy$。会求导就会写微分，只是多乘一个 $dx$。</p></div><p class="lead" style="margin-top:12px">四则：$d(u\pm v)=du\pm dv$，$d(uv)=v\,du+u\,dv$。</p>
 </section>
+<section class="slide" data-title="用微分做一次近似">
+<div class="num">公式</div><h2 class="slide-title">用微分做一次近似</h2><div class="card">$$\sqrt{4.01}\approx 2+\frac{1}{4}\times 0.01=2.0025$$</div><p class="lead">取 $f(x)=\sqrt{x}$，$f'(x)=1/(2\sqrt{x})$。在 $x=4$ 处 $dy=f'(4)\,dx$。$dx=0.01$ 很小时，增量用线性主部代替。会求导，就会写这一步。</p>
+</section>
+<section class="slide" data-title="dx 越小，切线越贴住曲线" data-notes="先停在 dx=1，问误差大不大。再拉小。" data-hook="approx">
+<div class="num">实验</div><h2 class="slide-title">dx 越小，切线越贴住曲线</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="ap-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>增量 dx</span><span class="ctrl-val" id="ap-dx-val">0.40</span></label>
+              <input id="ap-dx" type="range" min="0.02" max="1.4" step="0.02" value="0.4" />
+            </div>
+            <div class="readout" id="ap-read"></div>
+            <div class="verdict">虚线是切线。dx 越小，切线代替曲线的误差越小。</div>
+    </aside>
+        </div>
+</section>
 <section class="slide" data-title="商与链式再算三题" data-hook="quotchain">
 <h2 class="slide-title">商与链式再算三题</h2>
 <div class="grid-3" style="flex:1;min-height:0">
@@ -149,6 +169,12 @@
 </section>
 <section class="slide" data-title="分段点：左右导数">
 <div class="num">定义</div><h2 class="slide-title">分段点：左右导数</h2><div class="card"><p>$f(x)=x+1$（$x<0$），$f(x)=1$（$x\ge 0$）。$f(0)=1$，图像连着。</p><p>左导数为 $1$，右导数为 $0$。点 $(0,1)$ 有两条半切线，不可导。</p></div><p class="lead" style="margin-top:12px">可导要求左右导数存在并且相等。连续只说明函数值接上了。</p>
+</section>
+<section class="slide" data-title="教材：连续了，切线仍可以没有">
+<div class="num">公式</div><h2 class="slide-title">教材：连续了，切线仍可以没有</h2><div class="card">$$f(x)=\begin{cases}e^{x},& x\le 0\\ x^{2}+1,& x\gt 0\end{cases}$$</div><p class="lead">左右极限都是 $1$，$f(0)=1$，所以在 $0$ 连续。左差商 $(e^{h}-1)/h\to 1$，右差商 $h\to 0$。两个极限不相等，$f'(0)$ 不存在。$|x|$ 是尖角；这一题是指数接上抛物线，结论一样。</p>
+</section>
+<section class="slide" data-title="教材：分段也可以有切线">
+<div class="num">公式</div><h2 class="slide-title">教材：分段也可以有切线</h2><div class="card">$$f(x)=\begin{cases}-x,& x\le 0\\ \ln(x+1)-2\sin x,& x\gt 0\end{cases}$$</div><p class="lead">左差商恒为 $-1$。右差商 $\ln(1+h)/h-2\sin h/h\to 1-2=-1$。左右相同，所以 $f'(0)=-1$。公式在分段点换了，不表示一定不可导；要回到差商。</p>
 </section>
 <section class="slide" data-title="文化卡片 · 第二次数学危机" data-notes="控制在两三分钟。">
 <div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 第二次数学危机</span><blockquote>无穷小既不是 0 又可以丢掉——贝克莱的质问逼出了严谨的极限语言。</blockquote><p>本讲用极限定义导数，正是对那次危机的回答。先把割线变成切线看清楚，比争论谁先发明微积分更要紧。</p></div>
@@ -189,5 +215,6 @@
   <script src="../js/deck.js"></script>
   <script src="../js/plot.js"></script>
   <script src="../js/labs/13-deriv.js"></script>
+  <script src="../js/labs/extra.js"></script>
 </body>
 </html>

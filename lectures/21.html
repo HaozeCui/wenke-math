@@ -83,7 +83,7 @@
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>$D=\begin{vmatrix}1&1\\1&-1\end{vmatrix}=-2$。</li><li>$D_1=\begin{vmatrix}3&1\\1&-1\end{vmatrix}=-4$，$D_2=\begin{vmatrix}1&3\\1&1\end{vmatrix}=-2$。</li><li>x=(−4)/(−2)=2，y=(−2)/(−2)=1。</li><li>代回：2+1=3，2−1=1。</li></ol>
 </section>
 <section class="slide" data-title="高阶：按行展开" data-notes="不要把展开做成逐步动画。">
-<div class="num">公式</div><h2 class="slide-title">高阶：按行展开</h2><div class="card">$$\det A=\sum_j a_{1j}(-1)^{1+j}M_{1j}$$</div><p class="lead">余子式 M 是划去一行一列后的行列式。认识公式即可，本讲不练四阶。</p>
+<div class="num">公式</div><h2 class="slide-title">高阶：按行展开</h2><div class="card">$$\det A=\sum_j a_{1j}(-1)^{1+j}M_{1j}$$</div><p class="lead">余子式 M 是划去一行一列后的行列式。四阶认展开的路，不要求把每一步算术默写下来。</p>
 </section>
 <section class="slide" data-title="课堂练 4　性质">
 <div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 4　性质</h2><div class="prompt-box">不计算具体数字：说明为何 $\begin{vmatrix}1&2&3\\1&2&3\\4&5&6\end{vmatrix}=0$，以及把第一、二行互换后行列式与原来差一个符号。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
@@ -110,7 +110,7 @@
 <div class="num">定义</div><h2 class="slide-title">对角阵（一眼）</h2><div class="card"><p>对角以外全是 0。行列式就是对角元连乘。上三角、下三角同样：行列式看对角。</p><p>本讲实验矩阵就是上三角，所以六项里五项是 0。</p></div>
 </section>
 <section class="slide" data-title="沙流只用于三阶">
-<h2 class="slide-title">沙流只用于三阶</h2><div class="card"><ul><li>二阶用交叉相减。</li><li>三阶用六项或化三角。</li><li>四阶及以上：展开或软件，课堂不手算。</li></ul></div>
+<h2 class="slide-title">沙流只用于三阶</h2><div class="card"><ul><li>二阶用交叉相减。</li><li>三阶用六项或化三角。</li><li>四阶：找零、倍加、再展开。不靠沙流，也不必默写全部算术。</li></ul></div>
 </section>
 <section class="slide" data-title="代数余子式">
 <div class="num">定义</div><h2 class="slide-title">代数余子式</h2><div class="card"><p>划去 $a_{ij}$ 所在的行和列，剩下的行列式是余子式 $M_{ij}$。</p><p>代数余子式 $A_{ij}=(-1)^{i+j}M_{ij}$。按第 $i$ 行展开：</p><p>$$\det A=\sum_j a_{ij}A_{ij}$$</p></div><p class="lead" style="margin-top:12px">符号由位置决定，与这个元素本身是多少无关。零多的那一行最适合展开。</p>
@@ -121,6 +121,12 @@
 <section class="slide" data-title="用倍加把参数找出来">
 <div class="num">公式</div><h2 class="slide-title">用倍加把参数找出来</h2><div class="card">$$\begin{vmatrix}a&1\\ 2&a\end{vmatrix}=a^2-2$$</div><p class="lead">令它为 $0$，得 $a=\pm\sqrt{2}$。三阶里参数往往是高次方程：先用倍加消去，再因式分解，不要直接展开硬算。</p>
 </section>
+<section class="slide" data-title="三角行列式：只看对角线">
+<div class="num">公式</div><h2 class="slide-title">三角行列式：只看对角线</h2><div class="card">$$\begin{vmatrix}2&1&4\\0&3&-1\\0&0&5\end{vmatrix}=2\cdot 3\cdot 5=30$$</div><p class="lead">上三角、下三角都等于主对角线元素的乘积。行与列互换，行列式不变，所以上三角换成下三角，值还是这个乘积。</p>
+</section>
+<section class="slide" data-title="四阶：找零多的一列再展开">
+<div class="num">公式</div><h2 class="slide-title">四阶：找零多的一列再展开</h2><div class="card">$$\begin{vmatrix}-2&2&-4&0\\ 4&-1&3&5\\ 3&1&-2&-3\\ 2&0&5&1\end{vmatrix}=-270$$</div><p class="lead">第 2 列已经有一个 0。用倍加把这一列再消出零，只留一个非零元，按它展开成三阶，继续消元。沙流只到三阶；四阶靠性质和展开。课堂认这条路，不必把每一步算术重算一遍。</p>
+</section>
 <section class="slide" data-title="文化卡片 · 折叠成一个数" data-notes="控制在两三分钟。">
 <div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 折叠成一个数</span><blockquote>行列式最初出现在解线性方程组的消元里，后来才被看成体积缩放。</blockquote><p>莱布尼茨就写过用行列式判别方程组。对文科学生：记住它是「方阵→一个数」的折叠，0 与非 0 往往比具体数值更要紧。</p></div>
 </section>
@@ -128,7 +134,7 @@
 <h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>二阶 ad−bc；三阶沙流；三角阵看对角。</li><li>换行变号，倍加不变，成比例则 0。</li><li>克拉默展示应用，不是唯一算法。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>四阶仍用沙流。</li><li>把 det=0 说成「方程组无解」（也可能无穷解）。</li></ul></div></div>
 </section>
 <section class="slide" data-title="作业" data-notes="当堂布置。">
-<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>算一个一般三阶与一个上三角三阶。</li><li>用性质说明两行相同则行列式为 0。</li><li>克拉默再解一道二元。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 解释为何换行变号与「有向面积」一致。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 2.2：矩阵运算，行×列，AB≠BA。</p></div></div>
+<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>算一个一般三阶与一个上三角三阶。</li><li>用性质说明两行相同则行列式为 0。</li><li>说明四阶为什么先找零，再展开，而不是用沙流。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 解释为何换行变号与「有向面积」一致。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 2.2：矩阵运算，行×列，AB≠BA。</p></div></div>
 </section>
     </main>
     <div class="notes" id="notes"></div>
