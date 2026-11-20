@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>0 数学与人文 · 文科高等数学</title>
   <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
-  <link rel="stylesheet" href="../css/deck.css" />
+  <link rel="stylesheet" href="../css/deck.css?v=20261110174738" />
 </head>
 <body class="play">
   <div class="app cover-mode">
@@ -16,6 +16,7 @@
       <h1>文科高等数学　·　0 数学与人文</h1>
       <span class="sec" id="sec-label"></span>
     </header>
+    <div class="progress" id="progress" aria-hidden="true"><i></i></div>
     <main class="stage">
 <section class="slide cover" data-title="封面" data-notes="开场 3 分钟：说明课程方位。">
 <div class="kicker">1.1 序言　与函数合计 4 学时</div>
@@ -30,7 +31,7 @@
 <h2 class="slide-title">本学期地图（微积分 + 线性代数）</h2><div class="card"><ul><li>连续：函数 → 极限 → 导数 → 积分 → 二元初步。</li><li>离散：行列式 → 矩阵 → 方程组 → 数据科学应用。</li><li>概率统计、逻辑、数学软件本学期另作安排。</li><li>每讲三条目标，用来检查自己学会了没有。</li></ul></div>
 </section>
 <section class="slide" data-title="四项目标" data-notes="明确边界，降低焦虑。">
-<h2 class="slide-title">四项目标</h2><div class="grid-2"><div class="card"><h3>课内要带走的</h3><div class="gold-rule"></div><ul><li>处理人文学科中的数量与逻辑问题。</li><li>了解数学文化，提高数学素质。</li><li>养成抽象、冷静、可检验的思维方式。</li></ul></div><div class="card"><h3>课内不要期待的</h3><div class="gold-rule"></div><ul><li>不追求工科高数的题量与技巧密度。</li><li>不把证明写到分析学的精细程度。</li><li>不把软件语法当成主线。</li></ul></div></div>
+<h2 class="slide-title">四项目标</h2><div class="grid-2 fit"><div class="card"><h3>课内要带走的</h3><div class="gold-rule"></div><ul><li>处理人文学科中的数量与逻辑问题。</li><li>了解数学文化，提高数学素质。</li><li>养成抽象、冷静、可检验的思维方式。</li></ul></div><div class="card"><h3>课内不要期待的</h3><div class="gold-rule"></div><ul><li>不追求工科高数的题量与技巧密度。</li><li>不把证明写到分析学的精细程度。</li><li>不把软件语法当成主线。</li></ul></div></div>
 </section>
 <section class="slide" data-title="为什么文科要学数学">
 <h2 class="slide-title">为什么文科要学数学</h2><div class="card"><ul><li>大数据与人工智能把「数量化」推进到语言、历史、社会与艺术。</li><li>文科研究同样需要：看清结构、比较数据、避免被平均数误导。</li><li>本课程提供两类语言：连续（微积分）、离散（线性代数）。随机是后半学期预告。</li><li>目标不是堆计算量，而是能用数学方式想问题。</li></ul></div>
@@ -39,14 +40,14 @@
 <div class="num">定义</div><h2 class="slide-title">一个贯穿学期的问题</h2><div class="card"><p>以后每遇到一个新概念，先问三件事：</p><ol class='answer-list'><li>它在描述哪一种「依赖」或「结构」？</li><li>图像或数表长什么样？</li><li>在语言、社会、经济里有没有一个最小例子？</li></ol></div><p class="lead" style="margin-top:12px">这三问贯穿后面的极限、矩阵与数据科学。</p>
 </section>
 <section class="slide" data-title="三个接口" data-notes="不另开数学史课，不讲 Arrow 定理。">
-<h2 class="slide-title">三个接口</h2><div class="grid-3"><div class="card"><h3>语言学</h3><div class="gold-rule"></div><p>阿达马：语言学是数学与人文科学之间的桥梁。词频可以用来讨论《红楼梦》后四十回；机器翻译是数学、语言学与计算的汇合。</p></div><div class="card"><h3>计量史学</h3><div class="gold-rule"></div><p>引入计量是为了让定性判断可被核对，而不是用数字取消叙事。</p></div><div class="card"><h3>投票</h3><div class="gold-rule"></div><p>规则不同，胜者可以不同。「公正」要先写成可比较的规则。</p></div></div>
+<h2 class="slide-title">三个接口</h2><div class="grid-3 fit"><div class="card"><h3>语言学</h3><div class="gold-rule"></div><p>阿达马：语言学是数学与人文科学之间的桥梁。词频可以用来讨论《红楼梦》后四十回；机器翻译是数学、语言学与计算的汇合。</p></div><div class="card"><h3>计量史学</h3><div class="gold-rule"></div><p>引入计量是为了让定性判断可被核对，而不是用数字取消叙事。</p></div><div class="card"><h3>投票</h3><div class="gold-rule"></div><p>规则不同，胜者可以不同。「公正」要先写成可比较的规则。</p></div></div>
 </section>
 <section class="slide" data-title="课堂练 1" data-notes="巡视：不会算百分数的同学，先写成分数再化成百分数。">
 <div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">某校两学院录取数据：
 甲：女 50/150，男 190/380
 乙：女 200/250，男 36/40
 
-请分别计算甲、乙及汇总后的男女录取率。能否根据「汇总女生更高」断言录取更偏向女生？</div><p class="wait">先算，约 3 分钟。可两人核对。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+请分别计算甲、乙及汇总后的男女录取率。能否根据「汇总女生更高」断言录取更偏向女生？</div><p class="wait">先算，约 3 分钟。可两人核对。<button type="button" class="btn ghost timer" data-sec="180">计时 3:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
 <section class="slide" data-title="课堂练 1" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>甲：女 50/150≈33.3%，男 190/380=50%。甲院男生更高。</li><li>乙：女 200/250=80%，男 36/40=90%。乙院仍是男生更高。</li><li>汇总：女 250/400=62.5%，男 226/420≈53.8%。汇总却是女生更高。</li><li>原因：女生更多集中在录取率本就很高的乙院。隐变量是「学院」。</li></ol><div class="comment">这叫辛普森悖论：分组趋势与合并趋势可以相反。公平比较必须在同类组别中进行。</div>
@@ -83,16 +84,16 @@
 <h2 class="slide-title">连续、离散、随机：三种语言</h2><div class="card"><ul><li>连续：变化率与积累——后面的导数、积分。</li><li>离散：表格与结构——后面的矩阵、方程组。</li><li>随机：不确定中的规律——本学期另作安排。</li><li>同一人文问题，有时要用两种语言：词频是离散，语感随时间的变化可以是连续。</li></ul></div>
 </section>
 <section class="slide" data-title="开篇要立住的态度">
-<h2 class="slide-title">开篇要立住的态度</h2><div class="grid-2"><div class="card"><h3>数量有用</h3><div class="gold-rule"></div><ul><li>百分比能比较。</li><li>规则写清楚才能检验。</li><li>图像比口号更难含糊。</li></ul></div><div class="card"><h3>数量不是结论</h3><div class="gold-rule"></div><ul><li>先问怎么分组。</li><li>先问规则是什么。</li><li>先问缺了哪个隐变量。</li></ul></div></div>
+<h2 class="slide-title">开篇要立住的态度</h2><div class="grid-2 fit"><div class="card"><h3>数量有用</h3><div class="gold-rule"></div><ul><li>百分比能比较。</li><li>规则写清楚才能检验。</li><li>图像比口号更难含糊。</li></ul></div><div class="card"><h3>数量不是结论</h3><div class="gold-rule"></div><ul><li>先问怎么分组。</li><li>先问规则是什么。</li><li>先问缺了哪个隐变量。</li></ul></div></div>
 </section>
 <section class="slide" data-title="学期里会反复出现的三问">
-<h2 class="slide-title">学期里会反复出现的三问</h2><div class="grid-3"><div class="card"><h3>依赖 / 结构</h3><div class="gold-rule"></div><p>谁随谁变？谁指向谁？</p></div><div class="card"><h3>图像 / 数表</h3><div class="gold-rule"></div><p>曲线、曲面、矩阵，先看见再命名。</p></div><div class="card"><h3>最小例子</h3><div class="gold-rule"></div><p>语言、社会、经济里能否缩成一道课堂练。</p></div></div>
+<h2 class="slide-title">学期里会反复出现的三问</h2><div class="grid-3 fit"><div class="card"><h3>依赖 / 结构</h3><div class="gold-rule"></div><p>谁随谁变？谁指向谁？</p></div><div class="card"><h3>图像 / 数表</h3><div class="gold-rule"></div><p>曲线、曲面、矩阵，先看见再命名。</p></div><div class="card"><h3>最小例子</h3><div class="gold-rule"></div><p>语言、社会、经济里能否缩成一道课堂练。</p></div></div>
 </section>
 <section class="slide" data-title="语言学里，数学先做的是计数">
 <h2 class="slide-title">语言学里，数学先做的是计数</h2><div class="card"><ul><li>字频、词频用来比较方言和写作风格，也可以核对前后是否像同一作者。</li><li>《红楼梦》后四十回、莎士比亚新诗的真伪，都曾交给统计，而不是只靠印象。</li><li>《现代汉语常用字表》来自抽样、统计和检验，不是凭语感圈出来的。</li><li>机器翻译要等语言学、数学和计算合在一起，才做得起来。</li></ul></div>
 </section>
 <section class="slide" data-title="二十三个问题里，先听懂三句">
-<h2 class="slide-title">二十三个问题里，先听懂三句</h2><p class="lead">1900 年希尔伯特在巴黎提出 23 个问题。文科课不解题，只记住：好问题比零散技巧更能推动一门学科。</p><div class="grid-3"><div class="card"><h3>连续统</h3><div class="gold-rule"></div><p>整数那么多，和实数那么多，中间还有没有另一种「多少」？</p></div><div class="card"><h3>丢番图</h3><div class="gold-rule"></div><p>整系数方程有没有整数解，能不能用有限步骤判定？</p></div><div class="card"><h3>素数</h3><div class="gold-rule"></div><p>素数怎么分布。能推进其中一个，就被看成一流工作。</p></div></div>
+<h2 class="slide-title">二十三个问题里，先听懂三句</h2><p class="lead">1900 年希尔伯特在巴黎提出 23 个问题。文科课不解题，只记住：好问题比零散技巧更能推动一门学科。</p><div class="grid-3 fit"><div class="card"><h3>连续统</h3><div class="gold-rule"></div><p>整数那么多，和实数那么多，中间还有没有另一种「多少」？</p></div><div class="card"><h3>丢番图</h3><div class="gold-rule"></div><p>整系数方程有没有整数解，能不能用有限步骤判定？</p></div><div class="card"><h3>素数</h3><div class="gold-rule"></div><p>素数怎么分布。能推进其中一个，就被看成一流工作。</p></div></div>
 </section>
 <section class="slide" data-title="文化卡片 · 阿达马" data-notes="控制在两三分钟。">
 <div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 阿达马</span><blockquote>「语言学是数学和人文科学之间的桥梁。」——阿达马</blockquote><p>阿达马以解析学与素数定理闻名，却把语言学看作通往人文的桥。本课程后面的极限、矩阵，都可以回到这句话：先把对象写成符号，再问符号服从什么规则。</p></div>
@@ -113,7 +114,7 @@
 <div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3　选人</h2><div class="prompt-box">5 名同学。
 (1) 选班长和副班长（职务不同）。
 (2) 选 2 人去开会（不分职务）。
-各有多少种？</div><p class="wait">约 2 分钟。先判断要不要顺序。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+各有多少种？</div><p class="wait">约 2 分钟。先判断要不要顺序。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
 <section class="slide" data-title="课堂练 3" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>(1) 排列 $P_5^2=5\times 4=20$。</li><li>(2) 组合 $C_5^2=10$。</li><li>差在顺序。公式本身不长，用错原理才会差一倍。</li></ol><div class="comment">班长、副班长对调是两种排法；两名代表对调仍是同一组。</div>
@@ -125,25 +126,29 @@
 <h2 class="slide-title">后面的课怎么上</h2><div class="card"><ul><li>每一讲三条可检测目标，下课回扣。</li><li>概念尽量配图：函数看图像，积分看面积，矩阵看数表。</li><li>例题分页：先做，再看思路，再看演算。按 A 才揭晓解答。</li><li>每讲一张文化卡片，控制在两三分钟。</li><li>软件只作看图工具，不考语法；本学期不设软件专讲。</li></ul></div>
 </section>
 <section class="slide" data-title="本学期另外安排">
-<h2 class="slide-title">本学期另外安排</h2><div class="grid-3"><div class="card"><h3>概率统计</h3><div class="gold-rule"></div><p>抽样、估计、检验安排在后半学期。开篇只预告「随机」这第三种语言。</p></div><div class="card"><h3>逻辑</h3><div class="gold-rule"></div><p>不单开命题演算。推理与反例贯穿各讲。</p></div><div class="card"><h3>数学软件</h3><div class="gold-rule"></div><p>本课程用本网页看图，不另设软件课。</p></div></div>
+<h2 class="slide-title">本学期另外安排</h2><div class="grid-3 fit"><div class="card"><h3>概率统计</h3><div class="gold-rule"></div><p>抽样、估计、检验安排在后半学期。开篇只预告「随机」这第三种语言。</p></div><div class="card"><h3>逻辑</h3><div class="gold-rule"></div><p>不单开命题演算。推理与反例贯穿各讲。</p></div><div class="card"><h3>数学软件</h3><div class="gold-rule"></div><p>本课程用本网页看图，不另设软件课。</p></div></div>
 </section>
 <section class="slide" data-title="小结" data-notes="下课回扣目标。">
-<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>数学为文科提供结构、比较与检验的语言。</li><li>辛普森悖论提醒：合并数据前先问分组。</li><li>排列计顺序，组合不计；二项式系数之和是 $2^n$。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把「女生汇总录取率更高」直接说成「更公平」。</li><li>选代表时用了排列，人数立刻多算一倍。</li></ul></div></div>
+<h2 class="slide-title">带走与易错</h2><div class="grid-2 fit"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>数学为文科提供结构、比较与检验的语言。</li><li>辛普森悖论提醒：合并数据前先问分组。</li><li>排列计顺序，组合不计；二项式系数之和是 $2^n$。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把「女生汇总录取率更高」直接说成「更公平」。</li><li>选代表时用了排列，人数立刻多算一倍。</li></ul></div></div>
 </section>
 <section class="slide" data-title="作业" data-notes="下节课抽 2 位同学各说一个专业里的数量问题。">
-<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>阅读教材第 0 章，划出一处与自己专业有关的应用。</li><li>把课堂录取率三张表自己重算一遍。</li><li>计算 $P_6^2$ 与 $C_6^2$，并各写一句人话说明差别。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>找一条新闻里的百分比，问：它有没有可能是「汇总后的假象」？</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.1 函数：从对应关系开始，分段函数是重点。</p></div></div>
+<h2 class="slide-title">作业</h2><div class="grid-3 fit"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>阅读教材第 0 章，划出一处与自己专业有关的应用。</li><li>把课堂录取率三张表自己重算一遍。</li><li>计算 $P_6^2$ 与 $C_6^2$，并各写一句人话说明差别。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>找一条新闻里的百分比，问：它有没有可能是「汇总后的假象」？</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.1 函数：从对应关系开始，分段函数是重点。</p></div></div>
 </section>
     </main>
+    <canvas class="ink" id="ink"></canvas>
+    <button type="button" class="clock" id="clock" title="点一下停止计时"></button>
     <div class="notes" id="notes"></div>
     <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
     <div class="help" id="help">
       <h3>翻页</h3>
       <p>手机：左右滑动，或点底部「上一页」「下一页」。「解答」揭晓答案，「提纲」跳到某一页。</p>
-      <p>键盘：→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>键盘：→ / 空格 下一步或下一页　　← 上一步　　Home / End 首尾</p>
       <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p>T 课堂练计时　　P 画笔（C 清除本页笔迹）　　B 黑屏</p>
       <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
-      <p>解答页默认跳过；点「解答」或按 A 后进入线性顺序。滑条用手指拖；用键盘时先点空白再按方向键。</p>
+      <p>推导页逐行出现，按 → 一步一步走。解答页默认跳过；点「解答」或按 A 后进入线性顺序。滑条用手指拖；用键盘时先点空白再按方向键。</p>
     </div>
+    <div class="blackout" id="blackout"></div>
     <footer class="botbar">
       <span>南开大学数学科学学院</span>
       <span id="page">1 / 1</span>
@@ -153,6 +158,7 @@
         <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
         <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
         <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-pen">画笔 P</button>
         <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
         <button type="button" class="btn ghost" id="btn-help">?</button>
       </span>
@@ -160,8 +166,9 @@
   </div>
   <script src="../vendor/katex/katex.min.js"></script>
   <script src="../vendor/katex/contrib/auto-render.min.js"></script>
-  <script src="../js/deck.js"></script>
-  <script src="../js/plot.js"></script>
-  <script src="../js/labs/00-simpson.js"></script>
+  <script src="../js/deck.js?v=20261110174738"></script>
+  <script src="../js/plot.js?v=20261110174738"></script>
+
+  <script src="../js/labs/00-simpson.js?v=20261110174738"></script>
 </body>
 </html>

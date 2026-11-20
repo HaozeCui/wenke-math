@@ -119,9 +119,63 @@ def q_signed(rng):
     geom = _ival(c * sp.Abs(x), -a, b)
     if signed is None or geom is None or signed == geom:
         return None
-    stem = inline("\\int_{" + str(-a) + "}^{" + str(b) + "}" + ntex(c) + "x\\,dx") + " 的值是有号面积，它等于"
+    stem = inline("\\int_{" + str(-a) + "}^{" + str(b) + "}" + ntex(c * x) + "\\,dx") + " 的值是有号面积，它等于"
     why = "x 轴下方的一块要带负号。几何面积（涂色多少）是 " + inline(ntex(geom)) + "，定积分是 " + inline(ntex(signed)) + "。"
     return _mcq(rng, stem, signed, [geom, -geom, 0, signed + geom], why, "signed")
+
+
+PARTS = [
+    (x * sp.exp(x), x, sp.exp(x), 0, 1, "x e^{x}"),
+    (x * sp.exp(x), x, sp.exp(x), 0, 2, "x e^{x}"),
+    (x * sp.sin(x), x, -sp.cos(x), 0, sp.pi, "x\\sin x"),
+    (x * sp.sin(x), x, -sp.cos(x), 0, sp.pi / 2, "x\\sin x"),
+    (x * sp.cos(x), x, sp.sin(x), 0, sp.pi / 2, "x\\cos x"),
+    (x * sp.cos(x), x, sp.sin(x), 0, sp.pi, "x\\cos x"),
+    (sp.log(x), sp.log(x), x, 1, sp.E, "\\ln x"),
+    (sp.log(x), sp.log(x), x, 1, sp.E**2, "\\ln x"),
+    (x * sp.log(x), sp.log(x), x**2 / 2, 1, sp.E, "x\\ln x"),
+]
+
+
+def q_parts(rng):
+    f, u, v, lo, hi, ftex = rng.choice(PARTS)
+    uv = sp.simplify((u * v).subs(x, hi) - (u * v).subs(x, lo))
+    rest = sp.simplify(sp.integrate(sp.diff(u, x) * v, (x, lo, hi)))
+    val = sp.simplify(uv - rest)
+    if sp.simplify(val - sp.integrate(f, (x, lo, hi))) != 0:
+        return None
+    stem = "用分部积分计算 " + inline("\\int_{" + ntex(lo) + "}^{" + ntex(hi) + "}" + ftex + r"\,dx")
+    why = ("取 " + inline("u=" + ntex(u)) + "，" + inline("v=" + ntex(v)) + "。"
+           + inline("[uv]") + " 代上下限得 " + inline(ntex(uv)) + "，再减去 "
+           + inline("\\int v\\,du=" + ntex(rest)) + "。")
+    return _mcq(rng, stem, val, [-rest, uv + rest, uv, val + 1], why, "parts")
+
+
+def q_improper(rng):
+    kind = rng.choice(["p", "p", "exp", "gauss", "atan"])
+    if kind == "p":
+        p = rng.choice([sp.Rational(1, 2), sp.Integer(1), sp.Rational(3, 2), sp.Integer(2), sp.Integer(3), sp.Integer(4)])
+        stem = "反常积分 " + inline("\\int_1^{+\\infty}x^{-" + ntex(p) + "}\\,dx") + " 的结果是"
+        if p <= 1:
+            correct = "发散"
+            why = inline("p=" + ntex(p) + "\\le 1") + "：截到 " + inline("b") + " 后的积分随 " + inline("b\\to+\\infty") + " 趋于无穷，发散。"
+            return _mcq(rng, stem, correct, [sp.Integer(1), sp.Integer(0), sp.Integer(2)], why, "improper")
+        val = 1 / (p - 1)
+        why = inline("p=" + ntex(p) + ">1") + "：" + inline("\\int_1^{b}x^{-p}dx=\\frac{1}{p-1}(1-b^{1-p})\\to\\frac{1}{p-1}") + "，收敛。"
+        return _mcq(rng, stem, val, ["发散", val + 1, sp.Integer(0), 1 / p], why, "improper")
+    if kind == "exp":
+        k = rng.choice([1, 2, 3])
+        val = sp.Rational(1, k)
+        stem = "反常积分 " + inline("\\int_0^{+\\infty}e^{-" + (str(k) if k > 1 else "") + "x}\\,dx") + " 的结果是"
+        why = "原函数 " + inline("-\\frac{1}{" + str(k) + "}e^{-" + str(k) + "x}") + "，在 " + inline("+\\infty") + " 处趋于 0，所以等于 " + inline(ntex(val)) + "。"
+        return _mcq(rng, stem, val, ["发散", sp.Integer(k), sp.Integer(0), -val], why, "improper")
+    if kind == "gauss":
+        stem = "反常积分 " + inline("\\int_0^{+\\infty}x\\,e^{-x^2}\\,dx") + " 的结果是"
+        why = "凑微分 " + inline("x\\,dx=-\\frac12 d(-x^2)") + "，得 " + inline("-\\frac12[e^{-x^2}]_0^{+\\infty}=\\frac12") + "。"
+        return _mcq(rng, stem, sp.Rational(1, 2), ["发散", sp.Integer(1), sp.Integer(0), sp.Integer(2)], why, "improper")
+    stem = "反常积分 " + inline("\\int_{-\\infty}^{+\\infty}\\frac{dx}{1+x^2}") + " 的结果是"
+    why = "在 0 处切开，两半各是 " + inline("\\frac{\\pi}{2}") + "，都收敛，合计 " + inline("\\pi") + "。"
+    return _mcq(rng, stem, sp.pi, ["发散", sp.pi / 2, sp.Integer(0), 2 * sp.pi], why, "improper")
 
 
 def hw_ftc(rng):
@@ -192,11 +246,13 @@ def hw_signed(rng):
 
 def build():
     bag = Bag(16016)
-    bag.fill("公式", lambda: q_ftc(bag.rng), 36)
-    bag.fill("奇偶", lambda: q_sym(bag.rng), 18)
-    bag.fill("几何", lambda: q_geom(bag.rng), 18)
-    bag.fill("性质", lambda: q_prop(bag.rng), 14)
-    bag.fill("有号", lambda: q_signed(bag.rng), 14)
+    bag.fill("公式", lambda: q_ftc(bag.rng), 30)
+    bag.fill("奇偶", lambda: q_sym(bag.rng), 16)
+    bag.fill("几何", lambda: q_geom(bag.rng), 16)
+    bag.fill("性质", lambda: q_prop(bag.rng), 12)
+    bag.fill("有号", lambda: q_signed(bag.rng), 10)
+    bag.fill("分部", lambda: q_parts(bag.rng), 8)
+    bag.fill("反常", lambda: q_improper(bag.rng), 8)
     makers = [hw_ftc] * 6 + [hw_geom] * 5 + [hw_odd] * 4 + [hw_signed] * 5
     assert len(makers) == 20
     for i, fn in enumerate(makers):

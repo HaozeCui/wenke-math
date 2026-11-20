@@ -1,4 +1,4 @@
-/* 方向键翻页、页码、备注、全屏、解答揭晓、本讲提纲。不使用 ES module。 */
+/* 方向键翻页、逐步揭示、页码与进度、备注、全屏、解答揭晓、本讲提纲、计时、画笔、黑屏。不使用 ES module。 */
 (function () {
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -9,6 +9,18 @@
     hooks: {},
     reveal: false,
     teacher: new URLSearchParams(location.search).has("teacher"),
+    ink: {},
+    pen: false,
+  };
+
+  const MATH_OPTS = {
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "\\[", right: "\\]", display: true },
+      { left: "$", right: "$", display: false },
+      { left: "\\(", right: "\\)", display: false },
+    ],
+    throwOnError: false,
   };
 
   function current() {
@@ -34,36 +46,81 @@
 
   function renderMath(el) {
     if (!window.renderMathInElement) return;
-    window.renderMathInElement(el, {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },
-        { left: "\\[", right: "\\]", display: true },
-        { left: "$", right: "$", display: false },
-        { left: "\\(", right: "\\)", display: false },
-      ],
-      throwOnError: false,
+    window.renderMathInElement(el, MATH_OPTS);
+  }
+
+  /* ---------- 逐步揭示 ---------- */
+  /* 同一 data-g 的若干元素算作一步（推导页的一行等式与它的理由） */
+  function steps(s) {
+    if (!s) return [];
+    const groups = [], byG = {};
+    $$(".step", s).forEach((el) => {
+      const g = el.dataset.g;
+      if (!g) { groups.push([el]); return; }
+      if (!byG[g]) { byG[g] = []; groups.push(byG[g]); }
+      byG[g].push(el);
     });
+    return groups;
+  }
+  function stepK(s) {
+    return Number(s?.dataset.stepk || 0);
+  }
+  function setSteps(s, k) {
+    if (!s) return;
+    const st = steps(s);
+    k = Math.max(0, Math.min(st.length, k));
+    st.forEach((g, j) => g.forEach((el) => el.classList.toggle("shown", j < k)));
+    s.dataset.stepk = String(k);
   }
 
   function pageLabel() {
     const vis = visibleList();
     const pos = vis.indexOf(current());
     const n = pos >= 0 ? pos + 1 : state.i + 1;
-    return `${n} / ${vis.length}`;
+    const st = steps(current());
+    const narrow = window.matchMedia("(max-width: 960px)").matches;
+    if (narrow) return `${n}/${vis.length}` + (st.length ? `·${stepK(current())}/${st.length}` : "");
+    const tail = st.length ? `　·　${stepK(current())}/${st.length} 步` : "";
+    return `${n} / ${vis.length}${tail}`;
   }
 
   function fillOutline() {
     const box = $("#outline-list");
     if (!box) return;
+    let sec = "";
     box.innerHTML = visibleList().map((s) => {
       const k = state.slides.indexOf(s);
       const t = s.dataset.title || s.querySelector(".slide-title")?.textContent || `第 ${k + 1} 页`;
       const on = k === state.i ? " class=\"on\"" : "";
-      return `<button type="button" data-jump="${k}"${on}>${t}</button>`;
+      let head = "";
+      if (s.dataset.sec && s.dataset.sec !== sec) {
+        sec = s.dataset.sec;
+        head = `<div class="grp">${sec}</div>`;
+      }
+      if (s.classList.contains("divider")) return head;
+      return `${head}<button type="button" data-jump="${k}"${on}>${t}</button>`;
     }).join("");
   }
 
-  function show(n, { hash = true } = {}) {
+  function fillProgress() {
+    const bar = $("#progress");
+    if (!bar) return;
+    const vis = visibleList();
+    const pos = Math.max(0, vis.indexOf(current()));
+    const frac = vis.length > 1 ? pos / (vis.length - 1) : 1;
+    bar.querySelector("i").style.width = (frac * 100).toFixed(2) + "%";
+    $$(".tick", bar).forEach((t) => t.remove());
+    vis.forEach((s, j) => {
+      if (!s.classList.contains("divider") || j === 0) return;
+      const t = document.createElement("b");
+      t.className = "tick";
+      t.style.left = ((j / (vis.length - 1)) * 100).toFixed(2) + "%";
+      t.title = s.dataset.title || "";
+      bar.appendChild(t);
+    });
+  }
+
+  function show(n, { hash = true, allSteps = false } = {}) {
     const max = state.slides.length - 1;
     let i = Math.max(0, Math.min(max, n));
     if (!allowed(state.slides[i])) {
@@ -73,13 +130,15 @@
         while (i > 0 && !allowed(state.slides[i])) i -= 1;
       }
     }
+    const moved = i !== state.i;
     state.i = i;
     state.slides.forEach((s, k) => s.classList.toggle("active", k === state.i));
     const slide = current();
     if (!slide) return;
+    if (moved || allSteps) setSteps(slide, allSteps ? steps(slide).length : 0);
     const title = slide.dataset.title || "";
     const sec = $("#sec-label");
-    if (sec) sec.textContent = title;
+    if (sec) sec.textContent = slide.dataset.sec && slide.dataset.sec !== title ? `${slide.dataset.sec}　·　${title}` : title;
     const page = $("#page");
     if (page) page.textContent = pageLabel();
     const notes = $("#notes");
@@ -100,18 +159,32 @@
       requestAnimationFrame(() => state.hooks[hook](slide));
     }
     fillOutline();
+    fillProgress();
+    drawInk();
     window.dispatchEvent(new CustomEvent("slidechange", { detail: { i: state.i, slide } }));
   }
 
   function next() {
+    const s = current();
+    if (stepK(s) < steps(s).length) {
+      setSteps(s, stepK(s) + 1);
+      $("#page").textContent = pageLabel();
+      return;
+    }
     let n = state.i + 1;
     while (n < state.slides.length && !allowed(state.slides[n])) n += 1;
     show(n);
   }
   function prev() {
+    const s = current();
+    if (stepK(s) > 0) {
+      setSteps(s, stepK(s) - 1);
+      $("#page").textContent = pageLabel();
+      return;
+    }
     let n = state.i - 1;
     while (n >= 0 && !allowed(state.slides[n])) n -= 1;
-    show(n);
+    if (n >= 0) show(n, { allSteps: true });
   }
 
   function toggleReveal() {
@@ -135,11 +208,126 @@
     fillOutline();
   }
 
+  /* ---------- 计时 ---------- */
+  const clock = { left: 0, id: 0 };
+  function fmt(sec) {
+    const m = Math.floor(sec / 60), s = sec % 60;
+    return `${m}:${String(s).padStart(2, "0")}`;
+  }
+  function stopClock() {
+    clearInterval(clock.id);
+    clock.id = 0;
+    const el = $("#clock");
+    if (el) { el.className = "clock"; el.textContent = ""; }
+  }
+  function startClock(sec) {
+    stopClock();
+    clock.left = sec;
+    const el = $("#clock");
+    if (!el) return;
+    el.className = "clock on";
+    el.textContent = fmt(clock.left);
+    clock.id = setInterval(() => {
+      clock.left -= 1;
+      if (clock.left <= 0) {
+        clearInterval(clock.id);
+        clock.id = 0;
+        el.className = "clock on done";
+        el.textContent = "时间到";
+        return;
+      }
+      el.textContent = fmt(clock.left);
+    }, 1000);
+  }
+  function timerFromSlide() {
+    if (clock.id) { stopClock(); return; }
+    const b = current()?.querySelector(".timer");
+    startClock(b ? Number(b.dataset.sec) : 180);
+  }
+
+  /* ---------- 画笔 ---------- */
+  function inkCanvas() {
+    const c = $("#ink");
+    const stage = $(".stage");
+    if (!c || !stage) return null;
+    const r = stage.getBoundingClientRect();
+    c.style.left = r.left + "px";
+    c.style.top = r.top + "px";
+    c.style.width = r.width + "px";
+    c.style.height = r.height + "px";
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const W = Math.max(1, Math.floor(r.width * dpr)), H = Math.max(1, Math.floor(r.height * dpr));
+    if (c.width !== W || c.height !== H) { c.width = W; c.height = H; }
+    const ctx = c.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { c, ctx, w: r.width, h: r.height };
+  }
+  function drawInk() {
+    const k = inkCanvas();
+    if (!k) return;
+    const { ctx, w, h } = k;
+    ctx.clearRect(0, 0, w, h);
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "#c0262d";
+    ctx.lineWidth = 4;
+    (state.ink[state.i] || []).forEach((pts) => {
+      if (pts.length < 2) return;
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0] * w, pts[0][1] * h);
+      for (let j = 1; j < pts.length; j++) ctx.lineTo(pts[j][0] * w, pts[j][1] * h);
+      ctx.stroke();
+    });
+  }
+  function setPen(on) {
+    state.pen = on;
+    $("#ink")?.classList.toggle("on", on);
+    $("#btn-pen")?.classList.toggle("primary", on);
+    drawInk();
+  }
+  function bindInk() {
+    const c = $("#ink");
+    if (!c) return;
+    let cur = null;
+    const at = (e) => {
+      const r = c.getBoundingClientRect();
+      return [(e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height];
+    };
+    c.addEventListener("pointerdown", (e) => {
+      if (!state.pen) return;
+      c.setPointerCapture(e.pointerId);
+      cur = [at(e)];
+      (state.ink[state.i] = state.ink[state.i] || []).push(cur);
+    });
+    c.addEventListener("pointermove", (e) => {
+      if (!cur) return;
+      cur.push(at(e));
+      drawInk();
+    });
+    const end = () => { cur = null; };
+    c.addEventListener("pointerup", end);
+    c.addEventListener("pointercancel", end);
+  }
+
+  /* ---------- 打印：先把所有实验画好 ---------- */
+  function renderAllForPrint() {
+    document.body.classList.add("printing");
+    state.slides.forEach((s) => {
+      setSteps(s, steps(s).length);
+      renderMath(s);
+      const hook = s.dataset.hook;
+      if (hook && state.hooks[hook]) {
+        try { state.hooks[hook](s); } catch (err) { console.warn(err); }
+      }
+    });
+  }
+
   window.Deck = {
     on: (name, fn) => { state.hooks[name] = fn; },
     show,
     next,
     prev,
+    renderMath,
     fitCanvas(canvas) {
       const rect = canvas.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -161,11 +349,20 @@
     const fromHash = parseInt((location.hash || "#1").slice(1), 10);
     const start = Number.isFinite(fromHash) ? fromHash - 1 : 0;
     if (isAnswer(state.slides[start])) state.reveal = true;
+    state.i = -1;
     show(start, { hash: false });
     renderMath(document.body);
+    bindInk();
 
     document.addEventListener("keydown", (e) => {
-      if (e.target.matches("input, textarea, select")) return;
+      if (e.target.matches?.("input, textarea, select")) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      const black = $("#blackout");
+      if (black?.classList.contains("open")) {
+        e.preventDefault();
+        black.classList.remove("open");
+        return;
+      }
       if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
         e.preventDefault(); next();
       } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
@@ -173,7 +370,7 @@
       } else if (e.key === "Home") show(0);
       else if (e.key === "End") {
         const vis = visibleList();
-        show(state.slides.indexOf(vis[vis.length - 1]));
+        show(state.slides.indexOf(vis[vis.length - 1]), { allSteps: true });
       } else if (e.key === "f" || e.key === "F") {
         if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
         else document.exitFullscreen?.();
@@ -183,12 +380,22 @@
         toggleReveal();
       } else if (e.key === "i" || e.key === "I") {
         toggleOutline();
+      } else if (e.key === "t" || e.key === "T") {
+        timerFromSlide();
+      } else if (e.key === "p" || e.key === "P") {
+        setPen(!state.pen);
+      } else if (e.key === "c" || e.key === "C") {
+        delete state.ink[state.i];
+        drawInk();
+      } else if (e.key === "b" || e.key === "B" || e.key === ".") {
+        black?.classList.add("open");
       } else if (e.key === "?" || e.key === "/") {
         $("#help")?.classList.toggle("open");
       } else if (e.key === "Escape") {
         $("#help")?.classList.remove("open");
         $("#notes")?.classList.remove("open");
         $("#outline")?.classList.remove("open");
+        if (state.pen) setPen(false);
       }
     });
 
@@ -200,9 +407,18 @@
     }
     $("#btn-ans")?.addEventListener("click", toggleReveal);
     $("#btn-toc")?.addEventListener("click", toggleOutline);
+    $("#btn-pen")?.addEventListener("click", () => setPen(!state.pen));
     $("#btn-full")?.addEventListener("click", () => {
       if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
       else document.exitFullscreen?.();
+    });
+    $("#clock")?.addEventListener("click", stopClock);
+    $("#blackout")?.addEventListener("click", () => $("#blackout")?.classList.remove("open"));
+    document.addEventListener("click", (e) => {
+      const b = e.target.closest(".timer");
+      if (!b) return;
+      if (clock.id) stopClock();
+      else startClock(Number(b.dataset.sec) || 180);
     });
     $("#help")?.addEventListener("click", () => $("#help")?.classList.remove("open"));
     $("#outline")?.addEventListener("click", (e) => {
@@ -217,12 +433,18 @@
     window.addEventListener("resize", () => {
       const hook = current()?.dataset.hook;
       if (hook && state.hooks[hook]) state.hooks[hook](current());
+      drawInk();
     });
     window.addEventListener("hashchange", () => {
       const n = parseInt((location.hash || "#1").slice(1), 10);
       if (!Number.isFinite(n)) return;
       if (isAnswer(state.slides[n - 1])) state.reveal = true;
       show(n - 1, { hash: false });
+    });
+    window.addEventListener("beforeprint", renderAllForPrint);
+    window.addEventListener("afterprint", () => {
+      document.body.classList.remove("printing");
+      show(state.i, { hash: false });
     });
 
     const stage = document.querySelector(".stage");

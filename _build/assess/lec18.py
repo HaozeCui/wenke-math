@@ -183,14 +183,140 @@ def hw_hess(rng):
     return HW(stem, steps, "驻点 (" + str(m) + "," + str(n) + ")，鞍点。", "3.4cm")
 
 
+def _pt(a, b) -> str:
+    return "(" + ntex(a) + "," + ntex(b) + ")"
+
+
+def q_stat(rng):
+    """利润型 f = ax + by − x² − y² − xy：驻点与极大值（例 1.8.11 的同类题）。"""
+    a = rng.randrange(12, 61, 2)
+    b = rng.randrange(10, 51, 2)
+    f = a * x + b * y - x**2 - y**2 - x * y
+    sol = sp.solve([sp.diff(f, x), sp.diff(f, y)], [x, y], dict=True)
+    if len(sol) != 1:
+        return None
+    x0, y0 = sol[0][x], sol[0][y]
+    if x0 <= 0 or y0 <= 0 or x0 == y0:
+        return None
+    val = sp.simplify(f.subs({x: x0, y: y0}))
+    ftex = inline("f(x,y)=" + str(a) + "x+" + str(b) + "y-x^2-y^2-xy")
+    if rng.random() < 0.6:
+        stem = ftex + " 的驻点是"
+        why = ("解 " + inline(str(a) + "-2x-y=0") + "，" + inline(str(b) + "-x-2y=0") + "，得 "
+               + inline(_pt(x0, y0)) + "。注意 " + inline("-xy") + " 求偏导后在两个方程里各留下一项。")
+        wrongs = [_pt(y0, x0), _pt(sp.Rational(a, 2), sp.Rational(b, 2)), _pt(sp.Rational(a, 3), sp.Rational(b, 3)), _pt(x0, -y0)]
+        return _mcq(rng, stem, _pt(x0, y0), wrongs, why, "stat")
+    stem = ftex + " 的极大值是"
+    why = ("驻点 " + inline(_pt(x0, y0)) + "；" + inline("a=-2,\\ b=-1,\\ d=-2") + "，" + inline("ad-b^2=3>0") + " 且 "
+           + inline("a<0") + "，是极大。代入得 " + inline(ntex(val)) + "。")
+    half = sp.simplify(f.subs({x: sp.Rational(a, 2), y: sp.Rational(b, 2)}))
+    return _mcq(rng, stem, val, [half, val / 2, sp.Integer(a * b) / 4, val + a], why, "stat")
+
+
+def q_region(rng):
+    """先画区域再定上下限：三角形、抛物线与直线之间。"""
+    mode = rng.choice(["tri", "tri", "bounds", "lens"])
+    if mode == "tri":
+        p, q, c = rng.choice([1, 2, 3]), rng.choice([1, 2, 3]), rng.choice([1, 2, 3])
+        f = p * x + q * y
+        val = sp.integrate(sp.integrate(f, (y, 0, c - x)), (x, 0, c))
+        wrong = sp.integrate(sp.integrate(f, (y, 0, x)), (x, 0, c))
+        if val == wrong:
+            return None
+        stem = ("计算 " + inline("\\iint_D(" + ntex(f) + ")\\,dx\\,dy") + "，D 由 " + inline("x=0") + "、"
+                + inline("y=0") + "、" + inline("x+y=" + str(c)) + " 围成")
+        why = ("X 型：" + inline("0\\le x\\le " + str(c)) + "，" + inline("0\\le y\\le " + str(c) + "-x") + "。"
+               + "上限是斜边 " + inline("y=" + str(c) + "-x") + "，不是 " + inline("y=x") + "。结果 " + inline(ntex(val)) + "。")
+        return _mcq(rng, stem, val, [wrong, val * 2, sp.Integer((p + q) * c**2) / 2, val + 1], why, "region")
+    n = rng.choice([2, 3, 4])
+    if mode == "bounds":
+        stem = ("D 由 " + inline("y=x^{" + str(n) + "}") + " 与 " + inline("y=x") + " 围成。化成先对 y 积分的累次积分，内层 y 的范围是")
+        lo, hi = "x^{" + str(n) + "}", "x"
+        why = ("交点 (0,0)、(1,1)。在 0 与 1 之间 " + inline("x^{" + str(n) + "}\\lt x") + "，竖条从下边 "
+               + inline("y=x^{" + str(n) + "}") + " 到上边 " + inline("y=x") + "。")
+        mk = lambda a, b: "从 " + inline(a) + " 到 " + inline(b)
+        return _mcq(rng, stem, mk(lo, hi), [mk(hi, lo), mk("0", "1"), mk("0", "x")], why, "region")
+    k = rng.choice([1, 2, 3, 4, 6, 12])
+    f = k * x * y
+    val = sp.integrate(sp.integrate(f, (y, x**n, x)), (x, 0, 1))
+    first = sp.integrate(sp.Rational(k, 2) * x**3, (x, 0, 1))
+    stem = ("计算 " + inline("\\iint_D " + ntex(f) + "\\,dx\\,dy") + "，D 由 " + inline("y=x^{" + str(n) + "}") + " 与 " + inline("y=x") + " 围成")
+    why = ("X 型：" + inline("0\\le x\\le 1") + "，" + inline("x^{" + str(n) + "}\\le y\\le x") + "。内层得 "
+           + inline(ntex(sp.integrate(f, (y, x**n, x)))) + "，再积分得 " + inline(ntex(val)) + "。")
+    return _mcq(rng, stem, val, [-val, first, val * 2, first - val], why, "region")
+
+
+REL = [
+    (inline("f(x,y)=|x|+|y|") + " 在原点", "连续，但偏导不存在",
+     ["偏导存在，但不连续", "可微", "不连续，偏导也不存在"],
+     "两个连续函数之和处处连续；" + inline("\\frac{|h|}{h}") + " 在 " + inline("h\\to0") + " 时左右极限是 1 与 -1，偏导不存在。（例 1.8.9）"),
+    (inline("f(x,y)=\\frac{xy}{x^2+y^2}") + "，" + inline("f(0,0)=0") + "，在原点", "偏导存在，但不连续",
+     ["连续，但偏导不存在", "可微", "连续且可微"],
+     "沿两条坐标轴函数恒为 0，两个偏导都是 0；沿 " + inline("y=kx") + " 得 " + inline("\\frac{k}{1+k^2}") + "，极限不存在。（例 1.8.8）"),
+    (inline("f(x,y)=x^2+y^2") + " 在原点", "可微，因而连续，偏导也存在",
+     ["连续，但偏导不存在", "偏导存在，但不可微", "不连续"],
+     "偏导 " + inline("2x") + "、" + inline("2y") + " 处处连续，偏导连续可推出可微，可微又推出连续。"),
+    ("若二元函数在一点的两个偏导都存在，则在该点", "既不能保证连续，也不能保证可微",
+     ["一定连续", "一定可微", "一定取极值"],
+     "例 1.8.8 的函数两个偏导都存在，却既不连续也不可微。偏导只看两条坐标轴上的情况。"),
+    ("若二元函数在一点可微，则在该点", "连续，且两个偏导都存在",
+     ["连续，但偏导未必存在", "偏导存在，但未必连续", "一定取极值"],
+     "可微时 " + inline("\\Delta z=A\\Delta x+B\\Delta y+o(\\rho)") + "，令增量趋于 0 得连续；取 " + inline("\\Delta y=0") + " 得 " + inline("A=f_x") + "。"),
+    ("下列条件中，能推出二元函数在一点可微的是", "两个偏导在该点附近存在且连续",
+     ["两个偏导在该点存在", "函数在该点连续", "沿每条过该点的直线极限都存在"],
+     "偏导存在、连续都推不出可微；偏导连续才能推出可微。"),
+    (inline("\\lim_{(x,y)\\to(0,0)}\\frac{x^2y}{x^4+y^2}"), "不存在",
+     ["存在且为 0", "存在且为 " + inline("\\frac12"), "存在且为 1"],
+     "沿每条直线 " + inline("y=kx") + " 都得 0，但沿 " + inline("y=x^2") + " 得 " + inline("\\frac12") + "：两条路不同，极限不存在。"),
+]
+
+
+def q_rel(rng):
+    stem, correct, wrongs, why = rng.choice(REL)
+    return _mcq(rng, stem, correct, wrongs, why, "rel")
+
+
+def hw_stat(rng):
+    x0, y0 = rng.choice([(10, 5), (12, 4), (8, 6), (15, 5), (20, 10), (14, 2)])
+    a, b = 2 * x0 + y0, x0 + 2 * y0
+    f = a * x + b * y - x**2 - y**2 - x * y
+    val = f.subs({x: x0, y: y0})
+    steps = [
+        inline("f_x=" + str(a) + "-2x-y=0") + "，" + inline("f_y=" + str(b) + "-x-2y=0") + "。联立得驻点 (" + str(x0) + "," + str(y0) + ")。",
+        inline("a=f_{xx}=-2") + "，" + inline("b=f_{xy}=-1") + "，" + inline("d=f_{yy}=-2") + "；" + inline("ad-b^2=3>0") + " 且 " + inline("a<0") + "，极大。",
+        "代入原函数，极大值 " + inline(str(val)) + "。",
+    ]
+    stem = "利润 " + inline("P(x,y)=" + str(a) + "x+" + str(b) + "y-x^2-y^2-xy") + "（万元）。求驻点，用黑塞矩阵判断类型，并求极大利润。"
+    return HW(stem, steps, "驻点 (" + str(x0) + "," + str(y0) + ")，极大值 " + inline(str(val)) + "。", "3.6cm")
+
+
+def hw_region(rng):
+    c = rng.choice([1, 2, 3])
+    p, q = rng.choice([(1, 1), (1, 2), (2, 1), (1, 3)])
+    f = p * x + q * y
+    inner = sp.expand(sp.integrate(f, (y, 0, c - x)))
+    val = sp.integrate(inner, (x, 0, c))
+    steps = [
+        "画图：顶点 (0,0)、(" + str(c) + ",0)、(0," + str(c) + ")。看成 X 型：" + inline("0\\le x\\le " + str(c)) + "，" + inline("0\\le y\\le " + str(c) + "-x") + "。",
+        "内层对 y（x 当常数）：得 " + inline(ntex(inner)) + "。",
+        "外层对 x 从 0 到 " + str(c) + "：得 " + inline(ntex(val)) + "。",
+    ]
+    stem = ("计算 " + inline("\\iint_D(" + ntex(f) + ")\\,dx\\,dy") + "，D 由 " + inline("x=0") + "、" + inline("y=0") + "、"
+            + inline("x+y=" + str(c)) + " 围成。先画图，写出上下限。")
+    return HW(stem, steps, inline(ntex(val)), "3.6cm")
+
+
 def build():
     bag = Bag(18018)
-    bag.fill("定义域", lambda: q_dom(bag.rng), 12)
-    bag.fill("路径", lambda: q_path(bag.rng), 28)
-    bag.fill("偏导", lambda: q_part(bag.rng), 24)
-    bag.fill("二重", lambda: q_double(bag.rng), 20)
-    bag.fill("黑塞", lambda: q_hess(bag.rng), 16)
-    makers = [hw_dom] * 4 + [hw_path] * 4 + [hw_part] * 4 + [hw_double] * 4 + [hw_hess] * 4
+    bag.fill("定义域", lambda: q_dom(bag.rng), 10)
+    bag.fill("路径", lambda: q_path(bag.rng), 22)
+    bag.fill("偏导", lambda: q_part(bag.rng), 20)
+    bag.fill("二重", lambda: q_double(bag.rng), 14)
+    bag.fill("黑塞", lambda: q_hess(bag.rng), 12)
+    bag.fill("驻点", lambda: q_stat(bag.rng), 10)
+    bag.fill("区域", lambda: q_region(bag.rng), 6)
+    bag.fill("辨析", lambda: q_rel(bag.rng), 6)
+    makers = [hw_dom] * 3 + [hw_path] * 3 + [hw_part] * 4 + [hw_double] * 3 + [hw_hess] * 3 + [hw_stat] * 2 + [hw_region] * 2
     assert len(makers) == 20
     for i, fn in enumerate(makers):
         bag.fill_hw("h" + str(i), lambda fn=fn: fn(bag.rng))

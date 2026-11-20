@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>2.2 矩阵及其运算 · 文科高等数学</title>
   <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
-  <link rel="stylesheet" href="../css/deck.css" />
+  <link rel="stylesheet" href="../css/deck.css?v=20261110174738" />
 </head>
 <body class="play">
   <div class="app cover-mode">
@@ -16,23 +16,64 @@
       <h1>文科高等数学　·　2.2 矩阵及其运算</h1>
       <span class="sec" id="sec-label"></span>
     </header>
+    <div class="progress" id="progress" aria-hidden="true"><i></i></div>
     <main class="stage">
-<section class="slide cover" data-title="封面" data-notes="先乘法几何，再不可交换，最后逆矩阵口诀。">
+<section class="slide cover" data-title="封面" data-notes="先概念与加减，再乘法几何，最后秩与逆。">
 <div class="kicker">2.2　建议 7 学时</div>
         <h2>一行对一列，<br />得到一个数</h2>
         <p>矩阵是数表，也是线性变换。乘法规定为行×列的点乘。一般 AB≠BA。</p>
-        <div class="meta">对位高亮　·　交换次序看结果</div>
+        <div class="meta">配套《文科数学基础》　·　对位高亮 · 不可交换 · 求逆</div>
 </section>
 <section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
-<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能按「行×列」计算 2×2 矩阵乘法，并指出结果的行列尺寸。</p></div><div class="card"><span class="idx">02</span><p>能举一个 AB≠BA 的例子，并说明乘法不可随便换序。</p></div><div class="card"><span class="idx">03</span><p>能叙述可逆的含义：存在 B 使 AB=BA=I；2×2 会用伴随公式。</p></div></div>
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能按「行×列」计算矩阵乘法，并先检查尺寸是否匹配。</p></div><div class="card"><span class="idx">02</span><p>能举 AB≠BA 与零因子的例子，说明乘法不可随便换序、也不能随意约去。</p></div><div class="card"><span class="idx">03</span><p>能用初等行变换把矩阵化成阶梯形并读出秩；会用伴随公式或行变换求 2×2、3×3 的逆，并解 AX=B。</p></div></div>
 </section>
-<section class="slide" data-title="本讲路线">
-<h2 class="slide-title">本讲路线</h2><div class="card"><ul><li>矩阵：尺寸、加法、数乘</li><li>乘法：左行对右列</li><li>实验：对位高亮</li><li>AB≠BA 两个小矩阵</li><li>单位阵、转置、逆</li><li>初等变换求逆只留口诀</li></ul></div>
+<section class="slide" data-title="本讲路线" data-notes="路线由下面六个分节自动生成。">
+<h2 class="slide-title">本讲路线</h2><div class="card"><ol class="route"><li>概念：去掉标签的数表</li><li>加减与数乘：同型才能对位</li><li>乘法：左行对右列</li><li>阶梯形与秩</li><li>逆矩阵与可逆方程</li><li>回顾与自测</li></ol></div>
 </section>
-<section class="slide" data-title="矩阵">
-<div class="num">定义</div><h2 class="slide-title">矩阵</h2><div class="card"><p>$m\times n$ 矩阵：m 行 n 列的数表。同型矩阵才能相加；数乘是每个元素乘同一个数。</p><p>乘法：左 $m\times p$ 与右 $p\times n$ 才能乘，结果 $m\times n$。左的列数必须等于右的行数。</p></div>
+<section data-sec="概念：去掉标签的数表" class="slide divider" data-sec-start="概念：去掉标签的数表" data-title="概念：去掉标签的数表">
+<div class="sec-no">一</div><h2>概念：去掉标签的数表</h2><p>成绩表、方程组系数，剥掉表头就是矩阵。</p>
 </section>
-<section class="slide" data-title="一行对一列，点乘得到一个数" data-notes="拖行、列。读出 (AB)_ij 的两项。" data-hook="matmul">
+<section data-sec="概念：去掉标签的数表" class="slide" data-title="矩阵">
+<div class="num">定义</div><h2 class="slide-title">矩阵</h2><div class="card"><p>$m\times n$ 矩阵：m 行 n 列的数表，记 $\mathbf A=(a_{ij})_{m\times n}$。</p><p>$m=n$ 叫方阵；$m=1$ 是行向量，$n=1$ 是列向量。</p></div><p class="lead" style="margin-top:12px">本课元素取实数。两个矩阵相等：同型且对应位置元素全相等。</p>
+</section>
+<section data-sec="概念：去掉标签的数表" class="slide" data-title="例 2.2.1　成绩表">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.1　成绩表</h2><p class="lead">矩阵不记得「这是谁的分」，只记得位置上的数。</p><div class="grid-2 fit"><div class="card"><h3>期中 A</h3><div class="gold-rule"></div><ul><li>$$\begin{pmatrix}81&75&90&73\\ 78&84&88&69\\ 91&82&85&78\end{pmatrix}$$</li><li>行：数、外、计；列：甲乙丙丁。</li></ul></div><div class="card"><h3>期末 B</h3><div class="gold-rule"></div><ul><li>$$\begin{pmatrix}84&80&93&74\\ 81&77&85&70\\ 65&91&82&73\end{pmatrix}$$</li><li>去掉姓名科目，剩下两张同型数表。</li></ul></div></div>
+</section>
+<section data-sec="概念：去掉标签的数表" class="slide" data-title="例 2.2.2　方程组写成矩阵">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.2　方程组写成矩阵</h2><div class="derive"><div class="dm">$$\begin{cases}a_{11}x_1+\cdots+a_{1n}x_n=b_1\\ \vdots\\ a_{m1}x_1+\cdots+a_{mn}x_n=b_m\end{cases}$$</div><div class="dw"><span>m 个方程，n 个未知数</span></div><div class="dm step" data-g="d1">$$A=(a_{ij})_{m\times n}$$</div><div class="dw step" data-g="d1"><span>系数矩阵：未知数前面的数</span></div><div class="dm step" data-g="d2">$$\bar A=[A|b]$$</div><div class="dw step" data-g="d2"><span>增广矩阵：再并上一列常数</span></div></div>
+</section>
+<section data-sec="概念：去掉标签的数表" class="slide" data-title="例 2.2.3　相等与零矩阵">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.3　相等与零矩阵</h2><div class="derive"><div class="dm">$$\begin{pmatrix}1&0\\0&1\end{pmatrix}\neq\begin{pmatrix}1&0\\1&1\end{pmatrix}$$</div><div class="dw"><span>同型但有一个位置不同</span></div><div class="dm step" data-g="d1">$$O_{3\times 2}\neq O_{2\times 2}$$</div><div class="dw step" data-g="d1"><span>全是 0 也要同型才谈得上相等</span></div><div class="dm step" data-g="d2">$$O_{m\times n}$$</div><div class="dw step" data-g="d2"><span>零矩阵：每个元素都是 0</span></div></div><p class="lead step">转置 $A^{\mathrm T}$：行列互换；$(A^{\mathrm T})^{\mathrm T}=A$。</p>
+</section>
+<section data-sec="加减与数乘：同型才能对位" class="slide divider" data-sec-start="加减与数乘：同型才能对位" data-title="加减与数乘：同型才能对位">
+<div class="sec-no">二</div><h2>加减与数乘：同型才能对位</h2><p>对应位置相加；每个元素乘同一个数。</p>
+</section>
+<section data-sec="加减与数乘：同型才能对位" class="slide" data-title="加法与数乘">
+<div class="num">定义</div><h2 class="slide-title">加法与数乘</h2><div class="card"><p>同型矩阵 $A,B$：$(A+B)_{ij}=a_{ij}+b_{ij}$，$(kA)_{ij}=ka_{ij}$。</p><p>性质：$A+B=B+A$，$(A+B)+C=A+(B+C)$，$A+O=A$，$(A+B)^{\mathrm T}=A^{\mathrm T}+B^{\mathrm T}$。</p></div><p class="lead" style="margin-top:12px">$-A=(-1)A$，于是 $A-B=A+(-B)$。</p>
+</section>
+<section data-sec="加减与数乘：同型才能对位" class="slide" data-title="成绩相加（接例 2.2.1）">
+<div class="num">例题</div><h2 class="slide-title">成绩相加（接例 2.2.1）</h2><div class="derive"><div class="dm">$$A+B=\begin{pmatrix}165&155&183&147\\ 159&161&173&139\\ 156&173&167&151\end{pmatrix}$$</div><div class="dw"><span>对应位置相加：甲的数学 81+84=165</span></div></div><p class="lead step">两场考试分数「叠」在一张表上，就是矩阵加法。</p>
+</section>
+<section data-sec="加减与数乘：同型才能对位" class="slide" data-title="例 2.2.4　解 A+3X=B">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.4　解 A+3X=B</h2><div class="derive"><div class="dm">$$A=\begin{pmatrix}3&-2&2&0\\1&3&0&8\\2&4&6&9\end{pmatrix},\ B=\begin{pmatrix}7&4&-3&3\\3&1&0&7\\5&2&3&9\end{pmatrix}$$</div><div class="dw"><span>同型 3×4</span></div><div class="dm step" data-g="d1">$$X=\tfrac13(B-A)$$</div><div class="dw step" data-g="d1"><span>移项再数乘</span></div><div class="dm step" data-g="d2">$$X=\begin{pmatrix}\tfrac43&2&-\tfrac53&1\\ \tfrac23&-\tfrac23&0&-\tfrac13\\ 1&-\tfrac23&-1&0\end{pmatrix}$$</div><div class="dw step" data-g="d2"><span>每个位置各自算</span></div></div>
+</section>
+<section data-sec="加减与数乘：同型才能对位" class="slide" data-title="课堂练 1">
+<div class="num">课堂练</div><span class="badge lv-base">基础</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">$A=\begin{pmatrix}1&2\\0&1\end{pmatrix}$，$B=\begin{pmatrix}0&1\\1&0\end{pmatrix}$。
+计算 $2A-B$ 与 $A+B$。两者同型吗？</div><p class="wait">约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="加减与数乘：同型才能对位" class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>$2A=\begin{pmatrix}2&4\\0&2\end{pmatrix}$，$2A-B=\begin{pmatrix}2&3\\-1&2\end{pmatrix}$。</li><li>$A+B=\begin{pmatrix}1&3\\1&1\end{pmatrix}$。</li><li>都是 2×2，同型。</li></ol>
+</section>
+<section data-sec="乘法：左行对右列" class="slide divider" data-sec-start="乘法：左行对右列" data-title="乘法：左行对右列">
+<div class="sec-no">三</div><h2>乘法：左行对右列</h2><p>先看尺寸，再点乘；一般不能换序。</p>
+</section>
+<section data-sec="乘法：左行对右列" class="slide" data-title="例 2.2.5　买文具">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.5　买文具</h2><div class="derive"><div class="dm">$$(0.3,\ 0.2,\ 0.8)\begin{pmatrix}12\\15\\1\end{pmatrix}$$</div><div class="dw"><span>单价行 × 数量列</span></div><div class="dm step" data-g="d1">$$0.3\cdot12+0.2\cdot15+0.8\cdot1=7.4$$</div><div class="dw step" data-g="d1"><span>一次点乘得到总价</span></div></div><p class="lead step">左的列数 = 右的行数，才能乘。</p>
+</section>
+<section data-sec="乘法：左行对右列" class="slide" data-title="矩阵乘法">
+<div class="num">定义</div><h2 class="slide-title">矩阵乘法</h2><div class="card"><p>$A$ 为 $m\times n$，$B$ 为 $n\times p$，则 $C=AB$ 为 $m\times p$，</p><p>$$c_{ik}=\sum_{j=1}^{n}a_{ij}b_{jk}$$</p><p>（$A$ 的第 $i$ 行点乘 $B$ 的第 $k$ 列。）</p></div><p class="lead" style="margin-top:12px">定理 2.2.1：方阵有 $|AB|=|A||B|$。方程组可写成 $AX=B$。</p>
+</section>
+<section data-sec="乘法：左行对右列" class="slide" data-title="一行对一列，点乘得到一个数" data-notes="拖行、列。读出 (AB)_ij 的两项。" data-hook="matmul">
 <div class="num">实验 1</div><h2 class="slide-title">一行对一列，点乘得到一个数</h2>
         <div class="grid-2" style="flex:1">
           <div class="plot-wrap"><canvas id="mm-canvas"></canvas></div>
@@ -48,10 +89,16 @@
     </aside>
         </div>
 </section>
-<section class="slide" data-title="乘法在做什么">
-<h2 class="slide-title">乘法在做什么</h2><div class="card"><ul><li>右边的向量被左边的矩阵变成另一个向量。</li><li>复合变换：先乘右边的矩阵，再乘左边的——次序就是操作次序。</li><li>因此一般不能交换。</li></ul></div>
+<section data-sec="乘法：左行对右列" class="slide" data-title="例 2.2.6　行×列 vs 列×行">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.6　行×列 vs 列×行</h2><div class="derive"><div class="dm">$$A=(a_1,\ldots,a_n),\ B=\begin{pmatrix}b_1\\ \vdots\\ b_n\end{pmatrix}$$</div><div class="dw"><span>一行与一列</span></div><div class="dm step" data-g="d1">$$AB=a_1b_1+\cdots+a_nb_n$$</div><div class="dw step" data-g="d1"><span>结果是 1×1（一个数）</span></div><div class="dm step" data-g="d2">$$BA=(b_ia_j)_{n\times n}$$</div><div class="dw step" data-g="d2"><span>结果是 n 阶方阵</span></div></div><p class="lead step">连尺寸都不同，更谈不上 AB=BA。</p>
 </section>
-<section class="slide" data-title="交换次序，结果可以完全不同" data-notes="A=[[0,1],[0,0]]，B=[[0,0],[1,0]]。先看 AB 再看 BA。" data-hook="abba">
+<section data-sec="乘法：左行对右列" class="slide" data-title="例 2.2.7　2×3 乘 3×4">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.7　2×3 乘 3×4</h2><div class="derive"><div class="dm">$$A=\begin{pmatrix}1&3&-2\\4&-1&5\end{pmatrix},\ B=\begin{pmatrix}2&-3&4&1\\-1&2&2&0\\4&5&1&1\end{pmatrix}$$</div><div class="dw"><span>左列=右行=3</span></div><div class="dm step" data-g="d1">$$AB=\begin{pmatrix}-9&-7&8&-1\\29&11&19&9\end{pmatrix}$$</div><div class="dw step" data-g="d1"><span>结果 2×4</span></div><div class="dm step" data-g="d2">$$BA\text{ 无定义}$$</div><div class="dw step" data-g="d2"><span>4≠2，右列≠左行</span></div></div>
+</section>
+<section data-sec="乘法：左行对右列" class="slide" data-title="例 2.2.8　非零矩阵，乘积可以是 O">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.8　非零矩阵，乘积可以是 O</h2><div class="derive"><div class="dm">$$A=\begin{pmatrix}-2&4\\1&-2\end{pmatrix},\ B=\begin{pmatrix}-16&-32\\8&16\end{pmatrix}$$</div><div class="dw"><span>两个都不是零矩阵</span></div><div class="dm step" data-g="d1">$$AB=\begin{pmatrix}64&128\\-32&-64\end{pmatrix}$$</div><div class="dw step" data-g="d1"><span>AB 也不是 O</span></div><div class="dm step" data-g="d2">$$BA=O$$</div><div class="dw step" data-g="d2"><span>零因子：不能从 AB=O 推出 A=O 或 B=O</span></div></div>
+</section>
+<section data-sec="乘法：左行对右列" class="slide" data-title="交换次序，结果可以完全不同" data-notes="A=[[0,1],[0,0]]，B=[[0,0],[1,0]]。先看 AB 再看 BA。" data-hook="abba">
 <div class="num">实验 2</div><h2 class="slide-title">交换次序，结果可以完全不同</h2>
         <div class="grid-2" style="flex:1">
           <div class="plot-wrap"><canvas id="abba-canvas"></canvas></div>
@@ -67,98 +114,141 @@
     </aside>
         </div>
 </section>
-<section class="slide" data-title="课堂练 1">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">A=[[0,1],[0,0]]，B=[[0,0],[1,0]]。计算 AB 与 BA，说明什么？</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="乘法：左行对右列" class="slide" data-title="课堂练 2">
+<div class="num">课堂练</div><span class="badge lv-judge">辨析</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">$A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$，$B=\begin{pmatrix}0&0\\1&0\end{pmatrix}$。
+计算 AB 与 BA。说明什么？</div><p class="wait">约 3 分钟。<button type="button" class="btn ghost timer" data-sec="180">计时 3:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="课堂练 1" data-kind="answer">
-<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>AB=[[1,0],[0,0]]。</li><li>BA=[[0,0],[0,1]]。</li><li>AB≠BA。矩阵乘法不可交换——这是与数的乘法最大的差别。</li></ol><div class="comment">两个都不是零矩阵，乘积却可以「很多零」。</div>
+<section data-sec="乘法：左行对右列" class="slide" data-title="课堂练 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>$AB=\begin{pmatrix}1&0\\0&0\end{pmatrix}$，$BA=\begin{pmatrix}0&0\\0&1\end{pmatrix}$。</li><li>$AB\neq BA$。</li><li>矩阵乘法不可交换——与数的乘法最大的差别。</li></ol><div class="comment">两个都不是零矩阵，乘积却可以「很多零」。</div>
 </section>
-<section class="slide" data-title="单位阵与转置">
-<h2 class="slide-title">单位阵与转置</h2><div class="grid-2"><div class="card"><h3>I</h3><div class="gold-rule"></div><ul><li>主对角 1，其余 0。</li><li>$AI=IA=A$。</li><li>像数里的 1。</li></ul></div><div class="card"><h3>转置 Aᵀ</h3><div class="gold-rule"></div><ul><li>行列互换。</li><li>$(AB)^{\mathrm T}=B^{\mathrm T}A^{\mathrm T}$。</li><li>次序反过来。</li></ul></div></div>
+<section data-sec="乘法：左行对右列" class="slide" data-title="找错 1　当成逐项相乘">
+<div class="num">课堂练</div><span class="badge lv-judge">找错</span><h2 class="slide-title">找错 1　当成逐项相乘</h2><div class="card mistake"><p class="given">$A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$，$B=\begin{pmatrix}0&1\\1&0\end{pmatrix}$。有人算 $AB=\begin{pmatrix}0&2\\3&0\end{pmatrix}$。</p><h3>某同学这样写</h3><ol><li>把对应位置直接相乘。</li><li>得到 $\begin{pmatrix}0&2\\3&0\end{pmatrix}$。</li></ol></div><p class="wait">错在哪里？正确的 AB 是什么？　约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="逆矩阵">
-<div class="num">定义</div><h2 class="slide-title">逆矩阵</h2><div class="card"><p>若存在 $B$ 使 $AB=BA=I$，称 $A$ 可逆，$B=A^{-1}$。</p><p>$2\times 2$：若 $D=ad-bc\neq 0$，</p><p>$$A^{-1}=\frac1D\begin{pmatrix}d&-b\\ -c&a\end{pmatrix}$$</p><p>主对角对调，副对角变号，再除以 D。</p></div><p class="lead" style="margin-top:12px">D=0 则不可逆。</p>
+<section data-sec="乘法：左行对右列" class="slide" data-title="找错 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">找错 1</h2><ol class="answer-list"><li>矩阵乘法不是逐项相乘。</li><li>第一行×第一列：$1\cdot0+2\cdot1=2$；第一行×第二列：$1\cdot1+2\cdot0=1$。</li><li>$AB=\begin{pmatrix}2&1\\4&3\end{pmatrix}$。</li></ol>
 </section>
-<section class="slide" data-title="课堂练 2">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">$A=\begin{pmatrix}1&2\\0&1\end{pmatrix}$。求 $A^{-1}$，并验证 $AA^{-1}=I$。</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="乘法：左行对右列" class="slide" data-title="乘法性质（不能换序）">
+<h2 class="slide-title">乘法性质（不能换序）</h2><div class="grid-3 fit"><div class="card"><h3>结合</h3><div class="gold-rule"></div><p>$(AB)C=A(BC)$。</p></div><div class="card"><h3>分配</h3><div class="gold-rule"></div><p>$(A+B)C=AC+BC$，左乘同理。</p></div><div class="card"><h3>转置</h3><div class="gold-rule"></div><p>$(AB)^{\mathrm T}=B^{\mathrm T}A^{\mathrm T}$（次序反过来）。</p></div></div>
 </section>
-<section class="slide" data-title="课堂练 2" data-kind="answer">
-<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>D=1。对调主对角仍是 1,1；副对角 2 变号为 −2，0 仍是 0。</li><li>$A^{-1}=\begin{pmatrix}1&-2\\0&1\end{pmatrix}$。</li><li>相乘：(1,2;0,1)(1,−2;0,1)=(1,0;0,1)。</li></ol>
+<section data-sec="乘法：左行对右列" class="slide" data-title="单位矩阵">
+<div class="num">定义</div><h2 class="slide-title">单位矩阵</h2><div class="card"><p>$I_n$：主对角全 1，其余 0。对 $m\times n$ 的 $A$，有 $I_mA=AI_n=A$。</p><p>左乘、右乘都要说清楚：乘在哪一侧。</p></div>
 </section>
-<section class="slide" data-title="初等变换求逆（口诀）">
-<h2 class="slide-title">初等变换求逆（口诀）</h2><div class="card"><ul><li>把 [A | I] 写成增广，对行做倍加、换行、倍乘。</li><li>左边变成 $I$ 时，右边就是 $A^{-1}$。</li><li>若左边变不出 $I$（出现零行），则不可逆。</li></ul></div>
+<section data-sec="乘法：左行对右列" class="slide" data-title="2×2 怎样扭动单位正方形" data-notes="先 a=d=1、b=c=0 看单位方；再拖 b 做切变；再让 det=0 看压扁。" data-hook="linxf">
+<div class="num">实验 3</div><h2 class="slide-title">2×2 怎样扭动单位正方形</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="lin-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>a</span><span class="ctrl-val" id="lin-a-val">1</span></label>
+              <input id="lin-a" type="range" min="-2" max="2" step="0.1" value="1" />
+              <label style="margin-top:8px"><span>b</span><span class="ctrl-val" id="lin-b-val">0</span></label>
+              <input id="lin-b" type="range" min="-2" max="2" step="0.1" value="0" />
+              <label style="margin-top:8px"><span>c</span><span class="ctrl-val" id="lin-c-val">0</span></label>
+              <input id="lin-c" type="range" min="-2" max="2" step="0.1" value="0" />
+              <label style="margin-top:8px"><span>d</span><span class="ctrl-val" id="lin-d-val">1</span></label>
+              <input id="lin-d" type="range" min="-2" max="2" step="0.1" value="1" />
+            </div>
+            <div class="readout" id="lin-read"></div>
+            <div class="verdict" id="lin-verdict">单位正方形被矩阵变成平行四边形；det=0 时扁成一条线。</div>
+    </aside>
+        </div>
 </section>
-<section class="slide" data-title="尺寸口诀">
-<h2 class="slide-title">尺寸口诀</h2><div class="grid-3"><div class="card"><h3>加法</h3><div class="gold-rule"></div><p>必须同型。</p></div><div class="card"><h3>乘法</h3><div class="gold-rule"></div><p>左列 = 右行。结果取「左行、右列」。</p></div><div class="card"><h3>逆</h3><div class="gold-rule"></div><p>必须是方阵，且 det≠0。</p></div></div>
+<section data-sec="阶梯形与秩" class="slide divider" data-sec-start="阶梯形与秩" data-title="阶梯形与秩">
+<div class="sec-no">四</div><h2>阶梯形与秩</h2><p>三种行变换化阶梯；非零行数就是秩。</p>
 </section>
-<section class="slide" data-title="课堂练 3　尺寸">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3　尺寸</h2><div class="prompt-box">A 是 2×3，B 是 3×2，C 是 2×2。哪些乘积有意义？结果几乘几？AB、BA、AC、CA。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="阶梯形与秩" class="slide" data-title="初等行变换">
+<div class="num">定义</div><h2 class="slide-title">初等行变换</h2><div class="card"><p>(1) 换行 $R_i\leftrightarrow R_j$；(2) 倍乘 $R_i\cdot c$（$c\neq0$）；(3) 倍加 $R_i+R_j\cdot c$。</p><p>对列做同样三件事叫初等列变换。解方程组时通常只做行变换。</p></div>
 </section>
-<section class="slide" data-title="课堂练 3" data-kind="answer">
-<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>AB：2×2，有意义。</li><li>BA：3×3，有意义。注意 AB 与 BA 不同型，更谈不上相等。</li><li>AC：3≠2，无意义。</li><li>CA：2×3，有意义。</li></ol><div class="comment">先数尺寸，再谈交换。</div>
+<section data-sec="阶梯形与秩" class="slide" data-title="阶梯形与秩">
+<div class="num">定义</div><h2 class="slide-title">阶梯形与秩</h2><div class="card"><p>每行第一个非零元（首元）必须在上一行首元的右下方。</p><p>定理 2.2.2：任一矩阵经有限次行变换可化成阶梯形。非零行数记作 $r(A)$，与化法无关。</p></div>
 </section>
-<section class="slide" data-title="零因子">
-<h2 class="slide-title">零因子</h2><div class="grid-2"><div class="card"><h3>数</h3><div class="gold-rule"></div><ul><li>ab=0 ⇒ a=0 或 b=0。</li></ul></div><div class="card"><h3>矩阵</h3><div class="gold-rule"></div><ul><li>AB 可以是零矩阵，而 A、B 都不是零。</li><li>课堂练 1 几乎就是这样：很多零。</li><li>因此不能随便「约去」矩阵。</li></ul></div></div>
+<section data-sec="阶梯形与秩" class="slide" data-title="例 2.2.9　哪一个是阶梯形？" data-notes="四个矩阵按教材图口述即可，不必抄满屏。">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.9　哪一个是阶梯形？</h2><div class="derive"><div class="dm">$$(1)(2)(4)\text{ 是阶梯形}$$</div><div class="dw"><span>首元逐步右移</span></div><div class="dm step" data-g="d1">$$(3)\text{ 不是}$$</div><div class="dw step" data-g="d1"><span>第 5 行首元落在第 4 行首元正下方，没有更右</span></div></div>
 </section>
-<section class="slide" data-title="逆的四条立刻推论">
-<h2 class="slide-title">逆的四条立刻推论</h2><div class="card"><ul><li>$(A^{-1})^{-1}=A$。</li><li>$(AB)^{-1}=B^{-1}A^{-1}$（先脱右边）。</li><li>$(A^{\mathrm T})^{-1}=(A^{-1})^{\mathrm T}$。</li><li>可逆 ⇒ det≠0；2×2 公式已经写明。</li></ul></div>
+<section data-sec="阶梯形与秩" class="slide" data-title="例 2.2.10　化阶梯求秩（摘要）">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.10　化阶梯求秩（摘要）</h2><div class="derive"><div class="dm">$$A=\begin{pmatrix}0&3&2&-1&5\\1&-1&0&0&3\\2&7&3&0&6\\0&-2&5&1&0\end{pmatrix}$$</div><div class="dw"><span>先换行让首元到左上</span></div><div class="dm step" data-g="d1">$$R_1\leftrightarrow R_2,\ \text{再倍加消去}$$</div><div class="dw step" data-g="d1"><span>逐步消成阶梯</span></div><div class="dm step" data-g="d2">$$r(A)=4$$</div><div class="dw step" data-g="d2"><span>阶梯形有 4 个非零行</span></div></div>
 </section>
-<section class="slide" data-title="课堂练 4">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 4</h2><div class="prompt-box">若 A 可逆且 AX=B，怎样用逆把 X 写出来？右边相乘还是左边？</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="阶梯形与秩" class="slide" data-title="例 2.2.11　秩可以小于行数">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.11　秩可以小于行数</h2><div class="derive"><div class="dm">$$A=\begin{pmatrix}1&2&3&4\\1&-2&4&5\\1&10&1&2\end{pmatrix}$$</div><div class="dw"><span>3×4</span></div><div class="dm step" data-g="d1">$$\xrightarrow{R_2-R_1,\ R_3-R_1}\begin{pmatrix}1&2&3&4\\0&-4&1&1\\0&8&-2&-2\end{pmatrix}$$</div><div class="dw step" data-g="d1"><span>前两列已有阶梯雏形</span></div><div class="dm step" data-g="d2">$$R_3+2R_2\Rightarrow\begin{pmatrix}1&2&3&4\\0&-4&1&1\\0&0&0&0\end{pmatrix}$$</div><div class="dw step" data-g="d2"><span>第三行消成 0</span></div><div class="dm step" data-g="d3">$$r(A)=2$$</div><div class="dw step" data-g="d3"><span>两个非零行</span></div></div>
 </section>
-<section class="slide" data-title="课堂练 4" data-kind="answer">
-<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>两边左乘 $A^{-1}$，得 $X=A^{-1}B$。</li><li>不能写成 $BA^{-1}$，除非它们碰巧交换。</li><li>解矩阵方程，乘在哪一侧必须看清楚。</li></ol>
+<section data-sec="阶梯形与秩" class="slide" data-title="课堂练 3">
+<div class="num">课堂练</div><span class="badge lv-vary">变式</span><h2 class="slide-title">课堂练 3</h2><div class="prompt-box">矩阵 $\begin{pmatrix}1&2&3\\2&4&6\\1&1&1\end{pmatrix}$ 的秩是多少？可逆吗？</div><p class="wait">约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="变换的直觉">
-<h2 class="slide-title">变换的直觉</h2><div class="grid-3"><div class="card"><h3>旋转 / 拉伸</h3><div class="gold-rule"></div><p>2×2 矩阵可以把平面上的箭头转过去、拉长。</p></div><div class="card"><h3>投影</h3><div class="gold-rule"></div><p>有些矩阵把所有点压到一条直线上，此时不可逆。</p></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>方程组 Ax=b 就是「谁被 A 送到了 b」。</p></div></div>
+<section data-sec="阶梯形与秩" class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>第二行是第一行的 2 倍，消掉后变 0。</li><li>第三行减第一行得 $(0,-1,-2)$，再消，非零行剩 2 行，秩是 2。</li><li>3 阶方阵秩小于 3，不可逆。</li></ol>
 </section>
-<section class="slide" data-title="方阵的幂">
-<div class="num">定义</div><h2 class="slide-title">方阵的幂</h2><div class="card"><p>$A^2=AA$。只有方阵才能对自己乘。$A^n$ 表示同一变换做 n 次。</p><p>PageRank 下一步会反复乘同一个转移矩阵——那是 2.4 的事，这里只留这句话。</p></div>
+<section data-sec="逆矩阵与可逆方程" class="slide divider" data-sec-start="逆矩阵与可逆方程" data-title="逆矩阵与可逆方程">
+<div class="sec-no">五</div><h2>逆矩阵与可逆方程</h2><p>存在 B 使 AB=BA=I；用行变换把 [A|I] 化成 [I|A⁻¹]。</p>
 </section>
-<section class="slide" data-title="加法能交换，乘法不能">
-<h2 class="slide-title">加法能交换，乘法不能</h2><div class="grid-2"><div class="card"><h3>加法</h3><div class="gold-rule"></div><ul><li>A+B=B+A（同型）。</li><li>与数的加法相同。</li></ul></div><div class="card"><h3>乘法</h3><div class="gold-rule"></div><ul><li>一般 AB≠BA。</li><li>连尺寸都可以不同。</li><li>先养成「先看能不能乘」的习惯。</li></ul></div></div>
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="逆矩阵">
+<div class="num">定义</div><h2 class="slide-title">逆矩阵</h2><div class="card"><p>方阵 $A$ 可逆：存在 $B$ 使 $AB=BA=I$，记 $B=A^{-1}$。</p><p>定理 2.2.3：$A$ 可逆 $\Leftrightarrow$ $|A|\neq0$ $\Leftrightarrow$ $r(A)=n$（满秩）。</p></div><p class="lead" style="margin-top:12px">$2\times2$：$D=ad-bc\neq0$ 时 $A^{-1}=\dfrac1D\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$。</p>
 </section>
-<section class="slide" data-title="一行买东西：乘法从哪来">
-<div class="num">定义</div><h2 class="slide-title">一行买东西：乘法从哪来</h2><div class="card"><p>铅笔 $12$ 支，每支 $0.3$ 元；练习本 $15$ 本，每本 $0.2$ 元；墨水 $1$ 瓶，$0.8$ 元。</p><p>$$(12,\ 15,\ 1)\begin{pmatrix}0.3\\ 0.2\\ 0.8\end{pmatrix}=7.4$$</p></div><p class="lead" style="margin-top:12px">左用行、右用列，长度必须相同。这就是 $(AB)_{ij}$ 的一次点乘。</p>
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="例 2.2.12　验证逆">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.12　验证逆</h2><div class="derive"><div class="dm">$$A=\begin{pmatrix}2&-1\\-5&3\end{pmatrix},\ B_1=\begin{pmatrix}3&1\\5&2\end{pmatrix}$$</div><div class="dw"><span>猜一个候选</span></div><div class="dm step" data-g="d1">$$AB_1=B_1A=I$$</div><div class="dw step" data-g="d1"><span>两边都乘成单位阵</span></div><div class="dm step" data-g="d2">$$A^{-1}=B_1$$</div><div class="dw step" data-g="d2"><span>逆唯一</span></div></div>
 </section>
-<section class="slide" data-title="初等行变换与秩">
-<h2 class="slide-title">初等行变换与秩</h2><div class="card"><ul><li>三种行变换：交换两行、某行乘非零常数、某行的倍数加到另一行。</li><li>解方程组时只做行变换，相当于同解变形。不能随便做列变换。</li><li>阶梯形：每一行的第一个非零元，落在上一行第一个非零元的右下方。</li><li>秩 $r(A)$ 是化成阶梯形之后的非零行数。化法可以不唯一，非零行数相同。</li><li>方阵可逆 $\Leftrightarrow$ 行列式不为 $0$ $\Leftrightarrow$ 秩等于阶数。</li></ul></div>
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="例 2.2.13　先看法是否可逆">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.13　先看法是否可逆</h2><div class="derive"><div class="dm">$$A=\begin{pmatrix}0&1&2\\1&1&4\\2&-1&0\end{pmatrix}$$</div><div class="dw"><span>三阶</span></div><div class="dm step" data-g="d1">$$|A|=2\neq0$$</div><div class="dw step" data-g="d1"><span>可逆（满秩）</span></div></div>
 </section>
-<section class="slide" data-title="方阵的行列式与乘法">
-<div class="num">公式</div><h2 class="slide-title">方阵的行列式与乘法</h2><div class="card">$$\det(AB)=\det A\cdot\det B$$</div><p class="lead">因此 $A$ 或 $B$ 有一个行列式为 $0$，乘积就不可逆。方程 $AX=B$（$A$ 可逆）的解是 $X=A^{-1}B$，乘在左边，不能写成 $BA^{-1}$。</p>
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="例 2.2.14　行变换求逆（摘要）">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.14　行变换求逆（摘要）</h2><div class="derive"><div class="dm">$$(A|I_3)\xrightarrow{\text{行变换}}(I_3|A^{-1})$$</div><div class="dw"><span>左边变 I，右边就是逆</span></div><div class="dm step" data-g="d1">$$A^{-1}=\begin{pmatrix}2&-1&1\\4&-2&1\\-\tfrac32&1&-\tfrac12\end{pmatrix}$$</div><div class="dw step" data-g="d1"><span>与例 2.2.13 的 A 配套</span></div></div><p class="lead step">性质：$(A^{-1})^{-1}=A$，$(AB)^{-1}=B^{-1}A^{-1}$，$(A^{\mathrm T})^{-1}=(A^{-1})^{\mathrm T}$，$(kA)^{-1}=\frac1k A^{-1}$（$k\neq0$）。</p>
 </section>
-<section class="slide" data-title="本讲不要做的" data-kind="meta">
-<h2 class="slide-title">本讲不要做的</h2><div class="card"><ul><li>不要把乘法讲成逐项相乘。</li><li>不要跳过尺寸检查。</li><li>不要把求逆步骤做成逐步动画实验室。</li></ul></div>
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="课堂练 4">
+<div class="num">课堂练</div><span class="badge lv-base">基础</span><h2 class="slide-title">课堂练 4</h2><div class="prompt-box">$A=\begin{pmatrix}1&2\\0&1\end{pmatrix}$。求 $A^{-1}$，并验证 $AA^{-1}=I$。</div><p class="wait">约 3 分钟。<button type="button" class="btn ghost timer" data-sec="180">计时 3:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="同一对矩阵，两种次序">
-<div class="num">公式</div><h2 class="slide-title">同一对矩阵，两种次序</h2><div class="card">$$A=\begin{pmatrix}1&1\\0&1\end{pmatrix},\; B=\begin{pmatrix}1&0\\1&1\end{pmatrix}$$</div><p class="lead">$AB=\begin{pmatrix}2&1\\1&1\end{pmatrix}$，$BA=\begin{pmatrix}1&1\\1&2\end{pmatrix}$。四个数都算得出来，而且 $AB\neq BA$。加法与次序无关。</p>
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="课堂练 4" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>$D=1$。对调主对角仍是 1,1；副对角 2 变号为 −2。</li><li>$A^{-1}=\begin{pmatrix}1&-2\\0&1\end{pmatrix}$。</li><li>相乘得 $I$。</li></ol>
 </section>
-<section class="slide" data-title="二阶求逆：一行公式">
-<div class="num">公式</div><h2 class="slide-title">二阶求逆：一行公式</h2><div class="card">$$\begin{pmatrix}a&b\\ c&d\end{pmatrix}^{-1}=\frac{1}{ad-bc}\begin{pmatrix}d&-b\\ -c&a\end{pmatrix}$$</div><p class="lead">例如 $a,b,c,d=1,2,3,4$，行列式 $1\cdot 4-2\cdot 3=-2$。逆矩阵是 $-\frac12\begin{pmatrix}4&-2\\ -3&1\end{pmatrix}=\begin{pmatrix}-2&1\\ 3/2&-1/2\end{pmatrix}$。行列式为 0 时这条公式不能用。</p>
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="例 2.2.15　解 AX=B">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.15　解 AX=B</h2><div class="derive"><div class="dm">$$A=\begin{pmatrix}1&0&1\\3&1&0\\1&0&0\end{pmatrix},\ B=\begin{pmatrix}-1&4&2\\0&3&1\\2&-5&1\end{pmatrix}$$</div><div class="dw"><span>构造 (A|B)</span></div><div class="dm step" data-g="d1">$$(A|B)\xrightarrow{\text{行变换}}(I|X)$$</div><div class="dw step" data-g="d1"><span>左边变 I</span></div><div class="dm step" data-g="d2">$$X=A^{-1}B=\begin{pmatrix}2&-5&1\\-6&18&-2\\-3&9&1\end{pmatrix}$$</div><div class="dw step" data-g="d2"><span>右块就是解</span></div></div>
 </section>
-<section class="slide" data-title="秩：阶梯形里还剩几行">
-<div class="num">定义</div><h2 class="slide-title">秩：阶梯形里还剩几行</h2><div class="card"><p>$\begin{pmatrix}1&2&3\\ 2&4&6\\ 1&1&1\end{pmatrix}$ 第二行是第一行的 2 倍，消掉后变 0。</p><p>第三行减去第一行，得到 $(0,-1,-2)$，消不掉。</p><p>非零行剩 2 行，秩是 2。不满阶，所以不可逆。</p></div><p class="lead" style="margin-top:12px">换一种消法，非零行的个数不变。秩不是「非零元素的个数」。</p>
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="例 2.2.16　解 XA=B">
+<div class="num">例题</div><h2 class="slide-title">例 2.2.16　解 XA=B</h2><div class="derive"><div class="dm">$$X\begin{pmatrix}1&1&-1\\-2&1&1\\1&1&1\end{pmatrix}=\begin{pmatrix}1&-1&1\\0&3&1\end{pmatrix}$$</div><div class="dw"><span>未知在左边：用列变换，或先转置</span></div><div class="dm step" data-g="d1">$$X=BA^{-1}=\begin{pmatrix}-1&-\tfrac23&\tfrac23\\1&1&1\end{pmatrix}$$</div><div class="dw step" data-g="d1"><span>sympy 验算</span></div></div><p class="lead step">也可对 $A^{\mathrm T}X^{\mathrm T}=B^{\mathrm T}$ 做行变换，再转置回来。</p>
 </section>
-<section class="slide" data-title="文化卡片 · 表与变换" data-notes="控制在两三分钟。">
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="课堂练 5">
+<div class="num">课堂练</div><span class="badge lv-apply">应用</span><h2 class="slide-title">课堂练 5</h2><div class="prompt-box">若 A 可逆且 AX=B，X 写成什么？若 XA=B 呢？</div><p class="wait">约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="课堂练 5" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 5</h2><ol class="answer-list"><li>$AX=B$ ⇒ 左乘 $A^{-1}$，得 $X=A^{-1}B$。</li><li>$XA=B$ ⇒ 右乘 $A^{-1}$，得 $X=BA^{-1}$。</li><li>乘在哪一侧必须看未知矩阵在哪一侧。</li></ol>
+</section>
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="找错 2　方程两侧乱乘">
+<div class="num">课堂练</div><span class="badge lv-judge">找错</span><h2 class="slide-title">找错 2　方程两侧乱乘</h2><div class="card mistake"><p class="given">已知 AX=B，A 可逆。有人写成 $X=BA^{-1}$。</p><h3>某同学这样写</h3><ol><li>模仿数的除法「搬到另一边」。</li><li>得到 $X=BA^{-1}$。</li></ol></div><p class="wait">错在哪里？　约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="逆矩阵与可逆方程" class="slide" data-title="找错 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">找错 2</h2><ol class="answer-list"><li>$AX=B$ 只能两边左乘 $A^{-1}$，得 $X=A^{-1}B$。</li><li>$BA^{-1}$ 是 XA=B 的解，不是本题。</li><li>矩阵乘法有次序，不能当成分数随便挪。</li></ol>
+</section>
+<section data-sec="回顾与自测" class="slide divider" data-sec-start="回顾与自测" data-title="回顾与自测">
+<div class="sec-no">六</div><h2>回顾与自测</h2>
+</section>
+<section data-sec="回顾与自测" class="slide" data-title="尺寸口诀">
+<h2 class="slide-title">尺寸口诀</h2><div class="grid-3 fit"><div class="card"><h3>加法</h3><div class="gold-rule"></div><p>必须同型。</p></div><div class="card"><h3>乘法</h3><div class="gold-rule"></div><p>左列 = 右行。结果取「左行、右列」。</p></div><div class="card"><h3>逆</h3><div class="gold-rule"></div><p>必须方阵且 det≠0（满秩）。</p></div></div>
+</section>
+<section data-sec="回顾与自测" class="slide" data-title="文化卡片 · 表与变换" data-notes="控制在两三分钟。">
 <div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 表与变换</span><blockquote>矩阵把「一张表」变成可以复合的操作。十九世纪它为解方程组服务，二十世纪它为数据、图像与网络服务。</blockquote><p>最硬的一句话仍是：乘法有次序。下一讲方程组、再下一讲 PageRank，都在用这张表去「作用」到向量上。</p></div>
 </section>
-<section class="slide" data-title="小结" data-notes="下课回扣目标。">
-<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>乘法：行×列；尺寸要匹配。</li><li>AB 一般不等于 BA。</li><li>2×2 逆：对调、变号、除以 D。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把矩阵当表格逐项相乘。</li><li>以为任何方阵都可逆。</li><li>忘记先看尺寸再相乘。</li></ul></div></div>
+<section data-sec="回顾与自测" class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2 fit"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>乘法：行×列；先看尺寸。</li><li>AB 一般不等于 BA；可能有零因子。</li><li>秩 = 阶梯形非零行数；可逆 ⇔ |A|≠0 ⇔ 满秩。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把矩阵当表格逐项相乘。</li><li>解 AX=B 却写成 BA⁻¹。</li><li>忘记先看尺寸再相乘。</li></ul></div></div>
 </section>
-<section class="slide" data-title="作业" data-notes="当堂布置。">
-<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>算两道 2×2 乘法，其中一道故意换序。</li><li>用公式求一个 2×2 的逆并验证。</li><li>默写尺寸规则。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 说明为何 $(AB)^{-1}=B^{-1}A^{-1}$（若都可逆）：先脱右边那件外套。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 2.3：三平面位置、通解含参、投入产出。</p></div></div>
+<section data-sec="回顾与自测" class="slide" data-title="课后自测" data-notes="题目来自本讲题库，每轮随机抽 6 题。课后让学生用手机打开本页自测。" data-hook="quiz">
+<div class="num">自测</div><h2 class="slide-title">课后自测</h2><div class="quiz" data-quiz="22" data-n="6"></div>
+</section>
+<section data-sec="回顾与自测" class="slide" data-title="作业" data-notes="当堂布置。">
+<h2 class="slide-title">作业</h2><div class="grid-3 fit"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>计算教材习题 2.2.1 的 AB 与 BA。</li><li>用公式求 $\begin{pmatrix}1&2\\3&4\end{pmatrix}^{-1}$ 并验证。</li><li>把例 2.2.11 的矩阵化成阶梯形，核对秩为 2。</li><li>默写：$(AB)^{-1}=B^{-1}A^{-1}$。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 说明为何 AB=O 推不出 A=O 或 B=O（用例 2.2.8）。</li><li>* 用行变换求例 2.2.14 的逆，并与公式结果对照。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 2.3：三平面位置、通解含参、投入产出。</p></div></div>
 </section>
     </main>
+    <canvas class="ink" id="ink"></canvas>
+    <button type="button" class="clock" id="clock" title="点一下停止计时"></button>
     <div class="notes" id="notes"></div>
     <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
     <div class="help" id="help">
       <h3>翻页</h3>
       <p>手机：左右滑动，或点底部「上一页」「下一页」。「解答」揭晓答案，「提纲」跳到某一页。</p>
-      <p>键盘：→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>键盘：→ / 空格 下一步或下一页　　← 上一步　　Home / End 首尾</p>
       <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p>T 课堂练计时　　P 画笔（C 清除本页笔迹）　　B 黑屏</p>
       <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
-      <p>解答页默认跳过；点「解答」或按 A 后进入线性顺序。滑条用手指拖；用键盘时先点空白再按方向键。</p>
+      <p>推导页逐行出现，按 → 一步一步走。解答页默认跳过；点「解答」或按 A 后进入线性顺序。滑条用手指拖；用键盘时先点空白再按方向键。</p>
     </div>
+    <div class="blackout" id="blackout"></div>
     <footer class="botbar">
       <span>南开大学数学科学学院</span>
       <span id="page">1 / 1</span>
@@ -168,6 +258,7 @@
         <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
         <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
         <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-pen">画笔 P</button>
         <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
         <button type="button" class="btn ghost" id="btn-help">?</button>
       </span>
@@ -175,8 +266,10 @@
   </div>
   <script src="../vendor/katex/katex.min.js"></script>
   <script src="../vendor/katex/contrib/auto-render.min.js"></script>
-  <script src="../js/deck.js"></script>
-  <script src="../js/plot.js"></script>
-  <script src="../js/labs/22-matmul.js"></script>
+  <script src="../js/deck.js?v=20261110174738"></script>
+  <script src="../js/plot.js?v=20261110174738"></script>
+  <script src="../js/quiz.js?v=20261110174738"></script>
+  <script src="../js/quiz/22.js?v=20261110174738"></script>
+  <script src="../js/labs/22-matmul.js?v=20261110174738"></script>
 </body>
 </html>

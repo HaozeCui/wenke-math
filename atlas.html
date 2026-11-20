@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>概念图鉴 · 文科高等数学</title>
+  <style>
+    :root {
+      --burgundy: #6b1456;
+      --deep: #3f0c32;
+      --gold: #b07a28;
+      --ink: #241616;
+      --muted: #6a5858;
+      --paper: #f3eadc;
+      --paper-2: #e7dcc8;
+      --card: #fffaf2;
+      --teal: #1b5f5c;
+      --rule: #d7c8b2;
+      --danger: #9c2f2f;
+      --ok: #2c6b45;
+      --serif: "Palatino Linotype", Palatino, "Songti SC", "SimSun", serif;
+      --sans: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      color: var(--ink);
+      font-family: var(--sans);
+      background:
+        radial-gradient(900px 420px at 0% -10%, rgba(176, 122, 40, 0.16), transparent 55%),
+        var(--paper);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><filter id='n'><feTurbulence baseFrequency='.8' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+    .shell {
+      height: 100dvh;
+      display: grid;
+      grid-template-columns: 248px minmax(0, 1fr) 312px;
+      grid-template-rows: 58px minmax(0, 1fr) 46px;
+      position: relative;
+    }
+    .spine {
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      width: 8px;
+      background: var(--burgundy);
+      z-index: 5;
+    }
+    header, footer {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 22px 0 24px;
+      background: rgba(243, 234, 220, 0.94);
+      z-index: 2;
+    }
+    header { border-bottom: 1px solid var(--rule); }
+    footer { border-top: 1px solid var(--rule); color: var(--muted); font-family: var(--serif); font-size: 13px; letter-spacing: 0.06em; }
+    .mark { color: var(--gold); font-family: var(--serif); font-weight: 700; letter-spacing: 0.12em; }
+    header h1 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--burgundy); }
+    header .count { color: var(--muted); font-family: var(--serif); font-size: 13px; letter-spacing: 0.12em; }
+    #q {
+      margin-left: auto;
+      width: min(280px, 36vw);
+      border: 1px solid var(--rule);
+      background: var(--card);
+      color: var(--ink);
+      font: 15px var(--sans);
+      padding: 7px 10px;
+    }
+    nav {
+      overflow: auto;
+      border-right: 1px solid var(--rule);
+      padding: 8px 0 24px;
+      background: rgba(231, 220, 200, 0.45);
+    }
+    .ch {
+      margin: 14px 16px 4px;
+      font: 12px/1.2 var(--serif);
+      letter-spacing: 0.16em;
+      color: var(--gold);
+    }
+    nav button.scene {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      border-left: 3px solid transparent;
+      padding: 6px 14px 6px 18px;
+      font: 15px/1.35 var(--serif);
+      color: var(--ink);
+      cursor: pointer;
+    }
+    nav button.scene:hover { background: rgba(255, 250, 242, 0.7); }
+    nav button.scene.on {
+      background: var(--card);
+      border-left-color: var(--burgundy);
+      color: var(--deep);
+    }
+    .stage { min-width: 0; min-height: 0; position: relative; }
+    canvas { width: 100%; height: 100%; display: block; touch-action: none; }
+    aside {
+      overflow: auto;
+      border-left: 1px solid var(--rule);
+      padding: 18px 18px 28px;
+      background: rgba(255, 250, 242, 0.55);
+    }
+    .kicker { margin: 0; color: var(--gold); font-family: var(--serif); letter-spacing: 0.18em; font-size: 13px; }
+    aside h2 { margin: 4px 0 8px; font-family: var(--serif); font-weight: 600; font-size: 28px; line-height: 1.25; color: var(--deep); }
+    .lead { margin: 0 0 14px; color: var(--muted); font-size: 15px; line-height: 1.55; }
+    .ctrl { margin: 0 0 12px; }
+    .ctrl[hidden] { display: none; }
+    .ctrl .row { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+    .ctrl .row b { color: var(--ink); font-weight: 600; font-family: var(--serif); }
+    input[type="range"] { width: 100%; accent-color: var(--burgundy); }
+    .seg, .presets { display: flex; flex-wrap: wrap; gap: 6px; }
+    .seg button, .presets button, .navbtn {
+      font: 14px var(--sans);
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--rule);
+      padding: 5px 9px;
+      cursor: pointer;
+    }
+    .seg button.on { background: var(--burgundy); color: var(--paper); border-color: var(--burgundy); }
+    .presets { margin: 4px 0 14px; }
+    .presets button:hover, .navbtn:hover { border-color: var(--burgundy); color: var(--burgundy); }
+    .formula {
+      margin: 8px 0;
+      padding-top: 10px;
+      border-top: 1px solid var(--gold);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+    .explain { margin: 8px 0 0; font-size: 15px; line-height: 1.55; }
+    .explain.good { color: var(--ok); }
+    .explain.bad { color: var(--danger); }
+    .empty { padding: 16px; color: var(--muted); font-family: var(--serif); }
+    footer .sp { flex: 1; }
+    @media (max-width: 980px) {
+      .shell {
+        height: auto;
+        min-height: 100dvh;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto minmax(420px, 58dvh) auto auto;
+      }
+      nav { max-height: 220px; border-right: 0; border-bottom: 1px solid var(--rule); }
+      aside { border-left: 0; border-top: 1px solid var(--rule); }
+      #q { width: min(220px, 48vw); }
+      header h1 { font-size: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="spine" aria-hidden="true"></div>
+  <div class="shell">
+    <header>
+      <span class="mark">NKU</span>
+      <h1>概念图鉴</h1>
+      <span class="count" id="count"></span>
+      <input id="q" type="search" placeholder="搜索：黎曼、圆桶、阻尼…" autocomplete="off" />
+    </header>
+    <nav id="nav" aria-label="概念目录"></nav>
+    <div class="stage"><canvas id="view" aria-label="概念图"></canvas></div>
+    <aside>
+      <p class="kicker" id="kicker"></p>
+      <h2 id="title"></h2>
+      <p class="lead" id="lead"></p>
+      <div id="controls"></div>
+      <div class="presets" id="presets"></div>
+      <p class="formula" id="formula"></p>
+      <p class="explain" id="explain"></p>
+    </aside>
+    <footer>
+      <span id="pos"></span>
+      <span class="sp"></span>
+      <button type="button" class="navbtn" id="prev">上一个</button>
+      <button type="button" class="navbtn" id="next">下一个</button>
+      <span>Alt+↑↓ 换概念</span>
+    </footer>
+  </div>
+  <script src="js/atlas-math.js"></script>
+  <script src="js/atlas-core.js"></script>
+  <script src="js/atlas-calc.js"></script>
+  <script src="js/atlas-linalg.js"></script>
+  <script src="js/atlas-boot.js"></script>
+</body>
+</html>

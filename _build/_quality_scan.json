@@ -1,0 +1,1099 @@
+[
+  {
+    "code": "00",
+    "n_section": 29,
+    "kinds": {
+      "answer": 3,
+      "meta": 1
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 1,
+    "hooks": [
+      "simpson"
+    ],
+    "n_sec_start": 0,
+    "sec_starts": [],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 4,
+    "n_canvas": 2,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 4,
+    "n_warn": 2,
+    "n_summary": 2,
+    "n_callout": 29,
+    "n_fig": 1,
+    "n_teacher": 0,
+    "n_answer": 3,
+    "n_quiz_block": 0,
+    "n_lab_mark": 0,
+    "n_grid": 9,
+    "n_card": 35,
+    "n_timer": 23,
+    "n_humanities": 26,
+    "cn_chars": 2511,
+    "html_kb": 13.7,
+    "build_kb": 11.9,
+    "quiz_kb": 0.0,
+    "quiz_exists": false,
+    "quiz_q_count": 0,
+    "lab_files": [
+      "00-simpson.js"
+    ],
+    "lab_kb": 2.7,
+    "labs_js": [
+      "../js/labs/00-simpson.js?v=20261110174738"
+    ],
+    "quiz_js": [],
+    "titles_head": [
+      "文科高等数学　·　0 数学与人文",
+      "先问问题怎么提，再看数据怎么说",
+      "学完本讲，应能做到",
+      "本学期地图（微积分 + 线性代数）",
+      "四项目标",
+      "为什么文科要学数学",
+      "一个贯穿学期的问题",
+      "三个接口",
+      "课堂练 1",
+      "课堂练 1"
+    ],
+    "titles_count": 29
+  },
+  {
+    "code": "11",
+    "n_section": 54,
+    "kinds": {
+      "answer": 7
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        6
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 8,
+    "hooks": [
+      "piecewise",
+      "fee",
+      "floorfn",
+      "compose",
+      "inverse11",
+      "elem",
+      "oddpt",
+      "quiz"
+    ],
+    "n_sec_start": 6,
+    "sec_starts": [
+      "概念：单值对应",
+      "分段与取整",
+      "四则与复合",
+      "反函数与初等函数",
+      "性态：奇偶、单调、有界",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 6,
+    "n_canvas": 8,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 5,
+    "n_warn": 2,
+    "n_summary": 10,
+    "n_callout": 26,
+    "n_fig": 7,
+    "n_teacher": 0,
+    "n_answer": 7,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 11,
+    "n_card": 29,
+    "n_timer": 44,
+    "n_humanities": 5,
+    "cn_chars": 2282,
+    "html_kb": 24.1,
+    "build_kb": 15.2,
+    "quiz_kb": 12.2,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "11-fn.js"
+    ],
+    "lab_kb": 17.4,
+    "labs_js": [
+      "../js/labs/11-fn.js?v=20261110174738",
+      "../js/labs/extra.js?v=20261110174738"
+    ],
+    "quiz_js": [
+      "../js/quiz/11.js?v=20261110174738"
+    ],
+    "titles_head": [
+      "文科高等数学　·　1.1 函数",
+      "先定位区间，再套用规则",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "概念：单值对应",
+      "从映射说起",
+      "函数的定义",
+      "一次函数：先乘再加",
+      "区间怎么写",
+      "课堂练 1　是不是函数"
+    ],
+    "titles_count": 54
+  },
+  {
+    "code": "12",
+    "n_section": 72,
+    "kinds": {
+      "answer": 11
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        7
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 7,
+    "hooks": [
+      "sequence",
+      "leftright",
+      "squeeze",
+      "gaps",
+      "limits2",
+      "phi",
+      "quiz"
+    ],
+    "n_sec_start": 7,
+    "sec_starts": [
+      "数列极限",
+      "函数极限",
+      "性质与计算",
+      "连续与间断",
+      "两个重要极限",
+      "无穷小、等价与应用",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 4,
+    "n_canvas": 10,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 17,
+    "n_warn": 2,
+    "n_summary": 10,
+    "n_callout": 37,
+    "n_fig": 4,
+    "n_teacher": 0,
+    "n_answer": 11,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 11,
+    "n_card": 34,
+    "n_timer": 68,
+    "n_humanities": 11,
+    "cn_chars": 2805,
+    "html_kb": 34.1,
+    "build_kb": 24.1,
+    "quiz_kb": 11.3,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "12-limit.js"
+    ],
+    "lab_kb": 7.3,
+    "labs_js": [
+      "../js/labs/12-limit.js?v=20261110175120",
+      "../js/labs/extra.js?v=20261110175120"
+    ],
+    "quiz_js": [
+      "../js/quiz/12.js?v=20261110175120"
+    ],
+    "titles_head": [
+      "文科高等数学　·　1.2 极限",
+      "看趋势，不看某一项等于谁",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "数列极限",
+      "例 1.2.1　一尺之捶，日取其半",
+      "例 1.2.2　割圆",
+      "数列极限（直观）",
+      "项数变多，点贴住 0",
+      "例 1.2.3　振荡着靠近"
+    ],
+    "titles_count": 72
+  },
+  {
+    "code": "13",
+    "n_section": 74,
+    "kinds": {
+      "answer": 11
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        7
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 5,
+    "hooks": [
+      "secant",
+      "quotchain",
+      "approx",
+      "corner",
+      "quiz"
+    ],
+    "n_sec_start": 7,
+    "sec_starts": [
+      "问题：从平均到瞬时",
+      "定义：差商的极限",
+      "基本求导公式",
+      "四则运算与链式法则",
+      "微分：增量的线性近似",
+      "高阶导数与分段点",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 3,
+    "n_canvas": 7,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 20,
+    "n_warn": 3,
+    "n_summary": 11,
+    "n_callout": 41,
+    "n_fig": 3,
+    "n_teacher": 0,
+    "n_answer": 11,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 11,
+    "n_card": 34,
+    "n_timer": 72,
+    "n_humanities": 2,
+    "cn_chars": 2987,
+    "html_kb": 36.3,
+    "build_kb": 26.1,
+    "quiz_kb": 11.5,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "13-deriv.js"
+    ],
+    "lab_kb": 5.1,
+    "labs_js": [
+      "../js/labs/13-deriv.js?v=20261110174815",
+      "../js/labs/extra.js?v=20261110174815"
+    ],
+    "quiz_js": [
+      "../js/quiz/13.js?v=20261110174815"
+    ],
+    "titles_head": [
+      "文科高等数学　·　1.3 导数与微分",
+      "割线躺平，就是切线",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "问题：从平均到瞬时",
+      "为什么需要差商的极限",
+      "导数的三张面孔",
+      "课堂练 1",
+      "课堂练 1",
+      "定义：差商的极限"
+    ],
+    "titles_count": 74
+  },
+  {
+    "code": "14",
+    "n_section": 95,
+    "kinds": {
+      "answer": 16
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        7
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 13,
+    "hooks": [
+      "mono",
+      "mono14",
+      "vert",
+      "holext",
+      "figs",
+      "concav",
+      "figs",
+      "second14",
+      "cusps",
+      "figs",
+      "barrel",
+      "boxvol"
+    ],
+    "n_sec_start": 7,
+    "sec_starts": [
+      "单调性：切线朝哪边",
+      "极值：驻点、尖点与第一充分条件",
+      "二阶导数：弯曲方向与第二充分条件",
+      "最值：候选人逐个比",
+      "优化：把「最」写成一个变量的函数",
+      "洛必达法则：先判型，再求导",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 9,
+    "n_canvas": 13,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 18,
+    "n_warn": 6,
+    "n_summary": 11,
+    "n_callout": 51,
+    "n_fig": 12,
+    "n_teacher": 0,
+    "n_answer": 16,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 19,
+    "n_card": 44,
+    "n_timer": 104,
+    "n_humanities": 9,
+    "cn_chars": 5497,
+    "html_kb": 53.2,
+    "build_kb": 42.3,
+    "quiz_kb": 11.3,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "14-app.js"
+    ],
+    "lab_kb": 8.6,
+    "labs_js": [
+      "../js/labs/14-app.js?v=20261110174738",
+      "../js/labs/extra.js?v=20261110174738"
+    ],
+    "quiz_js": [
+      "../js/quiz/14.js?v=20261110174738"
+    ],
+    "titles_head": [
+      "文科高等数学　·　1.4 导数的应用",
+      "切线向上，函数在爬",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "单调性：切线朝哪边",
+      "定理 1.4.1　导数的符号与单调性",
+      "切线向上则升，向下则降",
+      "课堂练 1",
+      "课堂练 1",
+      "例 1.4.1　因式分解后读符号"
+    ],
+    "titles_count": 95
+  },
+  {
+    "code": "15",
+    "n_section": 83,
+    "kinds": {
+      "answer": 12
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        7
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 5,
+    "hooks": [
+      "family",
+      "twins",
+      "diffback",
+      "figs",
+      "quiz"
+    ],
+    "n_sec_start": 7,
+    "sec_starts": [
+      "问题：求导倒过来",
+      "原函数族：差一个常数",
+      "基本公式与线性运算",
+      "第一换元：凑微分",
+      "第二换元：去掉根号",
+      "分部积分",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 3,
+    "n_canvas": 5,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 29,
+    "n_warn": 2,
+    "n_summary": 14,
+    "n_callout": 39,
+    "n_fig": 4,
+    "n_teacher": 0,
+    "n_answer": 12,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 10,
+    "n_card": 30,
+    "n_timer": 76,
+    "n_humanities": 0,
+    "cn_chars": 4225,
+    "html_kb": 51.0,
+    "build_kb": 40.0,
+    "quiz_kb": 13.7,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "15-family.js"
+    ],
+    "lab_kb": 1.1,
+    "labs_js": [
+      "../js/labs/15-family.js?v=20261110174738",
+      "../js/labs/extra.js?v=20261110174738"
+    ],
+    "quiz_js": [
+      "../js/quiz/15.js?v=20261110174738"
+    ],
+    "titles_head": [
+      "文科高等数学　·　1.5 不定积分",
+      "原函数是一族，差一个常数",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "问题：求导倒过来",
+      "从求导到它的逆运算",
+      "原函数与不定积分",
+      "例 1.5.1、1.5.2　由导数公式倒推",
+      "积分与微分：互逆，但差一个 C",
+      "课堂练 1"
+    ],
+    "titles_count": 83
+  },
+  {
+    "code": "16",
+    "n_section": 65,
+    "kinds": {
+      "answer": 13
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        7
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 9,
+    "hooks": [
+      "riemann",
+      "figs",
+      "accum",
+      "signed",
+      "improper",
+      "figs",
+      "surplus",
+      "figs",
+      "quiz"
+    ],
+    "n_sec_start": 7,
+    "sec_starts": [
+      "问题：不均匀的积累",
+      "定义：黎曼和",
+      "计算：从积累到原函数",
+      "有号面积与性质",
+      "反常积分：积到无穷远",
+      "应用：经济与社会里的积累量",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 4,
+    "n_canvas": 9,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 6,
+    "n_warn": 3,
+    "n_summary": 11,
+    "n_callout": 50,
+    "n_fig": 8,
+    "n_teacher": 0,
+    "n_answer": 13,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 17,
+    "n_card": 35,
+    "n_timer": 88,
+    "n_humanities": 2,
+    "cn_chars": 3907,
+    "html_kb": 35.0,
+    "build_kb": 26.1,
+    "quiz_kb": 11.1,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "16-int.js"
+    ],
+    "lab_kb": 13.9,
+    "labs_js": [
+      "../js/labs/16-int.js?v=20261110174738"
+    ],
+    "quiz_js": [
+      "../js/quiz/16.js?v=20261110174738"
+    ],
+    "titles_head": [
+      "文科高等数学　·　1.6 定积分",
+      "先看见面积，再写下积分号",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "问题：不均匀的积累",
+      "为什么需要一个新的和",
+      "定义：黎曼和",
+      "定积分（黎曼和的极限）",
+      "先看三件事",
+      "拉动 n，看矩形怎样变成面积"
+    ],
+    "titles_count": 65
+  },
+  {
+    "code": "17",
+    "n_section": 53,
+    "kinds": {
+      "answer": 8
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        6
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 7,
+    "hooks": [
+      "figs",
+      "region",
+      "figs",
+      "learn",
+      "logistic",
+      "wpop",
+      "quiz"
+    ],
+    "n_sec_start": 6,
+    "sec_starts": [
+      "面积：上曲线减下曲线",
+      "切条方向：对 x 还是对 y",
+      "可分离变量的微分方程",
+      "指数模型：增长与衰减",
+      "学习模型与逻辑斯蒂模型",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 5,
+    "n_canvas": 7,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 12,
+    "n_warn": 3,
+    "n_summary": 11,
+    "n_callout": 32,
+    "n_fig": 6,
+    "n_teacher": 0,
+    "n_answer": 8,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 12,
+    "n_card": 27,
+    "n_timer": 52,
+    "n_humanities": 37,
+    "cn_chars": 3485,
+    "html_kb": 33.0,
+    "build_kb": 28.1,
+    "quiz_kb": 11.0,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "17-app.js"
+    ],
+    "lab_kb": 3.7,
+    "labs_js": [
+      "../js/labs/17-app.js?v=20261110174738",
+      "../js/labs/extra.js?v=20261110174738"
+    ],
+    "quiz_js": [
+      "../js/quiz/17.js?v=20261110174738"
+    ],
+    "titles_head": [
+      "文科高等数学　·　1.7 积分应用",
+      "先画区域，再决定切哪边",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "面积：上曲线减下曲线",
+      "从 1.6 接过来：面积都是「上减下」",
+      "公式 1.7.1　两条曲线之间",
+      "例 1.7.1　椭圆面积",
+      "例 1.7.2　一根在上，一根在下",
+      "课堂练 1"
+    ],
+    "titles_count": 53
+  },
+  {
+    "code": "18",
+    "n_section": 71,
+    "kinds": {
+      "answer": 12
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        7
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 9,
+    "hooks": [
+      "dom2",
+      "paths",
+      "figs",
+      "slice",
+      "pdmap",
+      "strips",
+      "trix",
+      "figs",
+      "quiz"
+    ],
+    "n_sec_start": 7,
+    "sec_starts": [
+      "二元函数与定义域",
+      "二重极限与连续",
+      "偏导数：一次只拧一个旋钮",
+      "连续、可偏导、可微",
+      "极值与最值",
+      "二重积分：切条",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 7,
+    "n_canvas": 9,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 14,
+    "n_warn": 2,
+    "n_summary": 12,
+    "n_callout": 46,
+    "n_fig": 8,
+    "n_teacher": 0,
+    "n_answer": 12,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 17,
+    "n_card": 37,
+    "n_timer": 81,
+    "n_humanities": 9,
+    "cn_chars": 4438,
+    "html_kb": 40.5,
+    "build_kb": 33.5,
+    "quiz_kb": 12.4,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "18-multi.js"
+    ],
+    "lab_kb": 14.5,
+    "labs_js": [
+      "../js/labs/18-multi.js?v=20261110174738",
+      "../js/labs/extra.js?v=20261110174738"
+    ],
+    "quiz_js": [
+      "../js/quiz/18.js?v=20261110174738"
+    ],
+    "titles_head": [
+      "文科高等数学　·　1.8 二元函数微积分初步",
+      "两个旋钮必须同时在场",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "二元函数与定义域",
+      "舒芙蕾实验表",
+      "二元函数",
+      "例 1.8.1 与例 1.8.2　自然定义域",
+      "挖一个洞，或只留一个象限",
+      "课堂练 1"
+    ],
+    "titles_count": 71
+  },
+  {
+    "code": "21",
+    "n_section": 43,
+    "kinds": {
+      "answer": 7
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        6
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 4,
+    "hooks": [
+      "det-area",
+      "figs",
+      "sarrus",
+      "quiz"
+    ],
+    "n_sec_start": 6,
+    "sec_starts": [
+      "问题：把方程组的解写成数表",
+      "二阶：有向面积",
+      "三阶沙流与高阶展开",
+      "性质：化简的许可证",
+      "克拉默法则",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 1,
+    "n_canvas": 4,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 6,
+    "n_warn": 2,
+    "n_summary": 10,
+    "n_callout": 31,
+    "n_fig": 3,
+    "n_teacher": 0,
+    "n_answer": 7,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 9,
+    "n_card": 24,
+    "n_timer": 48,
+    "n_humanities": 0,
+    "cn_chars": 2200,
+    "html_kb": 21.6,
+    "build_kb": 15.6,
+    "quiz_kb": 10.8,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "21-sarrus.js"
+    ],
+    "lab_kb": 12.5,
+    "labs_js": [
+      "../js/labs/21-sarrus.js?v=20261110174738"
+    ],
+    "quiz_js": [
+      "../js/quiz/21.js?v=20261110174738"
+    ],
+    "titles_head": [
+      "文科高等数学　·　2.1 行列式",
+      "数表折叠成一个数",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "问题：把方程组的解写成数表",
+      "从消元到记号",
+      "二阶：有向面积",
+      "二阶行列式",
+      "拖动两个向量，看面积怎样变",
+      "课堂练 1"
+    ],
+    "titles_count": 43
+  },
+  {
+    "code": "22",
+    "n_section": 56,
+    "kinds": {
+      "answer": 7
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        6
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 4,
+    "hooks": [
+      "matmul",
+      "abba",
+      "linxf",
+      "quiz"
+    ],
+    "n_sec_start": 6,
+    "sec_starts": [
+      "概念：去掉标签的数表",
+      "加减与数乘：同型才能对位",
+      "乘法：左行对右列",
+      "阶梯形与秩",
+      "逆矩阵与可逆方程",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 6,
+    "n_canvas": 4,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 18,
+    "n_warn": 2,
+    "n_summary": 11,
+    "n_callout": 29,
+    "n_fig": 3,
+    "n_teacher": 0,
+    "n_answer": 7,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 8,
+    "n_card": 26,
+    "n_timer": 44,
+    "n_humanities": 1,
+    "cn_chars": 2096,
+    "html_kb": 27.4,
+    "build_kb": 18.0,
+    "quiz_kb": 21.6,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "22-matmul.js"
+    ],
+    "lab_kb": 6.0,
+    "labs_js": [
+      "../js/labs/22-matmul.js?v=20261110174738"
+    ],
+    "quiz_js": [
+      "../js/quiz/22.js?v=20261110174738"
+    ],
+    "titles_head": [
+      "文科高等数学　·　2.2 矩阵及其运算",
+      "一行对一列，得到一个数",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "概念：去掉标签的数表",
+      "矩阵",
+      "例 2.2.1　成绩表",
+      "例 2.2.2　方程组写成矩阵",
+      "例 2.2.3　相等与零矩阵",
+      "加减与数乘：同型才能对位"
+    ],
+    "titles_count": 56
+  },
+  {
+    "code": "23",
+    "n_section": 44,
+    "kinds": {
+      "answer": 6
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        6
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 3,
+    "hooks": [
+      "planes",
+      "io",
+      "quiz"
+    ],
+    "n_sec_start": 6,
+    "sec_starts": [
+      "判别：秩告诉你有没有解",
+      "消元：三种命运各一道原题",
+      "齐次：永远至少有零解",
+      "三平面：四种位置",
+      "投入产出",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 0,
+    "n_canvas": 3,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 10,
+    "n_warn": 2,
+    "n_summary": 10,
+    "n_callout": 24,
+    "n_fig": 2,
+    "n_teacher": 0,
+    "n_answer": 6,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 6,
+    "n_card": 21,
+    "n_timer": 41,
+    "n_humanities": 5,
+    "cn_chars": 2014,
+    "html_kb": 20.7,
+    "build_kb": 13.2,
+    "quiz_kb": 16.0,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "23-sys.js"
+    ],
+    "lab_kb": 3.5,
+    "labs_js": [
+      "../js/labs/23-sys.js?v=20261110174738"
+    ],
+    "quiz_js": [
+      "../js/quiz/23.js?v=20261110174738"
+    ],
+    "titles_head": [
+      "文科高等数学　·　2.3 一般线性方程组",
+      "三张平面，三种命运",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "判别：秩告诉你有没有解",
+      "线性方程组与增广矩阵",
+      "定理 2.3.1　解的判别",
+      "阶梯形上读结论",
+      "消元：三种命运各一道原题",
+      "例 2.3.1　唯一解 (1,2,3)"
+    ],
+    "titles_count": 44
+  },
+  {
+    "code": "24",
+    "n_section": 72,
+    "kinds": {
+      "answer": 15
+    },
+    "roles": {},
+    "extra_classes": [
+      [
+        "divider",
+        7
+      ],
+      [
+        "cover",
+        1
+      ]
+    ],
+    "n_hooks": 7,
+    "hooks": [
+      "bow",
+      "cosine",
+      "docsim",
+      "figs",
+      "figs",
+      "pagerank",
+      "quiz"
+    ],
+    "n_sec_start": 7,
+    "sec_starts": [
+      "问题：数据先要变成数",
+      "向量化：词袋与文档–词矩阵",
+      "距离与相似度",
+      "PageRank：从链接到矩阵",
+      "稳定权重：特征值与特征向量",
+      "阻尼因子：随机跳转",
+      "回顾与自测"
+    ],
+    "n_fragment": 0,
+    "n_step": 0,
+    "n_range": 2,
+    "n_canvas": 7,
+    "n_svg": 0,
+    "n_eq": 0,
+    "n_example": 9,
+    "n_warn": 2,
+    "n_summary": 12,
+    "n_callout": 46,
+    "n_fig": 6,
+    "n_teacher": 0,
+    "n_answer": 15,
+    "n_quiz_block": 2,
+    "n_lab_mark": 0,
+    "n_grid": 12,
+    "n_card": 37,
+    "n_timer": 98,
+    "n_humanities": 54,
+    "cn_chars": 5306,
+    "html_kb": 37.4,
+    "build_kb": 35.2,
+    "quiz_kb": 17.7,
+    "quiz_exists": true,
+    "quiz_q_count": 40,
+    "lab_files": [
+      "24-data.js"
+    ],
+    "lab_kb": 14.9,
+    "labs_js": [
+      "../js/labs/24-data.js?v=20261110174738"
+    ],
+    "quiz_js": [
+      "../js/quiz/24.js?v=20261110174738"
+    ],
+    "titles_head": [
+      "文科高等数学　·　2.4 线性代数在数据科学中的应用",
+      "先变成向量，再比较方向",
+      "学完本讲，应能做到",
+      "本讲路线",
+      "问题：数据先要变成数",
+      "数据科学为什么需要线性代数",
+      "三类数据，同一种写法",
+      "向量化：词袋与文档–词矩阵",
+      "向量化与词袋模型",
+      "教材示例　四个文档与词汇表"
+    ],
+    "titles_count": 72
+  }
+]

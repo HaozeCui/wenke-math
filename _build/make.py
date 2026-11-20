@@ -7,7 +7,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from chrome import write_lec
+from chrome import BUILD, write_lec
 import lec00
 import lec11
 import lec12
@@ -142,12 +142,12 @@ HUB = r"""<!DOCTYPE html>
         <div class="card">
           <h3>翻页</h3>
           <div class="gold-rule"></div>
-          <p>→ / 空格 下一页<br />← 上一页<br />手机：左右滑动，或点底部按钮</p>
+          <p>→ / 空格 下一步或下一页<br />← 上一步<br />手机：左右滑动，或点底部按钮</p>
         </div>
         <div class="card">
           <h3>课堂</h3>
           <div class="gold-rule"></div>
-          <p>A 揭晓解答（默认跳过解答页）<br />I 本讲提纲　? 快捷键</p>
+          <p>A 揭晓解答（默认跳过解答页）<br />T 课堂练计时　P 画笔　B 黑屏<br />I 本讲提纲　? 快捷键</p>
         </div>
         <div class="card">
           <h3>实验</h3>
@@ -183,7 +183,7 @@ def main() -> None:
     for m in MODULES:
         write_lec(m.FILENAME, m.TITLE, m.H1, m.slides(), m.LABS)
     hub_path = HERE.parent / "index.html"
-    hub_path.write_text(HUB, encoding="utf-8")
+    hub_path.write_text(HUB.replace('href="css/deck.css"', f'href="css/deck.css?v={BUILD}"'), encoding="utf-8")
     print("index.html hub")
 
 

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>1.6 定积分 · 文科高等数学</title>
   <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
-  <link rel="stylesheet" href="../css/deck.css" />
+  <link rel="stylesheet" href="../css/deck.css?v=20261110174738" />
 </head>
 <body class="play">
   <div class="app cover-mode">
@@ -16,29 +16,36 @@
       <h1>文科高等数学　·　1.6 定积分</h1>
       <span class="sec" id="sec-label"></span>
     </header>
+    <div class="progress" id="progress" aria-hidden="true"><i></i></div>
     <main class="stage">
 <section class="slide cover" data-title="封面" data-notes="先问：速度变化时路程还是不是「速度×时间」。">
 <div class="kicker">1.6　建议 6 学时</div>
         <h2>先看见面积，<br />再写下积分号</h2>
         <p>路程不再匀速时，总量仍可以是「变化率的积累」。本讲用矩形去冒充曲边面积，再让份数加密。</p>
-        <div class="meta">配套《文科数学基础》　·　黎曼和 · 牛顿–莱布尼茨</div>
+        <div class="meta">配套《文科数学基础》　·　黎曼和 · 牛顿–莱布尼茨 · 消费者剩余</div>
 </section>
 <section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
-<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能用黎曼和说明定积分是「加密求和」的极限，而不是先找原函数。</p></div><div class="card"><span class="idx">02</span><p>能区分几何面积与有号面积（轴上为正、轴下为负）。</p></div><div class="card"><span class="idx">03</span><p>能用牛顿–莱布尼茨公式计算简单定积分，并核对几何意义。</p></div></div>
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能用黎曼和说明定积分是「加密求和」的极限，而不是先找原函数。</p></div><div class="card"><span class="idx">02</span><p>能用变上限积分说明牛顿–莱布尼茨公式从哪来，并用它（含换元与分部积分）计算定积分。</p></div><div class="card"><span class="idx">03</span><p>能区分几何面积与有号面积，会用对称性、区间可加性简化计算。</p></div><div class="card"><span class="idx">04</span><p>能把反常积分写成极限再判断敛散；能用定积分算消费者剩余与基尼系数。</p></div></div>
 </section>
-<section class="slide" data-title="本讲路线" data-notes="不定积分操练已在 1.5；本讲重点是极限图像。">
-<h2 class="slide-title">本讲路线</h2><div class="card"><ul><li>从「不均匀的积累」提出问题</li><li>分割、取点、作和、取极限：黎曼和</li><li>实验：左 / 中 / 右矩形怎样贴住正弦</li><li>有号面积：代数和不是涂色多少</li><li>牛顿–莱布尼茨：计算装置，不是定义</li><li>性质与课堂练，文化卡片，作业</li></ul></div>
+<section class="slide" data-title="本讲路线" data-notes="路线由下面七个分节自动生成。">
+<h2 class="slide-title">本讲路线</h2><div class="card"><ol class="route"><li>问题：不均匀的积累</li><li>定义：黎曼和</li><li>计算：从积累到原函数</li><li>有号面积与性质</li><li>反常积分：积到无穷远</li><li>应用：经济与社会里的积累量</li><li>回顾与自测</li></ol></div>
 </section>
-<section class="slide" data-title="为什么需要一个新的和" data-notes="用路程作隐喻，再落到 sin x 的面积。">
-<h2 class="slide-title">为什么需要一个新的和</h2><div class="grid-2"><div class="card"><h3>匀速世界</h3><div class="gold-rule"></div><ul><li>路程 = 速度 × 时间。</li><li>图像是矩形，面积就是乘积。</li><li>加总几段匀速，仍是矩形拼接。</li></ul></div><div class="card"><h3>变速世界</h3><div class="gold-rule"></div><ul><li>瞬时速度一直在变。</li><li>只能切成很窄的时间片，每片近似匀速。</li><li>加密之后，和有一个稳定的数——这就是定积分。</li></ul></div></div>
+<section data-sec="问题：不均匀的积累" class="slide divider" data-sec-start="问题：不均匀的积累" data-title="问题：不均匀的积累">
+<div class="sec-no">一</div><h2>问题：不均匀的积累</h2><p>速度一直在变，路程还是不是「速度 × 时间」？</p>
 </section>
-<section class="slide" data-title="定积分（黎曼和的极限）" data-notes="不要一上来就写原函数。">
+<section data-sec="问题：不均匀的积累" class="slide" data-title="为什么需要一个新的和" data-notes="用路程作隐喻，再落到 sin x 的面积。">
+<h2 class="slide-title">为什么需要一个新的和</h2><p class="lead">同样的问题：一天的客流量 = 每分钟到达人数的积累；一年的产量 = 生产率的积累。</p><div class="grid-2 fit"><div class="card"><h3>匀速世界</h3><div class="gold-rule"></div><ul><li>路程 = 速度 × 时间。</li><li>图像是矩形，面积就是乘积。</li><li>加总几段匀速，仍是矩形拼接。</li></ul></div><div class="card"><h3>变速世界</h3><div class="gold-rule"></div><ul><li>瞬时速度一直在变。</li><li>只能切成很窄的时间片，每片近似匀速。</li><li>加密之后，和有一个稳定的数——这就是定积分。</li></ul></div></div>
+</section>
+<section data-sec="定义：黎曼和" class="slide divider" data-sec-start="定义：黎曼和" data-title="定义：黎曼和">
+<div class="sec-no">二</div><h2>定义：黎曼和</h2><p>分割、取点、作和、取极限。先有这个定义，后有计算公式。</p>
+</section>
+<section data-sec="定义：黎曼和" class="slide" data-title="定积分（黎曼和的极限）" data-notes="不要一上来就写原函数。">
 <div class="num">定义</div><h2 class="slide-title">定积分（黎曼和的极限）</h2><div class="card"><p>把 $[a,b]$ 分成 $n$ 段，第 $i$ 段长 $\Delta x_i$，在该段上取一点 $x_i^*$，作和</p><p>$$\sum_{i=1}^n f(x_i^*)\Delta x_i$$</p><p>当分割无限加密，若此和趋向同一个数，就记作</p><p>$$\int_a^b f(x)\,dx$$</p></div><p class="lead" style="margin-top:12px">关键有两件事：加密，以及取点方式（左、中、右）。</p>
 </section>
-<section class="slide" data-title="先看三件事">
-<h2 class="slide-title">先看三件事</h2><div class="grid-3"><div class="card"><h3>矩形可高可矮</h3><div class="gold-rule"></div><p>左端点、中点、右端点，矩形可以盖过曲线，也可以留出空隙。</p></div><div class="card"><h3>n 变大，锯齿贴住</h3><div class="gold-rule"></div><p>份数加密后，误差被逼没。真值不必先会求导。</p></div><div class="card"><h3>三种取法可以同一极限</h3><div class="gold-rule"></div><p>对本讲的正弦，左、中、右都逼近 2。</p></div></div>
+<section data-sec="定义：黎曼和" class="slide" data-title="先看三件事">
+<h2 class="slide-title">先看三件事</h2><div class="grid-3 fit"><div class="card"><h3>矩形可高可矮</h3><div class="gold-rule"></div><p>左端点、中点、右端点，矩形可以盖过曲线，也可以留出空隙。</p></div><div class="card"><h3>n 变大，锯齿贴住</h3><div class="gold-rule"></div><p>份数加密后，误差被逼没。真值不必先会求导。</p></div><div class="card"><h3>三种取法可以同一极限</h3><div class="gold-rule"></div><p>对本讲的正弦，左、中、右都逼近 2。</p></div></div>
 </section>
-<section class="slide" data-title="拉动 n，看矩形怎样变成面积" data-notes="先 n=4 问像不像面积。再播放。最后把左/右切过去。播放必须能停。" data-hook="riemann">
+<section data-sec="定义：黎曼和" class="slide" data-title="拉动 n，看矩形怎样变成面积" data-notes="先 n=4 问像不像面积。再播放。最后把左/右切过去。播放必须能停。" data-hook="riemann">
 <div class="num">实验 1</div><h2 class="slide-title">拉动 n，看矩形怎样变成面积</h2>
         <div class="grid-2" style="flex:1">
           <div class="plot-wrap"><canvas id="riemann-canvas"></canvas></div>
@@ -61,32 +68,89 @@
     </aside>
         </div>
 </section>
-<section class="slide" data-title="读完实验要留下的句子">
+<section data-sec="定义：黎曼和" class="slide" data-title="读完实验要留下的句子">
 <h2 class="slide-title">读完实验要留下的句子</h2><div class="card"><ul><li>真面积 $\int_0^{\pi}\sin x\,dx=2$ 是加密后的极限，不是某一次矩形和。</li><li>左、中、右是三种「冒充」办法；极限可以相同。</li><li>定积分先是极限，后来才轮到原函数。</li><li>文科用得上的一句：总量 = 变化率在一段上的积累。</li></ul></div>
 </section>
-<section class="slide" data-title="课堂练 1" data-notes="有人会说「正弦最大是 1，所以积分是 π」。纠正：那是上界。">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">不用原函数，只凭几何：说明为什么 $\int_0^{\pi}\sin x\,dx$ 应当是一个正数，并且左右对称时应当等于 $2\int_0^{\pi/2}\sin x\,dx$。</div><p class="wait">约 2 分钟。看图说话即可。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="定义：黎曼和" class="slide" data-title="课堂练 1" data-notes="有人会说「正弦最大是 1，所以积分是 π」。纠正：那是上界。" data-hook="figs">
+<div class="num">课堂练</div><span class="badge lv-base">基础</span><h2 class="slide-title">课堂练 1</h2><div class="grid-2 prompt-grid"><div class="prompt-box">不用原函数，只凭右图：
+(1) 为什么 $\int_0^{\pi}\sin x\,dx$ 是正数？
+(2) 为什么 $\int_0^{\pi}\sin x\,dx=2\int_0^{\pi/2}\sin x\,dx$？</div><div class="plot-wrap"><canvas data-fig="sinsym"></canvas></div></div><p class="wait">约 2 分钟。看图说话即可。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="课堂练 1" data-kind="answer">
-<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>$[0,\pi]$ 上 $\sin x\ge 0$，矩形（或曲边）都在轴上方，积分是正的几何面积。</li><li>$\sin(\pi-x)=\sin x$，图像关于 $x=\pi/2$ 对称，左右两半面积相等。</li><li>所以 $\int_0^{\pi}=2\int_0^{\pi/2}$。真值 2 将由下一页公式验算。</li></ol><div class="comment">先用对称性缩小计算，是定积分的常规手法。</div>
+<section data-sec="定义：黎曼和" class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>$[0,\pi]$ 上 $\sin x\ge 0$，曲边都在轴上方，积分是正的几何面积。</li><li>$\sin(\pi-x)=\sin x$，图像关于 $x=\pi/2$ 对称，紫、绿两块面积相等。</li><li>所以 $\int_0^{\pi}=2\int_0^{\pi/2}$。真值 2 将在第三节验算。</li></ol><div class="comment">先用对称性缩小计算，是定积分的常规手法。</div>
 </section>
-<section class="slide" data-title="牛顿–莱布尼茨公式" data-notes="强调：先有极限定义，后有计算捷径。">
-<div class="num">定义</div><h2 class="slide-title">牛顿–莱布尼茨公式</h2><div class="card"><p>若 $F'=f$，且 $f$ 在 $[a,b]$ 连续，则</p><p>$$\int_a^b f(x)\,dx = F(b)-F(a)$$</p><p>常记 $F(b)-F(a)=\bigl[F(x)\bigr]_a^b$。</p></div><p class="lead" style="margin-top:12px">这是计算装置。没有「加密求和」的图像，公式只是魔术。</p>
+<section data-sec="计算：从积累到原函数" class="slide divider" data-sec-start="计算：从积累到原函数" data-title="计算：从积累到原函数">
+<div class="sec-no">三</div><h2>计算：从积累到原函数</h2><p>让上限动起来，积累量就成了一个函数；它的导数正是被积函数。</p>
 </section>
-<section class="slide" data-title="用公式核对实验" data-notes="板书这一行，让学生看见 2 不是凑出来的。">
-<div class="num">公式</div><h2 class="slide-title">用公式核对实验</h2><div class="card">$$F(x)=-\cos x,\quad F(\pi)-F(0)=(-\cos\pi)-(-\cos 0)=1+1=2$$</div><p class="lead">与黎曼和实验里逼近的数相同。两套语言在说同一件事。</p>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="变上限积分" data-notes="先读懂这句话，下一页实验看图。证明不要求。">
+<div class="num">定义</div><h2 class="slide-title">变上限积分</h2><div class="card"><p>固定下限 $a$，让上限 $x$ 变动：</p><p>$$F(x)=\int_a^x f(t)\,dt$$</p><p>$F(x)$ 是「从 $a$ 积到 $x$ 的积累量」。若 $f$ 连续，则</p><p>$$F'(x)=f(x)$$</p></div><p class="lead" style="margin-top:12px">积累量的变化率，就是被积函数此刻的高度。所以 $F$ 是 $f$ 的一个原函数——1.5 的「原函数」与本讲的「积累」在这里接上。</p>
 </section>
-<section class="slide" data-title="课堂练 2">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">计算 $\displaystyle\int_0^1 (2x+1)\,dx$，并在图像上说明它等于哪一块梯形的面积。</div><p class="wait">约 3 分钟。先找原函数，再画草图。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="上限往右走，积累量怎样变" data-notes="先停在 π/2 问 F 在升还是降；拖到 π 问为什么最大；拖到 2π 问为什么回到 0。" data-hook="accum">
+<div class="num">实验 2</div><h2 class="slide-title">上限往右走，积累量怎样变</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="accum-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>上限 x</span><span class="ctrl-val" id="accum-x-val">1.00</span></label>
+              <input id="accum-x" type="range" min="0" max="6.283" step="0.01" value="1" />
+            </div>
+            <div class="readout" id="accum-read"></div>
+            <div class="verdict" id="accum-verdict"></div>
+    </aside>
+        </div>
 </section>
-<section class="slide" data-title="课堂练 2" data-kind="answer">
+<section data-sec="计算：从积累到原函数" class="slide" data-title="牛顿–莱布尼茨公式" data-notes="强调：先有极限定义，后有计算捷径。">
+<div class="num">定义</div><h2 class="slide-title">牛顿–莱布尼茨公式</h2><div class="card"><p>若 $G'=f$，且 $f$ 在 $[a,b]$ 连续，则</p><p>$$\int_a^b f(x)\,dx = G(b)-G(a)=\bigl[G(x)\bigr]_a^b$$</p><p>理由：$F(x)=\int_a^x f$ 也是原函数，两个原函数只差常数，而 $F(a)=0$，所以 $F(b)=G(b)-G(a)$。</p></div><p class="lead" style="margin-top:12px">这是计算装置。没有「加密求和」的图像，公式只是魔术。</p>
+</section>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="用公式核对实验 1" data-notes="按 → 一行一行出。每出一行先问学生下一步。">
+<div class="num">推导</div><h2 class="slide-title">用公式核对实验 1</h2><div class="derive"><div class="dm">$$\int_0^{\pi}\sin x\,dx=\bigl[-\cos x\bigr]_0^{\pi}$$</div><div class="dw"><span>找原函数：$(-\cos x)'=\sin x$</span></div><div class="dm step" data-g="d1">$$=(-\cos\pi)-(-\cos 0)$$</div><div class="dw step" data-g="d1"><span>上限代入，减去下限代入</span></div><div class="dm step" data-g="d2">$$=1+1=2$$</div><div class="dw step" data-g="d2"><span>与黎曼和实验逼近的数相同</span></div></div>
+</section>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="课堂练 2">
+<div class="num">课堂练</div><span class="badge lv-base">基础</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">计算 $\displaystyle\int_0^1 (2x+1)\,dx$，并在图像上说明它等于哪一块梯形的面积。</div><p class="wait">约 3 分钟。先找原函数，再画草图。<button type="button" class="btn ghost timer" data-sec="180">计时 3:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="课堂练 2" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>原函数 $x^2+x$。代入：$1+1-0=2$。</li><li>图像是直线 $y=2x+1$，从 $x=0$ 的高 1 到 $x=1$ 的高 3。</li><li>梯形面积 $(1+3)/2 \times 1=2$。公式与几何一致。</li></ol><div class="comment">能画出来的积分，算完一定要回图像核对符号与大小。</div>
 </section>
-<section class="slide" data-title="几何面积，还是代数和？">
-<h2 class="slide-title">几何面积，还是代数和？</h2><p class="lead">题目若写「面积」，先看曲线在轴哪一侧。</p><div class="grid-2"><div class="card"><h3>几何</h3><div class="gold-rule"></div><ul><li>问「涂了多少颜料」，轴下也算正的。</li><li>$\int_{-1}^{1}|x|\,dx=1$。</li></ul></div><div class="card"><h3>定积分</h3><div class="gold-rule"></div><ul><li>轴上为正、轴下为负。</li><li>$\int_{-\pi}^{\pi}\sin x\,dx=0$，正负抵消。</li></ul></div></div>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="课堂练 3">
+<div class="num">课堂练</div><span class="badge lv-vary">变式</span><h2 class="slide-title">课堂练 3</h2><div class="prompt-box">计算 $\displaystyle\int_0^{\pi/2}\cos x\,dx$。
+有同学说：「余弦从 1 降到 0，图像像四分之一个单位圆，所以答案是 $\pi/4$。」对吗？</div><p class="wait">约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="有号面积：轴上轴下" data-notes="先「全部」看抵消，再分别只看轴上/轴下。" data-hook="signed">
-<div class="num">实验 2</div><h2 class="slide-title">有号面积：轴上轴下</h2>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>$\int_0^{\pi/2}\cos x\,dx=\bigl[\sin x\bigr]_0^{\pi/2}=1-0=1$。</li><li>四分之一单位圆是 $y=\sqrt{1-x^2}$ 在 $[0,1]$ 上，面积 $\pi/4\approx 0.785$。</li><li>余弦曲线在 $[0,\pi/2]$ 上，横向更宽（$\pi/2\approx 1.57$），不是同一块区域。</li></ol><div class="comment">「看起来像」不能代替计算。几何意义用来核对，不用来猜。</div>
+</section>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="定积分换元：上下限跟着变">
+<div class="num">推导</div><h2 class="slide-title">定积分换元：上下限跟着变</h2><div class="derive"><div class="dm">$$\int_0^{1}2x\,e^{x^2}\,dx$$</div><div class="dw"><span>被积式里有 $x^2$ 和它的导数 $2x$</span></div><div class="dm step" data-g="d1">$$u=x^2,\qquad du=2x\,dx$$</div><div class="dw step" data-g="d1"><span>换元</span></div><div class="dm step" data-g="d2">$$x:0\to 1\ \ \Longrightarrow\ \ u:0\to 1$$</div><div class="dw step" data-g="d2"><span>上下限跟着换成 $u$ 的范围</span></div><div class="dm step" data-g="d3">$$=\int_0^{1}e^{u}\,du=\bigl[e^u\bigr]_0^1=e-1$$</div><div class="dw step" data-g="d3"><span>直接在 $u$ 里算完，不必代回 $x$</span></div></div><p class="lead step">不定积分换元要代回原变量；定积分换元换了限，就在新变量里算完。</p>
+</section>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="找错 1　换元忘了换限">
+<div class="num">课堂练</div><span class="badge lv-judge">找错</span><h2 class="slide-title">找错 1　换元忘了换限</h2><div class="card mistake"><p class="given">计算 $\displaystyle\int_0^{2}x\,e^{x^2}\,dx$。</p><h3>某同学这样写</h3><ol><li>令 $u=x^2$，则 $du=2x\,dx$，$x\,dx=\tfrac12 du$。</li><li>原式 $=\tfrac12\int_0^{2}e^{u}\,du$。</li><li>$=\tfrac12\bigl[e^u\bigr]_0^2=\tfrac12(e^2-1)$。</li></ol></div><p class="wait">哪一步错了？正确答案是多少？　约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="找错 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">找错 1</h2><ol class="answer-list"><li>第 2 步错。$x$ 从 $0$ 到 $2$ 时，$u=x^2$ 从 $0$ 到 $4$，上限应是 $4$。</li><li>正确：$\tfrac12\int_0^{4}e^{u}\,du=\tfrac12(e^4-1)$。</li><li>验算：$\bigl(\tfrac12 e^{x^2}\bigr)'=x e^{x^2}$，在 $0$ 到 $2$ 上相减也得 $\tfrac12(e^4-1)$。</li></ol><div class="comment">换元三件套：换被积式、换微分、换上下限。少一件就错。</div>
+</section>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="例 1.6.4　同一题，两种写法">
+<div class="num">例题</div><h2 class="slide-title">例 1.6.4　同一题，两种写法</h2><p class="lead">上下限跟着积分变量走：变量没换，限不动；变量换了，限一起换。找错 1 的同学，错在换了变量却留着旧的限。</p><div class="grid-2 fit"><div class="card"><h3>解一　凑微分，不换元</h3><div class="gold-rule"></div><ul><li>$\displaystyle\int_0^{\sqrt a}xe^{x^2}dx=\frac12\int_0^{\sqrt a}e^{x^2}\,d(x^2)$</li><li>积分变量仍是 $x$，上下限不改。</li><li>$\displaystyle=\frac12\bigl[e^{x^2}\bigr]_0^{\sqrt a}=\frac12(e^a-1)$</li></ul></div><div class="card"><h3>解二　换元 u = x²</h3><div class="gold-rule"></div><ul><li>$\displaystyle=\frac12\int_0^{a}e^{u}\,du$</li><li>积分变量改成 $u$，上限 $\sqrt a$ 跟着变成 $a$。</li><li>$\displaystyle=\frac12\bigl[e^{u}\bigr]_0^{a}=\frac12(e^a-1)$</li></ul></div></div>
+</section>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="例 1.6.3　第二换元：令 t = √x">
+<div class="num">例题</div><h2 class="slide-title">例 1.6.3　第二换元：令 t = √x</h2><div class="derive"><div class="dm">$$\int_1^{2}\frac{dx}{1+\sqrt x}$$</div><div class="dw"><span>根号碍事：令 $t=\sqrt x$，即 $x=t^2$</span></div><div class="dm step" data-g="d1">$$dx=2t\,dt,\qquad x:1\to 2\ \Longrightarrow\ t:1\to\sqrt2$$</div><div class="dw step" data-g="d1"><span>换微分，同时换上下限</span></div><div class="dm step" data-g="d2">$$=\int_1^{\sqrt2}\frac{2t}{1+t}\,dt=\int_1^{\sqrt2}\Bigl(2-\frac{2}{1+t}\Bigr)dt$$</div><div class="dw step" data-g="d2"><span>分子凑出 $1+t$</span></div><div class="dm step" data-g="d3">$$=\bigl[2t-2\ln(1+t)\bigr]_1^{\sqrt2}$$</div><div class="dw step" data-g="d3"><span>在 $t$ 里求原函数</span></div><div class="dm step" data-g="d4">$$=2\sqrt2-2+2\ln2-2\ln\bigl(1+\sqrt2\bigr)\approx 0.45$$</div><div class="dw step" data-g="d4"><span>代入上下限，不必回代</span></div></div><p class="lead step">对照不定积分：$\int\frac{dx}{1+\sqrt x}=2\sqrt x-2\ln(1+\sqrt x)+C$，要把 $t=\sqrt x$ 代回去。定积分换了限，就省掉这一步。</p>
+</section>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="例 1.6.5　定积分的分部积分">
+<div class="num">例题</div><h2 class="slide-title">例 1.6.5　定积分的分部积分</h2><div class="derive"><div class="dm">$$\int_a^b u\,dv=\bigl[uv\bigr]_a^b-\int_a^b v\,du$$</div><div class="dw"><span>公式与不定积分相同，每一项都带上下限</span></div><div class="dm step" data-g="d1">$$\int_0^1 xe^x\,dx=\int_0^1 x\,d\bigl(e^x\bigr)$$</div><div class="dw step" data-g="d1"><span>取 $u=x$，$dv=e^x\,dx$</span></div><div class="dm step" data-g="d2">$$=\bigl[xe^x\bigr]_0^1-\int_0^1 e^x\,dx$$</div><div class="dw step" data-g="d2"><span>分部</span></div><div class="dm step" data-g="d3">$$=e-\bigl[e^x\bigr]_0^1=e-(e-1)=1$$</div><div class="dw step" data-g="d3"><span>$uv$ 先代上下限，再算剩下的积分</span></div></div><p class="lead step">常见错误：只给剩下的 $\int v\,du$ 代限，把 $uv$ 当成不定积分那样原样留着。</p>
+</section>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="课堂练 4">
+<div class="num">课堂练</div><span class="badge lv-vary">变式</span><h2 class="slide-title">课堂练 4</h2><div class="prompt-box">用分部积分计算 $\displaystyle\int_1^{e}\ln x\,dx$。
+提示：被积式只有一个 $\ln x$，取 $u=\ln x$，$dv=dx$。</div><p class="wait">约 3 分钟。<button type="button" class="btn ghost timer" data-sec="180">计时 3:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="计算：从积累到原函数" class="slide" data-title="课堂练 4" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>$u=\ln x$，$v=x$：$\displaystyle\int_1^{e}\ln x\,dx=\bigl[x\ln x\bigr]_1^{e}-\int_1^{e}x\cdot\frac1x\,dx$。</li><li>$=(e\cdot 1-1\cdot 0)-(e-1)=1$。</li><li>验算：$(x\ln x-x)'=\ln x$，$\bigl[x\ln x-x\bigr]_1^{e}=0-(-1)=1$。</li></ol><div class="comment">被积式里只有一个函数时，把 $dx$ 当成 $dv$。</div>
+</section>
+<section data-sec="有号面积与性质" class="slide divider" data-sec-start="有号面积与性质" data-title="有号面积与性质">
+<div class="sec-no">四</div><h2>有号面积与性质</h2><p>定积分问的是代数和：轴上为正，轴下为负。</p>
+</section>
+<section data-sec="有号面积与性质" class="slide" data-title="几何面积，还是代数和？">
+<h2 class="slide-title">几何面积，还是代数和？</h2><p class="lead">题目若写「面积」，先看曲线在轴哪一侧。</p><div class="grid-2 fit"><div class="card"><h3>几何</h3><div class="gold-rule"></div><ul><li>问「涂了多少颜料」，轴下也算正的。</li><li>$\int_{-1}^{1}|x|\,dx=1$。</li></ul></div><div class="card"><h3>定积分</h3><div class="gold-rule"></div><ul><li>轴上为正、轴下为负。</li><li>$\int_{-\pi}^{\pi}\sin x\,dx=0$，正负抵消。</li></ul></div></div>
+</section>
+<section data-sec="有号面积与性质" class="slide" data-title="有号面积：轴上轴下" data-notes="先「全部」看抵消，再分别只看轴上/轴下。" data-hook="signed">
+<div class="num">实验 3</div><h2 class="slide-title">有号面积：轴上轴下</h2>
         <div class="grid-2" style="flex:1">
           <div class="plot-wrap"><canvas id="signed-canvas"></canvas></div>
           <aside class="panel">
@@ -101,79 +165,154 @@
     </aside>
         </div>
 </section>
-<section class="slide" data-title="课堂练 3">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3</h2><div class="prompt-box">用几何意义求 $\int_{-1}^{1}|x|\,dx$，不要硬找分段原函数。再问：$\int_{-1}^{1}x\,dx$ 是多少？两个答案为什么不同？</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="有号面积与性质" class="slide" data-title="课堂练 5">
+<div class="num">课堂练</div><span class="badge lv-base">基础</span><h2 class="slide-title">课堂练 5</h2><div class="prompt-box">用几何意义求 $\int_{-1}^{1}|x|\,dx$，不要硬找分段原函数。
+再问：$\int_{-1}^{1}x\,dx$ 是多少？两个答案为什么不同？</div><p class="wait">约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="课堂练 3" data-kind="answer">
-<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>$|x|$ 在 $[-1,1]$ 是两个直角三角形，每个面积 $1/2$，和为 1。</li><li>$\int_{-1}^{1}x\,dx$：奇函数、对称区间，代数和为 0。</li><li>绝对值把轴下翻上来，问的是几何面积；不取绝对值，问的是有号面积。</li></ol><div class="comment">这是本讲最容易混的一对。</div>
+<section data-sec="有号面积与性质" class="slide" data-title="课堂练 5" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 5</h2><ol class="answer-list"><li>$|x|$ 在 $[-1,1]$ 是两个直角三角形，每个面积 $1/2$，和为 1。</li><li>用积分写：在折点切开，$\int_{-1}^{0}(-x)\,dx+\int_{0}^{1}x\,dx=\tfrac12+\tfrac12=1$。</li><li>$\int_{-1}^{1}x\,dx$：奇函数、对称区间，代数和为 0。</li><li>绝对值把轴下翻上来，问的是几何面积；不取绝对值，问的是有号面积。</li></ol><div class="comment">这是本讲最容易混的一对。</div>
 </section>
-<section class="slide" data-title="常用性质（口算级）">
-<h2 class="slide-title">常用性质（口算级）</h2><div class="grid-3"><div class="card"><h3>线性</h3><div class="gold-rule"></div><p>$\int (af+bg)=a\int f+b\int g$。常数可以提出去。</p></div><div class="card"><h3>区间可加</h3><div class="gold-rule"></div><p>$\int_a^c=\int_a^b+\int_b^c$。可在拐点、零点切开。</p></div><div class="card"><h3>保序</h3><div class="gold-rule"></div><p>若 $f\le g$，则积分也 $\le$。可用来估上下界。</p></div></div>
+<section data-sec="有号面积与性质" class="slide" data-title="常用性质（口算级）">
+<h2 class="slide-title">常用性质（口算级）</h2><div class="grid-3 fit"><div class="card"><h3>线性</h3><div class="gold-rule"></div><p>$\int (af+bg)=a\int f+b\int g$。常数可以提出去。</p></div><div class="card"><h3>区间可加</h3><div class="gold-rule"></div><p>$\int_a^c=\int_a^b+\int_b^c$。可在折点、零点切开。上下限对调，积分变号。</p></div><div class="card"><h3>保序</h3><div class="gold-rule"></div><p>若在 $[a,b]$ 上 $f\le g$，则 $\int_a^b f\le\int_a^b g$。可用来估上下界。</p></div></div>
 </section>
-<section class="slide" data-title="变上限：积分也可以对上限求导" data-notes="时间紧可口播，不板书证明。">
-<h2 class="slide-title">变上限：积分也可以对上限求导</h2><div class="card"><ul><li>令 $F(x)=\int_a^x f(t)\,dt$，则 $F'(x)=f(x)$（$f$ 连续）。</li><li>这句话把 1.5 的「原函数」和本讲的「积累」接起来。</li><li>先会读：上限在动，积累量的变化率就是被积函数。</li><li>变限积分的换元细节本学期不要求。</li></ul></div>
+<section data-sec="有号面积与性质" class="slide" data-title="例 1.6.2　在折点切开">
+<div class="num">例题</div><h2 class="slide-title">例 1.6.2　在折点切开</h2><div class="derive"><div class="dm">$$\int_{-1}^{2}|x|\,dx=\int_{-1}^{0}|x|\,dx+\int_{0}^{2}|x|\,dx$$</div><div class="dw"><span>区间可加：在折点 $x=0$ 切开</span></div><div class="dm step" data-g="d1">$$=\int_{-1}^{0}(-x)\,dx+\int_{0}^{2}x\,dx$$</div><div class="dw step" data-g="d1"><span>去掉绝对值：左边 $|x|=-x$，右边 $|x|=x$</span></div><div class="dm step" data-g="d2">$$=\Bigl[-\frac12x^2\Bigr]_{-1}^{0}+\Bigl[\frac12x^2\Bigr]_{0}^{2}$$</div><div class="dw step" data-g="d2"><span>两段各用牛顿–莱布尼茨</span></div><div class="dm step" data-g="d3">$$=\frac12+2=\frac52$$</div><div class="dw step" data-g="d3"><span>核对：左边三角形底 1 高 1，右边底 2 高 2</span></div></div><p class="lead step">区间不对称，奇偶性帮不上忙，只能切开。课堂练 5 的 $[-1,1]$ 是它的对称特例。</p>
 </section>
-<section class="slide" data-title="课堂练 4">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 4</h2><div class="prompt-box">判断正误并改错：
+<section data-sec="有号面积与性质" class="slide" data-title="课堂练 6">
+<div class="num">课堂练</div><span class="badge lv-vary">变式</span><h2 class="slide-title">课堂练 6</h2><div class="prompt-box">求 $\displaystyle\int_0^{2}|x-1|\,dx$ 与 $\displaystyle\int_0^{2}(x-1)\,dx$。
+先画图，再决定在哪里切开。</div><p class="wait">约 3 分钟。<button type="button" class="btn ghost timer" data-sec="180">计时 3:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="有号面积与性质" class="slide" data-title="课堂练 6" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 6</h2><ol class="answer-list"><li>$|x-1|$ 的折点在 $x=1$。图像是两个直角三角形，底 1、高 1，各 $1/2$。</li><li>所以 $\int_0^{2}|x-1|\,dx=1$。</li><li>$\int_0^{2}(x-1)\,dx=\bigl[\tfrac{x^2}2-x\bigr]_0^2=2-2=0$：轴下一块与轴上一块抵消。</li></ol><div class="comment">与课堂练 5 同一个道理，只是折点从 0 挪到了 1。</div>
+</section>
+<section data-sec="有号面积与性质" class="slide" data-title="课堂练 7　对称">
+<div class="num">课堂练</div><span class="badge lv-vary">变式</span><h2 class="slide-title">课堂练 7　对称</h2><div class="prompt-box">不计算原函数：说明 $\int_{-2}^{2}(x^3+x)\,dx=0$，而 $\int_{-2}^{2}(x^2+1)\,dx>0$。</div><p class="wait">约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="有号面积与性质" class="slide" data-title="课堂练 7" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 7</h2><ol class="answer-list"><li>$x^3+x$ 是奇函数，对称区间，代数和 0。</li><li>$x^2+1$ 是偶函数且为正，面积为正，等于 $2\int_0^2(x^2+1)\,dx=2\cdot\tfrac{14}{3}=\tfrac{28}{3}$。</li><li>先看奇偶，再决定要不要真的积分。</li></ol>
+</section>
+<section data-sec="有号面积与性质" class="slide" data-title="积分中值（直观）">
+<h2 class="slide-title">积分中值（直观）</h2><div class="card"><ul><li>连续函数在 $[a,b]$ 上，存在 $c$ 使 $\int_a^b f=f(c)(b-a)$。</li><li>矩形的高取某个中间函数值，面积恰好等于曲边面积。</li><li>这个高 $f(c)=\frac1{b-a}\int_a^b f$ 就是 $f$ 在 $[a,b]$ 上的平均值。例：$\sin x$ 在 $[0,\pi]$ 上的平均值是 $2/\pi\approx 0.64$。</li></ul></div>
+</section>
+<section data-sec="有号面积与性质" class="slide" data-title="课堂练 8　判断">
+<div class="num">课堂练</div><span class="badge lv-judge">辨析</span><h2 class="slide-title">课堂练 8　判断</h2><div class="prompt-box">判断正误并说明：
 (1) 定积分 $\int_a^b f(x)\,dx$ 的结果仍是 $x$ 的函数。
-(2) 若 $\int_a^b f=0$，则 $f$ 必须处处为 0。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+(2) 若 $\int_a^b f=0$，则 $f$ 必须处处为 0。
+(3) $\int_0^1 x^2\,dx\le\int_0^1 x\,dx$。</div><p class="wait">约 3 分钟。<button type="button" class="btn ghost timer" data-sec="180">计时 3:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="课堂练 4" data-kind="answer">
-<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>(1) 错。$x$ 是哑元，结果是一个数（或用上限当变量时才是函数）。</li><li>(2) 错。正负抵消也可以为 0，例如 $[-\pi,\pi]$ 上的 $\sin x$。</li></ol><div class="comment">哑元与有号面积，两处最常见的口误。</div>
+<section data-sec="有号面积与性质" class="slide" data-title="课堂练 8" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 8</h2><ol class="answer-list"><li>(1) 错。$x$ 是哑元，结果是一个数。只有上限当变量时（变上限积分）才是函数。</li><li>(2) 错。正负抵消也可以为 0，例如 $[-\pi,\pi]$ 上的 $\sin x$。</li><li>(3) 对。$0\le x\le 1$ 时 $x^2\le x$，由保序性得结论。验算：$\tfrac13\le\tfrac12$。</li></ol><div class="comment">哑元、有号面积、保序：三处最常见的口误。</div>
 </section>
-<section class="slide" data-title="再练一道 N-L">
-<div class="num">公式</div><h2 class="slide-title">再练一道 N-L</h2><div class="card">$$\int_0^{\pi/2}\cos x\,dx=\bigl[\sin x\bigr]_0^{\pi/2}=1-0=1$$</div><p class="lead">从 0 到 π/2，余弦从 1 降到 0，面积是 1，不是四分之一圆（那是 √(1−x²)）。</p>
+<section data-sec="反常积分：积到无穷远" class="slide divider" data-sec-start="反常积分：积到无穷远" data-title="反常积分：积到无穷远">
+<div class="sec-no">五</div><h2>反常积分：积到无穷远</h2><p>区间无限长，或者函数在某点冲上天——先截断，再取极限。</p>
 </section>
-<section class="slide" data-title="课堂练 5　对称">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 5　对称</h2><div class="prompt-box">不计算原函数：说明 $\int_{-2}^{2}(x^3+x)\,dx=0$，而 $\int_{-2}^{2}(x^2+1)\,dx>0$。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="反常积分：积到无穷远" class="slide" data-title="反常积分：先写成极限">
+<div class="num">推导</div><h2 class="slide-title">反常积分：先写成极限</h2><div class="derive"><div class="dm">$$\int_1^{+\infty}\frac{dx}{x^2}=\lim_{b\to+\infty}\int_1^{b}\frac{dx}{x^2}$$</div><div class="dw"><span>无穷区间：先截到 $b$，再让 $b\to+\infty$</span></div><div class="dm step" data-g="d1">$$=\lim_{b\to+\infty}\Bigl[-\frac1x\Bigr]_1^{b}=\lim_{b\to+\infty}\Bigl(1-\frac1b\Bigr)$$</div><div class="dw step" data-g="d1"><span>有限的一段照常用牛顿–莱布尼茨</span></div><div class="dm step" data-g="d2">$$=1$$</div><div class="dw step" data-g="d2"><span>极限存在：收敛，值为 1</span></div><div class="dm step" data-g="d3">$$\int_1^{b}\frac{dx}{x}=\ln b\ \to\ +\infty$$</div><div class="dw step" data-g="d3"><span>换成 $1/x$：极限不存在，发散</span></div></div><p class="lead step">一般地，$\int_1^{+\infty}x^{-p}\,dx$ 在 $p>1$ 时收敛，$p\le 1$ 时发散。记号本身还不等于已经算出了数。</p>
 </section>
-<section class="slide" data-title="课堂练 5" data-kind="answer">
-<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 5</h2><ol class="answer-list"><li>$x^3+x$ 是奇函数，对称区间，代数和 0。</li><li>$x^2+1$ 是偶函数且为正，面积为正。</li><li>先看奇偶，再决定要不要真的积分。</li></ol>
+<section data-sec="反常积分：积到无穷远" class="slide" data-title="两条都贴向 x 轴，面积却一个有限一个无限" data-notes="先停在 b=10 比两块面积，再一路拉到 1000。下图横轴是对数刻度。" data-hook="improper">
+<div class="num">实验 4</div><h2 class="slide-title">两条都贴向 x 轴，面积却一个有限一个无限</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="improper-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>上限 b</span><span class="ctrl-val" id="improper-b-val">2.00</span></label>
+              <input id="improper-b" type="range" min="0" max="100" step="1" value="10" />
+            </div>
+            <div class="readout" id="improper-read"></div>
+            <div class="verdict" id="improper-verdict"></div>
+    </aside>
+        </div>
 </section>
-<section class="slide" data-title="比较：不定积分 vs 定积分">
-<h2 class="slide-title">比较：不定积分 vs 定积分</h2><div class="grid-2"><div class="card"><h3>不定</h3><div class="gold-rule"></div><ul><li>结果是函数族 +C。</li><li>运算是求导的逆。</li></ul></div><div class="card"><h3>定</h3><div class="gold-rule"></div><ul><li>结果是数。</li><li>定义是黎曼和。</li><li>计算可用原函数之差。</li></ul></div></div>
+<section data-sec="反常积分：积到无穷远" class="slide" data-title="例 1.6.7　两端都是无穷">
+<div class="num">例题</div><h2 class="slide-title">例 1.6.7　两端都是无穷</h2><div class="derive"><div class="dm">$$\int_{-\infty}^{+\infty}\frac{dx}{1+x^2}=\int_{-\infty}^{0}\frac{dx}{1+x^2}+\int_{0}^{+\infty}\frac{dx}{1+x^2}$$</div><div class="dw"><span>在中间任取一点切开，这里取 0</span></div><div class="dm step" data-g="d1">$$=\bigl[\arctan x\bigr]_{-\infty}^{0}+\bigl[\arctan x\bigr]_{0}^{+\infty}$$</div><div class="dw step" data-g="d1"><span>记 $F(+\infty)=\lim_{b\to+\infty}F(b)$，写法与牛顿–莱布尼茨一致</span></div><div class="dm step" data-g="d2">$$=\Bigl(0+\frac{\pi}{2}\Bigr)+\Bigl(\frac{\pi}{2}-0\Bigr)=\pi$$</div><div class="dw step" data-g="d2"><span>$\arctan x$ 在两端趋于 $\pm\frac{\pi}{2}$</span></div></div><p class="lead step">两半必须各自收敛，有一半发散整个就发散。不能让两端一起走：$\int_{-b}^{b}x\,dx=0$，但 $\int_{-\infty}^{+\infty}x\,dx$ 发散。</p>
 </section>
-<section class="slide" data-title="积分中值（直观）">
-<h2 class="slide-title">积分中值（直观）</h2><div class="card"><ul><li>连续函数在 [a,b] 上，存在 c 使 $\int_a^b f=f(c)(b-a)$。</li><li>矩形的高取某个中间函数值，面积恰好等于曲边面积。</li><li>平均值正是这个 f(c)。</li></ul></div>
+<section data-sec="反常积分：积到无穷远" class="slide" data-title="课堂练 9">
+<div class="num">课堂练</div><span class="badge lv-vary">变式</span><h2 class="slide-title">课堂练 9</h2><div class="prompt-box">求 $\displaystyle\int_0^{+\infty}x\,e^{-x^2}\,dx$。
+先写成 $\displaystyle\lim_{b\to+\infty}\int_0^{b}$，再凑微分 $d(-x^2)$。</div><p class="wait">约 3 分钟。<button type="button" class="btn ghost timer" data-sec="180">计时 3:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="应用接口（为 1.7 铺路）">
-<h2 class="slide-title">应用接口（为 1.7 铺路）</h2><div class="grid-3"><div class="card"><h3>路程</h3><div class="gold-rule"></div><p>速度曲线下的有号面积：往返会抵消。</p></div><div class="card"><h3>产量</h3><div class="gold-rule"></div><p>生产率对时间积分。</p></div><div class="card"><h3>概率预告</h3><div class="gold-rule"></div><p>密度曲线下的面积——另案。</p></div></div>
+<section data-sec="反常积分：积到无穷远" class="slide" data-title="课堂练 9" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 9</h2><ol class="answer-list"><li>$\displaystyle\int_0^{b}xe^{-x^2}dx=-\frac12\int_0^{b}e^{-x^2}\,d(-x^2)=-\frac12\bigl[e^{-x^2}\bigr]_0^{b}=\frac12\bigl(1-e^{-b^2}\bigr)$。</li><li>$b\to+\infty$ 时 $e^{-b^2}\to 0$，收敛，值为 $\tfrac12$。</li><li>简写：$-\tfrac12\bigl[e^{-x^2}\bigr]_0^{+\infty}=-\tfrac12(0-1)=\tfrac12$。这是教材例 1.6.8。</li></ol><div class="comment">凑微分、牛顿–莱布尼茨、取极限，三步和有限区间时一样，只多了最后一步极限。</div>
 </section>
-<section class="slide" data-title="定积分换元：上下限跟着变">
-<div class="num">公式</div><h2 class="slide-title">定积分换元：上下限跟着变</h2><div class="card">$$\int_0^{1}2x e^{x^2}\,dx=\int_0^{1}e^{u}\,du=e-1$$</div><p class="lead">令 $u=x^2$。$x$ 从 $0$ 到 $1$ 时 $u$ 也从 $0$ 到 $1$，就不必再代回 $x$。不定积分才必须代回原变量。</p>
+<section data-sec="反常积分：积到无穷远" class="slide" data-title="找错 2　正的函数，积出负数" data-hook="figs">
+<div class="num">课堂练</div><span class="badge lv-judge">找错</span><h2 class="slide-title">找错 2　正的函数，积出负数</h2><div class="grid-2 prompt-grid"><div class="card mistake"><p class="given">计算 $\displaystyle\int_{-1}^{1}\frac{dx}{x^2}$。</p><h3>某同学这样写</h3><ol><li>原函数是 $-\dfrac1x$。</li><li>原式 $=\Bigl[-\dfrac1x\Bigr]_{-1}^{1}=(-1)-(1)=-2$。</li></ol></div><div class="plot-wrap"><canvas data-fig="inv2"></canvas></div></div><p class="wait">被积函数处处为正，结果却是负数。错在哪里？　约 3 分钟。<button type="button" class="btn ghost timer" data-sec="180">计时 3:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="奇偶与反常积分">
-<h2 class="slide-title">奇偶与反常积分</h2><div class="card"><ul><li>连续偶函数在 $[-a,a]$ 上的积分等于 $2\int_0^a$；连续奇函数在对称区间上的积分是 $0$。</li><li>$\int_1^{+\infty}x^{-p}\,dx$ 在 $p>1$ 时收敛，在 $p\le 1$ 时发散。</li><li>例如 $\int_1^{+\infty}x^{-2}\,dx=1$。$\int_1^{+\infty}x^{-1}\,dx$ 是 $\ln x$ 走向无穷，发散。</li><li>反常积分是定积分的极限。极限存在才说收敛，记号本身不等于已经有数值。</li></ul></div>
+<section data-sec="反常积分：积到无穷远" class="slide" data-title="找错 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">找错 2</h2><ol class="answer-list"><li>$1/x^2$ 在 $x=0$ 处无界，不连续。牛顿–莱布尼茨要求被积函数在整个区间上连续，这里不能直接用。</li><li>正确做法：在 $0$ 处切开，各写成极限。$\int_0^1\frac{dx}{x^2}=\lim_{\varepsilon\to0^+}\Bigl[-\frac1x\Bigr]_\varepsilon^1=\lim_{\varepsilon\to0^+}\Bigl(\frac1\varepsilon-1\Bigr)=+\infty$。</li><li>有一半发散，整个积分就发散，没有数值。</li></ol><div class="comment">套公式前先看两件事：区间有没有无穷，被积函数在区间里有没有冲上天。</div>
 </section>
-<section class="slide" data-title="带绝对值：在折点切开">
-<div class="num">公式</div><h2 class="slide-title">带绝对值：在折点切开</h2><div class="card">$$\int_{-1}^{1}|x|\,dx=\int_{-1}^{0}(-x)\,dx+\int_{0}^{1}x\,dx=1$$</div><p class="lead">左半段 $|x|=-x$，右半段 $|x|=x$。两边各是 $1/2$。若直接写 $x|x|/2$ 再代入，也要先确认原函数在 $0$ 的左右接得上。</p>
+<section data-sec="应用：经济与社会里的积累量" class="slide divider" data-sec-start="应用：经济与社会里的积累量" data-title="应用：经济与社会里的积累量">
+<div class="sec-no">六</div><h2>应用：经济与社会里的积累量</h2><p>需求曲线下的面积、收入分配的不平等，都是定积分。</p>
 </section>
-<section class="slide" data-title="反常积分：先写成极限">
-<div class="num">公式</div><h2 class="slide-title">反常积分：先写成极限</h2><div class="card">$$\int_1^{\infty}x^{-2}\,dx=1,\qquad \int_1^{\infty}\frac{1}{x}\,dx\ \text{发散}$$</div><p class="lead">第一式是 $\lim_{b\to\infty}[-1/x]_1^b=1$，收敛。第二式是 $\lim_{b\to\infty}\ln b$，没有有限极限。$p>1$ 时 $\int_1^{\infty}x^{-p}\,dx$ 收敛，$p\le 1$ 时发散。记号本身还不等于已经算出了数。</p>
+<section data-sec="应用：经济与社会里的积累量" class="slide" data-title="消费者剩余" data-notes="经济学专业学生在微观经济学里会再见到它。">
+<div class="num">定义</div><h2 class="slide-title">消费者剩余</h2><div class="card"><p>需求曲线 $p=D(q)$：第 $q$ 件商品，买方最多愿意付 $D(q)$。市场价为 $p_0$ 时成交 $q_0$ 件。</p><p>$$\text{消费者剩余}=\int_0^{q_0}\bigl(D(q)-p_0\bigr)\,dq$$</p><p>每一件「愿意付的」减去「实际付的」，再把所有件数加起来。</p></div><p class="lead" style="margin-top:12px">这正是黎曼和的读法：切成一件一件，每件的差价乘以 1 件，加密就是积分。</p>
 </section>
-<section class="slide" data-title="文化卡片 · 积分号" data-notes="控制在两三分钟。">
+<section data-sec="应用：经济与社会里的积累量" class="slide" data-title="市场价往下走，买方白赚的部分变大" data-notes="先停在 p₀=4 读出 36，再把价格拉低。问：价格降一半，剩余是不是也只翻一倍？" data-hook="surplus">
+<div class="num">实验 5</div><h2 class="slide-title">市场价往下走，买方白赚的部分变大</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="surplus-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <label><span>市场价 p₀</span><span class="ctrl-val" id="surplus-p-val">4.0</span></label>
+              <input id="surplus-p" type="range" min="1" max="9" step="0.5" value="4" />
+            </div>
+            <div class="readout" id="surplus-read"></div>
+            <div class="verdict">紫色：愿意付的减去实际付的，是买方白赚的部分。金色：实际花掉的钱。价格降下来，紫色变大。</div>
+    </aside>
+        </div>
+</section>
+<section data-sec="应用：经济与社会里的积累量" class="slide" data-title="课堂练 10">
+<div class="num">课堂练</div><span class="badge lv-apply">应用</span><h2 class="slide-title">课堂练 10</h2><div class="prompt-box">需求曲线 $p=10-\dfrac q2$，市场价 $p_0=4$。
+(1) 成交量 $q_0$ 是多少？
+(2) 用定积分求消费者剩余，再用三角形面积验算。
+(3) 价格降到 $2$ 时，消费者剩余变成多少？</div><p class="wait">约 4 分钟。<button type="button" class="btn ghost timer" data-sec="240">计时 4:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="应用：经济与社会里的积累量" class="slide" data-title="课堂练 10" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 10</h2><ol class="answer-list"><li>(1) $10-\tfrac q2=4$，得 $q_0=12$。</li><li>(2) $\int_0^{12}\bigl(6-\tfrac q2\bigr)dq=\bigl[6q-\tfrac{q^2}4\bigr]_0^{12}=72-36=36$。三角形：底 12、高 6，面积 36。</li><li>(3) $q_0=16$，剩余 $=\tfrac12\times16\times8=64$。价格降了一半，剩余从 36 涨到 64。</li></ol><div class="comment">需求是直线时三角形就够了；需求是曲线时只能积分。</div>
+</section>
+<section data-sec="应用：经济与社会里的积累量" class="slide" data-title="课堂练 11　基尼系数" data-hook="figs">
+<div class="num">课堂练</div><span class="badge lv-mix">综合</span><h2 class="slide-title">课堂练 11　基尼系数</h2><div class="grid-2 prompt-grid"><div class="prompt-box">把全体居民按收入从低到高排队。洛伦兹曲线 $L(x)$：收入最低的 $x$ 比例人口，拿走全部收入的 $L(x)$ 比例。
+基尼系数 $G=\dfrac{\text{对角线与 }L\text{ 之间的面积}}{\text{对角线下的面积}}=1-2\int_0^1 L(x)\,dx$。
+(1) $L(x)=x^2$ 时求 $G$。
+(2) $L(x)=x^3$ 时 $G$ 变大还是变小？说明意义。</div><div class="plot-wrap"><canvas data-fig="lorenz"></canvas></div></div><p class="wait">约 5 分钟。<button type="button" class="btn ghost timer" data-sec="300">计时 5:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="应用：经济与社会里的积累量" class="slide" data-title="课堂练 11" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 11</h2><ol class="answer-list"><li>(1) $\int_0^1 x^2\,dx=\tfrac13$，$G=1-\tfrac23=\tfrac13$。</li><li>(2) $\int_0^1 x^3\,dx=\tfrac14$，$G=1-\tfrac12=\tfrac12$，变大。</li><li>曲线越往右下弯，低收入人群分到的越少，分配越不平均。$G=0$ 是绝对平均（$L(x)=x$），$G$ 越接近 1 越集中。</li></ol><div class="comment">一个社会科学指标，背后就是一块面积除以另一块面积。</div>
+</section>
+<section data-sec="应用：经济与社会里的积累量" class="slide" data-title="应用接口（为 1.7 铺路）">
+<h2 class="slide-title">应用接口（为 1.7 铺路）</h2><div class="grid-3 fit"><div class="card"><h3>路程</h3><div class="gold-rule"></div><p>速度曲线下的有号面积：往返会抵消；要算走了多远，先取绝对值。</p></div><div class="card"><h3>总量</h3><div class="gold-rule"></div><p>边际成本积分得到成本增量；生产率积分得到产量。</p></div><div class="card"><h3>概率预告</h3><div class="gold-rule"></div><p>密度曲线下的面积就是概率——另案。</p></div></div>
+</section>
+<section data-sec="回顾与自测" class="slide divider" data-sec-start="回顾与自测" data-title="回顾与自测">
+<div class="sec-no">七</div><h2>回顾与自测</h2>
+</section>
+<section data-sec="回顾与自测" class="slide" data-title="比较：不定积分 vs 定积分">
+<h2 class="slide-title">比较：不定积分 vs 定积分</h2><p class="lead">变上限积分是两者之间的桥：它是一个函数，又是一个积累量。</p><div class="grid-2 fit"><div class="card"><h3>不定</h3><div class="gold-rule"></div><ul><li>结果是函数族 +C。</li><li>运算是求导的逆。</li></ul></div><div class="card"><h3>定</h3><div class="gold-rule"></div><ul><li>结果是数。</li><li>定义是黎曼和。</li><li>计算可用原函数之差。</li></ul></div></div>
+</section>
+<section data-sec="回顾与自测" class="slide" data-title="文化卡片 · 积分号" data-notes="控制在两三分钟。">
 <div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 积分号</span><blockquote>「把瞬息万变的量加起来。」——莱布尼茨对积分号的想象</blockquote><p>积分号 ∫ 是拉长的 S，来自拉丁文 summa。牛顿从运动来，莱布尼茨从求和来，符号不同，极限同构。先记住：积分号首先是求和的极限，其次才是「找原函数再相减」。</p></div>
 </section>
-<section class="slide" data-title="回扣三条目标" data-notes="口头回扣即可。">
-<h2 class="slide-title">回扣三条目标</h2><div class="grid-2"><div class="card"><h3>已经能做的</h3><div class="gold-rule"></div><ul><li>用矩形加密说明面积从哪来。</li><li>分清涂色面积与代数和。</li><li>用 N-L 算多项式与正弦。</li></ul></div><div class="card"><h3>下一讲要用的</h3><div class="gold-rule"></div><ul><li>切条方向：对 x 还是对 y。</li><li>微分方程里的积累：增长与衰减。</li><li>碳-14 只算一题。</li></ul></div></div>
+<section data-sec="回顾与自测" class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2 fit"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>定积分先是黎曼和的极限，后来才是原函数之差。</li><li>变上限积分的导数是被积函数：这是牛顿–莱布尼茨的来历。</li><li>轴下为负：定积分问代数和；要几何面积先取绝对值。</li><li>反常积分先写成极限，极限存在才有数。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>换元换了被积式，忘了换上下限。</li><li>被积函数在区间内无界，仍直接套牛顿–莱布尼茨。</li><li>看见积分为 0，就以为函数是 0。</li><li>把不定积分的 +C 带进定积分。</li></ul></div></div>
 </section>
-<section class="slide" data-title="小结" data-notes="下课回扣目标。">
-<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>定积分先是黎曼和的极限，后来才是原函数之差。</li><li>轴下为负：积分问代数和。</li><li>N-L 是计算装置，要能与图像核对。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>把不定积分的 +C 带到定积分里。</li><li>看见抵消就以为函数是 0。</li><li>不看区间对称性，硬算。</li></ul></div></div>
+<section data-sec="回顾与自测" class="slide" data-title="课后自测" data-notes="题目来自本讲题库，每轮随机抽 6 题。课后让学生用手机打开本页自测。" data-hook="quiz">
+<div class="num">自测</div><h2 class="slide-title">课后自测</h2><div class="quiz" data-quiz="16" data-n="6"></div>
 </section>
-<section class="slide" data-title="作业" data-notes="当堂布置。">
-<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>计算 $\int_0^{\pi/2}\cos x\,dx$，并用「四分之一圆？不对」提醒自己：这是余弦不是圆。</li><li>用几何求 $\int_{-2}^{2}\sqrt{4-x^2}\,dx$（半圆）。</li><li>把黎曼和实验的默认图（n=8，中点）用自己的话写三句。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 说明为何 $\int_0^{2\pi}\sin x\,dx=0$，但「来回走的路程」不是 0。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.7：面积与切条、阻滞增长、碳-14 一题。</p></div></div>
+<section data-sec="回顾与自测" class="slide" data-title="作业" data-notes="当堂布置。">
+<h2 class="slide-title">作业</h2><div class="grid-3 fit"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>计算 $\int_1^{e}\frac{dx}{x}$ 与 $\int_0^{1}x\sqrt{1+x^2}\,dx$（第二题用换元，记得换限）。</li><li>用几何求 $\int_{-2}^{2}\sqrt{4-x^2}\,dx$（半圆）。</li><li>判断 $\int_1^{+\infty}x^{-3/2}\,dx$ 是否收敛；收敛则求值。</li><li>需求曲线 $p=12-q$，市场价 $5$，求消费者剩余（积分与三角形各算一次）。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 说明为何 $\int_0^{2\pi}\sin x\,dx=0$，但「来回走的路程」不是 0。</li><li>* 洛伦兹曲线 $L(x)=x^n$（$n\ge 1$），求基尼系数，并说明 $n$ 越大意味着什么。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 1.7：面积与切条、阻滞增长、碳-14 一题。</p></div></div>
 </section>
     </main>
+    <canvas class="ink" id="ink"></canvas>
+    <button type="button" class="clock" id="clock" title="点一下停止计时"></button>
     <div class="notes" id="notes"></div>
     <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
     <div class="help" id="help">
       <h3>翻页</h3>
       <p>手机：左右滑动，或点底部「上一页」「下一页」。「解答」揭晓答案，「提纲」跳到某一页。</p>
-      <p>键盘：→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>键盘：→ / 空格 下一步或下一页　　← 上一步　　Home / End 首尾</p>
       <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p>T 课堂练计时　　P 画笔（C 清除本页笔迹）　　B 黑屏</p>
       <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
-      <p>解答页默认跳过；点「解答」或按 A 后进入线性顺序。滑条用手指拖；用键盘时先点空白再按方向键。</p>
+      <p>推导页逐行出现，按 → 一步一步走。解答页默认跳过；点「解答」或按 A 后进入线性顺序。滑条用手指拖；用键盘时先点空白再按方向键。</p>
     </div>
+    <div class="blackout" id="blackout"></div>
     <footer class="botbar">
       <span>南开大学数学科学学院</span>
       <span id="page">1 / 1</span>
@@ -183,6 +322,7 @@
         <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
         <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
         <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-pen">画笔 P</button>
         <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
         <button type="button" class="btn ghost" id="btn-help">?</button>
       </span>
@@ -190,8 +330,11 @@
   </div>
   <script src="../vendor/katex/katex.min.js"></script>
   <script src="../vendor/katex/contrib/auto-render.min.js"></script>
-  <script src="../js/deck.js"></script>
-  <script src="../js/plot.js"></script>
-  <script src="../js/labs/16-int.js"></script>
+  <script src="../js/deck.js?v=20261110174738"></script>
+  <script src="../js/plot.js?v=20261110174738"></script>
+  <script src="../js/figs.js?v=20261110174738"></script>
+  <script src="../js/quiz.js?v=20261110174738"></script>
+  <script src="../js/quiz/16.js?v=20261110174738"></script>
+  <script src="../js/labs/16-int.js?v=20261110174738"></script>
 </body>
 </html>

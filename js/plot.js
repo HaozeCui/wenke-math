@@ -16,18 +16,57 @@
   const TYPE = 32; /* 24pt @ 96dpi，投影坐标字 */
   const TICK = 26;
 
+  function niceTicks(a, b, want) {
+    const span = b - a;
+    if (!(span > 0)) return [];
+    const raw = span / Math.max(2, want);
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const f = raw / mag;
+    const step = (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * mag;
+    const out = [];
+    for (let v = Math.ceil(a / step) * step; v <= b + step * 1e-9; v += step) {
+      out.push(Math.abs(v) < step * 1e-9 ? 0 : v);
+    }
+    return out;
+  }
+  function tickText(v) {
+    const s = Math.abs(v) >= 1000 || Math.abs(v - Math.round(v)) < 1e-9 ? String(Math.round(v)) : String(+v.toFixed(2));
+    return s.replace("-", "−");
+  }
+
   function axes(ctx, w, h, opt) {
+    const g = opt && opt.grid;
     const o = Object.assign({
-      l: 68, r: 22, t: 36, b: 52,
+      l: g ? 84 : 68, r: 22, t: 36, b: g ? 66 : 52,
       xMin: -1, xMax: 1, yMin: -1, yMax: 1,
       xlabel: "x", ylabel: "y", title: "",
-      ticks: true,
+      ticks: true, grid: false, xticks: null, yticks: null,
     }, opt || {});
     ctx.fillStyle = C.card;
     ctx.fillRect(0, 0, w, h);
     const pw = w - o.l - o.r, ph = h - o.t - o.b;
     const xOf = (x) => o.l + ((x - o.xMin) / (o.xMax - o.xMin)) * pw;
     const yOf = (y) => o.t + (1 - (y - o.yMin) / (o.yMax - o.yMin)) * ph;
+
+    if (o.grid) {
+      const xt = o.xticks || niceTicks(o.xMin, o.xMax, Math.max(3, Math.round(pw / 110))).map((v) => [v, tickText(v)]);
+      const yt = o.yticks || niceTicks(o.yMin, o.yMax, Math.max(3, Math.round(ph / 70))).map((v) => [v, tickText(v)]);
+      ctx.strokeStyle = "rgba(36,22,22,0.08)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      xt.forEach(([v]) => { const X = Math.round(xOf(v)) + 0.5; ctx.moveTo(X, o.t); ctx.lineTo(X, o.t + ph); });
+      yt.forEach(([v]) => { const Y = Math.round(yOf(v)) + 0.5; ctx.moveTo(o.l, Y); ctx.lineTo(o.l + pw, Y); });
+      ctx.stroke();
+      ctx.fillStyle = C.muted;
+      ctx.font = "22px 'Noto Serif SC', serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "top";
+      xt.forEach(([v, s]) => ctx.fillText(s, xOf(v), o.t + ph + 6));
+      ctx.textAlign = "right";
+      ctx.textBaseline = "middle";
+      yt.forEach(([v, s]) => ctx.fillText(s, o.l - 8, yOf(v)));
+      o.ticks = false;
+    }
 
     ctx.strokeStyle = C.rule;
     ctx.lineWidth = 1;
@@ -46,12 +85,12 @@
     ctx.stroke();
 
     ctx.fillStyle = C.muted;
-    ctx.font = TYPE + "px 'Noto Serif SC', serif";
+    ctx.font = (o.grid ? 24 : TYPE) + "px 'Noto Serif SC', serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "alphabetic";
-    ctx.fillText(o.xlabel, o.l + pw / 2, h - 10);
+    ctx.fillText(o.xlabel, o.l + pw / 2, h - (o.grid ? 6 : 10));
     ctx.save();
-    ctx.translate(22, o.t + ph / 2);
+    ctx.translate(o.grid ? 20 : 22, o.t + ph / 2);
     ctx.rotate(-Math.PI / 2);
     ctx.fillText(o.ylabel, 0, 0);
     ctx.restore();
@@ -134,13 +173,81 @@
     ctx.drawImage(off, ox, oy, side, side);
   }
 
-  function label(ctx, text, x, y, color) {
+  function label(ctx, text, x, y, color, size) {
     ctx.fillStyle = color || C.ink;
-    ctx.font = TYPE + "px 'Noto Serif SC', serif";
+    ctx.font = (size || TYPE) + "px 'Noto Serif SC', serif";
     ctx.textAlign = "left";
     ctx.textBaseline = "alphabetic";
     ctx.fillText(text, x, y);
   }
 
-  window.Plot = { C, axes, curve, polyline, disc, heatmap, label };
+  /* 曲线 f 与 g 之间（默认 g=0）从 a 到 b 的区域填色；sign=true 时轴上轴下分色 */
+  function fillBetween(ctx, xOf, yOf, f, a, b, style) {
+    const s = Object.assign({ g: () => 0, color: "rgba(107,20,86,0.22)", neg: null, n: 200 }, style || {});
+    if (!(b > a)) return;
+    const n = s.n;
+    /* 按正负分成若干连续段，每段画成一个多边形，避免细条拼接的接缝 */
+    let run = [], runNeg = null;
+    const flush = () => {
+      if (run.length > 1) {
+        ctx.beginPath();
+        ctx.moveTo(xOf(run[0][0]), yOf(run[0][1]));
+        run.forEach(([x, t]) => ctx.lineTo(xOf(x), yOf(t)));
+        for (let j = run.length - 1; j >= 0; j--) ctx.lineTo(xOf(run[j][0]), yOf(run[j][2]));
+        ctx.closePath();
+        ctx.fillStyle = runNeg && s.neg ? s.neg : s.color;
+        ctx.fill();
+      }
+      run = [];
+    };
+    for (let i = 0; i <= n; i++) {
+      const x = a + (i / n) * (b - a);
+      const top = f(x), bot = s.g(x);
+      if (!Number.isFinite(top) || !Number.isFinite(bot)) { flush(); continue; }
+      const neg = top < bot;
+      if (s.neg && run.length && neg !== runNeg) {
+        const last = run[run.length - 1];
+        const d0 = last[1] - last[2], d1 = top - bot;
+        const xc = last[0] + (x - last[0]) * (d0 / (d0 - d1 || 1));
+        const yc = bot + ((last[2] - bot) * (x - xc)) / (x - last[0] || 1);
+        run.push([xc, yc, yc]);
+        flush();
+        run.push([xc, yc, yc]);
+      }
+      runNeg = neg;
+      run.push([x, top, bot]);
+    }
+    flush();
+  }
+
+  /* 只在坐标框内作画：A 是 axes() 的返回值 */
+  function clip(ctx, A, draw) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(A.m.l, A.m.t, A.pw, A.ph);
+    ctx.clip();
+    draw();
+    ctx.restore();
+  }
+
+  function dashed(ctx, X0, Y0, X1, Y1, color, width) {
+    ctx.save();
+    ctx.setLineDash([6, 5]);
+    ctx.strokeStyle = color || C.gold;
+    ctx.lineWidth = width || 1.6;
+    ctx.beginPath();
+    ctx.moveTo(X0, Y0);
+    ctx.lineTo(X1, Y1);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  /* 读数里用 KaTeX 排公式；没有 KaTeX 时退回纯文本 */
+  function tex(el, s) {
+    if (window.katex) {
+      el.innerHTML = s.replace(/\$([^$]+)\$/g, (_, m) => window.katex.renderToString(m, { throwOnError: false }));
+    } else el.textContent = s.replace(/\$/g, "");
+  }
+
+  window.Plot = { C, axes, curve, polyline, disc, heatmap, label, fillBetween, dashed, tex, niceTicks, clip };
 })();

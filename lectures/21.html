@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>2.1 行列式 · 文科高等数学</title>
   <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
-  <link rel="stylesheet" href="../css/deck.css" />
+  <link rel="stylesheet" href="../css/deck.css?v=20261110174738" />
 </head>
 <body class="play">
   <div class="app cover-mode">
@@ -16,137 +16,185 @@
       <h1>文科高等数学　·　2.1 行列式</h1>
       <span class="sec" id="sec-label"></span>
     </header>
+    <div class="progress" id="progress" aria-hidden="true"><i></i></div>
     <main class="stage">
-<section class="slide cover" data-title="封面" data-notes="先 2 阶几何，再 3 阶沙流。">
+<section class="slide cover" data-title="封面" data-notes="先 2 阶几何，再 3 阶沙流，最后克拉默。">
 <div class="kicker">2.1　建议 3 学时</div>
         <h2>数表折叠成<br />一个数</h2>
-        <p>行列式把方阵变成一个数：体积缩放因子，也是「有没有唯一解」的开关。三阶用沙流着色。</p>
-        <div class="meta">二阶面积 · 三阶沙流 · 克拉默</div>
+        <p>行列式把方阵变成一个数：有向面积或体积，也是「有没有唯一解」的开关。</p>
+        <div class="meta">配套《文科数学基础》　·　二阶面积 · 沙流 · 克拉默</div>
 </section>
 <section class="slide" data-title="目标" data-notes="开场读目标，下课回扣。">
-<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能计算二阶、三阶行列式，并认出上三角「对角线连乘」。</p></div><div class="card"><span class="idx">02</span><p>能叙述行列式的基本性质：换行变号、倍加不变、两行成比例则行列式为 0。</p></div><div class="card"><span class="idx">03</span><p>能用克拉默法则解 2 元方程组（作为行列式的应用，不是唯一算法）。</p></div></div>
+<div class="num">目标</div><h2 class="slide-title">学完本讲，应能做到</h2><div class="obj"><div class="card"><span class="idx">01</span><p>能计算二阶、三阶行列式，并认出上三角「对角线连乘」。</p></div><div class="card"><span class="idx">02</span><p>能用性质（换行变号、倍加不变、成比例则 0）化简计算，会对四阶按行/列展开。</p></div><div class="card"><span class="idx">03</span><p>能用克拉默法则解二元、三元方程组（作为行列式的应用，不是唯一算法）。</p></div></div>
 </section>
-<section class="slide" data-title="本讲路线">
-<h2 class="slide-title">本讲路线</h2><div class="card"><ul><li>二阶：ad−bc，平行四边形有向面积</li><li>三阶沙流：六项着色</li><li>上三角一眼看出</li><li>性质：换行、倍加、成比例</li><li>克拉默：D、D1、D2</li><li>高阶按行展开只留公式</li></ul></div>
+<section class="slide" data-title="本讲路线" data-notes="路线由下面六个分节自动生成。">
+<h2 class="slide-title">本讲路线</h2><div class="card"><ol class="route"><li>问题：把方程组的解写成数表</li><li>二阶：有向面积</li><li>三阶沙流与高阶展开</li><li>性质：化简的许可证</li><li>克拉默法则</li><li>回顾与自测</li></ol></div>
 </section>
-<section class="slide" data-title="二阶行列式">
-<div class="num">定义</div><h2 class="slide-title">二阶行列式</h2><div class="card"><p>$$\begin{vmatrix}a&b\\ c&d\end{vmatrix}=ad-bc$$</p><p>几何：以 $(a,c)$、$(b,d)$ 为邻边的平行四边形有向面积。为 0 表示两向量共线。</p></div><p class="lead" style="margin-top:12px">后面线性方程组：D=0 往往意味着没有唯一解。</p>
+<section data-sec="问题：把方程组的解写成数表" class="slide divider" data-sec-start="问题：把方程组的解写成数表" data-title="问题：把方程组的解写成数表">
+<div class="sec-no">一</div><h2>问题：把方程组的解写成数表</h2><p>消元之后，分子分母都长得像「交叉相乘」。</p>
 </section>
-<section class="slide" data-title="课堂练 1">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">计算 $\begin{vmatrix}1&2\\3&4\end{vmatrix}$，并说明若第二列改成第一列的 2 倍，结果是什么。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="问题：把方程组的解写成数表" class="slide" data-title="从消元到记号">
+<h2 class="slide-title">从消元到记号</h2><p class="lead">行列式先是解方程组时反复出现的那一串数，后来才被看成面积。</p><div class="grid-2 fit"><div class="card"><h3>二元方程组</h3><div class="gold-rule"></div><ul><li>$a_{11}x_1+a_{12}x_2=b_1$</li><li>$a_{21}x_1+a_{22}x_2=b_2$</li><li>消元后分母都是 $a_{11}a_{22}-a_{12}a_{21}$。</li></ul></div><div class="card"><h3>二阶行列式</h3><div class="gold-rule"></div><ul><li>$$\begin{vmatrix}a_{11}&a_{12}\\ a_{21}&a_{22}\end{vmatrix}=a_{11}a_{22}-a_{12}a_{21}$$</li><li>把这个公共的分母单独记下来。</li><li>分子是用常数列替换对应列。</li></ul></div></div>
 </section>
-<section class="slide" data-title="课堂练 1" data-kind="answer">
-<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>1·4−2·3=−2。</li><li>第二列若为 $(2,6)^{\mathrm T}$，则 $1\cdot 6-2\cdot 3=0$。</li><li>两列成比例，面积扁成一条线。</li></ol>
+<section data-sec="二阶：有向面积" class="slide divider" data-sec-start="二阶：有向面积" data-title="二阶：有向面积">
+<div class="sec-no">二</div><h2>二阶：有向面积</h2><p>ad−bc 是两列向量张成的平行四边形的有向面积。</p>
 </section>
-<section class="slide" data-title="三阶沙流（萨吕斯）">
-<div class="num">定义</div><h2 class="slide-title">三阶沙流（萨吕斯）</h2><div class="card"><p>三正三负：主对角及两条「右绕」为正；反对角及两条「左绕」为负。</p><p>只对三阶合法。四阶禁止沙流。</p></div><p class="lead" style="margin-top:12px">本讲矩阵是上三角：多数项是 0，主对角 1·4·6=24。</p>
+<section data-sec="二阶：有向面积" class="slide" data-title="二阶行列式">
+<div class="num">定义</div><h2 class="slide-title">二阶行列式</h2><div class="card"><p>$$\begin{vmatrix}a&b\\ c&d\end{vmatrix}=ad-bc$$</p><p>几何：以 $u=(a,c)$、$v=(b,d)$ 为邻边的平行四边形有向面积。为 0 表示两向量共线。</p></div><p class="lead" style="margin-top:12px">后面线性方程组：$D=0$ 往往意味着没有唯一解。</p>
 </section>
-<section class="slide" data-title="六项逐个着色" data-notes="从第 1 项拖到第 6 项。强调上三角立刻看出 det=24。" data-hook="sarrus">
-<div class="num">实验</div><h2 class="slide-title">六项逐个着色</h2>
+<section data-sec="二阶：有向面积" class="slide" data-title="拖动两个向量，看面积怎样变" data-notes="先拖成单位方（D=1），再交换看符号翻转，再点「共线」看 D=0。" data-hook="det-area">
+<div class="num">实验 1</div><h2 class="slide-title">拖动两个向量，看面积怎样变</h2>
+        <div class="grid-2" style="flex:1">
+          <div class="plot-wrap"><canvas id="det-area-canvas"></canvas></div>
+          <aside class="panel">
+            <div class="ctrl">
+              <button type="button" class="btn ghost" data-area="std">单位方</button>
+              <button type="button" class="btn ghost" data-area="swap">交换 u、v</button>
+              <button type="button" class="btn ghost" data-area="shear">切变</button>
+              <button type="button" class="btn ghost" data-area="line">共线</button>
+            </div>
+            <div class="readout" id="det-area-read"></div>
+            <div class="verdict" id="det-area-verdict"></div>
+    </aside>
+        </div>
+</section>
+<section data-sec="二阶：有向面积" class="slide" data-title="课堂练 1">
+<div class="num">课堂练</div><span class="badge lv-base">基础</span><h2 class="slide-title">课堂练 1</h2><div class="prompt-box">计算 $\begin{vmatrix}1&2\\3&4\end{vmatrix}$。
+若第二列改成第一列的 2 倍，结果是什么？说明几何意义。</div><p class="wait">约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="二阶：有向面积" class="slide" data-title="课堂练 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 1</h2><ol class="answer-list"><li>$1\cdot 4-2\cdot 3=-2$。</li><li>第二列若为 $(2,6)^{\mathrm T}$，则 $1\cdot 6-2\cdot 3=0$。</li><li>两列成比例，平行四边形扁成一条线，面积为 0。</li></ol>
+</section>
+<section data-sec="二阶：有向面积" class="slide" data-title="课堂练 2　地块面积" data-hook="figs">
+<div class="num">课堂练</div><span class="badge lv-apply">应用</span><h2 class="slide-title">课堂练 2　地块面积</h2><div class="grid-2 prompt-grid"><div class="prompt-box">地图上三点 $A(0,0)$、$B(4,1)$、$C(1,3)$（单位：百米）。
+(1) 用二阶行列式求 $\triangle ABC$ 的面积。
+(2) 若把 $C$ 挪到 $C'(8,2)$，面积变成多少？</div><div class="plot-wrap"><canvas data-fig="21-tri"></canvas></div></div><p class="wait">约 3 分钟。<button type="button" class="btn ghost timer" data-sec="180">计时 3:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="二阶：有向面积" class="slide" data-title="课堂练 2" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>$\overrightarrow{AB}=(4,1)$，$\overrightarrow{AC}=(1,3)$。$\begin{vmatrix}4&1\\1&3\end{vmatrix}=12-1=11$，三角形是平行四边形的一半，面积 $\dfrac{11}{2}$。</li><li>(2) $\overrightarrow{AC'}=(8,2)=2\cdot(4,1)$，与 $AB$ 共线，行列式为 0，面积为 0：三点共线。</li></ol><div class="comment">面积取绝对值；符号只表示定向。</div>
+</section>
+<section data-sec="三阶沙流与高阶展开" class="slide divider" data-sec-start="三阶沙流与高阶展开" data-title="三阶沙流与高阶展开">
+<div class="sec-no">三</div><h2>三阶沙流与高阶展开</h2><p>三阶用六项；四阶先找零，再按行或列展开。</p>
+</section>
+<section data-sec="三阶沙流与高阶展开" class="slide" data-title="三阶沙流（萨吕斯）">
+<div class="num">定义</div><h2 class="slide-title">三阶沙流（萨吕斯）</h2><div class="card"><p>把前两列抄到右边。主对角及两条「右下」斜线取正；反对角及两条「左下」斜线取负。三正三负共六项。</p><p>只对三阶合法。四阶禁止沙流。</p></div><p class="lead" style="margin-top:12px">也可以按第一行展开成三个二阶行列式，结果相同。</p>
+</section>
+<section data-sec="三阶沙流与高阶展开" class="slide" data-title="六项逐个着色" data-notes="先用「例 2.1.1 的 D」拖到第 6 项得 11；再切到上三角，只剩 24。" data-hook="sarrus">
+<div class="num">实验 2</div><h2 class="slide-title">六项逐个着色</h2>
         <div class="grid-2" style="flex:1">
           <div class="plot-wrap"><canvas id="sarrus-canvas"></canvas></div>
           <aside class="panel">
             <div class="ctrl">
-              <label><span>沙流项</span><span class="ctrl-val" id="sarrus-k-val">1 / 6</span></label>
+              <button type="button" class="btn ghost on" data-sar="ex">例 2.1.1 的 D</button>
+              <button type="button" class="btn ghost" data-sar="tri">上三角</button>
+              <label style="margin-top:10px"><span>沙流项</span><span class="ctrl-val" id="sarrus-k-val">1 / 6</span></label>
               <input id="sarrus-k" type="range" min="0" max="5" step="1" value="0" />
             </div>
             <div class="readout" id="sarrus-read"></div>
-            <div class="verdict">上三角一眼看出只有主对角活着。</div>
+            <div class="verdict" id="sarrus-verdict">实线三条取正号，虚线三条取负号。</div>
     </aside>
         </div>
 </section>
-<section class="slide" data-title="课堂练 2">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 2</h2><div class="prompt-box">计算三阶行列式
-| 1 2 3 |
-| 0 4 5 |
-| 0 0 6 |
-并说明为什么可以「看一眼」。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="三阶沙流与高阶展开" class="slide" data-title="例 2.1.1　三元克拉默（上）" data-notes="教材把 x₁ 印成 21/11，漏了负号；按 D₁/D 应为 −21/11。">
+<div class="num">例题</div><h2 class="slide-title">例 2.1.1　三元克拉默（上）</h2><div class="derive"><div class="dm">$$\begin{cases}x_1+2x_2+x_3=2\\ -2x_1+x_2-x_3=1\\ x_1-4x_2+2x_3=3\end{cases}$$</div><div class="dw"><span>教材方程组</span></div><div class="dm step" data-g="d1">$$D=\begin{vmatrix}1&2&1\\ -2&1&-1\\ 1&-4&2\end{vmatrix}=11\neq 0$$</div><div class="dw step" data-g="d1"><span>系数行列式：沙流或展开</span></div><div class="dm step" data-g="d2">$$D_1=\begin{vmatrix}2&2&1\\ 1&1&-1\\ 3&-4&2\end{vmatrix}=-21$$</div><div class="dw step" data-g="d2"><span>用常数列替换第 1 列</span></div><div class="dm step" data-g="d3">$$D_2=\begin{vmatrix}1&2&1\\ -2&1&-1\\ 1&3&2\end{vmatrix}=4$$</div><div class="dw step" data-g="d3"><span>替换第 2 列</span></div></div><p class="lead step">$D_3=\begin{vmatrix}1&2&2\\ -2&1&1\\ 1&-4&3\end{vmatrix}=35$。下一页写出解。</p>
 </section>
-<section class="slide" data-title="课堂练 2" data-kind="answer">
-<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 2</h2><ol class="answer-list"><li>上三角：行列式等于主对角连乘 1·4·6=24。</li><li>沙流里其余五项都含 0。</li><li>化成上三角是高阶计算的常规目标。</li></ol><div class="comment">会看三角阵，比会背六项更要紧。</div>
+<section data-sec="三阶沙流与高阶展开" class="slide" data-title="例 2.1.1　三元克拉默（下）">
+<div class="num">例题</div><h2 class="slide-title">例 2.1.1　三元克拉默（下）</h2><div class="derive"><div class="dm">$$x_1=\frac{D_1}{D}=-\frac{21}{11},\quad x_2=\frac{4}{11},\quad x_3=\frac{35}{11}$$</div><div class="dw"><span>克拉默法则</span></div><div class="dm step" data-g="d1">$$\text{代回第一式：}-\frac{21}{11}+2\cdot\frac{4}{11}+\frac{35}{11}=\frac{22}{11}=2$$</div><div class="dw step" data-g="d1"><span>验算</span></div></div><p class="lead step">教材正文把 $x_1$ 写成了 $21/11$，漏掉负号。以 $D_1/D$ 为准。</p>
 </section>
-<section class="slide" data-title="性质（口算级）">
-<h2 class="slide-title">性质（口算级）</h2><div class="grid-3"><div class="card"><h3>换两行</h3><div class="gold-rule"></div><p>行列式变号。换两列同样。</p></div><div class="card"><h3>倍加</h3><div class="gold-rule"></div><p>一行加上另一行的倍数，行列式不变。这是消元的许可证。</p></div><div class="card"><h3>成比例</h3><div class="gold-rule"></div><p>两行（列）成比例 ⇒ det=0。有零行也是 0。</p></div></div>
+<section data-sec="三阶沙流与高阶展开" class="slide" data-title="代数余子式与按行展开">
+<div class="num">定义</div><h2 class="slide-title">代数余子式与按行展开</h2><div class="card"><p>划去 $a_{ij}$ 所在的行和列，剩下的行列式是余子式 $M_{ij}$。代数余子式 $A_{ij}=(-1)^{i+j}M_{ij}$。</p><p>按第 $i$ 行：$\det A=\sum_j a_{ij}A_{ij}$。按列同理。</p></div><p class="lead" style="margin-top:12px">零多的那一行（列）最适合展开。符号由位置决定，与元素本身是多少无关。</p>
 </section>
-<section class="slide" data-title="行列式为 0 在说什么">
-<h2 class="slide-title">行列式为 0 在说什么</h2><div class="grid-2"><div class="card"><h3>几何</h3><div class="gold-rule"></div><ul><li>体积（面积）扁掉。</li><li>列向量线性相关。</li></ul></div><div class="card"><h3>方程组</h3><div class="gold-rule"></div><ul><li>系数矩阵不可逆。</li><li>可能无解或无穷解，下一讲再说。</li></ul></div></div>
+<section data-sec="三阶沙流与高阶展开" class="slide" data-title="例 2.1.2　四阶：沿零多的列展开">
+<div class="num">例题</div><h2 class="slide-title">例 2.1.2　四阶：沿零多的列展开</h2><div class="derive"><div class="dm">$$D=\begin{vmatrix}0&-1&-1&2\\ 1&-1&0&2\\ -1&2&-1&0\\ 2&1&1&0\end{vmatrix}$$</div><div class="dw"><span>第 4 列有两个 0</span></div><div class="dm step" data-g="d1">$$=2A_{14}+2A_{24}$$</div><div class="dw step" data-g="d1"><span>$A_{14}=(-1)^{1+4}M_{14}$，$A_{24}=(-1)^{2+4}M_{24}$</span></div><div class="dm step" data-g="d2">$$=2(-1)\cdot 4+2\cdot 6=4$$</div><div class="dw step" data-g="d2"><span>两个三阶分别算得 4 与 6</span></div></div><p class="lead step">选零多的行或列，是高阶计算的第一原则。</p>
 </section>
-<section class="slide" data-title="克拉默法则（二元）">
-<div class="num">定义</div><h2 class="slide-title">克拉默法则（二元）</h2><div class="card"><p>$ax+by=e$，$cx+dy=f$。令 $D=ad-bc$，$D_1$、$D_2$ 分别用常数列替换第 1、2 列。</p><p>若 $D\neq 0$，则 $x=D_1/D$，$y=D_2/D$。</p></div><p class="lead" style="margin-top:12px">这是行列式的应用展示，不是解方程组的首选算法。三元同理，手算易烦。</p>
+<section data-sec="三阶沙流与高阶展开" class="slide" data-title="例 2.1.3　四阶：先消元再展开">
+<div class="num">例题</div><h2 class="slide-title">例 2.1.3　四阶：先消元再展开</h2><div class="derive"><div class="dm">$$\begin{vmatrix}-2&2&-4&0\\ 4&-1&3&5\\ 3&1&-2&-3\\ 2&0&5&1\end{vmatrix}$$</div><div class="dw"><span>第 2 列已有一个 0</span></div><div class="dm step" data-g="d1">$$\xrightarrow{\text{倍加}}\begin{vmatrix}-8&0&0&6\\ 7&0&1&2\\ 3&1&-2&-3\\ 2&0&5&1\end{vmatrix}$$</div><div class="dw step" data-g="d1"><span>把第 2 列再消成只剩一个非零</span></div><div class="dm step" data-g="d2">$$=(-1)^{3+2}\begin{vmatrix}-8&0&6\\ 7&1&2\\ 2&5&1\end{vmatrix}$$</div><div class="dw step" data-g="d2"><span>按第 2 列展开</span></div><div class="dm step" data-g="d3">$$=-270$$</div><div class="dw step" data-g="d3"><span>继续消元、展开；课堂认路，不必重算每一步</span></div></div><p class="lead step">沙流只到三阶。四阶靠性质和展开。</p>
 </section>
-<section class="slide" data-title="课堂练 3">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 3</h2><div class="prompt-box">用克拉默法则解
- x+y=3，  x−y=1。
-写出 D, D1, D2。</div><p class="wait">约 3 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="三阶沙流与高阶展开" class="slide" data-title="例 2.1.4　上三角：只看对角线">
+<div class="num">例题</div><h2 class="slide-title">例 2.1.4　上三角：只看对角线</h2><div class="derive"><div class="dm">$$\begin{vmatrix}a_{11}&a_{12}&a_{13}&a_{14}\\ 0&a_{22}&a_{23}&a_{24}\\ 0&0&a_{33}&a_{34}\\ 0&0&0&a_{44}\end{vmatrix}$$</div><div class="dw"><span>上三角</span></div><div class="dm step" data-g="d1">$$=a_{11}a_{22}a_{33}a_{44}$$</div><div class="dw step" data-g="d1"><span>反复按第一列展开，每步只剩对角元</span></div></div><p class="lead step">下三角同样。行与列互换行列式不变，所以上三角换成下三角，值仍是对角连乘。</p>
 </section>
-<section class="slide" data-title="课堂练 3" data-kind="answer">
-<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>$D=\begin{vmatrix}1&1\\1&-1\end{vmatrix}=-2$。</li><li>$D_1=\begin{vmatrix}3&1\\1&-1\end{vmatrix}=-4$，$D_2=\begin{vmatrix}1&3\\1&1\end{vmatrix}=-2$。</li><li>x=(−4)/(−2)=2，y=(−2)/(−2)=1。</li><li>代回：2+1=3，2−1=1。</li></ol>
+<section data-sec="三阶沙流与高阶展开" class="slide" data-title="课堂练 3">
+<div class="num">课堂练</div><span class="badge lv-base">基础</span><h2 class="slide-title">课堂练 3</h2><div class="prompt-box">计算 $\begin{vmatrix}1&2&3\\ 0&4&5\\ 0&0&6\end{vmatrix}$，并说明为什么可以「看一眼」。</div><p class="wait">约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="高阶：按行展开" data-notes="不要把展开做成逐步动画。">
-<div class="num">公式</div><h2 class="slide-title">高阶：按行展开</h2><div class="card">$$\det A=\sum_j a_{1j}(-1)^{1+j}M_{1j}$$</div><p class="lead">余子式 M 是划去一行一列后的行列式。四阶认展开的路，不要求把每一步算术默写下来。</p>
+<section data-sec="三阶沙流与高阶展开" class="slide" data-title="课堂练 3" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 3</h2><ol class="answer-list"><li>上三角：行列式等于主对角连乘 $1\cdot 4\cdot 6=24$。</li><li>沙流里其余五项都含 0。</li><li>化成上三角是高阶计算的常规目标。</li></ol><div class="comment">会看三角阵，比会背六项更要紧。</div>
 </section>
-<section class="slide" data-title="课堂练 4　性质">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 4　性质</h2><div class="prompt-box">不计算具体数字：说明为何 $\begin{vmatrix}1&2&3\\1&2&3\\4&5&6\end{vmatrix}=0$，以及把第一、二行互换后行列式与原来差一个符号。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+<section data-sec="性质：化简的许可证" class="slide divider" data-sec-start="性质：化简的许可证" data-title="性质：化简的许可证">
+<div class="sec-no">四</div><h2>性质：化简的许可证</h2><p>换行变号，倍加不变，成比例则 0。</p>
 </section>
-<section class="slide" data-title="课堂练 4" data-kind="answer">
+<section data-sec="性质：化简的许可证" class="slide" data-title="性质（口算级）">
+<h2 class="slide-title">性质（口算级）</h2><div class="grid-3 fit"><div class="card"><h3>换两行</h3><div class="gold-rule"></div><p>行列式变号。换两列同样。两行相同或成比例 ⇒ det = 0。</p></div><div class="card"><h3>倍加</h3><div class="gold-rule"></div><p>一行加上另一行的倍数，行列式不变。这是消元的许可证。</p></div><div class="card"><h3>提公因子</h3><div class="gold-rule"></div><p>某行乘 $k$，行列式乘 $k$。整行全 0 ⇒ det = 0。</p></div></div>
+</section>
+<section data-sec="性质：化简的许可证" class="slide" data-title="行列式为 0 在说什么">
+<h2 class="slide-title">行列式为 0 在说什么</h2><div class="grid-2 fit"><div class="card"><h3>几何</h3><div class="gold-rule"></div><ul><li>面积或体积扁掉。</li><li>列向量线性相关。</li></ul></div><div class="card"><h3>方程组</h3><div class="gold-rule"></div><ul><li>系数矩阵不可逆。</li><li>可能无解或无穷解，下一讲再说。</li></ul></div></div>
+</section>
+<section data-sec="性质：化简的许可证" class="slide" data-title="例 2.1.5　含参数：先消元再因式分解">
+<div class="num">例题</div><h2 class="slide-title">例 2.1.5　含参数：先消元再因式分解</h2><div class="derive"><div class="dm">$$\begin{vmatrix}a+1&2&2\\ -2&a+4&-5\\ 2&-2&a+1\end{vmatrix}=0$$</div><div class="dw"><span>求 $a$</span></div><div class="dm step" data-g="d1">$$\xrightarrow{r_1+r_2}\begin{vmatrix}a+3&0&a+3\\ -2&a+4&-5\\ 2&-2&a+1\end{vmatrix}$$</div><div class="dw step" data-g="d1"><span>第 1 行加第 2 行</span></div><div class="dm step" data-g="d2">$$\xrightarrow{c_3-c_1}\begin{vmatrix}a+3&0&0\\ -2&a+4&-3\\ 2&-2&a-1\end{vmatrix}$$</div><div class="dw step" data-g="d2"><span>第 3 列减第 1 列</span></div><div class="dm step" data-g="d3">$$=(a+3)\bigl[(a+4)(a-1)-6\bigr]=(a+3)(a+5)(a-2)$$</div><div class="dw step" data-g="d3"><span>按第 1 行展开</span></div><div class="dm step" data-g="d4">$$a=-3,\ -5,\ 2$$</div><div class="dw step" data-g="d4"><span>令乘积为 0</span></div></div><p class="lead step">含参数时不要直接展开成三次式硬算；先用倍加制造零。</p>
+</section>
+<section data-sec="性质：化简的许可证" class="slide" data-title="课堂练 4　性质">
+<div class="num">课堂练</div><span class="badge lv-judge">辨析</span><h2 class="slide-title">课堂练 4　性质</h2><div class="prompt-box">不计算具体数字：说明为何 $\begin{vmatrix}1&2&3\\1&2&3\\4&5&6\end{vmatrix}=0$，以及把第一、二行互换后行列式与原来差一个符号。</div><p class="wait">约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
+</section>
+<section data-sec="性质：化简的许可证" class="slide" data-title="课堂练 4" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 4</h2><ol class="answer-list"><li>前两行相同（成比例系数为 1），行列式为 0。</li><li>换两行变号：0 的相反数仍是 0。</li><li>成比例比「算六项」更快。</li></ol>
 </section>
-<section class="slide" data-title="几何接口" data-notes="文科只要求这句话，不推证明。">
-<h2 class="slide-title">几何接口</h2><div class="grid-2"><div class="card"><h3>二维</h3><div class="gold-rule"></div><ul><li>|det| = 平行四边形面积。</li><li>符号表示定向：是否翻转。</li></ul></div><div class="card"><h3>三维</h3><div class="gold-rule"></div><ul><li>|det| = 平行六面体体积。</li><li>三向量共面则 det=0。</li></ul></div></div>
+<section data-sec="性质：化简的许可证" class="slide" data-title="课堂练 5">
+<div class="num">课堂练</div><span class="badge lv-vary">变式</span><h2 class="slide-title">课堂练 5</h2><div class="prompt-box">已知 $\begin{vmatrix}a&b\\c&d\end{vmatrix}=5$。求 $\begin{vmatrix}a&b\\2c&2d\end{vmatrix}$ 与 $\begin{vmatrix}c&d\\a&b\end{vmatrix}$。</div><p class="wait">约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="消元与行列式">
-<h2 class="slide-title">消元与行列式</h2><div class="card"><ul><li>行倍加不改变行列式，所以可以放心化上三角。</li><li>换行会变号，记住换了几次。</li><li>某行乘 k，行列式乘 k。</li><li>化完后对角连乘，再补上符号与倍数。</li></ul></div>
-</section>
-<section class="slide" data-title="课堂练 5">
-<div class="num">课堂练</div><span class="badge">先做</span><h2 class="slide-title">课堂练 5</h2><div class="prompt-box">已知 $\begin{vmatrix}a&b\\c&d\end{vmatrix}=5$。求 $\begin{vmatrix}a&b\\2c&2d\end{vmatrix}$ 与 $\begin{vmatrix}c&d\\a&b\end{vmatrix}$。</div><p class="wait">约 2 分钟。<span class="teacher-hint">　·　按 A 揭晓解答</span></p>
-</section>
-<section class="slide" data-title="课堂练 5" data-kind="answer">
+<section data-sec="性质：化简的许可证" class="slide" data-title="课堂练 5" data-kind="answer">
 <div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 5</h2><ol class="answer-list"><li>第二行 ×2，结果 10。</li><li>换两行，结果 −5。</li><li>不必知道 a,b,c,d 是什么。</li></ol>
 </section>
-<section class="slide" data-title="和 2.2、2.3 的接头">
-<h2 class="slide-title">和 2.2、2.3 的接头</h2><div class="grid-3"><div class="card"><h3>可逆</h3><div class="gold-rule"></div><p>方阵可逆 ⇔ det≠0。下一讲公式会用到 D。</p></div><div class="card"><h3>方程组</h3><div class="gold-rule"></div><p>D≠0 则克拉默给出唯一解。D=0 交给下一讲的平面位置。</p></div><div class="card"><h3>不要</h3><div class="gold-rule"></div><p>把所有问题都用克拉默硬算三阶。</p></div></div>
+<section data-sec="性质：化简的许可证" class="slide" data-title="找错 1　四阶还在用沙流">
+<div class="num">课堂练</div><span class="badge lv-judge">找错</span><h2 class="slide-title">找错 1　四阶还在用沙流</h2><div class="card mistake"><p class="given">计算 $\begin{vmatrix}1&0&0&1\\ 0&1&0&0\\ 0&0&1&0\\ 1&0&0&1\end{vmatrix}$。</p><h3>某同学这样写</h3><ol><li>把前两列抄到右边，按三阶沙流的办法画斜线。</li><li>得到一长串乘积，合计为 2。</li></ol></div><p class="wait">哪一步的想法错了？正确结果是多少？　约 2 分钟。<button type="button" class="btn ghost timer" data-sec="120">计时 2:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="对角阵（一眼）">
-<div class="num">定义</div><h2 class="slide-title">对角阵（一眼）</h2><div class="card"><p>对角以外全是 0。行列式就是对角元连乘。上三角、下三角同样：行列式看对角。</p><p>本讲实验矩阵就是上三角，所以六项里五项是 0。</p></div>
+<section data-sec="性质：化简的许可证" class="slide" data-title="找错 1" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">找错 1</h2><ol class="answer-list"><li>第 1 步错。沙流只对三阶合法，四阶没有「抄两列再画六条斜线」这一套。</li><li>正确：第 2 列只有一个 1，按第 2 列展开得 $(-1)^{2+2}\begin{vmatrix}1&0&1\\ 0&1&0\\ 1&0&1\end{vmatrix}$。</li><li>里面这个三阶两行成比例（第 1、3 行相同），为 0。所以原式 $=0$。</li></ol><div class="comment">四阶：找零、倍加、展开。</div>
 </section>
-<section class="slide" data-title="沙流只用于三阶">
-<h2 class="slide-title">沙流只用于三阶</h2><div class="card"><ul><li>二阶用交叉相减。</li><li>三阶用六项或化三角。</li><li>四阶：找零、倍加、再展开。不靠沙流，也不必默写全部算术。</li></ul></div>
+<section data-sec="克拉默法则" class="slide divider" data-sec-start="克拉默法则" data-title="克拉默法则">
+<div class="sec-no">五</div><h2>克拉默法则</h2><p>D≠0 时，解是「替换列」的行列式之比。</p>
 </section>
-<section class="slide" data-title="代数余子式">
-<div class="num">定义</div><h2 class="slide-title">代数余子式</h2><div class="card"><p>划去 $a_{ij}$ 所在的行和列，剩下的行列式是余子式 $M_{ij}$。</p><p>代数余子式 $A_{ij}=(-1)^{i+j}M_{ij}$。按第 $i$ 行展开：</p><p>$$\det A=\sum_j a_{ij}A_{ij}$$</p></div><p class="lead" style="margin-top:12px">符号由位置决定，与这个元素本身是多少无关。零多的那一行最适合展开。</p>
+<section data-sec="克拉默法则" class="slide" data-title="克拉默法则（二元）">
+<div class="num">定义</div><h2 class="slide-title">克拉默法则（二元）</h2><div class="card"><p>$a_{11}x_1+a_{12}x_2=b_1$，$a_{21}x_1+a_{22}x_2=b_2$。令 $D=\begin{vmatrix}a_{11}&a_{12}\\ a_{21}&a_{22}\end{vmatrix}$，$D_1$、$D_2$ 分别用常数列替换第 1、2 列。</p><p>若 $D\neq 0$，则 $x_1=D_1/D$，$x_2=D_2/D$。</p></div><p class="lead" style="margin-top:12px">三元同理。这是行列式的应用展示，不是解方程组的首选算法。</p>
 </section>
-<section class="slide" data-title="计算时真正用的三条">
-<h2 class="slide-title">计算时真正用的三条</h2><div class="card"><ul><li>行与列互换，行列式不变。</li><li>交换两行，行列式变号；两行相同或成比例，行列式为 $0$。</li><li>把某一行的倍数加到另一行，行列式不变。公因子可以提到行列式外面。</li><li>上（下）三角行列式等于主对角线元素的乘积。</li></ul></div>
+<section data-sec="克拉默法则" class="slide" data-title="课堂练 6">
+<div class="num">课堂练</div><span class="badge lv-base">基础</span><h2 class="slide-title">课堂练 6</h2><div class="prompt-box">用克拉默法则解 $x+y=3$，$x-y=1$。写出 $D$、$D_1$、$D_2$。</div><p class="wait">约 3 分钟。<button type="button" class="btn ghost timer" data-sec="180">计时 3:00</button><span class="teacher-hint">　·　按 A 揭晓解答</span></p>
 </section>
-<section class="slide" data-title="用倍加把参数找出来">
-<div class="num">公式</div><h2 class="slide-title">用倍加把参数找出来</h2><div class="card">$$\begin{vmatrix}a&1\\ 2&a\end{vmatrix}=a^2-2$$</div><p class="lead">令它为 $0$，得 $a=\pm\sqrt{2}$。三阶里参数往往是高次方程：先用倍加消去，再因式分解，不要直接展开硬算。</p>
+<section data-sec="克拉默法则" class="slide" data-title="课堂练 6" data-kind="answer">
+<div class="num">解答</div><span class="badge">解答</span><h2 class="slide-title">课堂练 6</h2><ol class="answer-list"><li>$D=\begin{vmatrix}1&1\\1&-1\end{vmatrix}=-2$。</li><li>$D_1=\begin{vmatrix}3&1\\1&-1\end{vmatrix}=-4$，$D_2=\begin{vmatrix}1&3\\1&1\end{vmatrix}=-2$。</li><li>$x=(-4)/(-2)=2$，$y=(-2)/(-2)=1$。代回：2+1=3，2−1=1。</li></ol>
 </section>
-<section class="slide" data-title="三角行列式：只看对角线">
-<div class="num">公式</div><h2 class="slide-title">三角行列式：只看对角线</h2><div class="card">$$\begin{vmatrix}2&1&4\\0&3&-1\\0&0&5\end{vmatrix}=2\cdot 3\cdot 5=30$$</div><p class="lead">上三角、下三角都等于主对角线元素的乘积。行与列互换，行列式不变，所以上三角换成下三角，值还是这个乘积。</p>
+<section data-sec="克拉默法则" class="slide" data-title="和 2.2、2.3 的接头">
+<h2 class="slide-title">和 2.2、2.3 的接头</h2><div class="grid-3 fit"><div class="card"><h3>可逆</h3><div class="gold-rule"></div><p>方阵可逆 $\Leftrightarrow$ det≠0。下一讲公式会用到 $D$。</p></div><div class="card"><h3>方程组</h3><div class="gold-rule"></div><p>$D\neq 0$ 则克拉默给出唯一解。$D=0$ 交给下一讲的平面位置。</p></div><div class="card"><h3>不要</h3><div class="gold-rule"></div><p>把所有问题都用克拉默硬算三阶。</p></div></div>
 </section>
-<section class="slide" data-title="四阶：找零多的一列再展开">
-<div class="num">公式</div><h2 class="slide-title">四阶：找零多的一列再展开</h2><div class="card">$$\begin{vmatrix}-2&2&-4&0\\ 4&-1&3&5\\ 3&1&-2&-3\\ 2&0&5&1\end{vmatrix}=-270$$</div><p class="lead">第 2 列已经有一个 0。用倍加把这一列再消出零，只留一个非零元，按它展开成三阶，继续消元。沙流只到三阶；四阶靠性质和展开。课堂认这条路，不必把每一步算术重算一遍。</p>
+<section data-sec="回顾与自测" class="slide divider" data-sec-start="回顾与自测" data-title="回顾与自测">
+<div class="sec-no">六</div><h2>回顾与自测</h2>
 </section>
-<section class="slide" data-title="文化卡片 · 折叠成一个数" data-notes="控制在两三分钟。">
+<section data-sec="回顾与自测" class="slide" data-title="文化卡片 · 折叠成一个数" data-notes="控制在两三分钟。">
 <div class="num">文化</div><div class="culture"><span class="badge">文化卡片 · 折叠成一个数</span><blockquote>行列式最初出现在解线性方程组的消元里，后来才被看成体积缩放。</blockquote><p>莱布尼茨就写过用行列式判别方程组。对文科学生：记住它是「方阵→一个数」的折叠，0 与非 0 往往比具体数值更要紧。</p></div>
 </section>
-<section class="slide" data-title="小结" data-notes="下课回扣目标。">
-<h2 class="slide-title">带走与易错</h2><div class="grid-2"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>二阶 ad−bc；三阶沙流；三角阵看对角。</li><li>换行变号，倍加不变，成比例则 0。</li><li>克拉默展示应用，不是唯一算法。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>四阶仍用沙流。</li><li>把 det=0 说成「方程组无解」（也可能无穷解）。</li></ul></div></div>
+<section data-sec="回顾与自测" class="slide" data-title="小结" data-notes="下课回扣目标。">
+<h2 class="slide-title">带走与易错</h2><div class="grid-2 fit"><div class="card"><h3>带走</h3><div class="gold-rule"></div><ul><li>二阶 ad−bc 是有向面积；三阶沙流；三角阵看对角。</li><li>换行变号，倍加不变，成比例则 0；四阶靠展开。</li><li>克拉默：$D
+eq 0$ 时解是替换列的行列式之比。</li></ul></div><div class="card"><h3>易错</h3><div class="gold-rule"></div><ul><li>四阶仍用沙流。</li><li>把 det=0 说成「方程组无解」（也可能无穷解）。</li><li>克拉默算完不代回验算。</li></ul></div></div>
 </section>
-<section class="slide" data-title="作业" data-notes="当堂布置。">
-<h2 class="slide-title">作业</h2><div class="grid-3"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>算一个一般三阶与一个上三角三阶。</li><li>用性质说明两行相同则行列式为 0。</li><li>说明四阶为什么先找零，再展开，而不是用沙流。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 解释为何换行变号与「有向面积」一致。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 2.2：矩阵运算，行×列，AB≠BA。</p></div></div>
+<section data-sec="回顾与自测" class="slide" data-title="课后自测" data-notes="课后让学生用手机打开本页自测。" data-hook="quiz">
+<div class="num">自测</div><h2 class="slide-title">课后自测</h2><div class="quiz" data-quiz="21" data-n="6"></div>
+</section>
+<section data-sec="回顾与自测" class="slide" data-title="作业" data-notes="当堂布置。">
+<h2 class="slide-title">作业</h2><div class="grid-3 fit"><div class="card"><h3>必做</h3><div class="gold-rule"></div><ul><li>计算 $\begin{vmatrix}1&0&1\\ 2&1&0\\ -3&2&-5\end{vmatrix}$ 与一个上三角三阶。</li><li>用性质说明两行相同则行列式为 0。</li><li>说明四阶为什么先找零，再展开，而不是用沙流。</li><li>用克拉默解 $2x+y=5$，$x-y=1$。</li></ul></div><div class="card"><h3>选做</h3><div class="gold-rule"></div><ul><li>* 解释为何换行变号与「有向面积」一致。</li><li>* 求 $a$ 使 $\begin{vmatrix}a&1\\ 2&a\end{vmatrix}=0$。</li></ul></div><div class="card"><h3>下一讲</h3><div class="gold-rule"></div><p>下一讲 2.2：矩阵运算，行×列，AB≠BA。</p></div></div>
 </section>
     </main>
+    <canvas class="ink" id="ink"></canvas>
+    <button type="button" class="clock" id="clock" title="点一下停止计时"></button>
     <div class="notes" id="notes"></div>
     <div class="outline" id="outline"><h3>本讲提纲 I</h3><div id="outline-list"></div></div>
     <div class="help" id="help">
       <h3>翻页</h3>
       <p>手机：左右滑动，或点底部「上一页」「下一页」。「解答」揭晓答案，「提纲」跳到某一页。</p>
-      <p>键盘：→ / 空格 下一页　　← 上一页　　Home / End 首尾</p>
+      <p>键盘：→ / 空格 下一步或下一页　　← 上一步　　Home / End 首尾</p>
       <p>F 全屏　　A 揭晓解答　　I 提纲　　? 本面板</p>
+      <p>T 课堂练计时　　P 画笔（C 清除本页笔迹）　　B 黑屏</p>
       <p class="teacher-only">N 备注（仅教师版 ?teacher=1）</p>
-      <p>解答页默认跳过；点「解答」或按 A 后进入线性顺序。滑条用手指拖；用键盘时先点空白再按方向键。</p>
+      <p>推导页逐行出现，按 → 一步一步走。解答页默认跳过；点「解答」或按 A 后进入线性顺序。滑条用手指拖；用键盘时先点空白再按方向键。</p>
     </div>
+    <div class="blackout" id="blackout"></div>
     <footer class="botbar">
       <span>南开大学数学科学学院</span>
       <span id="page">1 / 1</span>
@@ -156,6 +204,7 @@
         <button type="button" class="btn ghost" id="btn-ans">解答 A</button>
         <button type="button" class="btn ghost" id="btn-toc">提纲 I</button>
         <button type="button" class="btn ghost" id="btn-notes">备注 N</button>
+        <button type="button" class="btn ghost" id="btn-pen">画笔 P</button>
         <button type="button" class="btn ghost" id="btn-full">全屏 F</button>
         <button type="button" class="btn ghost" id="btn-help">?</button>
       </span>
@@ -163,8 +212,11 @@
   </div>
   <script src="../vendor/katex/katex.min.js"></script>
   <script src="../vendor/katex/contrib/auto-render.min.js"></script>
-  <script src="../js/deck.js"></script>
-  <script src="../js/plot.js"></script>
-  <script src="../js/labs/21-sarrus.js"></script>
+  <script src="../js/deck.js?v=20261110174738"></script>
+  <script src="../js/plot.js?v=20261110174738"></script>
+  <script src="../js/figs.js?v=20261110174738"></script>
+  <script src="../js/quiz.js?v=20261110174738"></script>
+  <script src="../js/quiz/21.js?v=20261110174738"></script>
+  <script src="../js/labs/21-sarrus.js?v=20261110174738"></script>
 </body>
 </html>

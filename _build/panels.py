@@ -127,6 +127,30 @@ P = {
             </div>
             <div class="verdict" id="signed-verdict"></div>
     """,
+    "accum": """
+            <div class="ctrl">
+              <label><span>上限 x</span><span class="ctrl-val" id="accum-x-val">1.00</span></label>
+              <input id="accum-x" type="range" min="0" max="6.283" step="0.01" value="1" />
+            </div>
+            <div class="readout" id="accum-read"></div>
+            <div class="verdict" id="accum-verdict"></div>
+    """,
+    "improper": """
+            <div class="ctrl">
+              <label><span>上限 b</span><span class="ctrl-val" id="improper-b-val">2.00</span></label>
+              <input id="improper-b" type="range" min="0" max="100" step="1" value="10" />
+            </div>
+            <div class="readout" id="improper-read"></div>
+            <div class="verdict" id="improper-verdict"></div>
+    """,
+    "surplus": """
+            <div class="ctrl">
+              <label><span>市场价 p₀</span><span class="ctrl-val" id="surplus-p-val">4.0</span></label>
+              <input id="surplus-p" type="range" min="1" max="9" step="0.5" value="4" />
+            </div>
+            <div class="readout" id="surplus-read"></div>
+            <div class="verdict">紫色：愿意付的减去实际付的，是买方白赚的部分。金色：实际花掉的钱。价格降下来，紫色变大。</div>
+    """,
     "region": """
             <div class="ctrl">
               <div class="seg">
